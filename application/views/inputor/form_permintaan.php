@@ -39,16 +39,13 @@
     <div class="input-group col-lg-6">
         <span class="input-group-addon input-permintaan" id="basic-addon1">Jenis Lokasi</span>
         <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle dropdown-permintaan" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Pilih Jenis Lokasi
-            <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu dropdown-permintaan" aria-labelledby="dropdownMenu1">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li><a href="#">Separated link</a></li>
-            </ul>
+            <form method="POST">
+            <select placeholder="Pilih Perusahaan" class="form-control" name="jenis">    
+                <?php foreach ($jenis_list as $row) : ?>
+                    <option><?php echo $row->type_name ?></option>
+                <?php endforeach?>
+            </select>
+            </form>
         </div>
     </div>
 </div>
@@ -57,16 +54,13 @@
     <div class="input-group col-lg-6">
         <span class="input-group-addon input-permintaan" id="basic-addon1">Perusahaan</span>
         <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle dropdown-permintaan" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Pilih Perusahaan
-            <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu dropdown-permintaan" aria-labelledby="dropdownMenu1">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li><a href="#">Separated link</a></li>
-            </ul>
+            <form method="POST">
+            <select placeholder="Pilih Perusahaan" class="form-control" name="perusahaan">    
+                <?php foreach ($perusahaan_list as $row) : ?>
+                    <option><?php echo $row->name ?></option>
+                <?php endforeach?>
+            </select>
+            </form>
         </div>
     </div>
 </div>
@@ -82,19 +76,12 @@
     <div class="input-group col-lg-6">
         <span class="input-group-addon input-permintaan" id="basic-addon1">Region</span>
         <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle dropdown-permintaan" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Pilih Region
-            <span class="caret"></span>
-            </button>
-            <form method="POST" action="<?php echo "inputor/showDataRegion"?>" >
-            <select class="form-control" name="region">    
-                <?php foreach ($user_list as $row) 
-                {
-                    echo '<option value="'.$row->name.'">'.$row->name.'</option>';
-                }
-                ?>
+            <form method="POST">
+            <select placeholder="Pilih Region" class="form-control" name="region">    
+                <?php foreach ($region_list as $row) : ?>
+                    <option><?php echo $row->name ?></option>
+                <?php endforeach?>
             </select>
-            <!--<input type="submit"class="btn pull-right mybutton" value="Validasi">-->
             </form>
         </div>
     </div>
@@ -118,16 +105,13 @@
     <div class="input-group col-lg-6">
         <span class="input-group-addon input-permintaan" id="basic-addon1">Layanan</span>
         <div class="dropdown dropdown-permintaan">
-            <button class="btn btn-default dropdown-toggle dropdown-permintaan" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Pilih Layanan
-            <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu dropdown-permintaan" aria-labelledby="dropdownMenu1">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li><a href="#">Separated link</a></li>
-            </ul>
+            <form method="POST">
+            <select placeholder="Pilih Perusahaan" class="form-control" name="layanan">    
+                <?php foreach ($layanan_list as $row) : ?>
+                    <option><?php echo $row->name ?></option>
+                <?php endforeach?>
+            </select>
+            </form>
         </div>
     </div>
 </div>
@@ -136,16 +120,13 @@
     <div class="input-group col-lg-6">
         <span class="input-group-addon input-permintaan" id="basic-addon1">Paket Layanan</span>
         <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle dropdown-permintaan" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Pilih Paket Layanan
-            <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu dropdown-permintaan" aria-labelledby="dropdownMenu1">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li><a href="#">Separated link</a></li>
-            </ul>
+            <form method="POST">
+            <select placeholder="Pilih Perusahaan" class="form-control" name="paket">    
+                <?php foreach ($paket_list as $row) : ?>
+                    <option><?php echo $row->package ?></option>
+                <?php endforeach?>
+            </select>
+            </form>
         </div>
     </div>
 </div>
@@ -163,3 +144,4 @@
 </div>
 </div>
 <!-- /#page-wrapper -->
+

@@ -17,19 +17,6 @@ class Users_model extends CI_Model
 
     function role_check($username)
     {
-    	/*$this->db->select('user_id');
-    	$this->db->where('username', $username);
-
-    	$this->db->select('p_role_id');
-    	$this->db->where('')
-
-
-    	$query = $this->db->get('user');
-    	foreach ($query->result() as $row)
-		{
-   			return $row->level;
-		}*/
-
 		$this->db->select('a.user_id'); 
 		$this->db->where('a.username', $username); 
 		$this->db->get('user as a'); 

@@ -6,18 +6,17 @@ class Inputor_model extends CI_Model
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->database();
 	}
 
 	function getDataPerusahaan()
 	{
-		$this->db->select('name');
 		$query = $this->db->get('company');
 		return $query->result();
 	}
 
 	function getDataJenis()
 	{
-		$this->db->select('type_name');
 		$query = $this->db->get('p_site_type');
 		return $query->result();
 	}
@@ -25,23 +24,23 @@ class Inputor_model extends CI_Model
 	public function getDataRegion()
 	{
 		$query = $this->db->get('p_region');
-		$data = $query->result();
-		print_r($data);
+		return $query->result();
 	}
 
 	function getDataLayanan()
 	{
+		$this->db->distinct();
 		$this->db->select('name');
 		$query = $this->db->get('p_nw_service');
 		return $query->result();
+
 	}
 
 	function getDataPaket($layanan)
 	{
 		//layanan parsing dari hasil fungsi getDataLayanan
-		$this->db->select('package');
 		$this->db->where('name', $layanan);
-		$query = $this->db->get("p_nw_service");		
+		$query = $this->db->get('p_nw_service');		
     	return $query->result();
 	}
 
