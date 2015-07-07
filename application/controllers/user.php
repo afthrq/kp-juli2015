@@ -44,15 +44,15 @@ class User extends CI_Controller
 				$this->session->set_userdata($data);
 				redirect('inputor');
 			}
-			elseif ($rolecheck == "member") 
+			elseif ($rolecheck == "pm") 
 			{	
 				$data = array(
 				'user_name' => $user_name,
 				'is_logged_in' => TRUE,
-				'level' => $rolecheck
+				'role' => $rolecheck
 				);
 				$this->session->set_userdata($data);
-				redirect('member');
+				redirect('pm');
 			}
 			
 		}
