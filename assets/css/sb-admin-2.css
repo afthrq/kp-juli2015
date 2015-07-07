@@ -353,6 +353,19 @@ table.dataTable thead .sorting:after {
     color: #df8a13;
 }
 
+/*  
+    my code starts here
+    don't change what's above here
+*/
+
 html{
     overflow-y: scroll; 
+}
+
+.input-permintaan{
+    min-width: 120px;
+}
+
+.dropdown-permintaan{
+    min-width: 414px;
 }

@@ -12,6 +12,7 @@
         <link href="<?php echo base_url('assets/css/morris.css') ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/css/metisMenu.min.css"') ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/css/sb-admin-2.css') ?>" rel="stylesheet">
+        <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
     </head>
     <body>
         <div id="wrapper">
