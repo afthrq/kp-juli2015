@@ -16,7 +16,7 @@ class Inputor extends CI_Controller
 	function index()
 	{
 		$this->load->view('includes/header');
-    	$this->load->view('admin/home');
+    	$this->load->view('inputor/home');
     	$this->load->view('includes/footer');
 	}
 
