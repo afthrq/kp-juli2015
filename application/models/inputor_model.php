@@ -65,9 +65,6 @@ class Inputor_model extends CI_Model
 	{
 		$this->db->set('name',$provinsi);
 		$this->db->insert('provinsi');
-
-
-		$this->db->set()
 	}
 
 	function inputPic($pic)
@@ -79,6 +76,6 @@ class Inputor_model extends CI_Model
 	function inputBw($bw)
 	{
 		$this->db->set('bw',$bw);
-		$this->db->insert('t_network_order')
+		$this->db->insert('t_network_order');
 	}
 }

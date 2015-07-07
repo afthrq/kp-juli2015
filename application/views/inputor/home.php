@@ -4,8 +4,16 @@
       <li>
         <a href="<?php echo base_url() ?>inputor"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
       </li>
-      <li>
-        <a href="form_permintaan.html"><i class="fa fa-edit fa-fw"></i> Form Permintaan </a>
+      <li class="dropdown">
+          <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-edit fa-fw"></i> Form Permintaan <i class="fa fa-fw fa-caret-down"></i></a>
+            <ul id="demo" class="collapse">
+              <li class="dropdown">
+                  <a href="<?php echo base_url() ?>inputor/form_permintaan"><i class="fa fa-edit fa-fw"></i> Permintaan Baru</a>
+              </li>
+              <li class="dropdown">
+                  <a href="<?php echo base_url() ?>inputor/update_permintaan"><i class="fa fa-edit fa-fw"></i> Update Permintaan</a>
+              </li>
+            </ul>
       </li>
     </ul>
   </div>

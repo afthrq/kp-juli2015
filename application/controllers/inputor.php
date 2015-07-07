@@ -11,7 +11,6 @@ class Inputor extends CI_Controller
 		{
 			redirect('user','refresh');	
         }
-        $this->load->view('form_permintaan.php');
 	}
 
     function insert_to_db()
@@ -35,10 +34,10 @@ class Inputor extends CI_Controller
     	$this->load->view('includes/footer');
     }
 
-    function forms()
+    function update_permintaan()
     {
     	$this->load->view('includes/header');
-    	$this->load->view('admin/forms');
+    	$this->load->view('inputor/update_permintaan');
     	$this->load->view('includes/footer');
     }
 
