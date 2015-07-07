@@ -31,6 +31,8 @@ class User extends CI_Controller
 
 		$is_valid = $this->Users_model->validate($user_name, $password);
 		$levelcheck = $this->Users_model->role_check($user_name);
+		echo $levelcheck;
+		die();
 
 		if($is_valid)
 		{

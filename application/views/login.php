@@ -20,6 +20,7 @@
             </div>
             <div class="panel-body">
               <?php
+              
               echo form_open('user/validate_credentials');
               echo "<div class='form-group'>";
                 $username = array(
