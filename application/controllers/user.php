@@ -7,7 +7,7 @@ class User extends CI_Controller
 	{
 		if($this->session->userdata('is_logged_in'))
 		{
-			$user = $this->session->userdata('level');
+			$user = $this->session->userdata('role');
 			redirect($user);
         }
         else
@@ -30,28 +30,26 @@ class User extends CI_Controller
 		$password = $this->__encrip_password($this->input->post('password'));
 
 		$is_valid = $this->Users_model->validate($user_name, $password);
-		$levelcheck = $this->Users_model->role_check($user_name);
-		echo $levelcheck;
-		die();
+		$rolecheck = $this->Users_model->role_check($user_name);
 
 		if($is_valid)
 		{
-			if ($levelcheck == "admin") 
+			if ($rolecheck == "inputor") 
 			{	
 				$data = array(
 				'user_name' => $user_name,
 				'is_logged_in' => TRUE,
-				'level' => $levelcheck
+				'role' => $rolecheck
 				);
 				$this->session->set_userdata($data);
-				redirect('admin');
+				redirect('inputor');
 			}
-			elseif ($levelcheck == "member") 
+			elseif ($rolecheck == "member") 
 			{	
 				$data = array(
 				'user_name' => $user_name,
 				'is_logged_in' => TRUE,
-				'level' => $levelcheck
+				'level' => $rolecheck
 				);
 				$this->session->set_userdata($data);
 				redirect('member');

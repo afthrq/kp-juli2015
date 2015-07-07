@@ -6,8 +6,8 @@ class Inputor extends CI_Controller
 	{
 		parent::__construct();
 		session_start();
-		$this->load->model('users_model');
-		if($this->session->userdata('level') != "member")
+		$this->load->model('inputor_model');
+		if($this->session->userdata('role') != "inputor")
 		{
 			redirect('user','refresh');	
         }
