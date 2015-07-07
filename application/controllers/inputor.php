@@ -13,32 +13,34 @@ class Inputor extends CI_Controller
         }
 	}
 
-    function insert_to_db()
-    {
-        $this->load->model('site_model');
-        $this->site_model->insert_to_db();
-        $this->load->view('success');//loading success view
-    }
 
-	function index()
+	public function index()
 	{
-		$this->load->view('includes/header');
-    	$this->load->view('inputor/home');
-    	$this->load->view('includes/footer');
+		$this->load->view('includes/header',$data);
+    	$this->load->view('inputor/home',$data);
+    	$this->load->view('includes/footer',$data);
 	}
 
-    function form_permintaan()
+    public function form_permintaan()
     {
+
     	$this->load->view('includes/header');
     	$this->load->view('inputor/form_permintaan');
     	$this->load->view('includes/footer');
+
     }
 
-    function update_permintaan()
+    public function update_permintaan()
     {
     	$this->load->view('includes/header');
     	$this->load->view('inputor/update_permintaan');
     	$this->load->view('includes/footer');
     }
 
+    public function showDataRegion()
+    {
+        $data['user_list'] = $this->inputor_model->getDataRegion();
+        $this->load->view('form_permintaan',$data);
+
+    }
 }

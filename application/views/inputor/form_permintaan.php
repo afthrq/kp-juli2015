@@ -86,12 +86,16 @@
             Pilih Region
             <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu dropdown-permintaan" aria-labelledby="dropdownMenu1">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li><a href="#">Separated link</a></li>
-            </ul>
+            <form method="POST" action="<?php echo "inputor/showDataRegion"?>" >
+            <select class="form-control" name="region">    
+                <?php foreach ($user_list as $row) 
+                {
+                    echo '<option value="'.$row->name.'">'.$row->name.'</option>';
+                }
+                ?>
+            </select>
+            <!--<input type="submit"class="btn pull-right mybutton" value="Validasi">-->
+            </form>
         </div>
     </div>
 </div>
