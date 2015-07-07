@@ -29,7 +29,7 @@
 <div class="row">
     <div class="input-group col-lg-6">
         <span class="input-group-addon input-permintaan" id="basic-addon1">Lokasi</span>
-        <input type="text" class="form-control" aria-describedby="basic-addon1">
+        <input type="text" class="form-control" aria-describedby="basic-addon1" name="lokasi">
     </div>
 </div>
 <br>
@@ -72,7 +72,7 @@
 <div class="row">
     <div class="input-group col-lg-6">
         <span class="input-group-addon input-permintaan" id="basic-addon1">Alamat</span>
-        <input type="text" class="form-control" aria-describedby="basic-addon1">
+        <input type="text" class="form-control" aria-describedby="basic-addon1" name="alamat">
     </div>
 </div>
 <br>
@@ -97,14 +97,14 @@
 <div class="row">
     <div class="input-group col-lg-6">
         <span class="input-group-addon input-permintaan" id="basic-addon1">Provinsi</span>
-        <input type="text" class="form-control" aria-describedby="basic-addon1">
+        <input type="text" class="form-control" aria-describedby="basic-addon1" name="prov">
     </div>
 </div>
 <br>
 <div class="row">
     <div class="input-group col-lg-6">
         <span class="input-group-addon input-permintaan" id="basic-addon1">PIC</span>
-        <input type="text" class="form-control" aria-describedby="basic-addon1">
+        <input type="text" class="form-control" aria-describedby="basic-addon1" name="pic">
     </div>
 </div>
 <br>
@@ -147,7 +147,7 @@
 <div class="row">
     <div class="input-group col-lg-6">
         <span class="input-group-addon input-permintaan" id="basic-addon1">Bandwidth</span>
-        <input type="text" class="form-control" aria-describedby="basic-addon1">
+        <input type="text" class="form-control" aria-describedby="basic-addon1" name="bw">
     </div>
 </div>
 <br><br>

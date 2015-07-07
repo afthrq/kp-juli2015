@@ -11,7 +11,15 @@ class Inputor extends CI_Controller
 		{
 			redirect('user','refresh');	
         }
+        $this->load->view('form_permintaan.php');
 	}
+
+    function insert_to_db()
+    {
+        $this->load->model('site_model');
+        $this->site_model->insert_to_db();
+        $this->load->view('success');//loading success view
+    }
 
 	function index()
 	{
