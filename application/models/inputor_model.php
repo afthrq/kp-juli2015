@@ -8,20 +8,20 @@ class Inputor_model extends CI_Model
 		parent::__construct();
 		$this->load->database();
 	}
-
+	/*
 	function getdataperusahaan()
 	{
 		$query = $this->db->get('company');
 		return $query->result();
 	}
-
+	*/
 	function getdatajenis()
 	{
 		$query = $this->db->get('p_site_type');
 		return $query->result();
 	}
 
-	function getdataregion()
+	/*function getdataregion()
 	{
 		$this->db->distinct();
 		$query = $this->db->get('p_region');
@@ -45,7 +45,7 @@ class Inputor_model extends CI_Model
 		$query = $this->db->get('p_nw_service');		
     	return $query->result();
 	}
-
+*/
 	function getprovinsiid($provinsi)
 	{
 		$this->db->where('name', $provinsi);
@@ -86,6 +86,14 @@ class Inputor_model extends CI_Model
 	
 	}
 
+	function getpackid($paket, $servid)
+	{
+		$this->db->where('package', $paket);
+		$query = $this->db->get("p_nw_service"); 
+		return $query->row()->p_nw_service_id;
+	
+	}
+
 	function getsiteid($lokasi)
 	{
 		$this->db->where('name', $lokasi);
@@ -94,12 +102,11 @@ class Inputor_model extends CI_Model
 	
 	}
 
-	function getserviceid($layanan,$paket)
+	function getserviceid($layanan)
 	{
 		$this->db->where('name', $layanan);
-		$this->db->where('package', $paket);
-		$query = $this->db->get("p_nw_service"); 
-		return $query->row()->p_nw_service_id;	
+		$query = $this->db->get("p_service"); 
+		return $query->row()->p_service_id;	
 	}
 
 	function inputfinal($in_order)
@@ -129,18 +136,40 @@ class Inputor_model extends CI_Model
       $this->db->select('company_id,name');  
       $this->db->from('company');  
       $query = $this->db->get();  
-      foreach($query->result_array() as $row){  
+      foreach($query->result_array() as $row)
+      {  
          $data[$row['company_id']]=$row['name'];  
-      }  
-      // the fetching data from database is return  
+      }   
       return $data;  
-   	}  
-   //fill your cities dropdown depending on the selected city  
+   	} 
+
    	public function getregionfromcomp($company_id=string)  
-   	{  
+   	{ 
+   	  $this->db->select('name'); 
       $this->db->from('p_region');  
       $this->db->where('company_id',$company_id);  
       $query = $this->db->get();  
       return $query->result();  
   	 }  
+
+  	 public function getservid()  
+   	{  
+      $this->db->select('p_service_id,name');  
+      $this->db->from('p_service');  
+      $query = $this->db->get();  
+      foreach($query->result_array() as $row)
+      {  
+         $data[$row['p_service_id']]=$row['name'];  
+      }   
+      return $data;  
+   	} 
+
+   	public function getpaketfromlayanan($p_service_id=string)  
+   	{ 
+   	  $this->db->select('package'); 
+      $this->db->from('p_nw_service');  
+      $this->db->where('p_service_id',$p_service_id);  
+      $query = $this->db->get();  
+      return $query->result();  
+  	 } 
 }

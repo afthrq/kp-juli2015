@@ -24,11 +24,11 @@ class Inputor extends CI_Controller
 
     public function form_permintaan()
     {
-        $data['perusahaan_list'] = $this->inputor_model->getdataperusahaan();
+        //$data['perusahaan_list'] = $this->inputor_model->getdataperusahaan();
         $data['jenis_list'] = $this->inputor_model->getdatajenis();
-        $data['layanan_list'] = $this->inputor_model->getdatalayanan();
-        $data['paket_list'] = $this->inputor_model->getdatapaket();
-        $data['region_list'] = $this->inputor_model->getcompid();
+        $data['layanan_list'] = $this->inputor_model->getservid();
+        //$data['paket_list'] = $this->inputor_model->getdatapaket();
+        $data['perusahaan_list'] = $this->inputor_model->getcompid();
     	$this->load->view('includes/header');
     	$this->load->view('inputor/form_permintaan',$data);
     	$this->load->view('includes/footer');
@@ -42,20 +42,31 @@ class Inputor extends CI_Controller
     	$this->load->view('includes/footer');
     }
 
-    public function buildDropCities()  
-   {  
-      //set selected country id from POST  
-      echo $id_company = $this->input->post('company_id',TRUE);  
-      //run the query for the cities we specified earlier  
-      $districtData['region_list']=$this->inputor_model->getregionfromcomp($id_company);  
+    public function buildregion()  
+    {  
+      echo $company_id = $this->input->post('id',TRUE);  
+  
+      $districtData['perusahaan_list']=$this->inputor_model->getregionfromcomp($company_id);  
       $output = null;  
-      foreach ($districtData['region_list'] as $row)  
+      foreach ($districtData['perusahaan_list'] as $row)  
       {    
-         $output .= "<option value='".$row->name."'></option>";  
+            $output .= "<option value='".$row->name."'>".$row->name."</option>"; 
       }  
       echo $output;  
-   }  
+    }  
 
+    public function buildpaket()  
+    {  
+      echo $p_service_id = $this->input->post('id',TRUE);  
+  
+      $districtData['layanan_list']=$this->inputor_model->getpaketfromlayanan($p_service_id);  
+      $output = null;  
+      foreach ($districtData['layanan_list'] as $row)  
+      {    
+            $output .= "<option value='".$row->package."'>".$row->package."</option>"; 
+      }  
+      echo $output;  
+    }  
 
     public function form_input()
     {
@@ -80,15 +91,13 @@ class Inputor extends CI_Controller
         $perid = $this->inputor_model->getperusahaanid($perusahaan);
         $picid = $this->inputor_model->getpicid($pic);
         $jenid = $this->inputor_model->getjenid($jenis);
-        $servid = $this->inputor_model->getserviceid($layanan,$paket);
+        $servid = $this->inputor_model->getserviceid($layanan); 
 
 
         //setting child table level 1
-        $in_reg = array ('company_id' => $perid);
 
-
-        $this->inputor_model->inputlvl1($in_reg);
         $regid = $this->inputor_model->getregid($region);
+        $packid = $this->inputor_model->getpackid($paket,$servid);
 
         //setting child table level 2
         $in_site = array ('provinsi_id' => $provid,
@@ -102,7 +111,7 @@ class Inputor extends CI_Controller
 
         //setting child table final
         $in_order = array ('t_nw_site_id' => $siteid,
-            'p_nw_service_id' => $servid,
+            'p_nw_service_id' => $packid,
             'bw' => $bw);
 
         $this->inputor_model->inputfinal($in_order); 

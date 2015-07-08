@@ -1,27 +1,41 @@
+<head>
+<script type="text/javascript"  src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>  
+<script type="text/javascript"  src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>  
+
+<script type="text/javascript">  
+          $(document).ready(function() {  
+             $("#perusahaan").change(function(){  
+             /*dropdown post *///  
+             $.ajax({  
+                url:"<?php echo base_url();?>index.php/inputor/buildregion",  
+                data: {id: $(this).val()},  
+                type: "POST",  
+                success:function(data){  
+                $("#region").html(data);  
+             }  
+          });  
+       });  
+    });  
+</script> 
+
+<script type="text/javascript">  
+          $(document).ready(function() {  
+             $("#layanan").change(function(){  
+             /*dropdown post *///  
+             $.ajax({  
+                url:"<?php echo base_url();?>index.php/inputor/buildpaket",  
+                data: {id: $(this).val()},  
+                type: "POST",  
+                success:function(data){  
+                $("#paket").html(data);  
+             }  
+          });  
+       });  
+    });  
+</script>
+</head>
 <div class="navbar-default sidebar" role="navigation">
-        <script type="text/javascript"  
-            src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.  
-            min.js"></script>  
-            <script type="text/javascript"  
-               src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquer  
-               y-ui.min.js"></script>  
-               <script type="text/javascript">  
-                  $(document).ready(function() {  
-                     $("#countriesDrp").change(function(){  
-                     /*dropdown post *///  
-                     $.ajax({  
-                        url:"<?php echo  
-                        base_url();?>index.php/countries/buildDropCities",  
-                        data: {id:  
-                           $(this).val()},  
-                        type: "POST",  
-                        success:function(data){  
-                        $("#cityDrp").html(data);  
-                     }  
-                  });  
-               });  
-            });  
-         </script> 
+
     <div class="sidebar-nav navbar-collapse">
       <ul class="nav" id="side-menu">
             <li>
@@ -76,11 +90,12 @@
     <div class="input-group col-lg-6">
         <span class="input-group-addon input-permintaan" id="basic-addon1">Perusahaan</span>
         <div class="dropdown">
-            <select placeholder="Pilih Perusahaan" class="form-control" name="perusahaan">    
-                <?php foreach ($perusahaan_list as $row) : ?>
-                    <option><?php echo $row->name ?></option>
-                <?php endforeach?>
-            </select>
+            <!--<select placeholder="Pilih Perusahaan" class="form-control" name="perusahaan" id="perusahaan">    
+                 foreach ($perusahaan_list as $row) : ?>
+                    <option><php echo $row->name ?></option>
+                <php endforeach?>     
+            </select>-->
+        <?php echo form_dropdown('perusahaan', $perusahaan_list,'','class="form-control" id="perusahaan" name="perusahaan"');  ?>
         </div>
     </div>
 </div>
@@ -96,7 +111,7 @@
     <div class="input-group col-lg-6">
         <span class="input-group-addon input-permintaan" id="basic-addon1">Region</span>
         <div class="dropdown">
-            <select placeholder="Pilih Region" class="form-control" name="region" >
+            <select class="form-control" name="region" id="region">
                 <option value="">Select</option>    
             </select>
         </div>
@@ -121,11 +136,12 @@
     <div class="input-group col-lg-6">
         <span class="input-group-addon input-permintaan" id="basic-addon1">Layanan</span>
         <div class="dropdown dropdown-permintaan">
-            <select placeholder="Pilih Perusahaan" class="form-control" name="layanan">    
-                <?php foreach ($layanan_list as $row) : ?>
-                    <option><?php echo $row->name ?></option>
-                <?php endforeach?>
-            </select>
+            <!--<select placeholder="Pilih Perusahaan" class="form-control" name="layanan">    
+                <php foreach ($layanan_list as $row) : ?>
+                    <option><php echo $row->name ></option>
+                <php endforeach?>
+            </select>-->
+            <?php echo form_dropdown('layanan', $layanan_list,'','class="form-control" id="layanan" name="layanan"');  ?>
         </div>
     </div>
 </div>
@@ -134,10 +150,8 @@
     <div class="input-group col-lg-6">
         <span class="input-group-addon input-permintaan" id="basic-addon1">Paket Layanan</span>
         <div class="dropdown">
-            <select placeholder="Pilih Perusahaan" class="form-control" name="paket">    
-                <?php foreach ($paket_list as $row) : ?>
-                    <option><?php echo $row->package ?></option>
-                <?php endforeach?>
+            <select class="form-control" name="paket" id="paket">
+                <option value="">Select</option>    
             </select>
         </div>
     </div>
