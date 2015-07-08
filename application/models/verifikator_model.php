@@ -6,6 +6,14 @@ class Verifikator_model extends CI_Model
 	{
 		
 	}
+
+	function get_data_permintaan()
+	{
+		$this->db->where('p_region_id', "1");
+		$query = $this->db->get('p_region');
+		return $query->result();
+	}
+
 	function insert_koordinasi_provider($tiket_provider,$pic_provider)
 	{
 		/*
