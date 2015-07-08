@@ -5,7 +5,7 @@
         <a href="<?php echo base_url() ?>pm"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
       </li>
       <li>
-        <a href="<?php echo base_url() ?>pm/koordinasi_provider"><i class="fa fa-edit fa-fw"></i> Koordinasi Provider</a>
+        <a href="<?php echo base_url() ?>pm/menu_koordinasi_provider"><i class="fa fa-edit fa-fw"></i> Koordinasi Provider</a>
       </li>
       <li>
         <a href="<?php echo base_url() ?>pm/online_billing"><i class="fa fa-edit fa-fw"></i> Online Billing</a>

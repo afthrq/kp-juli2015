@@ -5,7 +5,7 @@
                 <a href="<?php echo base_url() ?>pm"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <li>
-                <a href="<?php echo base_url() ?>pm/koordinasi_provider"><i class="fa fa-edit fa-fw"></i> Koordinasi Provider</a>
+                <a href="<?php echo base_url() ?>pm/menu_koordinasi_provider"><i class="fa fa-edit fa-fw"></i> Koordinasi Provider</a>
             </li>
             <li>
                 <a href="<?php echo base_url() ?>pm/online_billing"><i class="fa fa-edit fa-fw"></i> Online Billing</a>
@@ -23,18 +23,18 @@
     </div>
     <!-- /.col-lg-12 -->
 </div>
-<form method="POST" action="<?php echo "pm/koordinasi_provider"?>">
+<form method="POST" action="<?php echo base_url('pm/submit_koordinasi_provider')?>">
 <div class="row">
     <div class="input-group col-lg-6">
-        <span class="input-group-addon input-permintaan" id="basic-addon1" name="tiket_provider">Tiket Provider</span>
-        <input type="text" class="form-control" aria-describedby="basic-addon1">
+        <span class="input-group-addon input-permintaan" id="basic-addon1">Tiket Provider</span>
+        <input type="text" class="form-control" aria-describedby="basic-addon1" name="tiket_provider">
     </div>
 </div>
 <br>
 <div class="row">
     <div class="input-group col-lg-6">
-        <span class="input-group-addon input-permintaan" id="basic-addon1" name="pic_provider">PIC Provider</span>
-        <input type="text" class="form-control" aria-describedby="basic-addon1">
+        <span class="input-group-addon input-permintaan" id="basic-addon1">PIC Provider</span>
+        <input type="text" class="form-control" aria-describedby="basic-addon1" name="pic_provider">
     </div>
 </div>
 <br><br>

@@ -26,14 +26,27 @@ class Pm extends CI_Controller
     	$this->load->view('includes/footer');
 	}
 
-    function koordinasi_provider()
+    function submit_koordinasi_provider()
     {
         $tiket_provider = $this->input->post('tiket_provider');
         $pic_provider = $this->input->post('pic_provider');
         $this->pm_model->insert_koordinasi_provider($tiket_provider, $pic_provider);
-    	$this->load->view('includes/header');
-    	$this->load->view('pm/koordinasi_provider');
-    	$this->load->view('includes/footer');
+        redirect('pm','refresh');
+    }
+
+    function menu_koordinasi_provider()
+    {
+        $data['list_permintaan'] = $this->pm_model->get_list_permintaan();
+        $this->load->view('includes/header');
+        $this->load->view('pm/menu_koordinasi_provider', $data);
+        $this->load->view('includes/footer');
+    }
+
+    function koordinasi_provider()
+    {
+        $this->load->view('includes/header');
+        $this->load->view('pm/koordinasi_provider');
+        $this->load->view('includes/footer');
     }
 
     function online_billing()
