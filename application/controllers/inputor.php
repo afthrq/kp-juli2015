@@ -24,12 +24,12 @@ class Inputor extends CI_Controller
 
     public function form_permintaan()
     {
-        $data['region_list'] = $this->inputor_model->getDataRegion();
-        $data['perusahaan_list'] = $this->inputor_model->getDataPerusahaan();
-        $data['jenis_list'] = $this->inputor_model->getDataJenis();
-        $data['layanan_list'] = $this->inputor_model->getDataLayanan();
+        $data['region_list'] = $this->inputor_model->getdataregion();
+        $data['perusahaan_list'] = $this->inputor_model->getdataperusahaan();
+        $data['jenis_list'] = $this->inputor_model->getdatajenis();
+        $data['layanan_list'] = $this->inputor_model->getdatalayanan();
         $layanan = $this->input->post('layanan');
-        $data['paket_list'] = $this->inputor_model->getDataPaket($layanan);
+        $data['paket_list'] = $this->inputor_model->getdatapaket($layanan);
 
     	$this->load->view('includes/header');
     	$this->load->view('inputor/form_permintaan',$data);
@@ -44,5 +44,29 @@ class Inputor extends CI_Controller
     	$this->load->view('includes/footer');
     }
 
+    public function forminput()
+    {
+        $lokasi = $this->input->post('lokasi');
+        $jenis = $this->input->post('jenis');
+        $perusahaan = $this->input->post('perusahaan')
+        $alamat = $this->input->post('alamat');
+        $region = $this->input->post('region');
+        $provinsi = $this->input->post('prov');
+        $pic = $this->input->post('pic');
+        $layanan = $this->input->post('layanan');
+        $paket = $this->input->post('paket')
+        $bw = $this->input->post('bw');
 
+        $site = array ('name' => $lokasi ,
+                    'address' => $alamat);
+        $service = array ('name' => $layanan ,
+                        'package' => $paket);
+        $reg = array ('name' => $region);
+        $perusahaan = array ('name' => $perusahaan)
+        $prov = array ('name' => $provinsi);
+        $pic = array ('name' => $pic);
+        $bandwidth = array ('bw' => $bw);
+
+        $data = $this->inputor_model->inputform($site,$service,$reg,$perusahaan,$prov,$pic,$bandwidth);
+    }
 }

@@ -9,25 +9,25 @@ class Inputor_model extends CI_Model
 		$this->load->database();
 	}
 
-	function getDataPerusahaan()
+	function getdataperusahaan()
 	{
 		$query = $this->db->get('company');
 		return $query->result();
 	}
 
-	function getDataJenis()
+	function getdatajenis()
 	{
 		$query = $this->db->get('p_site_type');
 		return $query->result();
 	}
 
-	public function getDataRegion()
+	function getdataregion()
 	{
 		$query = $this->db->get('p_region');
 		return $query->result();
 	}
 
-	function getDataLayanan()
+	function getdatalayanan()
 	{
 		$this->db->distinct();
 		$this->db->select('name');
@@ -36,7 +36,7 @@ class Inputor_model extends CI_Model
 
 	}
 
-	function getDataPaket($layanan)
+	function getdatapaket($layanan)
 	{
 		//layanan parsing dari hasil fungsi getDataLayanan
 		$this->db->where('name', $layanan);
@@ -44,28 +44,14 @@ class Inputor_model extends CI_Model
     	return $query->result();
 	}
 
-	function inputLokasi($lokasi,$alamat)
+	function inputform($site,$service,$reg,$perusahaan,$prov,$pic,$bandwidth)
 	{
-		$this->db->set('name',$lokasi);
-		$this->db->set('address',$alamat);
-		$this->db->insert('t_nw_site');
-	}
-
-	function inputAlamat($provinsi)
-	{
-		$this->db->set('name',$provinsi);
-		$this->db->insert('provinsi');
-	}
-
-	function inputPic($pic)
-	{
-		$this->db->set('name',$pic);
-		$this->db->insert('t_pic');
-	}
-
-	function inputBw($bw)
-	{
-		$this->db->set('bw',$bw);
-		$this->db->insert('t_network_order');
+		$this->db->insert('t_nw_site',$site);
+		$this->db->insert('p_nw_service',$service);
+		$this->db->insert('p_region',$reg);
+		$this->db->insert('company',$perusahaan);
+		$this->db->insert('provinsi',$prov);
+		$this->db->insert('t_pic',$pic);
+		$this->db->insert('t_network_order',$bandwidth);
 	}
 }
