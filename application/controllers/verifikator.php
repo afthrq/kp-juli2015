@@ -1,13 +1,14 @@
 <?php
 
-class Pm extends CI_Controller 
+class Verifikator extends CI_Controller 
 {
 	public function __construct()
 	{
 		parent::__construct();
 		session_start();
 		$this->load->model('pm_model');
-		if($this->session->userdata('role') != "pm")
+        $this->load->model('verifikator_model');
+		if($this->session->userdata('role') != "verifikator")
 		{
 			redirect('user','refresh');	
         }
@@ -16,7 +17,7 @@ class Pm extends CI_Controller
 	function index()
 	{
 		$this->load->view('includes/header');
-    	$this->load->view('pm/home');
+    	$this->load->view('verifikator/home');
     	$this->load->view('includes/footer');
 	}
 
@@ -30,23 +31,24 @@ class Pm extends CI_Controller
 
     function menu_list_permintaan()
     {
+
         $data['list_permintaan'] = $this->pm_model->get_list_permintaan();
         $this->load->view('includes/header');
-        $this->load->view('pm/menu_list_permintaan', $data);
+        $this->load->view('verifikator/menu_list_permintaan', $data);
         $this->load->view('includes/footer');
     }
 
-    function koordinasi_provider()
+    function verifikasi_permintaan()
     {
         $this->load->view('includes/header');
-        $this->load->view('pm/koordinasi_provider');
+        $this->load->view('verifikator/verifikasi_permintaan');
         $this->load->view('includes/footer');
     }
 
-    function online_billing()
+    function verifikasi_balo()
     {
     	$this->load->view('includes/header');
-    	$this->load->view('inputor/online_billing');
+    	$this->load->view('verifikator/verifikasi_balo');
     	$this->load->view('includes/footer');
     }
 

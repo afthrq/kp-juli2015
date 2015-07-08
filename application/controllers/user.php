@@ -54,6 +54,16 @@ class User extends CI_Controller
 				$this->session->set_userdata($data);
 				redirect('pm');
 			}
+			elseif ($rolecheck == "verifikator") 
+			{	
+				$data = array(
+				'user_name' => $user_name,
+				'is_logged_in' => TRUE,
+				'role' => $rolecheck
+				);
+				$this->session->set_userdata($data);
+				redirect('verifikator');
+			}
 			
 		}
 		else // incorrect username or password

@@ -3,13 +3,13 @@
     <div class="sidebar-nav navbar-collapse">
         <ul class="nav" id="side-menu">
             <li>
-                <a href="<?php echo base_url() ?>pm"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                <a href="<?php echo base_url() ?>verifikator"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <li>
-                <a href="<?php echo base_url() ?>pm/menu_koordinasi_provider"><i class="fa fa-edit fa-fw"></i> Koordinasi Provider</a>
+                <a href="<?php echo base_url() ?>verifikator/menu_list_permintaan"><i class="fa fa-edit fa-fw"></i> Verifikasi Permintaan</a>
             </li>
             <li>
-                <a href="<?php echo base_url() ?>pm/online_billing"><i class="fa fa-edit fa-fw"></i> Online Billing</a>
+                <a href="<?php echo base_url() ?>verifikator/online_billing"><i class="fa fa-edit fa-fw"></i> Verifikasi BALO</a>
             </li>
         </ul>
     </div>
@@ -20,7 +20,7 @@
 <div id="page-wrapper">
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Request yang perlu dilakukan Koordinasi Provider</h1>
+        <h1 class="page-header">Koordinasi Provider yang perlu dilakukan</h1>
     </div>
     <!-- /.col-lg-12 -->
 </div>

@@ -44,17 +44,17 @@ class Inputor extends CI_Controller
     	$this->load->view('includes/footer');
     }
 
-    public function forminput()
+    public function form_input()
     {
         $lokasi = $this->input->post('lokasi');
         $jenis = $this->input->post('jenis');
-        $perusahaan = $this->input->post('perusahaan')
+        $perusahaan = $this->input->post('perusahaan');
         $alamat = $this->input->post('alamat');
         $region = $this->input->post('region');
         $provinsi = $this->input->post('prov');
         $pic = $this->input->post('pic');
         $layanan = $this->input->post('layanan');
-        $paket = $this->input->post('paket')
+        $paket = $this->input->post('paket');
         $bw = $this->input->post('bw');
 
         $site = array ('name' => $lokasi ,
@@ -62,11 +62,11 @@ class Inputor extends CI_Controller
         $service = array ('name' => $layanan ,
                         'package' => $paket);
         $reg = array ('name' => $region);
-        $perusahaan = array ('name' => $perusahaan)
+        $perusahaan = array ('name' => $perusahaan);
         $prov = array ('name' => $provinsi);
         $pic = array ('name' => $pic);
         $bandwidth = array ('bw' => $bw);
 
-        $data = $this->inputor_model->inputform($site,$service,$reg,$perusahaan,$prov,$pic,$bandwidth);
+        $this->inputor_model->inputform($site,$service,$reg,$perusahaan,$prov,$pic,$bandwidth);
     }
 }
