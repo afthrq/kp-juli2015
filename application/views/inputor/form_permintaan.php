@@ -1,8 +1,31 @@
 <div class="navbar-default sidebar" role="navigation">
+        <script type="text/javascript"  
+            src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.  
+            min.js"></script>  
+            <script type="text/javascript"  
+               src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquer  
+               y-ui.min.js"></script>  
+               <script type="text/javascript">  
+                  $(document).ready(function() {  
+                     $("#countriesDrp").change(function(){  
+                     /*dropdown post *///  
+                     $.ajax({  
+                        url:"<?php echo  
+                        base_url();?>index.php/countries/buildDropCities",  
+                        data: {id:  
+                           $(this).val()},  
+                        type: "POST",  
+                        success:function(data){  
+                        $("#cityDrp").html(data);  
+                     }  
+                  });  
+               });  
+            });  
+         </script> 
     <div class="sidebar-nav navbar-collapse">
-        <ul class="nav" id="side-menu">
+      <ul class="nav" id="side-menu">
             <li>
-                <a href="<?php echo base_url() ?>inputor"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+            <a href="<?php echo base_url() ?>inputor"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <li class="dropdown">
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-edit fa-fw"></i> Form Permintaan <i class="fa fa-fw fa-caret-down"></i></a>
@@ -73,10 +96,8 @@
     <div class="input-group col-lg-6">
         <span class="input-group-addon input-permintaan" id="basic-addon1">Region</span>
         <div class="dropdown">
-            <select placeholder="Pilih Region" class="form-control" name="region">    
-                <?php foreach ($region_list as $row) : ?>
-                    <option><?php echo $row->name ?></option>
-                <?php endforeach?>
+            <select placeholder="Pilih Region" class="form-control" name="region" >
+                <option value="">Select</option>    
             </select>
         </div>
     </div>
