@@ -49,8 +49,8 @@
                                 <tr>
                                   <td><?php echo $count?></td>
                                   <td><a href="<?php echo base_url() ?>pm/koordinasi_provider"><?php echo $row->name ?></a></td>
-                                  <td><!--<php echo $row2->type_name?>--></td>
-                                  <td><!--<php echo $row3->name?> | <php echo $row4->package?>--></td>
+                                  <td><?php echo $row->type_name?></td>
+                                  <td><?php echo $row->nama?> | <?php echo $row->package?></td>
                                   <td><?php echo $row->bw ?></td>
                                 </tr>
 

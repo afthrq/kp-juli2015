@@ -20,8 +20,6 @@
     <!-- /.sidebar-collapse -->
 </div>
 
-<script type="text/javascript"  src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>  
-<script type="text/javascript"  src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>  
 <script type="text/javascript">  
           $(document).ready(function() {  
              $("#perusahaan").change(function(){  

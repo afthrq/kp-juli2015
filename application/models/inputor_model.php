@@ -123,12 +123,12 @@ class Inputor_model extends CI_Model
 
   	 public function getservid()  
    	{  
-      $this->db->select('p_service_id,name');  
+      $this->db->select('p_service_id,nama');  
       $this->db->from('p_service');  
       $query = $this->db->get();  
       foreach($query->result_array() as $row)
       {  
-         $data[$row['p_service_id']]=$row['name'];  
+         $data[$row['p_service_id']]=$row['nama'];  
       }   
       return $data;  
    	} 

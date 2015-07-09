@@ -21,8 +21,15 @@ class Pm_model extends CI_Model
 	{
 		$this->db->select('t_nw_site.name');
 		$this->db->select('t_network_order.bw');
+		$this->db->select('p_site_type.type_name');
+		$this->db->select('p_service.nama');
+		$this->db->select('p_nw_service.package');
 		$this->db->where('t_nw_site.t_nw_site_id = t_network_order.t_nw_site_id');
-		$query = $this->db->get('t_nw_site,t_network_order');
+		$this->db->where('p_site_type.p_site_type_id = t_nw_site.p_site_type_id');
+		$this->db->where('p_nw_service.p_nw_service_id = t_network_order.p_nw_service_id');
+		$this->db->where('t_network_order.t_nw_site_id = t_nw_site.t_nw_site_id');
+		$this->db->where('p_service.p_service_id = p_nw_service.p_service_id');
+		$query = $this->db->get('t_nw_site,t_network_order,p_site_type,p_nw_service,p_service');
     	return $query->result();
 	}
 
@@ -35,7 +42,7 @@ class Pm_model extends CI_Model
 
 		$this->db->select('type_name');
 		$this->db->where("p_site_type_id = ($sub_query)", NULL, False);
-		$query = $this->db->get("p_site_type",0,20);		
+		$query = $this->db->get("p_site_type");		
 		return $query->result();
 	}
 /*
