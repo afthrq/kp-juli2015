@@ -23,10 +23,11 @@
           'uploader'  : '<?php echo base_url('upload/uploadify')?>',
           'cancelImage' : '<?php echo base_url() ?>assets/js/lib/uploadify-cancel.png',
           'queueID'  : 'file-queue',
-          'buttonClass'  : 'btn btn-default',
-          'buttonText' : "Upload",
+          'buttonClass'  : 'btn btn-default up-btn',
+          'buttonText' : "Upload Dokumen",
           'multi'   : true,
           'auto'   : true,
+          
 
           'fileExt'   : '*.jpg;*.gif;*.png;*.txt;*.pdf;*.doc;*.docx',   // any extension you want to allow
           'fileDesc'  : 'Upload Files (.JPG, .GIF, .PNG, .TXT, .PDF, .DOC, .DOCX)',
@@ -37,6 +38,9 @@
           'queueSizeLimit': 40,
           'simUploadLimit': 2,
           'sizeLimit'  : 10240000,
+          'onSelect' : function(file) {
+            $("#caption").attr('value',file.name);
+           },
           /*'onUploadSuccess' : function(file, data, response) {
                 alert('The file ' + file.name + ' was successfully uploaded with a response of ' + response + ':' + data);
            },*/
