@@ -105,7 +105,7 @@
     </div>
     <div id="sectionB" class="tab-pane fade">
         <br>
-        <form method="POST" action="<?php echo base_url('pm/submit_verifikasi_permintaan')?>">
+        <form method="POST" action="<?php echo base_url('verifikator/submit_verifikasi_permintaan')?>">
             <div class="row">
                 <div class="input-group col-lg-6">
                     <span class="input-group-addon input-permintaan" id="basic-addon1">No. Form Permintaan</span>

@@ -27,9 +27,11 @@ class Verifikator extends CI_Controller
         $tanggal_permintaan = $this->input->post('tanggal_permintaan');
         $tipe_dokumen = $this->input->post('tipe_dokumen');
         $caption = $this->input->post('caption');
-        $path = $this->input->post('path');
-        $this->verifikator_model->verifikasi_data_permintaan($no_form, $tanggal_permintaan, $tipe_dokumen, $caption, $path);
-        redirect('verifikator','refresh');
+        $filename = $this->input->post('path');
+        $path = "uploads/$filename";
+        $this->verifikator_model->insert_detail_order($no_form, $tanggal_permintaan);
+        $this->verifikator_model->insert_dokumen($tipe_dokumen, $caption, $path);
+        //redirect('verifikator','refresh');
     }
 
     function menu_list_permintaan()

@@ -9,19 +9,24 @@ class Verifikator_model extends CI_Model
 
 	function get_data_permintaan()
 	{
-		$this->db->where('p_region_id', "1");
-		$query = $this->db->get('p_region');
-		return $query->result();
+		
 	}
 
-	function verifikasi_data_permintaan($no_form, $tanggal_permintaan, $tipe_dokumen, $caption, $path)
+	function insert_detail_order($no_form, $tanggal_permintaan)
 	{
-		/*
 		$data = array(
-        'tiket_order_provider' => $tiket_provider,
-        'pic_provider' => $pic_provider);
+        'no_form_permintaan' => $no_form,
+        'tgl_permintaan' => $tanggal_permintaan);
         $this->db->update('t_detail_network_order', $data);
-        $this->db->where('t_detail_network_order_id', "1"); //change "1" with parameter that shows current network order id
-        */
+        //$this->db->where('t_detail_network_order_id', "1"); //change "1" with parameter that shows current network order id
+	}
+	function insert_dokumen($tipe_dokumen, $caption, $path)
+	{
+		$data = array(
+        'p_doc_type_id' => $tipe_dokumen,
+        'caption' => $caption
+        'path' => $path);
+        $this->db->update('t_document', $data);
+        //$this->db->where('t_work_id', "1"); //change "1" with parameter that shows current process id
 	}
 }

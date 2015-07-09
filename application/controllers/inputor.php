@@ -113,6 +113,7 @@ class Inputor extends CI_Controller
             'bw' => $bw);
 
         $this->inputor_model->inputfinal($in_order); 
+        redirect('inputor','refresh');
 
     }
 }
