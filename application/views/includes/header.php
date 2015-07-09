@@ -12,44 +12,6 @@
         <link href="<?php echo base_url('assets/css/morris.css') ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/css/metisMenu.min.css"') ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/css/sb-admin-2.css') ?>" rel="stylesheet">
-        <script src="<?php echo base_url('assets/js/jquery.min.js') ?>"></script>
-        <script src="<?php echo base_url('assets/js/lib/jquery.uploadify.min.js') ?>"></script>
-        <script type='text/javascript' >
-        $(function() {
-         $('#upload_btn').uploadify({
-          'debug'   : false,
-
-          'swf'   : '<?php echo base_url() ?>assets/js/lib/uploadify.swf',
-          'uploader'  : '<?php echo base_url('upload/uploadify')?>',
-          'cancelImage' : '<?php echo base_url() ?>assets/js/lib/uploadify-cancel.png',
-          'queueID'  : 'file-queue',
-          'buttonClass'  : 'btn btn-default',
-          'buttonText' : "Upload",
-          'multi'   : true,
-          'auto'   : true,
-
-          'fileExt'   : '*.jpg;*.gif;*.png;*.txt;*.pdf;*.doc;*.docx',   // any extension you want to allow
-          'fileDesc'  : 'Upload Files (.JPG, .GIF, .PNG, .TXT, .PDF, .DOC, .DOCX)',
-
-          'method'  : 'post',
-          'fileObjName' : 'userfile',
-
-          'queueSizeLimit': 40,
-          'simUploadLimit': 2,
-          'sizeLimit'  : 10240000,
-          /*'onUploadSuccess' : function(file, data, response) {
-                alert('The file ' + file.name + ' was successfully uploaded with a response of ' + response + ':' + data);
-           },*/
-           'onUploadComplete' : function(file) {
-                alert('The file ' + file.name + ' finished processing.');
-           },
-            'onQueueFull': function(event, queueSizeLimit) {
-                alert("Please don't put anymore files in me! You can upload " + queueSizeLimit + " files at once");
-                return false;
-            },
-            });
-         });
-        </script>
     </head>
     <body>
         <div id="wrapper">

@@ -21,7 +21,7 @@ class Verifikator extends CI_Controller
     	$this->load->view('includes/footer');
 	}
 
-    function submit_verifikasi_permintaan()
+    function submit_koordinasi_provider()
     {
         $tiket_provider = $this->input->post('tiket_provider');
         $pic_provider = $this->input->post('pic_provider');
@@ -40,9 +40,8 @@ class Verifikator extends CI_Controller
 
     function verifikasi_permintaan()
     {
-        $data['data_permintaan'] = $this->verifikator_model->get_data_permintaan();
         $this->load->view('includes/header');
-        $this->load->view('verifikator/verifikasi_permintaan', $data);
+        $this->load->view('verifikator/verifikasi_permintaan');
         $this->load->view('includes/footer');
     }
 
