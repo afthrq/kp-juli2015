@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 09, 2015 at 01:35 PM
+-- Generation Time: Jul 09, 2015 at 03:36 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `ci_sessions` (
 --
 
 INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('74cf388673ec716b22b89e4d1f0306b2', '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.132 Safari/537.36', 1436440938, 'a:4:{s:9:"user_data";s:0:"";s:9:"user_name";s:11:"verifikator";s:12:"is_logged_in";b:1;s:4:"role";s:11:"verifikator";}');
+('b4d78683e66aaaa93e804c447419bccb', '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.132 Safari/537.36', 1436448950, 'a:4:{s:9:"user_data";s:0:"";s:9:"user_name";s:11:"verifikator";s:12:"is_logged_in";b:1;s:4:"role";s:11:"verifikator";}');
 
 -- --------------------------------------------------------
 
@@ -96,16 +96,15 @@ CREATE TABLE IF NOT EXISTS `provinsi` (
   `provinsi_id` int(11) NOT NULL AUTO_INCREMENT,
   `provinsi_name` varchar(30) NOT NULL,
   PRIMARY KEY (`provinsi_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `provinsi`
 --
 
 INSERT INTO `provinsi` (`provinsi_id`, `provinsi_name`) VALUES
-(1, 'DKI Jakarta'),
-(2, 'Jawa Timur'),
-(3, 'Sumatera Utara');
+(4, 'DKI Jakarta'),
+(6, 'Jawa Timur');
 
 -- --------------------------------------------------------
 
@@ -468,16 +467,15 @@ CREATE TABLE IF NOT EXISTS `t_network_order` (
   KEY `t_detail_network_order_id` (`t_detail_network_order_id`),
   KEY `t_nw_site_id` (`t_nw_site_id`),
   KEY `p_nw_service_id` (`p_nw_service_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `t_network_order`
 --
 
 INSERT INTO `t_network_order` (`t_network_order_id`, `t_detail_network_order_id`, `t_nw_site_id`, `p_lastmile_id`, `p_nw_service_id`, `no_jar`, `ip_wan`, `ip_lan`, `ip_loop`, `asn`, `bw`, `netmask_wan`, `netmask_lan`, `hostname`, `sla`, `valid_fr`, `valid_to`, `mon_cacti`, `mon_npmd`, `mon_sms`, `mon_log`) VALUES
-(1, 0, 1, 0, 7, NULL, NULL, NULL, NULL, NULL, 1024, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, 0, 2, 0, 13, NULL, NULL, NULL, NULL, NULL, 512, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 0, 3, 0, 8, NULL, NULL, NULL, NULL, NULL, 512, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(4, 0, 4, 0, 9, NULL, NULL, NULL, NULL, NULL, 1024, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(6, 0, 6, 0, 13, NULL, NULL, NULL, NULL, NULL, 24, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -516,16 +514,15 @@ CREATE TABLE IF NOT EXISTS `t_nw_site` (
   KEY `provinsi_id` (`provinsi_id`),
   KEY `p_site_type_id` (`p_site_type_id`),
   KEY `p_region_id` (`p_region_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `t_nw_site`
 --
 
 INSERT INTO `t_nw_site` (`t_nw_site_id`, `provinsi_id`, `p_site_type_id`, `p_region_id`, `site_name`, `desc`, `is_critical`, `longitude`, `latitude`, `address`, `traffic_mgmt`) VALUES
-(1, 1, 1, 1, 'Jakarta', '', 0, '', '', 'Jl. Medan Merdeka', ''),
-(2, 2, 2, 21, 'Surabaya', '', 0, '', '', 'Sukolilo', ''),
-(3, 3, 2, 3, 'Medan', '', 0, '', '', 'Medan', '');
+(4, 4, 1, 1, 'Jakarta', '', 0, '', '', 'Monas', ''),
+(6, 6, 1, 1, 'Surabaya', '', 0, '', '', 'Keputih', '');
 
 -- --------------------------------------------------------
 
@@ -540,6 +537,14 @@ CREATE TABLE IF NOT EXISTS `t_nw_site_pic` (
   KEY `t_pic_id` (`t_pic_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `t_nw_site_pic`
+--
+
+INSERT INTO `t_nw_site_pic` (`t_nw_site_id`, `t_pic_id`) VALUES
+(4, 4),
+(6, 6);
+
 -- --------------------------------------------------------
 
 --
@@ -553,16 +558,15 @@ CREATE TABLE IF NOT EXISTS `t_pic` (
   `phone` varchar(15) NOT NULL,
   `phone2` varchar(15) NOT NULL,
   PRIMARY KEY (`t_pic_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `t_pic`
 --
 
 INSERT INTO `t_pic` (`t_pic_id`, `nip`, `pic_name`, `phone`, `phone2`) VALUES
-(1, '', 'Pak Husni', '', ''),
-(2, '', 'Pak Sulaiman', '', ''),
-(3, '', 'Pak Hari', '', '');
+(4, '', 'Pak Husni', '', ''),
+(6, '', 'Pak Hari', '', '');
 
 -- --------------------------------------------------------
 
