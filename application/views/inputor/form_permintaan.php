@@ -1,6 +1,24 @@
-<head>
-<script type="text/javascript"  src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>  
-<script type="text/javascript"  src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>  
+<div class="navbar-default sidebar" role="navigation">
+    <div class="sidebar-nav navbar-collapse">
+      <ul class="nav" id="side-menu">
+            <li>
+            <a href="<?php echo base_url() ?>inputor"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+            </li>
+            <li class="dropdown">
+                <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-edit fa-fw"></i> Form Permintaan <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="demo" class="collapse">
+                    <li class="dropdown">
+                        <a href="<?php echo base_url() ?>inputor/form_permintaan"><i class="fa fa-edit fa-fw"></i> Permintaan Baru</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="<?php echo base_url() ?>inputor/update_permintaan"><i class="fa fa-edit fa-fw"></i> Update Permintaan</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!-- /.sidebar-collapse -->
+</div>
 
 <script type="text/javascript">  
           $(document).ready(function() {  
@@ -33,29 +51,8 @@
        });  
     });  
 </script>
-</head>
-<div class="navbar-default sidebar" role="navigation">
 
-    <div class="sidebar-nav navbar-collapse">
-      <ul class="nav" id="side-menu">
-            <li>
-            <a href="<?php echo base_url() ?>inputor"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-            </li>
-            <li class="dropdown">
-                <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-edit fa-fw"></i> Form Permintaan <i class="fa fa-fw fa-caret-down"></i></a>
-                <ul id="demo" class="collapse">
-                    <li class="dropdown">
-                        <a href="<?php echo base_url() ?>inputor/form_permintaan"><i class="fa fa-edit fa-fw"></i> Permintaan Baru</a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="<?php echo base_url() ?>inputor/update_permintaan"><i class="fa fa-edit fa-fw"></i> Update Permintaan</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-    <!-- /.sidebar-collapse -->
-</div>
+
 <!-- /.navbar-static-side -->
 </nav>
 <div id="page-wrapper">
@@ -91,11 +88,11 @@
         <span class="input-group-addon input-permintaan" id="basic-addon1">Perusahaan</span>
         <div class="dropdown">
             <!--<select placeholder="Pilih Perusahaan" class="form-control" name="perusahaan" id="perusahaan">    
-                 foreach ($perusahaan_list as $row) : ?>
+                <php foreach ($perusahaan_list as $row) : ?>
                     <option><php echo $row->name ?></option>
                 <php endforeach?>     
             </select>-->
-        <?php echo form_dropdown('perusahaan', $perusahaan_list,'','class="form-control" id="perusahaan" name="perusahaan"');  ?>
+        <?php echo form_dropdown('perusahaan', $perusahaan_list,'','class="form-control" id="perusahaan" name="perusahaan"'); ?>
         </div>
     </div>
 </div>
@@ -112,7 +109,7 @@
         <span class="input-group-addon input-permintaan" id="basic-addon1">Region</span>
         <div class="dropdown">
             <select class="form-control" name="region" id="region">
-                <option value="">Select</option>    
+                <option value="">Pilih Perusahaan Terlebih Dahulu</option>    
             </select>
         </div>
     </div>
@@ -151,7 +148,7 @@
         <span class="input-group-addon input-permintaan" id="basic-addon1">Paket Layanan</span>
         <div class="dropdown">
             <select class="form-control" name="paket" id="paket">
-                <option value="">Select</option>    
+                <option value="">Pilih Layanan Terlebih Dahulu</option>    
             </select>
         </div>
     </div>

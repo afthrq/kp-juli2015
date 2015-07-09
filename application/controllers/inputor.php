@@ -24,10 +24,8 @@ class Inputor extends CI_Controller
 
     public function form_permintaan()
     {
-        //$data['perusahaan_list'] = $this->inputor_model->getdataperusahaan();
         $data['jenis_list'] = $this->inputor_model->getdatajenis();
         $data['layanan_list'] = $this->inputor_model->getservid();
-        //$data['paket_list'] = $this->inputor_model->getdatapaket();
         $data['perusahaan_list'] = $this->inputor_model->getcompid();
     	$this->load->view('includes/header');
     	$this->load->view('inputor/form_permintaan',$data);
@@ -46,7 +44,7 @@ class Inputor extends CI_Controller
     {  
       echo $company_id = $this->input->post('id',TRUE);  
   
-      $districtData['perusahaan_list']=$this->inputor_model->getregionfromcomp($company_id);  
+      $districtData['perusahaan_list']=$this->inputor_model->getregionfromcomp($company_id); 
       $output = null;  
       foreach ($districtData['perusahaan_list'] as $row)  
       {    
@@ -88,16 +86,16 @@ class Inputor extends CI_Controller
         $this->inputor_model->inputparent($in_prov,$in_pic);
 
         $provid = $this->inputor_model->getprovinsiid($provinsi);
-        $perid = $this->inputor_model->getperusahaanid($perusahaan);
+        //$perid = $this->inputor_model->getperusahaanid($company);
         $picid = $this->inputor_model->getpicid($pic);
         $jenid = $this->inputor_model->getjenid($jenis);
-        $servid = $this->inputor_model->getserviceid($layanan); 
+        //$servid = $this->inputor_model->getserviceid($layanan); 
 
 
         //setting child table level 1
 
         $regid = $this->inputor_model->getregid($region);
-        $packid = $this->inputor_model->getpackid($paket,$servid);
+        $packid = $this->inputor_model->getpackid($paket,$layanan);
 
         //setting child table level 2
         $in_site = array ('provinsi_id' => $provid,

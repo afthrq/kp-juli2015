@@ -8,44 +8,13 @@ class Inputor_model extends CI_Model
 		parent::__construct();
 		$this->load->database();
 	}
-	/*
-	function getdataperusahaan()
-	{
-		$query = $this->db->get('company');
-		return $query->result();
-	}
-	*/
+
 	function getdatajenis()
 	{
 		$query = $this->db->get('p_site_type');
 		return $query->result();
 	}
 
-	/*function getdataregion()
-	{
-		$this->db->distinct();
-		$query = $this->db->get('p_region');
-		return $query->result();
-	}
-
-	function getdatalayanan()
-	{
-		$this->db->distinct();
-		$this->db->select('name');
-		$query = $this->db->get('p_nw_service');
-		return $query->result();
-
-	}
-
-	function getdatapaket()
-	{
-		//layanan parsing dari hasil fungsi getDataLayanan
-		$this->db->distinct();
-		$this->db->select('package');
-		$query = $this->db->get('p_nw_service');		
-    	return $query->result();
-	}
-*/
 	function getprovinsiid($provinsi)
 	{
 		$this->db->where('name', $provinsi);
