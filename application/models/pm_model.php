@@ -17,7 +17,7 @@ class Pm_model extends CI_Model
         */
 	}
 
-	function getdatalokasi()
+	function getdatapermintaan()
 	{
 		$this->db->select('t_nw_site.name');
 		$this->db->select('t_network_order.bw');

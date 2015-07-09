@@ -17,7 +17,7 @@ class Inputor_model extends CI_Model
 
 	function getprovinsiid($provinsi)
 	{
-		$this->db->where('name', $provinsi);
+		$this->db->where('provinsi_name', $provinsi);
 		$query = $this->db->get("provinsi"); 
 		return $query->row()->provinsi_id;
 	
@@ -25,7 +25,7 @@ class Inputor_model extends CI_Model
 
 	function getperusahaanid($perusahaan)
 	{
-		$this->db->where('name', $perusahaan);
+		$this->db->where('company_name', $perusahaan);
 		$query = $this->db->get("company"); 
 		return $query->row()->company_id;
 	
@@ -33,7 +33,7 @@ class Inputor_model extends CI_Model
 
 	function getpicid($pic)
 	{
-		$this->db->where('name', $pic);
+		$this->db->where('pic_name', $pic);
 		$query = $this->db->get("t_pic"); 
 		return $query->row()->t_pic_id;
 
@@ -49,7 +49,7 @@ class Inputor_model extends CI_Model
 
 	function getregid($region)
 	{
-		$this->db->where('name', $region);
+		$this->db->where('region_name', $region);
 		$query = $this->db->get("p_region"); 
 		return $query->row()->p_region_id;
 	
@@ -65,7 +65,7 @@ class Inputor_model extends CI_Model
 
 	function getsiteid($lokasi)
 	{
-		$this->db->where('name', $lokasi);
+		$this->db->where('site_name', $lokasi);
 		$query = $this->db->get("t_nw_site"); 
 		return $query->row()->t_nw_site_id;
 	
@@ -73,7 +73,7 @@ class Inputor_model extends CI_Model
 
 	function getserviceid($layanan)
 	{
-		$this->db->where('name', $layanan);
+		$this->db->where('service_name', $layanan);
 		$query = $this->db->get("p_service"); 
 		return $query->row()->p_service_id;	
 	}
@@ -102,7 +102,7 @@ class Inputor_model extends CI_Model
 
 	public function getcompid()  
    	{  
-      $this->db->select('company_id,name');  
+      $this->db->select('company_id,company_name');  
       $this->db->from('company');  
       $query = $this->db->get();  
       foreach($query->result_array() as $row)
@@ -114,7 +114,7 @@ class Inputor_model extends CI_Model
 
    	public function getregionfromcomp($company_id=string)  
    	{ 
-   	  $this->db->select('name'); 
+   	  $this->db->select('region_name'); 
       $this->db->from('p_region');  
       $this->db->where('company_id',$company_id);  
       $query = $this->db->get();  
@@ -123,7 +123,7 @@ class Inputor_model extends CI_Model
 
   	 public function getservid()  
    	{  
-      $this->db->select('p_service_id,nama');  
+      $this->db->select('p_service_id,service_name');  
       $this->db->from('p_service');  
       $query = $this->db->get();  
       foreach($query->result_array() as $row)

@@ -34,70 +34,70 @@
         <div class="row">
             <div class="input-group col-lg-6">
                 <span class="input-group-addon input-permintaan" id="basic-addon1">Lokasi</span>
-                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->site_name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
             </div>
         </div>
         <br>
         <div class="row">
             <div class="input-group col-lg-6">
                 <span class="input-group-addon input-permintaan" id="basic-addon1">Jenis Lokasi</span>
-                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;"> <!-- type_name -->
+                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->type_name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;"> <!-- type_name -->
             </div>
         </div>
         <br>
         <div class="row">
             <div class="input-group col-lg-6">
                 <span class="input-group-addon input-permintaan" id="basic-addon1">Perusahaan</span>
-                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->company_name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
             </div>
         </div>
         <br>
         <div class="row">
             <div class="input-group col-lg-6">
                 <span class="input-group-addon input-permintaan" id="basic-addon1">Alamat</span>
-                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;"><!-- address -->
+                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->address ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;"><!-- address -->
             </div>
         </div>
         <br>
         <div class="row">
             <div class="input-group col-lg-6">
                 <span class="input-group-addon input-permintaan" id="basic-addon1">Region</span>
-                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->region_name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
             </div>
         </div>
         <br>
         <div class="row">
             <div class="input-group col-lg-6">
                 <span class="input-group-addon input-permintaan" id="basic-addon1">Provinsi</span>
-                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->provinsi_name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
             </div>
         </div>
         <br>
         <div class="row">
             <div class="input-group col-lg-6">
                 <span class="input-group-addon input-permintaan" id="basic-addon1">PIC</span>
-                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->pic_name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
             </div>
         </div>
         <br>
         <div class="row">
             <div class="input-group col-lg-6">
                 <span class="input-group-addon input-permintaan" id="basic-addon1">Layanan</span>
-                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->service_name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
             </div>
         </div>
         <br>
         <div class="row">
             <div class="input-group col-lg-6">
                 <span class="input-group-addon input-permintaan" id="basic-addon1">Paket Layanan</span>
-                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;"><!-- package -->
+                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->package ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;"><!-- package -->
             </div>
         </div>
         <br>
         <div class="row">
             <div class="input-group col-lg-6">
                 <span class="input-group-addon input-permintaan" id="basic-addon1">Bandwidth</span>
-                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;"><!-- bw -->
+                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->bw ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;"><!-- bw -->
             </div>
         </div>
         <br>

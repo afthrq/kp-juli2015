@@ -36,7 +36,7 @@ class Verifikator extends CI_Controller
 
     function menu_list_permintaan()
     {
-        $data['list_permintaan'] = $this->pm_model->get_list_permintaan();
+        $data['list_permintaan'] = $this->verifikator_model->getdatapermintaan();
         $this->load->view('includes/header');
         $this->load->view('verifikator/menu_list_permintaan', $data);
         $this->load->view('includes/footer');
