@@ -101,6 +101,8 @@
             </div>
         </div>
         <br>
+        <br>
+        <br>
         <?php endforeach ?>
     </div>
     <div id="sectionB" class="tab-pane fade">

@@ -48,7 +48,7 @@ class Inputor extends CI_Controller
       $output = null;  
       foreach ($districtData['perusahaan_list'] as $row)  
       {    
-            $output .= "<option value='".$row->name."'>".$row->name."</option>"; 
+            $output .= "<option value='".$row->region_name."'>".$row->region_name."</option>"; 
       }  
       echo $output;  
     }  
@@ -80,8 +80,8 @@ class Inputor extends CI_Controller
         $bw = $this->input->post('bw');
 
         //setting parent table
-        $in_prov = array ('name' => $provinsi);
-        $in_pic = array ('name' => $pic);       
+        $in_prov = array ('provinsi_name' => $provinsi);
+        $in_pic = array ('pic_name' => $pic);       
 
         $this->inputor_model->inputparent($in_prov,$in_pic);
 
@@ -101,18 +101,21 @@ class Inputor extends CI_Controller
         $in_site = array ('provinsi_id' => $provid,
                         'p_site_type_id' => $jenid,
                         'p_region_id' => $regid,
-                        'name' => $lokasi ,
+                        'site_name' => $lokasi ,
                         'address' => $alamat);
 
         $this->inputor_model->inputlvl2($in_site);
         $siteid = $this->inputor_model->getsiteid($lokasi);         
 
         //setting child table final
+        $in_pic_site = array('t_nw_site_id' => $siteid,
+            't_pic_id' => $picid);
+
         $in_order = array ('t_nw_site_id' => $siteid,
             'p_nw_service_id' => $packid,
             'bw' => $bw);
 
-        $this->inputor_model->inputfinal($in_order); 
+        $this->inputor_model->inputfinal($in_order, $in_pic_site); 
         redirect('inputor','refresh');
 
     }

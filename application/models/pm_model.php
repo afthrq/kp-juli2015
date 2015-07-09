@@ -19,10 +19,10 @@ class Pm_model extends CI_Model
 
 	function getdatapermintaan()
 	{
-		$this->db->select('t_nw_site.name');
+		$this->db->select('t_nw_site.site_name');
 		$this->db->select('t_network_order.bw');
 		$this->db->select('p_site_type.type_name');
-		$this->db->select('p_service.nama');
+		$this->db->select('p_service.service_name');
 		$this->db->select('p_nw_service.package');
 		$this->db->where('t_nw_site.t_nw_site_id = t_network_order.t_nw_site_id');
 		$this->db->where('p_site_type.p_site_type_id = t_nw_site.p_site_type_id');

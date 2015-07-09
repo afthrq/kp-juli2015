@@ -78,9 +78,10 @@ class Inputor_model extends CI_Model
 		return $query->row()->p_service_id;	
 	}
 
-	function inputfinal($in_order)
+	function inputfinal($in_order,$in_pic_site)
 	{
 		$this->db->insert('t_network_order',$in_order);
+		$this->db->insert('t_nw_site_pic',$in_pic_site);
 	}
 
 	function inputparent($in_prov,$in_pic)
@@ -107,7 +108,7 @@ class Inputor_model extends CI_Model
       $query = $this->db->get();  
       foreach($query->result_array() as $row)
       {  
-         $data[$row['company_id']]=$row['name'];  
+         $data[$row['company_id']]=$row['company_name'];  
       }   
       return $data;  
    	} 
@@ -128,7 +129,7 @@ class Inputor_model extends CI_Model
       $query = $this->db->get();  
       foreach($query->result_array() as $row)
       {  
-         $data[$row['p_service_id']]=$row['nama'];  
+         $data[$row['p_service_id']]=$row['service_name'];  
       }   
       return $data;  
    	} 
