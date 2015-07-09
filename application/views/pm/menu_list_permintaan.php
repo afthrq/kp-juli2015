@@ -43,20 +43,19 @@
                                 <th>Bandwidth</th>
                             </tr>
                         </thead>
-                        <!--<tbody>
-                            <?php 
-                                $count = 0;
-                                foreach ($list_permintaan as $row):
-                                $count++; ?>
+                        <tbody>
+                            <?php $count = 0; foreach ($list_lokasi as $row) : $count++;?>
+                                <?php  ?>
                                 <tr>
                                   <td><?php echo $count?></td>
-                                  <td><a href="<?php echo base_url() ?>pm/koordinasi_provider"><?php echo $row->name ?></a></td> //from t_network_order ->t_nw_site
-                                  <td><?php echo $row->type_name?></td> //from t_network_order -> t_nw_site -> p_site_type
-                                  <td><?php echo $row->name?> | <?php echo $row->package?></td> //from t_network_order -> t_nw_service -> p_nw_service
-                                  <td><?php echo $row->bw ?></td> //from t_network_order
+                                  <td><a href="<?php echo base_url() ?>pm/koordinasi_provider"><?php echo $row->name ?></a></td>
+                                  <td><!--<php echo $row2->type_name?>--></td>
+                                  <td><!--<php echo $row3->name?> | <php echo $row4->package?>--></td>
+                                  <td><?php echo $row->bw ?></td>
                                 </tr>
+
                             <?php endforeach ?>
-                        </tbody>-->
+                        </tbody>
                     </table>
                 </div>
                 <!-- /.table-responsive -->

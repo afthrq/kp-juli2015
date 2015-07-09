@@ -30,7 +30,16 @@ class Pm extends CI_Controller
 
     function menu_list_permintaan()
     {
-        $data['list_permintaan'] = $this->pm_model->get_list_permintaan();
+        //$data['list_lokasi'] = $this->pm_model->getdatalokasi();
+        $data['list_jenis'] = $this->pm_model->getdatajenis();
+        print_r($data['list_jenis']);
+        die();
+        //$data['list_layanan'] = $this->pm_model->getdatalayanan();
+       // $data['list_paket'] = $this->pm_model->getdatapaket();
+        //$data['list_bandwidth'] = $this->pm_model->getdatabandwidth();
+        /*$data['list_permintaan'] = array ('name' => $data['list_lokasi'],
+                            'type_name' => $data['list_jenis']);
+*/
         $this->load->view('includes/header');
         $this->load->view('pm/menu_list_permintaan', $data);
         $this->load->view('includes/footer');
