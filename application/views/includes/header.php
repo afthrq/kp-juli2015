@@ -12,6 +12,7 @@
         <link href="<?php echo base_url('assets/css/morris.css') ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/css/metisMenu.min.css"') ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/css/sb-admin-2.css') ?>" rel="stylesheet">
+<<<<<<< HEAD
         <script src="<?php echo base_url('assets/js/jquery.min.js') ?>"></script>
         <script src="<?php echo base_url('assets/js/lib/jquery.uploadify.min.js') ?>"></script>
         <script type='text/javascript' >
@@ -54,6 +55,8 @@
             });
          });
         </script>
+=======
+>>>>>>> 39771283d51990583e150a5b7b731364bdda5e57
     </head>
     <body>
         <div id="wrapper">
