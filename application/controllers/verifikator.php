@@ -21,17 +21,19 @@ class Verifikator extends CI_Controller
     	$this->load->view('includes/footer');
 	}
 
-    function submit_koordinasi_provider()
-    {
-        $tiket_provider = $this->input->post('tiket_provider');
-        $pic_provider = $this->input->post('pic_provider');
-        $this->pm_model->insert_koordinasi_provider($tiket_provider, $pic_provider);
-        redirect('pm','refresh');
+    function submit_verifikasi_permintaan()
+    {   
+        $no_form = $this->input->post('no_form');
+        $tanggal_permintaan = $this->input->post('tanggal_permintaan');
+        $tipe_dokumen = $this->input->post('tipe_dokumen');
+        $caption = $this->input->post('caption');
+        $path = $this->input->post('path');
+        $this->verifikator_model->verifikasi_data_permintaan($no_form, $tanggal_permintaan, $tipe_dokumen, $caption, $path);
+        redirect('verifikator','refresh');
     }
 
     function menu_list_permintaan()
     {
-
         $data['list_permintaan'] = $this->pm_model->get_list_permintaan();
         $this->load->view('includes/header');
         $this->load->view('verifikator/menu_list_permintaan', $data);
@@ -40,8 +42,9 @@ class Verifikator extends CI_Controller
 
     function verifikasi_permintaan()
     {
+        $data['data_permintaan'] = $this->verifikator_model->get_data_permintaan();
         $this->load->view('includes/header');
-        $this->load->view('verifikator/verifikasi_permintaan');
+        $this->load->view('verifikator/verifikasi_permintaan', $data);
         $this->load->view('includes/footer');
     }
 

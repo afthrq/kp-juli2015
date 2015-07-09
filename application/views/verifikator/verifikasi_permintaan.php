@@ -122,8 +122,15 @@
             <br>
             <div class="row">
                 <div class="input-group col-lg-6">
+                    <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:162px">Caption Dokumen</span>
+                    <input type="date" class="form-control" aria-describedby="basic-addon1" name="caption">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="input-group col-lg-6">
                     <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:162px">Tipe Dokumen</span>
-                    <select name="cars" class="form-control">
+                    <select name="tipe_dokumen" class="form-control">
                         <option value="1">Form Permintaan</option>
                         <option value="2">Memo</option>
                         <option value="3">Nota Pengantar</option>
@@ -136,8 +143,8 @@
             <br>
             <div class="row">
                 <div class="uploadify-queue" id="file-queue"></div>
-                <input type="file" name="path" id="upload_btn" />
-                <input type="hidden" class="form-control" aria-describedby="basic-addon1" id="caption" name="caption">
+                <input type="file" id="upload_btn" />
+                <input type="hidden" class="form-control" aria-describedby="basic-addon1" id="path" name="path">
             </div>
             <br>
             <div class="row">
