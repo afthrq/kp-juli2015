@@ -429,3 +429,20 @@ html{
 {
     border-radius: 0px;
 }
+
+.btn-table
+{
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    color: rgb(42, 126, 255);
+    text-decoration: underline;
+}
+
+.btn-table:hover
+{
+    background-color: transparent;
+}
