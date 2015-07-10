@@ -22,7 +22,7 @@ class Engineer extends CI_Controller
     	$this->load->view('includes/footer');
 	}
 
-    public function form_permintaan()
+    public function instalasi()
     {
         /*$data['jenis_list'] = $this->inputor_model->getdatajenis();
         $data['layanan_list'] = $this->inputor_model->getservid();
@@ -33,90 +33,51 @@ class Engineer extends CI_Controller
 
     }
 
-    /*public function update_permintaan()
+    function menu_list_permintaan()
     {
-    	$this->load->view('includes/header');
-    	$this->load->view('inputor/update_permintaan');
-    	$this->load->view('includes/footer');
+        $data['list_permintaan'] = $this->engineer_model->getdatapermintaan();
+        $this->load->view('includes/header');
+        $this->load->view('engineer/menu_list_permintaan', $data);
+        $this->load->view('includes/footer');
     }
 
-    public function buildregion()  
-    {  
-      echo $company_id = $this->input->post('id',TRUE);  
-  
-      $districtData['perusahaan_list']=$this->inputor_model->getregionfromcomp($company_id); 
-      $output = null;  
-      foreach ($districtData['perusahaan_list'] as $row)  
-      {    
-            $output .= "<option value='".$row->region_name."'>".$row->region_name."</option>"; 
-      }  
-      echo $output;  
-    }  
+    public function insertdatainstalasi (){
+        $ipwan = $this->input->post('ipwan');
+        $netmaskwan = $this->input->post('netmaskwan');
+        $iplan = $this->input->post('iplan');
+        $netmasklan = $this->input->post('netmasklan');
+        $iploop = $this->input->post('iploop');
+        $asn = $this->input->post('asn');
+        $lastmile = $this->input->post('lastmile');
+        $traffic = $this->input->post('traffic');
+        $sla = $this->input->post('sla');
+        $hostname = $this->input->post('hostname'); 
 
-    public function buildpaket()  
-    {  
-      echo $p_service_id = $this->input->post('id',TRUE);  
-  
-      $districtData['layanan_list']=$this->inputor_model->getpaketfromlayanan($p_service_id);  
-      $output = null;  
-      foreach ($districtData['layanan_list'] as $row)  
-      {    
-            $output .= "<option value='".$row->package."'>".$row->package."</option>"; 
-      }  
-      echo $output;  
-    }  
+        //contoh karena belum ada data dalam tabel lastmile
+        $in_lastmile = array ('name' => $lastmile);
+        $this->engineer_model->inputlastmile($in_lastmile); 
 
-    public function form_input()
-    {
-        $lokasi = $this->input->post('lokasi');
-        $jenis = $this->input->post('jenis');
-        $perusahaan = $this->input->post('perusahaan');
-        $alamat = $this->input->post('alamat');
-        $region = $this->input->post('region');
-        $provinsi = $this->input->post('prov');
-        $pic = $this->input->post('pic');
-        $layanan = $this->input->post('layanan');
-        $paket = $this->input->post('paket');
-        $bw = $this->input->post('bw');
+        $in_lastmile = array ('name' => $lastmile);
+        $this->engineer_model->inputlastmile($in_lastmile); 
+        //ambil id dari inputan lastmile
+        $lmid = $this->engineer_model->getlastmileid($lastmile);
 
-        //setting parent table
-        $in_prov = array ('provinsi_name' => $provinsi);
-        $in_pic = array ('pic_name' => $pic);       
+        $in_traffic = array ('traffic_mgmt' => $traffic);
+        $this->engineer_model->updatenwsite($in_traffic);
+        $nwsiteid = $this->engineer_model->getnwsiteid($traffic);
 
-        $this->inputor_model->inputparent($in_prov,$in_pic);
-
-        $provid = $this->inputor_model->getprovinsiid($provinsi);
-        //$perid = $this->inputor_model->getperusahaanid($company);
-        $picid = $this->inputor_model->getpicid($pic);
-        $jenid = $this->inputor_model->getjenid($jenis);
-        //$servid = $this->inputor_model->getserviceid($layanan); 
-
-
-        //setting child table level 1
-
-        $regid = $this->inputor_model->getregid($region);
-        $packid = $this->inputor_model->getpackid($paket,$layanan);
-
-        //setting child table level 2
-        $in_site = array ('provinsi_id' => $provid,
-                        'p_site_type_id' => $jenid,
-                        'p_region_id' => $regid,
-                        'site_name' => $lokasi ,
-                        'address' => $alamat);
-
-        $this->inputor_model->inputlvl2($in_site);
-        $siteid = $this->inputor_model->getsiteid($lokasi);         
-
-        //setting child table final
-        $in_pic_site = array('t_nw_site_id' => $siteid,
-            't_pic_id' => $picid);
-
-        $in_order = array ('t_nw_site_id' => $siteid,
-            'p_nw_service_id' => $packid,
-            'bw' => $bw);
-
-        $this->inputor_model->inputfinal($in_order, $in_pic_site); 
-        redirect('inputor','refresh');
-
-    }*/
+        $in_final = array('t_nw_site_id' => $nwsiteid ,
+        'ip_wan' => $ipwan ,
+        'netmask_wan' => $netmaskwan ,
+        'ip_lan' => $iplan ,
+        'netmask_lan' => $netmasklan ,
+        'ip_loop' => $iploop ,
+        'asn' => $asn ,
+        'p_lastmile_id' => $lmid ,
+        'sla' => $sla ,
+        'hostname' => $hostname 
+        );
+        $data = $this->engineer_model->insertdatafinal($in_final);
+        redirect('engineer','refresh');
+    }
 }

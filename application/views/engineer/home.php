@@ -5,7 +5,7 @@
         <a href="<?php echo base_url() ?>engineer"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
       </li> 
       <li>
-        <a href="<?php echo base_url() ?>engineer/instalasi"><i class="fa fa-edit fa-fw"></i> Instalasi</a>
+        <a href="<?php echo base_url() ?>engineer/menu_list_permintaan"><i class="fa fa-edit fa-fw"></i> Instalasi</a>
       </li> 
     </ul>
   </div>
