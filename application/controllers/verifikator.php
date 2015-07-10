@@ -34,6 +34,16 @@ class Verifikator extends CI_Controller
         //redirect('verifikator','refresh');
     }
 
+     function submit_verifikasi_balo()
+    {   
+        $tipe_dokumen = $this->input->post('tipe_dokumen');
+        $caption = $this->input->post('caption');
+        $filename = $this->input->post('path');
+        $path = "uploads/$filename";
+        $this->verifikator_model->insert_dokumen($tipe_dokumen, $caption, $path);
+        //redirect('verifikator','refresh');
+    }
+
     function menu_list_permintaan()
     {
         $data['list_permintaan'] = $this->verifikator_model->getdatapermintaan();        
@@ -42,18 +52,18 @@ class Verifikator extends CI_Controller
         $this->load->view('includes/footer');
     }
 
-    function set_order_id()
-    {   
-
+    function menu_list_permintaan_vb()
+    {
+        $data['list_permintaan'] = $this->verifikator_model->getdatapermintaan();        
+        $this->load->view('includes/header');
+        $this->load->view('verifikator/menu_list_permintaan_vb', $data);
+        $this->load->view('includes/footer');
     }
 
     function verifikasi_permintaan()
     {
         $order_id = $this->input->post('order_id');
         $data['data_permintaan'] = $this->verifikator_model->get_data_permintaan($order_id);  
-        //$this->set_order_id();
-
-       // $data['order_id'] = $o_id;
         $this->load->view('includes/header');
         $this->load->view('verifikator/verifikasi_permintaan', $data);
         $this->load->view('includes/footer');

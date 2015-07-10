@@ -8,7 +8,7 @@
                 <a href="<?php echo base_url() ?>verifikator/menu_list_permintaan"><i class="fa fa-edit fa-fw"></i> Verifikasi Permintaan</a>
             </li>
             <li>
-                <a href="<?php echo base_url() ?>verifikator/menu_list_permintaan"><i class="fa fa-edit fa-fw"></i> Verifikasi BALO</a>
+                <a href="<?php echo base_url() ?>verifikator/menu_list_permintaan_vb"><i class="fa fa-edit fa-fw"></i> Verifikasi BALO</a>
             </li>
         </ul>
     </div>

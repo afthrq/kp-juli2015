@@ -6,6 +6,9 @@
       </li> 
       <li>
         <a href="<?php echo base_url() ?>engineer/menu_list_permintaan"><i class="fa fa-edit fa-fw"></i> Instalasi</a>
+      </li>
+      <li>
+        <a href="<?php echo base_url() ?>engineer/menu_list_permintaan_balo"><i class="fa fa-edit fa-fw"></i> Berita Acara Laik Operasi</a>
       </li> 
     </ul>
   </div>

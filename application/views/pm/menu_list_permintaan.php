@@ -45,15 +45,15 @@
                         </thead>
                         <tbody>
                             <?php $count = 0; foreach ($list_permintaan as $row) : $count++;?>
-                                <?php  ?>
+                                <form method="POST" action="<?php echo base_url('pm/koordinasi_provider')?>">
                                 <tr>
                                   <td><?php echo $count?></td>
-                                  <td><a href="<?php echo base_url() ?>pm/koordinasi_provider"><?php echo $row->site_name ?></a></td>
+                                  <td><input type="hidden" name="order_id" value="<?php echo $row->site_name ?>"><input type="submit" value="<?php echo $row->site_name ?>" class="btn btn-default btn-table"></td>
                                   <td><?php echo $row->type_name?></td>
                                   <td><?php echo $row->service_name?> | <?php echo $row->package?></td>
                                   <td><?php echo $row->bw ?></td>
                                 </tr>
-
+                                </form>
                             <?php endforeach ?>
                         </tbody>
                     </table>

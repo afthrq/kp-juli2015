@@ -38,6 +38,7 @@ class Pm extends CI_Controller
 
     function koordinasi_provider()
     {
+        $order_id = $this->input->post('order_id');
         $this->load->view('includes/header');
         $this->load->view('pm/koordinasi_provider');
         $this->load->view('includes/footer');

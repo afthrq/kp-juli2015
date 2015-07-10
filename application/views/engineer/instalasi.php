@@ -6,7 +6,10 @@
                 <a href="<?php echo base_url() ?>engineer"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <li>
-                <a href="<?php echo base_url() ?>engineer/instalasi"><i class="fa fa-edit fa-fw"></i> Instalasi</a>
+                <a href="<?php echo base_url() ?>engineer/menu_list_permintaan"><i class="fa fa-edit fa-fw"></i> Instalasi</a>
+            </li>
+            <li>
+                <a href="<?php echo base_url() ?>engineer/menu_list_permintaan_balo"><i class="fa fa-edit fa-fw"></i> Berita Acara Laik Operasi</a>
             </li>
         </ul>
     </div>
@@ -24,70 +27,70 @@
 <form method="POST" action="<?php echo base_url('engineer/insertdatainstalasi')?>">
 <div class="row">
     <div class="input-group col-lg-6">
-        <span class="input-group-addon" id="basic-addon1">IP WAN</span>
+        <span class="input-group-addon input-instalasi" id="basic-addon1">IP WAN</span>
         <input type="text" class="form-control" aria-describedby="basic-addon1" name="ipwan">
     </div>
 </div>
 <br>
 <div class="row">
     <div class="input-group col-lg-6">
-        <span class="input-group-addon" id="basic-addon1">Netmask WAN</span>
+        <span class="input-group-addon input-instalasi" id="basic-addon1">Netmask WAN</span>
         <input type="text" class="form-control" aria-describedby="basic-addon1" name="netmaskwan">
     </div>
 </div>
 <br>
 <div class="row">
     <div class="input-group col-lg-6">
-        <span class="input-group-addon" id="basic-addon1">IP LAN</span>
+        <span class="input-group-addon input-instalasi" id="basic-addon1">IP LAN</span>
         <input type="text" class="form-control" aria-describedby="basic-addon1" name="iplan">
     </div>
 </div>
 <br>
 <div class="row">
     <div class="input-group col-lg-6">
-        <span class="input-group-addon" id="basic-addon1">Netmask LAN</span>
+        <span class="input-group-addon input-instalasi" id="basic-addon1">Netmask LAN</span>
         <input type="text" class="form-control" aria-describedby="basic-addon1" name="netmasklan">
     </div>
 </div>
 <br>
 <div class="row">
     <div class="input-group col-lg-6">
-        <span class="input-group-addon" id="basic-addon1">IP Loop</span>
+        <span class="input-group-addon input-instalasi" id="basic-addon1">IP Loop</span>
         <input type="text" class="form-control" aria-describedby="basic-addon1" name="iploop">
     </div>
 </div>
 <br>
 <div class="row">
     <div class="input-group col-lg-6">
-        <span class="input-group-addon" id="basic-addon1">ASN</span>
+        <span class="input-group-addon input-instalasi" id="basic-addon1">ASN</span>
         <input type="text" class="form-control" aria-describedby="basic-addon1" name="asn">
     </div>
 </div>
 <br>
 <div class="row">
     <div class="input-group col-lg-6">
-        <span class="input-group-addon" id="basic-addon1">Lastmile</span>
+        <span class="input-group-addon input-instalasi" id="basic-addon1">Lastmile</span>
         <input type="text" class="form-control" aria-describedby="basic-addon1" name="lastmile">
     </div>
 </div>
 <br>
 <div class="row">
     <div class="input-group col-lg-6">
-        <span class="input-group-addon" id="basic-addon1">Traffic Management</span>
+        <span class="input-group-addon input-instalasi" id="basic-addon1">Traffic Management</span>
         <input type="text" class="form-control" aria-describedby="basic-addon1" name="traffic">
     </div>
 </div>
 <br>
 <div class="row">
     <div class="input-group col-lg-6">
-        <span class="input-group-addon" id="basic-addon1">SLA</span>
+        <span class="input-group-addon input-instalasi" id="basic-addon1">SLA</span>
         <input type="text" class="form-control" aria-describedby="basic-addon1" name="sla">
     </div>
 </div>
 <br>
 <div class="row">
     <div class="input-group col-lg-6">
-        <span class="input-group-addon" id="basic-addon1">Hostname</span>
+        <span class="input-group-addon input-instalasi" id="basic-addon1">Hostname</span>
         <input type="text" class="form-control" aria-describedby="basic-addon1" name="hostname">
     </div>
 </div>
