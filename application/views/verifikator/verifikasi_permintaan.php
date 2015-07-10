@@ -125,7 +125,7 @@
             <div class="row">
                 <div class="input-group col-lg-6">
                     <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:162px">Caption Dokumen</span>
-                    <input type="date" class="form-control" aria-describedby="basic-addon1" name="caption">
+                    <input type="text" class="form-control" aria-describedby="basic-addon1" name="caption">
                 </div>
             </div>
             <br>

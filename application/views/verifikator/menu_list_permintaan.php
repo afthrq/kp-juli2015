@@ -48,7 +48,7 @@
                                 <?php  ?>
                                 <tr>
                                   <td><?php echo $count?></td>
-                                  <td><a href="<?php echo base_url() ?>pm/koordinasi_provider"><?php echo $row->site_name ?></a></td>
+                                  <td><a href="<?php echo base_url() ?>verifikator/verifikasi_permintaan"><?php echo $row->site_name ?></a></td>
                                   <td><?php echo $row->type_name?></td>
                                   <td><?php echo $row->service_name?> | <?php echo $row->package?></td>
                                   <td><?php echo $row->bw ?></td>
