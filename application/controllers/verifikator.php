@@ -36,23 +36,26 @@ class Verifikator extends CI_Controller
 
     function menu_list_permintaan()
     {
-        $data['list_permintaan'] = $this->verifikator_model->getdatapermintaan();
-        $order_id = $this->input->post('order_id');
-        $this->o_id = $order_id;
+        $data['list_permintaan'] = $this->verifikator_model->getdatapermintaan();        
         $this->load->view('includes/header');
         $this->load->view('verifikator/menu_list_permintaan', $data);
         $this->load->view('includes/footer');
     }
 
-    function verifikasi_permintaan()
+    function set_order_id()
+    {   
+        $order_id = $this->input->post('order_id');
+        $this->verifikasi_permintaan($order_id);
+    }
+
+    function verifikasi_permintaan($o_id)
     {
-        $data['data_permintaan'] = $this->verifikator_model->get_data_permintaan();
-        $this->menu_list_permintaan();
-        $data['order_id'] = $this->o_id;
+        $data['data_permintaan'] = $this->verifikator_model->get_data_permintaan();   
+        $data['order_id'] = $o_id;
         $this->load->view('includes/header');
         $this->load->view('verifikator/verifikasi_permintaan', $data);
         $this->load->view('includes/footer');
-    }
+    }    
 
     function verifikasi_balo()
     {
