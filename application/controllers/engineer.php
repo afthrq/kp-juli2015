@@ -25,9 +25,6 @@ class Engineer extends CI_Controller
     public function instalasi()
     {
         $order_id = $this->input->post('order_id');
-        /*$data['jenis_list'] = $this->inputor_model->getdatajenis();
-        $data['layanan_list'] = $this->inputor_model->getservid();
-        $data['perusahaan_list'] = $this->inputor_model->getcompid();*/
     	$this->load->view('includes/header');
     	$this->load->view('engineer/instalasi');
     	$this->load->view('includes/footer');

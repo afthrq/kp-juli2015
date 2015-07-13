@@ -11,7 +11,7 @@
                         <a href="<?php echo base_url() ?>inputor/form_permintaan"><i class="fa fa-edit fa-fw"></i> Permintaan Baru</a>
                     </li>
                     <li class="dropdown">
-                        <a href="<?php echo base_url() ?>inputor/update_permintaan"><i class="fa fa-edit fa-fw"></i> Update Permintaan</a>
+                        <a href="<?php echo base_url() ?>inputor/menu_list_permintaan"><i class="fa fa-edit fa-fw"></i> Update Permintaan</a>
                     </li>
                 </ul>
             </li>
@@ -19,6 +19,23 @@
     </div>
     <!-- /.sidebar-collapse -->
 </div>
+
+<script type="text/javascript">  
+          $(document).ready(function() {  
+             $("#layanan").change(function(){  
+             /*dropdown post *///  
+             $.ajax({  
+                url:"<?php echo base_url();?>index.php/inputor/buildpaket",  
+                data: {id: $(this).val()},  
+                type: "POST",  
+                success:function(data){  
+                $("#paket").html(data);  
+             }  
+          });  
+       });  
+    });  
+</script>
+
 <!-- /.navbar-static-side -->
 </nav>
 <div id="page-wrapper">
@@ -28,27 +45,23 @@
     </div>
     <!-- /.col-lg-12 -->
 </div>
+<?php foreach ($update_list as $row): ?>
+<form method ="post" action ="<?php echo base_url('inputor/form_update')?>">
 <div class="row">
     <div class="col-lg-6">
         <div class="input-group">
             <span class="input-group-addon input-permintaan" id="basic-addon1">Lokasi</span>
-            <select class="form-control" name="keyword">
-            <?php foreach ($loc_list as $loc): ?>
-            <option value="<?php echo $loc->name ?>"></option>
-            <?php endforeach ?>
-          </select>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->site_name ?>" name ="update_site" disabled>
         </div>
     </div>
-    <div class="col-lg-4">
-        <input type="submit" name="submit" value="Submit" class="btn btn-outline btn-primary btn-default" style="padding: 5px 12px;">
-    </div>   
 </div>
 <br>
+</form>
 <div class="row">
     <div class="col-lg-6">
         <div class="input-group">
             <span class="input-group-addon input-permintaan" id="basic-addon1">Jenis Lokasi</span>
-            <input type="text" class="form-control" aria-describedby="basic-addon1" name="" disabled>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->type_name ?>" disabled>
         </div>
     </div>
 </div>
@@ -57,7 +70,7 @@
     <div class="col-lg-6">
         <div class="input-group">
             <span class="input-group-addon input-permintaan" id="basic-addon1">Perusahaan</span>
-            <input type="text" class="form-control" aria-describedby="basic-addon1" name="" disabled>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->company_name ?>" disabled>
         </div>
     </div>
 </div>
@@ -66,7 +79,7 @@
     <div class="col-lg-6">
         <div class="input-group">
             <span class="input-group-addon input-permintaan" id="basic-addon1">Alamat</span>
-            <input type="text" class="form-control" aria-describedby="basic-addon1" name="" disabled>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->address ?>" disabled>
         </div>
     </div>
 </div>
@@ -75,7 +88,7 @@
     <div class="col-lg-6">
         <div class="input-group">
             <span class="input-group-addon input-permintaan" id="basic-addon1">Region</span>
-            <input type="text" class="form-control" aria-describedby="basic-addon1" name="" disabled>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->region_name ?>" disabled>
         </div>
     </div>
 </div>
@@ -84,7 +97,7 @@
     <div class="col-lg-6">
         <div class="input-group">
             <span class="input-group-addon input-permintaan" id="basic-addon1">Provinsi</span>
-            <input type="text" class="form-control" aria-describedby="basic-addon1" name="" disabled>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->provinsi_name ?>" disabled>
         </div>
     </div>
 </div>
@@ -93,26 +106,19 @@
     <div class="col-lg-6">
         <div class="input-group">
             <span class="input-group-addon input-permintaan" id="basic-addon1">PIC</span>
-            <input type="text" class="form-control" aria-describedby="basic-addon1" name="" disabled>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->pic_name ?>" disabled>
         </div>
     </div>
 </div>
+<?php endforeach ?>
+<form method="POST" action ="<?php echo base_url('inputor/form_update')?>">
 <br>
 <div class="row">
     <div class="col-lg-6">
         <div class="input-group">
             <span class="input-group-addon input-permintaan" id="basic-addon1">Layanan</span>
             <div class="dropdown dropdown-permintaan">
-                <button class="btn btn-default dropdown-toggle dropdown-permintaan" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                Pilih Layanan
-                <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu dropdown-permintaan" aria-labelledby="dropdownMenu1">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li><a href="#">Separated link</a></li>
-                </ul>
+                <?php echo form_dropdown('layanan', $layanan_list,'','class="form-control" id="layanan" name="update_layanan"');  ?>
             </div>
         </div>
     </div>
@@ -123,16 +129,9 @@
         <div class="input-group">
             <span class="input-group-addon input-permintaan" id="basic-addon1">Paket Layanan</span>
             <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle dropdown-permintaan" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                Pilih Paket Layanan
-                <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu dropdown-permintaan" aria-labelledby="dropdownMenu1">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li><a href="#">Separated link</a></li>
-                </ul>
+                <select class="form-control" name="update_paket" id="paket">
+                    <option value="">Pilih Layanan Terlebih Dahulu</option>    
+                </select>
             </div>
         </div>
     </div>
@@ -142,7 +141,7 @@
     <div class="col-lg-6">
         <div class="input-group">
             <span class="input-group-addon input-permintaan" id="basic-addon1">Bandwidth</span>
-            <input type="text" class="form-control" aria-describedby="basic-addon1" name="bw" disabled>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" name="update_bw">
         </div>
     </div>
 </div>
@@ -153,5 +152,6 @@
         <input type="submit" name="submit" value="Submit" class="btn btn-outline btn-primary btn-success" style="padding: 5px 12px;">
     </div>
 </div>
+</form>
 </div>
 <!-- /#page-wrapper -->

@@ -14,6 +14,16 @@ class Inputor extends CI_Controller
         }
 	}
 
+    public function update()
+    {
+        $o_id = $this->input->post('order_id');
+        $data['update_list'] = $this->inputor_model->getdataupdate($o_id);
+        $data['layanan_list'] = $this->inputor_model->getservid();
+        $data['perusahaan_list'] = $this->inputor_model->getcompid(); 
+        $this->load->view('includes/header');
+        $this->load->view('inputor/update_permintaan',$data);
+        $this->load->view('includes/footer');
+    }
 
 	public function index()
 	{
@@ -33,12 +43,14 @@ class Inputor extends CI_Controller
 
     }
 
-    public function update_permintaan()
+    function menu_list_permintaan()
     {
-    	$this->load->view('includes/header');
-    	$this->load->view('inputor/update_permintaan');
-    	$this->load->view('includes/footer');
+        $data['list_permintaan'] = $this->inputor_model->getdatapermintaan();
+        $this->load->view('includes/header');
+        $this->load->view('inputor/menu_list_permintaan', $data);
+        $this->load->view('includes/footer');
     }
+
 
     public function buildregion()  
     {  
@@ -86,16 +98,11 @@ class Inputor extends CI_Controller
         $this->inputor_model->inputparent($in_prov,$in_pic);
 
         $provid = $this->inputor_model->getprovinsiid($provinsi);
-        //$perid = $this->inputor_model->getperusahaanid($company);
         $picid = $this->inputor_model->getpicid($pic);
         $jenid = $this->inputor_model->getjenid($jenis);
-        //$servid = $this->inputor_model->getserviceid($layanan); 
-
-
-        //setting child table level 1
-
         $regid = $this->inputor_model->getregid($region);
         $packid = $this->inputor_model->getpackid($paket,$layanan);
+
 
         //setting child table level 2
         $in_site = array ('provinsi_id' => $provid,
@@ -105,18 +112,43 @@ class Inputor extends CI_Controller
                         'address' => $alamat);
 
         $this->inputor_model->inputlvl2($in_site);
-        $siteid = $this->inputor_model->getsiteid($lokasi);         
+        $siteid = $this->inputor_model->getsiteid($lokasi);
+
+
+        //setting child table level 3
+        $in_order = array ('t_nw_site_id' => $siteid,
+                        'bw' => $bw);
+
+        $this->inputor_model->inputlvl3($in_order);
+        $orderid = $this->inputor_model->getorderid($bw);         
+
 
         //setting child table final
-        $in_pic_site = array('t_nw_site_id' => $siteid,
-            't_pic_id' => $picid);
+        $in_pic_site = array ('t_nw_site_id' => $siteid,
+                     't_pic_id' => $picid);
 
-        $in_order = array ('t_nw_site_id' => $siteid,
-            'p_nw_service_id' => $packid,
-            'bw' => $bw);
+        $in_serv = array ('t_network_order_id' => $orderid ,
+                        'p_nw_service_id' => $packid);
 
-        $this->inputor_model->inputfinal($in_order, $in_pic_site); 
+        $this->inputor_model->inputfinal($in_serv, $in_pic_site); 
         redirect('inputor','refresh');
-
     }
+
+    public function form_update()
+    {
+        $pack_up = $this->input->post('update_paket');
+        $bw_up = $this->input->post('update_bw');
+        print_r($update_bw);
+        die();
+        $site_up = $this->input->post('update_site');
+
+        $site_up_id = $this->inputor_model->getsiteupid($site_up);
+        $serv_up_id = $this->inputor_model->getservupid($pack_up);
+        $order_up_id = $this->inputor_model->getorderupid($site_up_id,$bw_up);
+
+
+
+        $this->inputor_model->updatefinal($serv_up_id,$order_up_id);
+    }
+
 }
