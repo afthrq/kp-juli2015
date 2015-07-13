@@ -8,7 +8,7 @@
         <a href="<?php echo base_url() ?>pm/menu_list_permintaan"><i class="fa fa-edit fa-fw"></i> Koordinasi Provider</a>
       </li>
       <li>
-        <a href="<?php echo base_url() ?>pm/online_billing"><i class="fa fa-edit fa-fw"></i> Online Billing</a>
+        <a href="<?php echo base_url() ?>pm/menu_list_permintaan_ob"><i class="fa fa-edit fa-fw"></i> Online Billing</a>
       </li>
     </ul>
   </div>

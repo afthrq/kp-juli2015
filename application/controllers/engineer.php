@@ -53,6 +53,22 @@ class Engineer extends CI_Controller
         $this->load->view('includes/footer');
     }
 
+    public function insert_data_balo (){
+        $mon_cacti = $this->input->post('cacti');
+        $mon_npmd = $this->input->post('npmd');
+        $mon_sms = $this->input->post('sms');
+        $mon_logbook = $this->input->post('logbook');
+
+        $data = array(
+        'mon_cacti' => $mon_cacti ,
+        'mon_npmd' => $mon_npmd ,
+        'mon_sms' => $mon_sms ,
+        'mon_log' => $mon_logbook
+        );
+        $data = $this->engineer_model->insert_data_balo($data);
+        redirect('engineer','refresh');
+    }
+
     public function insertdatainstalasi (){
         $ipwan = $this->input->post('ipwan');
         $netmaskwan = $this->input->post('netmaskwan');

@@ -20,7 +20,7 @@
 <div id="page-wrapper">
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Koordinasi Provider yang perlu dilakukan</h1>
+        <h1 class="page-header">Online Billing yang perlu dilakukan</h1>
     </div>
     <!-- /.col-lg-12 -->
 </div>
@@ -45,7 +45,7 @@
                         </thead>
                         <tbody>
                             <?php $count = 0; foreach ($list_permintaan as $row) : $count++;?>
-                                <form method="POST" action="<?php echo base_url('pm/koordinasi_provider')?>">
+                                <form method="POST" action="<?php echo base_url('pm/online_billing')?>">
                                 <tr>
                                   <td><?php echo $count?></td>
                                   <td><input type="hidden" name="order_id" value="<?php echo $row->site_name ?>"><input type="submit" value="<?php echo $row->site_name ?>" class="btn btn-default btn-table"></td>

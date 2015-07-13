@@ -62,7 +62,9 @@ class Engineer_model extends CI_Model
 		$this->db->update('t_network_order',$in_final);		
 	}
 
-
-
+	function insert_data_balo($data)
+	{
+		$this->db->update('t_network_order',$data);		
+	}
 
 }

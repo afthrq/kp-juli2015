@@ -36,6 +36,14 @@ class Pm extends CI_Controller
         $this->load->view('includes/footer');
     }
 
+    function menu_list_permintaan_ob()
+    {
+        $data['list_permintaan'] = $this->pm_model->getdatapermintaan();
+        $this->load->view('includes/header');
+        $this->load->view('pm/menu_list_permintaan_ob', $data);
+        $this->load->view('includes/footer');
+    }
+
     function koordinasi_provider()
     {
         $order_id = $this->input->post('order_id');
@@ -47,7 +55,7 @@ class Pm extends CI_Controller
     function online_billing()
     {
     	$this->load->view('includes/header');
-    	$this->load->view('inputor/online_billing');
+    	$this->load->view('pm/online_billing');
     	$this->load->view('includes/footer');
     }
 

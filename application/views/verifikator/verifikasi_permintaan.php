@@ -32,72 +32,92 @@
         <br>
         <?php foreach ($data_permintaan as $row): ?>
         <div class="row">
-            <div class="input-group col-lg-6">
-                <span class="input-group-addon input-permintaan" id="basic-addon1">Lokasi</span>
-                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->site_name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <span class="input-group-addon input-permintaan" id="basic-addon1">Lokasi</span>
+                    <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->site_name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                </div>
             </div>
         </div>
         <br>
         <div class="row">
-            <div class="input-group col-lg-6">
-                <span class="input-group-addon input-permintaan" id="basic-addon1">Jenis Lokasi</span>
-                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->type_name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;"> <!-- type_name -->
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <span class="input-group-addon input-permintaan" id="basic-addon1">Jenis Lokasi</span>
+                    <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->type_name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;"> <!-- type_name -->
+                </div>
             </div>
         </div>
         <br>
         <div class="row">
-            <div class="input-group col-lg-6">
-                <span class="input-group-addon input-permintaan" id="basic-addon1">Perusahaan</span>
-                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->company_name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <span class="input-group-addon input-permintaan" id="basic-addon1">Perusahaan</span>
+                    <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->company_name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                </div>
             </div>
         </div>
         <br>
         <div class="row">
-            <div class="input-group col-lg-6">
-                <span class="input-group-addon input-permintaan" id="basic-addon1">Alamat</span>
-                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->address ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;"><!-- address -->
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <span class="input-group-addon input-permintaan" id="basic-addon1">Alamat</span>
+                    <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->address ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;"><!-- address -->
+                </div>
             </div>
         </div>
         <br>
         <div class="row">
-            <div class="input-group col-lg-6">
-                <span class="input-group-addon input-permintaan" id="basic-addon1">Region</span>
-                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->region_name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <span class="input-group-addon input-permintaan" id="basic-addon1">Region</span>
+                    <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->region_name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                </div>
             </div>
         </div>
         <br>
         <div class="row">
-            <div class="input-group col-lg-6">
-                <span class="input-group-addon input-permintaan" id="basic-addon1">Provinsi</span>
-                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->provinsi_name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <span class="input-group-addon input-permintaan" id="basic-addon1">Provinsi</span>
+                    <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->provinsi_name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                </div>
             </div>
         </div>
         <br>
         <div class="row">
-            <div class="input-group col-lg-6">
-                <span class="input-group-addon input-permintaan" id="basic-addon1">PIC</span>
-                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->pic_name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <span class="input-group-addon input-permintaan" id="basic-addon1">PIC</span>
+                    <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->pic_name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                </div>
             </div>
         </div>
         <br>
         <div class="row">
-            <div class="input-group col-lg-6">
-                <span class="input-group-addon input-permintaan" id="basic-addon1">Layanan</span>
-                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->service_name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <span class="input-group-addon input-permintaan" id="basic-addon1">Layanan</span>
+                    <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->service_name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                </div>
             </div>
         </div>
         <br>
         <div class="row">
-            <div class="input-group col-lg-6">
-                <span class="input-group-addon input-permintaan" id="basic-addon1">Paket Layanan</span>
-                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->package ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;"><!-- package -->
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <span class="input-group-addon input-permintaan" id="basic-addon1">Paket Layanan</span>
+                    <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->package ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;"><!-- package -->
+                </div>
             </div>
         </div>
         <br>
         <div class="row">
-            <div class="input-group col-lg-6">
-                <span class="input-group-addon input-permintaan" id="basic-addon1">Bandwidth</span>
-                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->bw ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;"><!-- bw -->
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <span class="input-group-addon input-permintaan" id="basic-addon1">Bandwidth</span>
+                    <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->bw ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;"><!-- bw -->
+                </div>
             </div>
         </div>
         <br>
@@ -109,52 +129,75 @@
         <br>
         <form method="POST" action="<?php echo base_url('verifikator/submit_verifikasi_permintaan')?>">
             <div class="row">
-                <div class="input-group col-lg-6">
-                    <span class="input-group-addon input-permintaan" id="basic-addon1">No. Form Permintaan</span>
-                    <input type="text" class="form-control" aria-describedby="basic-addon1" name="no_form">
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <span class="input-group-addon input-permintaan" id="basic-addon1">No. Form Permintaan</span>
+                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="no_form">
+                    </div>
                 </div>
             </div>
             <br>
             <div class="row">
-                <div class="input-group col-lg-6">
-                    <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:162px">Tanggal Permintaan</span>
-                    <input type="date" class="form-control" aria-describedby="basic-addon1" name="tanggal_permintaan">
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:162px">Tanggal Permintaan</span>
+                        <input type="date" class="form-control" aria-describedby="basic-addon1" name="tanggal_permintaan">
+                    </div>
                 </div>
             </div>
             <br>
             <div class="row">
-                <div class="input-group col-lg-6">
-                    <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:162px">Caption Dokumen</span>
-                    <input type="text" class="form-control" aria-describedby="basic-addon1" name="caption">
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:162px">Caption Dokumen</span>
+                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="caption">
+                    </div>
                 </div>
             </div>
             <br>
             <div class="row">
-                <div class="input-group col-lg-6">
-                    <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:162px">Tipe Dokumen</span>
-                    <select name="tipe_dokumen" class="form-control">
-                        <option value="1">Form Permintaan</option>
-                        <option value="2">Memo</option>
-                        <option value="3">Nota Pengantar</option>
-                        <option value="4">BALO</option>
-                        <option value="5">Form UAT</option>
-                        <option value="6">Lain - Lain</option>
-                    </select>
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:162px">Tipe Dokumen</span>
+                        <select name="tipe_dokumen" class="form-control">
+                            <option value="1">Form Permintaan</option>
+                            <option value="2">Memo</option>
+                            <option value="3">Nota Pengantar</option>
+                            <option value="4">BALO</option>
+                            <option value="5">Form UAT</option>
+                            <option value="6">Lain - Lain</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <br>
             <div class="row">
-                <div class="uploadify-queue" id="file-queue"></div>
-                <input type="file" id="upload_btn" />
-                <input type="hidden" class="form-control" aria-describedby="basic-addon1" id="path" name="path">
+                <div class="col-lg-6">
+                    <div class="uploadify-queue" id="file-queue"></div>
+                    <input type="file" id="upload_btn" />
+                    <input type="hidden" class="form-control" aria-describedby="basic-addon1" id="path" name="path">
+                </div>
             </div>
             <br>
             <div class="row">
-                <a href="verifikasi_permintaan.html"><input type="submit" name="submit" value="Reject" class="btn btn-outline btn-primary btn-danger" style="padding: 5px 12px;"></a>
-                <input type="submit" name="submit" value="Submit" class="btn btn-outline btn-primary btn-success" style="padding: 5px 12px;">
+                <div class="col-lg-6">
+                    <a href="verifikasi_permintaan.html"><input type="submit" name="submit" value="Reject" class="btn btn-outline btn-primary btn-danger" style="padding: 5px 12px;"></a>
+                    <input type="submit" name="submit" value="Submit" class="btn btn-outline btn-primary btn-success" style="padding: 5px 12px;">
+                </div>
             </div>
         </form>
     </div>
 </div>
 </div>
 <!-- /#page-wrapper -->
+<script type="text/javascript">
+    $(window).on('beforeunload', function(){
+    return "Any changes will be lost";
+    });
+
+    // Form Submit
+    $(document).on("submit", "form", function(event){
+        // disable unload warning
+        $(window).off('beforeunload');
+    });
+</script>

@@ -29,7 +29,7 @@
          <div class="col-lg-6">
             <div class="input-group">
                 <span class="input-group-addon">
-                    <input type="checkbox" name="cacti">
+                    <input type="checkbox" name="cacti" value="1">
                  </span>
                 <input type="text" class="form-control" value="Monitoring Cacti" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
             </div><!-- /input-group -->
@@ -40,7 +40,7 @@
          <div class="col-lg-6">
             <div class="input-group">
                 <span class="input-group-addon">
-                    <input type="checkbox" name="cacti">
+                    <input type="checkbox" name="npmd" value="1">
                  </span>
                 <input type="text" class="form-control" value="Monitoring NPMD" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
             </div><!-- /input-group -->
@@ -51,7 +51,7 @@
          <div class="col-lg-6">
             <div class="input-group">
                 <span class="input-group-addon">
-                    <input type="checkbox" name="cacti">
+                    <input type="checkbox" name="sms" value="1">
                  </span>
                 <input type="text" class="form-control" value="Monitoring SMS Alert" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
             </div><!-- /input-group -->
@@ -62,7 +62,7 @@
          <div class="col-lg-6">
             <div class="input-group">
                 <span class="input-group-addon">
-                    <input type="checkbox" name="cacti">
+                    <input type="checkbox" name="logbook" value="1">
                  </span>
                 <input type="text" class="form-control" value="Monitoring Logbook" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
             </div><!-- /input-group -->
@@ -70,11 +70,22 @@
     </div>
 <br><br>
 <div class="row">
-    <a href="koordinasi_provider.html"><input type="submit" name="submit" value="Reject" class="btn btn-outline btn-primary btn-danger" style="padding: 5px 12px;"></a>
-    <input type="submit" name="submit" value="Submit" class="btn btn-outline btn-primary btn-success" style="padding: 5px 12px;">
+    <div class="col-lg-6">
+        <a href="koordinasi_provider.html"><input type="submit" name="submit" value="Reject" class="btn btn-outline btn-primary btn-danger" style="padding: 5px 12px;"></a>
+        <input type="submit" name="submit" value="Submit" class="btn btn-outline btn-primary btn-success" style="padding: 5px 12px;">
+    </div>
 </div>
 </form>
 </div>
 <!-- /#page-wrapper -->
-</div>
-<!-- /#wrapper -->
+<script type="text/javascript">
+    $(window).on('beforeunload', function(){
+    return "Any changes will be lost";
+    });
+
+    // Form Submit
+    $(document).on("submit", "form", function(event){
+        // disable unload warning
+        $(window).off('beforeunload');
+    });
+</script>
