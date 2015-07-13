@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 09, 2015 at 03:36 PM
+-- Generation Time: Jul 13, 2015 at 06:47 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `ci_sessions` (
 --
 
 INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('b4d78683e66aaaa93e804c447419bccb', '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.132 Safari/537.36', 1436448950, 'a:4:{s:9:"user_data";s:0:"";s:9:"user_name";s:11:"verifikator";s:12:"is_logged_in";b:1;s:4:"role";s:11:"verifikator";}');
+('e0ded4039ee5745eecbab702a346cd09', '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.132 Safari/537.36', 1436762531, 'a:4:{s:9:"user_data";s:0:"";s:9:"user_name";s:7:"inputor";s:12:"is_logged_in";b:1;s:4:"role";s:7:"inputor";}');
 
 -- --------------------------------------------------------
 
@@ -96,15 +96,14 @@ CREATE TABLE IF NOT EXISTS `provinsi` (
   `provinsi_id` int(11) NOT NULL AUTO_INCREMENT,
   `provinsi_name` varchar(30) NOT NULL,
   PRIMARY KEY (`provinsi_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `provinsi`
 --
 
 INSERT INTO `provinsi` (`provinsi_id`, `provinsi_name`) VALUES
-(4, 'DKI Jakarta'),
-(6, 'Jawa Timur');
+(12, 'Jakarta');
 
 -- --------------------------------------------------------
 
@@ -231,7 +230,7 @@ CREATE TABLE IF NOT EXISTS `p_region` (
   `desc` varchar(300) DEFAULT NULL,
   PRIMARY KEY (`p_region_id`),
   KEY `comp_id` (`company_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
 
 --
 -- Dumping data for table `p_region`
@@ -382,7 +381,7 @@ CREATE TABLE IF NOT EXISTS `t_detail_network_order` (
   PRIMARY KEY (`t_detail_network_order_id`),
   KEY `t_network_order_id` (`t_network_order_id`,`p_order_type_id`),
   KEY `p_order_type_id` (`p_order_type_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 -- --------------------------------------------------------
 
@@ -399,7 +398,7 @@ CREATE TABLE IF NOT EXISTS `t_document` (
   PRIMARY KEY (`t_document_id`),
   KEY `t_work_id` (`t_work_id`),
   KEY `p_doc_type_id` (`p_doc_type_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 
@@ -411,7 +410,6 @@ CREATE TABLE IF NOT EXISTS `t_network` (
   `t_network_id` int(11) NOT NULL,
   `p_lastmile_id` int(11) NOT NULL,
   `t_nw_site_id` int(11) NOT NULL,
-  `p_nw_service_id` int(11) NOT NULL,
   `no_jar` varchar(15) DEFAULT NULL,
   `ip_wan` varchar(15) DEFAULT NULL,
   `ip_lan` varchar(15) DEFAULT NULL,
@@ -430,8 +428,7 @@ CREATE TABLE IF NOT EXISTS `t_network` (
   `mon_log` int(11) DEFAULT NULL,
   PRIMARY KEY (`t_network_id`),
   KEY `p_lastmile_id` (`p_lastmile_id`),
-  KEY `t_nw_site_id` (`t_nw_site_id`),
-  KEY `p_nw_service_id` (`p_nw_service_id`)
+  KEY `t_nw_site_id` (`t_nw_site_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -445,7 +442,6 @@ CREATE TABLE IF NOT EXISTS `t_network_order` (
   `t_detail_network_order_id` int(11) NOT NULL,
   `t_nw_site_id` int(11) NOT NULL,
   `p_lastmile_id` int(11) NOT NULL,
-  `p_nw_service_id` int(11) NOT NULL,
   `no_jar` varchar(15) DEFAULT NULL,
   `ip_wan` varchar(15) DEFAULT NULL,
   `ip_lan` varchar(15) DEFAULT NULL,
@@ -465,17 +461,15 @@ CREATE TABLE IF NOT EXISTS `t_network_order` (
   PRIMARY KEY (`t_network_order_id`),
   KEY `p_lastmile_id` (`p_lastmile_id`),
   KEY `t_detail_network_order_id` (`t_detail_network_order_id`),
-  KEY `t_nw_site_id` (`t_nw_site_id`),
-  KEY `p_nw_service_id` (`p_nw_service_id`)
+  KEY `t_nw_site_id` (`t_nw_site_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `t_network_order`
 --
 
-INSERT INTO `t_network_order` (`t_network_order_id`, `t_detail_network_order_id`, `t_nw_site_id`, `p_lastmile_id`, `p_nw_service_id`, `no_jar`, `ip_wan`, `ip_lan`, `ip_loop`, `asn`, `bw`, `netmask_wan`, `netmask_lan`, `hostname`, `sla`, `valid_fr`, `valid_to`, `mon_cacti`, `mon_npmd`, `mon_sms`, `mon_log`) VALUES
-(4, 0, 4, 0, 9, NULL, NULL, NULL, NULL, NULL, 1024, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(6, 0, 6, 0, 13, NULL, NULL, NULL, NULL, NULL, 24, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `t_network_order` (`t_network_order_id`, `t_detail_network_order_id`, `t_nw_site_id`, `p_lastmile_id`, `no_jar`, `ip_wan`, `ip_lan`, `ip_loop`, `asn`, `bw`, `netmask_wan`, `netmask_lan`, `hostname`, `sla`, `valid_fr`, `valid_to`, `mon_cacti`, `mon_npmd`, `mon_sms`, `mon_log`) VALUES
+(6, 0, 7, 0, NULL, NULL, NULL, NULL, NULL, 222, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -484,13 +478,31 @@ INSERT INTO `t_network_order` (`t_network_order_id`, `t_detail_network_order_id`
 --
 
 CREATE TABLE IF NOT EXISTS `t_nw_service` (
-  `p_nw_service_id` int(11) NOT NULL AUTO_INCREMENT,
-  `t_network_id` int(11) NOT NULL,
+  `p_nw_service_id` int(11) NOT NULL,
   `t_network_order_id` int(11) NOT NULL,
-  KEY `network_id` (`t_network_id`),
   KEY `p_nw_service_id` (`p_nw_service_id`),
   KEY `t_network_order_id` (`t_network_order_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `t_nw_service`
+--
+
+INSERT INTO `t_nw_service` (`p_nw_service_id`, `t_network_order_id`) VALUES
+(13, 6);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_nw_service_fix`
+--
+
+CREATE TABLE IF NOT EXISTS `t_nw_service_fix` (
+  `p_nw_service_id` int(11) NOT NULL,
+  `t_network_id` int(11) NOT NULL,
+  KEY `network_id` (`t_network_id`),
+  KEY `p_nw_service_id` (`p_nw_service_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -514,15 +526,14 @@ CREATE TABLE IF NOT EXISTS `t_nw_site` (
   KEY `provinsi_id` (`provinsi_id`),
   KEY `p_site_type_id` (`p_site_type_id`),
   KEY `p_region_id` (`p_region_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `t_nw_site`
 --
 
 INSERT INTO `t_nw_site` (`t_nw_site_id`, `provinsi_id`, `p_site_type_id`, `p_region_id`, `site_name`, `desc`, `is_critical`, `longitude`, `latitude`, `address`, `traffic_mgmt`) VALUES
-(4, 4, 1, 1, 'Jakarta', '', 0, '', '', 'Monas', ''),
-(6, 6, 1, 1, 'Surabaya', '', 0, '', '', 'Keputih', '');
+(7, 12, 1, 21, 'Jakarta', '', 0, '', '', 'Jakarta', '');
 
 -- --------------------------------------------------------
 
@@ -542,8 +553,7 @@ CREATE TABLE IF NOT EXISTS `t_nw_site_pic` (
 --
 
 INSERT INTO `t_nw_site_pic` (`t_nw_site_id`, `t_pic_id`) VALUES
-(4, 4),
-(6, 6);
+(7, 12);
 
 -- --------------------------------------------------------
 
@@ -558,15 +568,14 @@ CREATE TABLE IF NOT EXISTS `t_pic` (
   `phone` varchar(15) NOT NULL,
   `phone2` varchar(15) NOT NULL,
   PRIMARY KEY (`t_pic_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `t_pic`
 --
 
 INSERT INTO `t_pic` (`t_pic_id`, `nip`, `pic_name`, `phone`, `phone2`) VALUES
-(4, '', 'Pak Husni', '', ''),
-(6, '', 'Pak Hari', '', '');
+(12, '', 'Pak Jaka', '', '');
 
 -- --------------------------------------------------------
 
@@ -682,32 +691,36 @@ ALTER TABLE `p_region`
   ADD CONSTRAINT `p_region_ibfk_1` FOREIGN KEY (`company_id`) REFERENCES `company` (`company_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `t_detail_network_order`
---
-ALTER TABLE `t_detail_network_order`
-  ADD CONSTRAINT `t_detail_network_order_ibfk_1` FOREIGN KEY (`p_order_type_id`) REFERENCES `p_order_type` (`p_order_type_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Constraints for table `t_document`
 --
 ALTER TABLE `t_document`
-  ADD CONSTRAINT `t_document_ibfk_1` FOREIGN KEY (`t_work_id`) REFERENCES `t_process` (`t_work_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `t_document_ibfk_2` FOREIGN KEY (`p_doc_type_id`) REFERENCES `p_doc_type` (`p_doc_type_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `t_network`
 --
 ALTER TABLE `t_network`
-  ADD CONSTRAINT `t_network_ibfk_1` FOREIGN KEY (`p_lastmile_id`) REFERENCES `p_lastmile` (`p_lastmile_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `t_network_ibfk_2` FOREIGN KEY (`t_nw_site_id`) REFERENCES `t_nw_site` (`t_nw_site_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `t_network_ibfk_3` FOREIGN KEY (`p_nw_service_id`) REFERENCES `p_nw_service` (`p_nw_service_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `t_network_ibfk_2` FOREIGN KEY (`t_nw_site_id`) REFERENCES `t_nw_site` (`t_nw_site_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `t_network_order`
 --
 ALTER TABLE `t_network_order`
-  ADD CONSTRAINT `t_network_order_ibfk_1` FOREIGN KEY (`t_nw_site_id`) REFERENCES `t_nw_site` (`t_nw_site_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `t_network_order_ibfk_2` FOREIGN KEY (`p_nw_service_id`) REFERENCES `p_nw_service` (`p_nw_service_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `t_network_order_ibfk_1` FOREIGN KEY (`t_nw_site_id`) REFERENCES `t_nw_site` (`t_nw_site_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `t_nw_service`
+--
+ALTER TABLE `t_nw_service`
+  ADD CONSTRAINT `t_nw_service_ibfk_2` FOREIGN KEY (`t_network_order_id`) REFERENCES `t_network_order` (`t_network_order_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `t_nw_service_ibfk_1` FOREIGN KEY (`p_nw_service_id`) REFERENCES `p_nw_service` (`p_nw_service_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `t_nw_service_fix`
+--
+ALTER TABLE `t_nw_service_fix`
+  ADD CONSTRAINT `t_nw_service_fix_ibfk_2` FOREIGN KEY (`t_network_id`) REFERENCES `t_network` (`t_network_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `t_nw_service_fix_ibfk_1` FOREIGN KEY (`p_nw_service_id`) REFERENCES `p_nw_service` (`p_nw_service_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `t_nw_site`
