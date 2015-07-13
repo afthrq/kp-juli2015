@@ -31,7 +31,6 @@ class Engineer extends CI_Controller
     	$this->load->view('includes/header');
     	$this->load->view('engineer/instalasi');
     	$this->load->view('includes/footer');
-
     }
 
     public function balo()
@@ -53,7 +52,7 @@ class Engineer extends CI_Controller
     {
         $data['list_permintaan'] = $this->engineer_model->getdatapermintaan();
         $this->load->view('includes/header');
-        $this->load->view('engineer/menu_list_permintaan', $data);
+        $this->load->view('engineer/menu_list_permintaan_balo', $data);
         $this->load->view('includes/footer');
     }
 
