@@ -25,15 +25,20 @@ class Engineer extends CI_Controller
     public function instalasi()
     {
         $order_id = $this->input->post('order_id');
+        $data['update_list'] = $this->engineer_model->getdataupdate($order_id);
+        //$data['layanan_list'] = $this->engineer_model->getservid();
+        //$data['perusahaan_list'] = $this->engineer_model->getcompid(); 
     	$this->load->view('includes/header');
-    	$this->load->view('engineer/instalasi');
+    	$this->load->view('engineer/instalasi',$data);
     	$this->load->view('includes/footer');
     }
 
     public function balo()
     {
+        $order_id = $this->input->post('order_id');
+        $data['balo_list'] = $this->engineer_model->getdataupdate($order_id);
         $this->load->view('includes/header');
-        $this->load->view('engineer/balo');
+        $this->load->view('engineer/balo',$data);
         $this->load->view('includes/footer');
     }
 
@@ -70,6 +75,7 @@ class Engineer extends CI_Controller
     }
 
     public function insertdatainstalasi (){
+        $lokasi = $this->input->post('lokasi');
         $ipwan = $this->input->post('ipwan');
         $netmaskwan = $this->input->post('netmaskwan');
         $iplan = $this->input->post('iplan');
@@ -85,17 +91,16 @@ class Engineer extends CI_Controller
         $in_lastmile = array ('name' => $lastmile);
         $this->engineer_model->inputlastmile($in_lastmile); 
 
-        $in_lastmile = array ('name' => $lastmile);
-        $this->engineer_model->inputlastmile($in_lastmile); 
         //ambil id dari inputan lastmile
         $lmid = $this->engineer_model->getlastmileid($lastmile);
 
         $in_traffic = array ('traffic_mgmt' => $traffic);
-        $this->engineer_model->updatenwsite($in_traffic);
-        $nwsiteid = $this->engineer_model->getnwsiteid($traffic);
+        $cek_lokasi = array ('site_name' => $lokasi);
+        $this->engineer_model->updatenwsite($in_traffic,$lokasi);
+        $nwsiteid = $this->engineer_model->getnwsiteid($in_traffic,$cek_lokasi);
 
-        $in_final = array('t_nw_site_id' => $nwsiteid ,
-        'ip_wan' => $ipwan ,
+        $p_final = array ('t_nw_site_id' => $nwsiteid);
+        $in_final = array ( 'ip_wan' => $ipwan ,
         'netmask_wan' => $netmaskwan ,
         'ip_lan' => $iplan ,
         'netmask_lan' => $netmasklan ,
@@ -105,7 +110,7 @@ class Engineer extends CI_Controller
         'sla' => $sla ,
         'hostname' => $hostname 
         );
-        $data = $this->engineer_model->insertdatafinal($in_final);
-        redirect('engineer','refresh');
+        $data = $this->engineer_model->insertdatafinal($in_final,$p_final);
+        //redirect('engineer','refresh');
     }
 }

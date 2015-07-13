@@ -25,6 +25,15 @@
     <!-- /.col-lg-12 -->
 </div>
 <form method="POST" action="<?php echo base_url('engineer/insert_data_balo')?>">
+<div class="row">
+    <div class="input-group col-lg-6">
+        <?php foreach ($balo_list as $row) : ?>
+            <input type="hidden" value="<?php echo $row->site_name ?>" name="lokasi"><?php echo $row->site_name ?>
+        <?php endforeach?>
+    </div>
+</div>
+<br>
+<br>
     <div class="row">
          <div class="col-lg-6">
             <div class="input-group">

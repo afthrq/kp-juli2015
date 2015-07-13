@@ -25,6 +25,13 @@
     <!-- /.col-lg-12 -->
 </div>
 <form method="POST" action="<?php echo base_url('engineer/insertdatainstalasi')?>">
+<div class="row">
+    <div class="input-group col-lg-6">
+        <?php foreach ($update_list as $row) : ?>
+            <input type="hidden" value="<?php echo $row->site_name ?>" name="lokasi"><?php echo $row->site_name ?>
+        <?php endforeach?>
+    </div>
+</div>
     <div class="row">
         <div class=" col-lg-6">
             <div class="input-group">

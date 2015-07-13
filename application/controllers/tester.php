@@ -26,7 +26,7 @@ class Tester extends CI_Controller
         $caption = $this->input->post('caption');
         $filename = $this->input->post('path');
         $path = "uploads/$filename";
-        $this->verifikator_model->insert_dokumen($tipe_dokumen, $caption, $path);
+        $this->tester_model->insert_dokumen($tipe_dokumen, $caption, $path);
         //redirect('verifikator','refresh');
     }
 
