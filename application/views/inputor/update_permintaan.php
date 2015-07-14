@@ -45,13 +45,14 @@
     </div>
     <!-- /.col-lg-12 -->
 </div>
+<form method ="POST" action ="<?php echo base_url('inputor/form_update')?>">
 <?php foreach ($update_list as $row): ?>
-<form method ="post" action ="<?php echo base_url('inputor/form_update')?>">
+<input type="hidden" name="site_id" value="<?php echo $row->t_nw_site_id?>">
 <div class="row">
     <div class="col-lg-6">
         <div class="input-group">
             <span class="input-group-addon input-permintaan" id="basic-addon1">Lokasi</span>
-            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->site_name ?>" name ="update_site" disabled>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->site_name ?>" name ="lokasi" disabled>
         </div>
     </div>
 </div>
@@ -61,7 +62,7 @@
     <div class="col-lg-6">
         <div class="input-group">
             <span class="input-group-addon input-permintaan" id="basic-addon1">Jenis Lokasi</span>
-            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->type_name ?>" disabled>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->type_name ?>" name="jenis" disabled>
         </div>
     </div>
 </div>
@@ -70,7 +71,7 @@
     <div class="col-lg-6">
         <div class="input-group">
             <span class="input-group-addon input-permintaan" id="basic-addon1">Perusahaan</span>
-            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->company_name ?>" disabled>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->company_name ?>" name="perusahaan" disabled>
         </div>
     </div>
 </div>
@@ -79,7 +80,7 @@
     <div class="col-lg-6">
         <div class="input-group">
             <span class="input-group-addon input-permintaan" id="basic-addon1">Alamat</span>
-            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->address ?>" disabled>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->address ?>" name ="alamat" disabled>
         </div>
     </div>
 </div>
@@ -88,7 +89,7 @@
     <div class="col-lg-6">
         <div class="input-group">
             <span class="input-group-addon input-permintaan" id="basic-addon1">Region</span>
-            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->region_name ?>" disabled>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->region_name ?>" name="region" disabled>
         </div>
     </div>
 </div>
@@ -97,7 +98,7 @@
     <div class="col-lg-6">
         <div class="input-group">
             <span class="input-group-addon input-permintaan" id="basic-addon1">Provinsi</span>
-            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->provinsi_name ?>" disabled>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->provinsi_name ?>" name="provinsi" disabled>
         </div>
     </div>
 </div>
@@ -106,12 +107,14 @@
     <div class="col-lg-6">
         <div class="input-group">
             <span class="input-group-addon input-permintaan" id="basic-addon1">PIC</span>
-            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->pic_name ?>" disabled>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->pic_name ?>" name="pic" disabled>
         </div>
     </div>
 </div>
+</form>
 <?php endforeach ?>
 <form method="POST" action ="<?php echo base_url('inputor/form_update')?>">
+<input type="hidden" name="proses" value="2">
 <br>
 <div class="row">
     <div class="col-lg-6">

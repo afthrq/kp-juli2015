@@ -55,6 +55,7 @@
 
 <!-- /.navbar-static-side -->
 </nav>
+
 <div id="page-wrapper">
 <div class="row">
     <div class="col-lg-12">
@@ -63,6 +64,7 @@
     <!-- /.col-lg-12 -->
 </div>
 <form method="POST" action="<?php echo base_url('inputor/form_input')?>">
+<input type="hidden" name="proses" value="1">
 <div class="row">
     <div class="input-group col-lg-6">
         <span class="input-group-addon input-permintaan" id="basic-addon1">Lokasi</span>

@@ -33,7 +33,8 @@ class Inputor extends CI_Controller
 	}
 
     public function form_permintaan()
-    {
+    {        
+
         $data['jenis_list'] = $this->inputor_model->getdatajenis();
         $data['layanan_list'] = $this->inputor_model->getservid();
         $data['perusahaan_list'] = $this->inputor_model->getcompid();
@@ -44,7 +45,7 @@ class Inputor extends CI_Controller
     }
 
     function menu_list_permintaan()
-    {
+    {        
         $data['list_permintaan'] = $this->inputor_model->getdatapermintaan();
         $this->load->view('includes/header');
         $this->load->view('inputor/menu_list_permintaan', $data);
@@ -90,10 +91,15 @@ class Inputor extends CI_Controller
         $layanan = $this->input->post('layanan');
         $paket = $this->input->post('paket');
         $bw = $this->input->post('bw');
+        $proses = $this->input->post('proses');
 
         //setting parent table
         $in_prov = array ('provinsi_name' => $provinsi);
-        $in_pic = array ('pic_name' => $pic);       
+        $in_pic = array ('pic_name' => $pic);
+        $in_proses = array ('p_order_type_id' => $proses);
+        $cek_layanan = array ('service_name' => $layanan); 
+
+        $serv_type_id = $this->inputor_model->inputproses($in_proses);
 
         $this->inputor_model->inputparent($in_prov,$in_pic);
 
@@ -101,8 +107,11 @@ class Inputor extends CI_Controller
         $picid = $this->inputor_model->getpicid($pic);
         $jenid = $this->inputor_model->getjenid($jenis);
         $regid = $this->inputor_model->getregid($region);
-        $packid = $this->inputor_model->getpackid($paket,$layanan);
 
+        $cekpackid = array ('p_service_id' => $layanan ,
+                    'package' => $paket);
+
+        $packid = $this->inputor_model->getpackid($cekpackid);
 
         //setting child table level 2
         $in_site = array ('provinsi_id' => $provid,
@@ -117,6 +126,7 @@ class Inputor extends CI_Controller
 
         //setting child table level 3
         $in_order = array ('t_nw_site_id' => $siteid,
+                        't_detail_network_order_id' => $serv_type_id ,
                         'bw' => $bw);
 
         $this->inputor_model->inputlvl3($in_order);
@@ -136,19 +146,60 @@ class Inputor extends CI_Controller
 
     public function form_update()
     {
+        //------------------------------------------------------------------//
+        $proses = $this->input->post('proses');
+        $in_proses = array ('p_order_type_id' => $proses);
+        $serv_type_id = $this->inputor_model->inputproses($in_proses);
+        //------------------------------------------------------------------//
+
+        $site_id = $this->input->post('site_id');
+        print_r($site_id);
+        die();
         $pack_up = $this->input->post('update_paket');
         $bw_up = $this->input->post('update_bw');
-        print_r($update_bw);
-        die();
         $site_up = $this->input->post('update_site');
+        $serv_up = $this->input->post('update_layanan');
+
+        $cek_layanan = array ('service_name' => $serv_up);
+
+        $cekpackid = array ('p_service_id' => $layanan ,
+                        'package' => $pack_up);
+
+        $packid = $this->inputor_model->getpackid($cekpackid);
+
+        $site_up_id = $this->inputor_model->getsiteupid($site_up);
+
+
+
+    }
+    /*
+    public function form_update()
+    {
+
+        $pack_up = $this->input->post('update_paket');
+        $bw_up = $this->input->post('update_bw');
+        $site_up = $this->input->post('update_site');
+        
+        //
+        $proses = $this->input->post('proses');
+        $in_proses = array ('p_order_type_id' => $proses);
+        $serv_type_id = $this->inputor_model->inputproses($in_proses);
 
         $site_up_id = $this->inputor_model->getsiteupid($site_up);
         $serv_up_id = $this->inputor_model->getservupid($pack_up);
-        $order_up_id = $this->inputor_model->getorderupid($site_up_id,$bw_up);
 
+        $updateorder = array ('t_nw_site_id' => $site_up_id);
+        $updatebw = array ('bw' => $bw_up);
+        $setbw = $this->inputor_model->setbw($updateorder,$updatebw);
 
+        $getnworderid = array ('t_nw_site_id' => $site_up_id ,
+                    'bw' => $bw_up);
 
-        $this->inputor_model->updatefinal($serv_up_id,$order_up_id);
-    }
+        $order_up_id = $this->inputor_model->getorderupid($getnworderid);
+
+        $updateservice = array ('p_nw_service_id' => $serv_up_id, 
+                        );
+        $this->inputor_model->updatedata($updateservice,$order_up_id);
+    }*/
 
 }

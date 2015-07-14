@@ -28,7 +28,7 @@
 <div class="row">
     <div class="input-group col-lg-6">
         <?php foreach ($update_list as $row) : ?>
-            <input type="hidden" value="<?php echo $row->site_name ?>" name="lokasi"><?php echo $row->site_name ?>
+            <input type="hidden" value="<?php echo $row->site_name ?>" name="lokasi">
         <?php endforeach?>
     </div>
 </div>

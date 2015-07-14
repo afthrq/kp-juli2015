@@ -9,11 +9,30 @@ class Inputor_model extends CI_Model
 		$this->load->database();
 	}
 
+	function insertservalue($in_proses)
+	{
+		$this->db->insert('t_detail_network_order',$in_proses);
+	}
+
+	function getdetailorderid ($in_proses)
+	{
+		$this->db->where($in_proses);
+		$query = $this->db->get("t_detail_network_order"); 
+		return $query->row()->t_detail_network_order_id;
+	}
+
 	function getdatajenis()
 	{
 		$query = $this->db->get('p_site_type');
 		return $query->result();
 	}
+
+	function getdataproses()
+	{
+		$query = $this->db->get('t_detail_network_order');
+		return $query->result();
+	}
+
 
 	function getdatalokasi()
 	{
@@ -65,9 +84,9 @@ class Inputor_model extends CI_Model
 		return $query->row()->t_network_order_id;
 	}
 
-	function getpackid($paket, $servid)
+	function getpackid($cekpackid)
 	{
-		$this->db->where('package', $paket);
+		$this->db->where($cekpackid);
 		$query = $this->db->get("p_nw_service"); 
 		return $query->row()->p_nw_service_id;
 	}
@@ -92,10 +111,20 @@ class Inputor_model extends CI_Model
 		$this->db->insert('t_nw_site_pic',$in_pic_site);
 	}
 
+	function inputproses($in_proses)
+	{
+		$this->db->insert('t_detail_network_order',$in_proses);
+		$id = $this->db->insert_id();
+		$this->db->where('t_detail_network_order_id',$id);
+		$query = $this->db->get("t_detail_network_order");
+		return $query->row()->t_detail_network_order_id;
+	}
+
 	function inputparent($in_prov,$in_pic)
 	{
 		$this->db->insert('provinsi',$in_prov);
 		$this->db->insert('t_pic',$in_pic);
+
 	}
 
 
@@ -175,6 +204,7 @@ class Inputor_model extends CI_Model
 
   	public function getdataupdate($o_id)
   	{
+    	$this->db->select('t_nw_site.t_nw_site_id');
   		$this->db->select('t_nw_site.site_name');
 		$this->db->select('p_site_type.type_name');
 		$this->db->select('company.company_name');
@@ -205,11 +235,17 @@ class Inputor_model extends CI_Model
 		return $query->row()->t_nw_site_id;
   	}
 
-  	public function getorderupid ($site_up_id,$bw_up)
+  	public function getorderupid ($getnworderid)
   	{
-  		$this->db->where('bw',$bw_up);
+  		$this->db->where($getnworderid);
 		$query = $this->db->get("t_network_order"); 
-		return $query->row()->t_nw_site_id;
+		return $query->row()->t_network_order_id;
+  	}
+
+ public function setbw ($updateorder,$bw_up)
+  	{
+  		$this->db->insert('t_network_order',$bw_up);
+  		$this->db->where($updateorder);
   	}
 
   	public function getservupid ($pack_up)
@@ -220,9 +256,9 @@ class Inputor_model extends CI_Model
   	}
 
 
-  	public function updatefinal ($serv_up_id,$order_up_id)
+  	public function updatefinal ($updateservice,$order_up_id)
   	{
-  		$this->db->set('p_nw_service_id',$serv_up_id);
+  		$this->db->set('p_nw_service_id',$updateservice);
   		$this->db->where('t_network_order_id',$order_up_id);
   	}
 
