@@ -2,35 +2,35 @@
 
 class Inputor extends CI_Controller 
 {
-	public function __construct()
-	{
-		parent::__construct();
+    public function __construct()
+    {
+        parent::__construct();
         $this->load->helper('url');
         $this->load->model('inputor_model');
-		session_start();
-		if($this->session->userdata('role') != "inputor")
-		{
-			redirect('user','refresh');	
+        session_start();
+        if($this->session->userdata('role') != "inputor")
+        {
+            redirect('user','refresh'); 
         }
-	}
+    }
 
     public function update()
     {
         $o_id = $this->input->post('order_id');
         $data['update_list'] = $this->inputor_model->getdataupdate($o_id);
-        $data['layanan_list'] = $this->inputor_model->getservid();
-        $data['perusahaan_list'] = $this->inputor_model->getcompid(); 
+        $data['upserv_list'] = $this->inputor_model->getupdateid();
+        $data['lokasiid'] = $this->inputor_model->getlokasiid($o_id); 
         $this->load->view('includes/header');
         $this->load->view('inputor/update_permintaan',$data);
         $this->load->view('includes/footer');
     }
 
-	public function index()
-	{
-		$this->load->view('includes/header');
-    	$this->load->view('inputor/home');
-    	$this->load->view('includes/footer');
-	}
+    public function index()
+    {
+        $this->load->view('includes/header');
+        $this->load->view('inputor/home');
+        $this->load->view('includes/footer');
+    }
 
     public function form_permintaan()
     {        
@@ -38,9 +38,9 @@ class Inputor extends CI_Controller
         $data['jenis_list'] = $this->inputor_model->getdatajenis();
         $data['layanan_list'] = $this->inputor_model->getservid();
         $data['perusahaan_list'] = $this->inputor_model->getcompid();
-    	$this->load->view('includes/header');
-    	$this->load->view('inputor/form_permintaan',$data);
-    	$this->load->view('includes/footer');
+        $this->load->view('includes/header');
+        $this->load->view('inputor/form_permintaan',$data);
+        $this->load->view('includes/footer');
 
     }
 
@@ -79,6 +79,19 @@ class Inputor extends CI_Controller
       echo $output;  
     }  
 
+    public function buildpaketupdate()  
+    {  
+      echo $p_service_id_up = $this->input->post('id',TRUE);  
+  
+      $districtData['upserv_list']=$this->inputor_model->getpaketfromlayanan_up($p_service_id_up);  
+      $output = null;  
+      foreach ($districtData['upserv_list'] as $row)  
+      {    
+            $output .= "<option value='".$row->package."'>".$row->package."</option>"; 
+      }  
+      echo $output;  
+    }  
+
     public function form_input()
     {
         $lokasi = $this->input->post('lokasi');
@@ -97,7 +110,6 @@ class Inputor extends CI_Controller
         $in_prov = array ('provinsi_name' => $provinsi);
         $in_pic = array ('pic_name' => $pic);
         $in_proses = array ('p_order_type_id' => $proses);
-        $cek_layanan = array ('service_name' => $layanan); 
 
         $serv_type_id = $this->inputor_model->inputproses($in_proses);
 
@@ -130,7 +142,7 @@ class Inputor extends CI_Controller
                         'bw' => $bw);
 
         $this->inputor_model->inputlvl3($in_order);
-        $orderid = $this->inputor_model->getorderid($bw);         
+        $orderid = $this->inputor_model->getorderid($in_order);         
 
 
         //setting child table final
@@ -153,53 +165,27 @@ class Inputor extends CI_Controller
         //------------------------------------------------------------------//
 
         $site_id = $this->input->post('site_id');
-        print_r($site_id);
-        die();
+        $serv_up = $_POST['up_layanan'];
         $pack_up = $this->input->post('update_paket');
         $bw_up = $this->input->post('update_bw');
-        $site_up = $this->input->post('update_site');
-        $serv_up = $this->input->post('update_layanan');
 
-        $cek_layanan = array ('service_name' => $serv_up);
 
-        $cekpackid = array ('p_service_id' => $layanan ,
-                        'package' => $pack_up);
+        $cekpackid = array ('p_service_id' => $serv_up ,
+                    'package' => $pack_up);
 
         $packid = $this->inputor_model->getpackid($cekpackid);
 
-        $site_up_id = $this->inputor_model->getsiteupid($site_up);
-
-
-
-    }
-    /*
-    public function form_update()
-    {
-
-        $pack_up = $this->input->post('update_paket');
-        $bw_up = $this->input->post('update_bw');
-        $site_up = $this->input->post('update_site');
-        
-        //
-        $proses = $this->input->post('proses');
-        $in_proses = array ('p_order_type_id' => $proses);
-        $serv_type_id = $this->inputor_model->inputproses($in_proses);
-
-        $site_up_id = $this->inputor_model->getsiteupid($site_up);
-        $serv_up_id = $this->inputor_model->getservupid($pack_up);
-
-        $updateorder = array ('t_nw_site_id' => $site_up_id);
-        $updatebw = array ('bw' => $bw_up);
-        $setbw = $this->inputor_model->setbw($updateorder,$updatebw);
-
-        $getnworderid = array ('t_nw_site_id' => $site_up_id ,
-                    'bw' => $bw_up);
+        $getnworderid = array ('t_nw_site_id' => $site_id ,
+                    't_detail_network_order_id' => $serv_type_id ,
+                     'bw' => $bw_up);
 
         $order_up_id = $this->inputor_model->getorderupid($getnworderid);
 
-        $updateservice = array ('p_nw_service_id' => $serv_up_id, 
-                        );
-        $this->inputor_model->updatedata($updateservice,$order_up_id);
-    }*/
+        $update = array ('p_nw_service_id' => $packid ,
+                't_network_order_id' => $order_up_id);
 
+        $this->inputor_model->updatefinal($update);
+
+    }
+  
 }

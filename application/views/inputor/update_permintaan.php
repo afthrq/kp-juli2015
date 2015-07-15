@@ -22,14 +22,14 @@
 
 <script type="text/javascript">  
           $(document).ready(function() {  
-             $("#layanan").change(function(){  
+             $("#up_layanan").change(function(){  
              /*dropdown post *///  
              $.ajax({  
-                url:"<?php echo base_url();?>index.php/inputor/buildpaket",  
+                url:"<?php echo base_url();?>index.php/inputor/buildpaketupdate",  
                 data: {id: $(this).val()},  
                 type: "POST",  
                 success:function(data){  
-                $("#paket").html(data);  
+                $("#up_paket").html(data);  
              }  
           });  
        });  
@@ -46,8 +46,10 @@
     <!-- /.col-lg-12 -->
 </div>
 <form method ="POST" action ="<?php echo base_url('inputor/form_update')?>">
+
+
+
 <?php foreach ($update_list as $row): ?>
-<input type="hidden" name="site_id" value="<?php echo $row->t_nw_site_id?>">
 <div class="row">
     <div class="col-lg-6">
         <div class="input-group">
@@ -114,14 +116,17 @@
 </form>
 <?php endforeach ?>
 <form method="POST" action ="<?php echo base_url('inputor/form_update')?>">
+<?php foreach ($lokasiid as $row): ?>   
+    <input type="text" name="site_id" value="<?php echo $row->t_nw_site_id?>">
+<?php endforeach ?>
 <input type="hidden" name="proses" value="2">
 <br>
 <div class="row">
     <div class="col-lg-6">
         <div class="input-group">
             <span class="input-group-addon input-permintaan" id="basic-addon1">Layanan</span>
-            <div class="dropdown dropdown-permintaan">
-                <?php echo form_dropdown('layanan', $layanan_list,'','class="form-control" id="layanan" name="update_layanan"');  ?>
+            <div class="dropdown">
+                <?php echo form_dropdown('up_layanan', $upserv_list,'','class="form-control" id="up_layanan" name="update_layanan"');  ?>
             </div>
         </div>
     </div>
@@ -132,8 +137,8 @@
         <div class="input-group">
             <span class="input-group-addon input-permintaan" id="basic-addon1">Paket Layanan</span>
             <div class="dropdown">
-                <select class="form-control" name="update_paket" id="paket">
-                    <option value="">Pilih Layanan Terlebih Dahulu</option>    
+                <select class="form-control" name="update_paket" id="up_paket">
+                    <option value="1">Pilih Layanan Terlebih Dahulu</option>    
                 </select>
             </div>
         </div>
