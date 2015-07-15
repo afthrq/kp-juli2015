@@ -22,9 +22,14 @@ class Pm extends CI_Controller
 
     function submit_koordinasi_provider()
     {
+        $site_id = $this->input->post('site_id');
         $tiket_provider = $this->input->post('tiket_provider');
         $pic_provider = $this->input->post('pic_provider');
-        $this->pm_model->insert_koordinasi_provider($tiket_provider, $pic_provider);
+
+        $order_up_id = $this->pm_model->getorderupid($site_id);
+        $detail_id = $this->pm_model->getdetailupid($order_up_id);
+
+        $this->pm_model->insert_koordinasi_provider($tiket_provider, $pic_provider, $detail_id);
         redirect('pm','refresh');
     }
 
@@ -46,9 +51,10 @@ class Pm extends CI_Controller
 
     function koordinasi_provider()
     {
-        $order_id = $this->input->post('order_id');
+        $o_id = $this->input->post('order_id');
+        $data['lokasiid'] = $this->pm_model->getlokasiid($o_id);
         $this->load->view('includes/header');
-        $this->load->view('pm/koordinasi_provider');
+        $this->load->view('pm/koordinasi_provider',$data);
         $this->load->view('includes/footer');
     }
 

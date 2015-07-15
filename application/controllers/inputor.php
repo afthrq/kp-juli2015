@@ -94,6 +94,21 @@ class Inputor extends CI_Controller
 
     public function form_input()
     {
+        //------------------------------------------------------------------//
+        $proses = $this->input->post('proses');
+        $in_proses = array ('p_order_type_id' => $proses);
+        $serv_type_id = $this->inputor_model->inputproses($in_proses);
+        //------------------------------------------------------------------//
+
+        //------------------------------------------------------------------//
+        $tahap = $this->input->post('tahap');
+        $user = $this->input->post('user');
+        $in_tahap = array ('p_process_id' => $tahap ,
+                't_detail_network_order_id' => $serv_type_id,
+                'closed_by' => $user);
+        $tahap_id = $this->inputor_model->inputtahap($in_tahap);
+        //------------------------------------------------------------------//
+
         $lokasi = $this->input->post('lokasi');
         $jenis = $this->input->post('jenis');
         $perusahaan = $this->input->post('perusahaan');
@@ -104,14 +119,10 @@ class Inputor extends CI_Controller
         $layanan = $this->input->post('layanan');
         $paket = $this->input->post('paket');
         $bw = $this->input->post('bw');
-        $proses = $this->input->post('proses');
 
         //setting parent table
         $in_prov = array ('provinsi_name' => $provinsi);
         $in_pic = array ('pic_name' => $pic);
-        $in_proses = array ('p_order_type_id' => $proses);
-
-        $serv_type_id = $this->inputor_model->inputproses($in_proses);
 
         $this->inputor_model->inputparent($in_prov,$in_pic);
 
@@ -141,10 +152,8 @@ class Inputor extends CI_Controller
                         't_detail_network_order_id' => $serv_type_id ,
                         'bw' => $bw);
 
-        $this->inputor_model->inputlvl3($in_order);
-        $orderid = $this->inputor_model->getorderid($in_order);         
-
-
+        $orderid =$this->inputor_model->getorderid($in_order);
+        
         //setting child table final
         $in_pic_site = array ('t_nw_site_id' => $siteid,
                      't_pic_id' => $picid);
@@ -185,7 +194,7 @@ class Inputor extends CI_Controller
                 't_network_order_id' => $order_up_id);
 
         $this->inputor_model->updatefinal($update);
-
+        redirect ('inputor','refresh');
     }
   
 }

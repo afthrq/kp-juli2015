@@ -65,6 +65,8 @@
 </div>
 <form method="POST" action="<?php echo base_url('inputor/form_input')?>">
 <input type="hidden" name="proses" value="1">
+<input type="hidden" name="tahap" value="1">
+<input type="hidden" name="user" value="<?php echo  $this->session->userdata('user_name')?>">
 <div class="row">
     <div class="input-group col-lg-6">
         <span class="input-group-addon input-permintaan" id="basic-addon1">Lokasi</span>

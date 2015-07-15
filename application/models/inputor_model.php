@@ -115,12 +115,6 @@ class Inputor_model extends CI_Model
 		return $query->row()->p_service_id;	
 	}
 
-	function inputfinal($in_serv, $in_pic_site)
-	{
-		$this->db->insert('t_nw_service',$in_serv);
-		$this->db->insert('t_nw_site_pic',$in_pic_site);
-	}
-
 	function inputproses($in_proses)
 	{
 		$this->db->insert('t_detail_network_order',$in_proses);
@@ -130,11 +124,30 @@ class Inputor_model extends CI_Model
 		return $query->row()->t_detail_network_order_id;
 	}
 
+	function getusername ()
+	{
+		
+	}
+
+	function inputtahap($in_tahap)
+	{
+
+		$this->db->set('valid_fr','NOW()',FALSE);
+		$this->db->insert('t_process',$in_tahap);		
+	}
+
+	function inputfinal($in_serv, $in_pic_site)
+	{
+		$this->db->insert('t_nw_service',$in_serv);
+		$this->db->insert('t_nw_site_pic',$in_pic_site);
+	}
+
+
+
 	function inputparent($in_prov,$in_pic)
 	{
 		$this->db->insert('provinsi',$in_prov);
 		$this->db->insert('t_pic',$in_pic);
-
 	}
 
 

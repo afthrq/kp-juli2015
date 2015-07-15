@@ -75,9 +75,10 @@ class Engineer_model extends CI_Model
 	//
 	function updatenwsite($in_traffic,$lokasi)
 	{
+		$this->db->where('t_nw_site.site_name',$lokasi );
 		$this->db->distinct();
 		$this->db->update('t_nw_site',$in_traffic);
-		$this->db->where('t_nw_site.site_name',$lokasi );
+
 	}
 
 	function inputlastmile($in_lastmile)
@@ -90,13 +91,23 @@ class Engineer_model extends CI_Model
 	//
 	function insertdatafinal($in_final,$p_final)
 	{
+		$this->db->where($p_final);
 		$this->db->distinct();
 		$this->db->update('t_network_order',$in_final);
-		$this->db->where('t_network_order',$p_final);		
+		
 	}
 
-	function insert_data_balo($data)
+	function insert_data_balo($data,$siteid)
 	{
+		$this->db->where('t_nw_site_id',$siteid);
 		$this->db->update('t_network_order',$data);		
+	}
+
+	function getsiteid($cek_lokasi)
+	{
+		$this->db->distinct();
+		$this->db->where($cek_lokasi);
+		$query = $this->db->get("t_nw_site"); 
+		return $query->row()->t_nw_site_id;	
 	}
 }

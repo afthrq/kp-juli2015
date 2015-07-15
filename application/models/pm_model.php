@@ -2,19 +2,26 @@
 
 class Pm_model extends CI_Model 
 {
+	function getlokasiid($o_id)
+	{
+		$this->db->distinct();
+		$this->db->where('site_name', $o_id);
+		$query = $this->db->get('t_nw_site');
+		return $query->result();
+	}
+
+
 	function get_list_permintaan()
 	{
 		
 	}
-	function insert_koordinasi_provider($tiket_provider,$pic_provider)
+	function insert_koordinasi_provider($tiket_provider,$pic_provider,$detail_id)
 	{
-		/*
+		$this->db->where('t_detail_network_order_id', $detail_id);
 		$data = array(
         'tiket_order_provider' => $tiket_provider,
         'pic_provider' => $pic_provider);
         $this->db->update('t_detail_network_order', $data);
-        $this->db->where('t_detail_network_order_id', "1"); //change "1" with parameter that shows current network order id
-        */
 	}
 
 	function getdatapermintaan()
@@ -51,6 +58,20 @@ class Pm_model extends CI_Model
 		$query = $this->db->get("p_site_type");		
 		return $query->result();
 	}
+
+	public function getorderupid ($site_id)
+  	{
+		$this->db->where('t_nw_site_id',$site_id);
+		$query = $this->db->get("t_network_order");
+		return $query->row()->t_network_order_id;
+  	}
+
+  	public function getdetailupid ($order_up_id)
+  	{
+		$this->db->where('t_network_order_id',$order_up_id);
+		$query = $this->db->get("t_network_order");
+		return $query->row()->t_detail_network_order_id;
+  	}
 /*
 	function getdatalayanan()
 	{

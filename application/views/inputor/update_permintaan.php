@@ -117,7 +117,7 @@
 <?php endforeach ?>
 <form method="POST" action ="<?php echo base_url('inputor/form_update')?>">
 <?php foreach ($lokasiid as $row): ?>   
-    <input type="text" name="site_id" value="<?php echo $row->t_nw_site_id?>">
+    <input type="hidden" name="site_id" value="<?php echo $row->t_nw_site_id?>">
 <?php endforeach ?>
 <input type="hidden" name="proses" value="2">
 <br>

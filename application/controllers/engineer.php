@@ -59,10 +59,15 @@ class Engineer extends CI_Controller
     }
 
     public function insert_data_balo (){
+        $lokasi = $this->input->post('lokasi');
         $mon_cacti = $this->input->post('cacti');
         $mon_npmd = $this->input->post('npmd');
         $mon_sms = $this->input->post('sms');
         $mon_logbook = $this->input->post('logbook');
+
+        $cek_lokasi = array ('site_name' => $lokasi);
+        $siteid = $this->engineer_model->getsiteid($cek_lokasi);
+
 
         $data = array(
         'mon_cacti' => $mon_cacti ,
@@ -70,7 +75,7 @@ class Engineer extends CI_Controller
         'mon_sms' => $mon_sms ,
         'mon_log' => $mon_logbook
         );
-        $data = $this->engineer_model->insert_data_balo($data);
+        $data = $this->engineer_model->insert_data_balo($data,$siteid);
         redirect('engineer','refresh');
     }
 

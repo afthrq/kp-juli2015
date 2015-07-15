@@ -22,16 +22,21 @@ class Verifikator extends CI_Controller
 	}
 
     function submit_verifikasi_permintaan()
-    {   
+    {
+        $site_id = $this->input->post('site_id');
         $no_form = $this->input->post('no_form');
         $tanggal_permintaan = $this->input->post('tanggal_permintaan');
         $tipe_dokumen = $this->input->post('tipe_dokumen');
         $caption = $this->input->post('caption');
         $filename = $this->input->post('path');
         $path = "uploads/$filename";
-        $this->verifikator_model->insert_detail_order($no_form, $tanggal_permintaan);
+
+        $order_up_id = $this->verifikator_model->getorderupid($site_id);
+        $detail_id = $this->verifikator_model->getdetailupid($order_up_id);
+
+        $this->verifikator_model->insert_detail_order($no_form, $tanggal_permintaan, $detail_id);
         $this->verifikator_model->insert_dokumen($tipe_dokumen, $caption, $path);
-        //redirect('verifikator','refresh');
+        redirect('verifikator','refresh');
     }
 
      function submit_verifikasi_balo()
@@ -62,8 +67,9 @@ class Verifikator extends CI_Controller
 
     function verifikasi_permintaan()
     {
-        $order_id = $this->input->post('order_id');
-        $data['data_permintaan'] = $this->verifikator_model->get_data_permintaan($order_id);  
+        $o_id = $this->input->post('order_id');
+        $data['lokasiid'] = $this->verifikator_model->getlokasiid($o_id);
+        $data['data_permintaan'] = $this->verifikator_model->get_data_permintaan($o_id);  
         $this->load->view('includes/header');
         $this->load->view('verifikator/verifikasi_permintaan', $data);
         $this->load->view('includes/footer');

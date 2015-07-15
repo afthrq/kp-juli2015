@@ -24,6 +24,9 @@
     <!-- /.col-lg-12 -->
 </div>
 <form method="POST" action="<?php echo base_url('pm/submit_koordinasi_provider')?>">
+<?php foreach ($lokasiid as $row): ?>   
+    <input type="text" name="site_id" value="<?php echo $row->t_nw_site_id?>">
+<?php endforeach ?>
 <div class="row">
     <div class=" col-lg-6">
         <div class="input-group">

@@ -2,6 +2,14 @@
 
 class Verifikator_model extends CI_Model 
 {
+	function getlokasiid($o_id)
+	{
+		$this->db->distinct();
+		$this->db->where('site_name', $o_id);
+		$query = $this->db->get('t_nw_site');
+		return $query->result();
+	}
+
 	function getdatapermintaan()
 	{
 		$this->db->select('t_nw_site.site_name');
@@ -54,13 +62,15 @@ class Verifikator_model extends CI_Model
 		
 	}
 
-	function insert_detail_order($no_form, $tanggal_permintaan)
+	function insert_detail_order($no_form, $tanggal_permintaan, $detail_id)
 	{
 		$data = array(
         'no_form_permintaan' => $no_form,
-        'tgl_permintaan' => $tanggal_permintaan);
-        $this->db->insert('t_detail_network_order', $data);
-        //$this->db->where('t_detail_network_order_id', "1"); //change "1" with parameter that shows current network order id
+        'tgl_permintaan' => $tanggal_permintaan,
+        );
+        $this->db->where('t_detail_network_order_id', $detail_id);
+        $this->db->update('t_detail_network_order',$data);
+
 	}
 	function insert_dokumen($tipe_dokumen, $caption, $path)
 	{
@@ -71,4 +81,18 @@ class Verifikator_model extends CI_Model
         $this->db->insert('t_document', $data);
         //$this->db->where('t_work_id', "1"); //change "1" with parameter that shows current process id
 	}
+
+	public function getorderupid ($site_id)
+  	{
+		$this->db->where('t_nw_site_id',$site_id);
+		$query = $this->db->get("t_network_order");
+		return $query->row()->t_network_order_id;
+  	}
+
+  	public function getdetailupid ($order_up_id)
+  	{
+		$this->db->where('t_network_order_id',$order_up_id);
+		$query = $this->db->get("t_network_order");
+		return $query->row()->t_detail_network_order_id;
+  	}
 }
