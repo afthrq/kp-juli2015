@@ -196,5 +196,15 @@ class Inputor extends CI_Controller
         $this->inputor_model->updatefinal($update);
         redirect ('inputor','refresh');
     }
+
+    public function suggestions()
+    {
+        $id = $this->input->post('id',TRUE);
+        $rows = $this->inputor_model->get_alamat($id);
+        $json_array = array();
+        foreach ($rows as $row)
+            $json_array[]=$row->address;
+        echo json_encode($json_array);
+    }
   
 }

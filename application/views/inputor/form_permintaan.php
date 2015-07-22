@@ -51,7 +51,28 @@
        });  
     });  
 </script>
-
+<link href="<?php echo base_url('assets/css/jquery-ui.css') ?>" rel="stylesheet" type="text/css"/>
+<script src="<?php echo base_url('assets/js/jquery-1.4.4.min.js') ?>"></script>
+<script src="<?php echo base_url('assets/js/jquery-ui.min.js') ?>"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(function () {
+            $( "#autocomplete" ).autocomplete({
+                source: function(request, response) {
+                    $.ajax({ 
+                        url: "<?php echo base_url('inputor/suggestions'); ?>",
+                        data: { id: $("#autocomplete").val()},
+                        dataType: "json",
+                        type: "POST",
+                        success: function(data){
+                            response(data);
+                        }    
+                    });
+                },
+            });
+        });
+    });
+</script>
 
 <!-- /.navbar-static-side -->
 </nav>
@@ -104,7 +125,7 @@
 <div class="row">
     <div class="input-group col-lg-6">
         <span class="input-group-addon input-permintaan" id="basic-addon1">Alamat</span>
-        <input type="text" class="form-control" aria-describedby="basic-addon1" name="alamat">
+        <input type="text" class="form-control" aria-describedby="basic-addon1" name="alamat" id="autocomplete">
     </div>
 </div>
 <br>
