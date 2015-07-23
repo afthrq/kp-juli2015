@@ -1,0 +1,39 @@
+User Baru :
+
+Inputor :
+	- Form Permintaan [Inputor]
+
+username : inputor
+password : inputor 
+
+--
+Network Architect :
+	- Verifikasi Permintaan [Verifikator]
+	- Koordinasi Provider [PM]
+	- Online Billing [PM]
+
+username : networkarchitect
+password : networkarchitect
+
+--
+WAN Analyst :
+	- Survey
+	- Implementasi (Instalasi) [Engineer]
+	- BALO [Engineer]
+
+username : wananalyst
+password : wananalyst
+--
+WAN Engineer :
+	- UAT [Tester]
+
+username : wanengineer
+password : wanengineer
+--
+WAN Performance Analyst :
+	- Monitoring (Verifikasi BALO) [Verifikator]
+
+username : wanperformance
+password : wanperformance
+
+
