@@ -67,6 +67,16 @@ class Engineer extends CI_Controller
 
         $cek_lokasi = array ('site_name' => $lokasi);
         $siteid = $this->engineer_model->getsiteid($cek_lokasi);
+        //------------------------------------------------------------------//
+        $tahap = $this->input->post('tahap');
+        $user = $this->input->post('user');
+        $order_up_id = $this->engineer_model->getorderupid($siteid);
+        $detail_id = $this->engineer_model->getdetailupid($order_up_id);
+        $in_tahap = array ('p_process_id' => $tahap ,
+                't_detail_network_order_id' => $detail_id,
+                'closed_by' => $user);
+        $tahap_id = $this->engineer_model->inputtahap($in_tahap);
+        //------------------------------------------------------------------//
 
 
         $data = array(
@@ -79,7 +89,10 @@ class Engineer extends CI_Controller
         redirect('engineer','refresh');
     }
 
-    public function insertdatainstalasi (){
+    public function insertdatainstalasi ()
+    {
+
+
         $lokasi = $this->input->post('lokasi');
         $ipwan = $this->input->post('ipwan');
         $netmaskwan = $this->input->post('netmaskwan');
@@ -104,6 +117,17 @@ class Engineer extends CI_Controller
         $this->engineer_model->updatenwsite($in_traffic,$lokasi);
         $nwsiteid = $this->engineer_model->getnwsiteid($in_traffic,$cek_lokasi);
 
+        //------------------------------------------------------------------//
+        $tahap = $this->input->post('tahap');
+        $user = $this->input->post('user');
+        $order_up_id = $this->engineer_model->getorderupid($nwsiteid);
+        $detail_id = $this->engineer_model->getdetailupid($order_up_id);
+        $in_tahap = array ('p_process_id' => $tahap ,
+                't_detail_network_order_id' => $detail_id,
+                'closed_by' => $user);
+        $tahap_id = $this->engineer_model->inputtahap($in_tahap);
+        //------------------------------------------------------------------//
+
         $p_final = array ('t_nw_site_id' => $nwsiteid);
         $in_final = array ( 'ip_wan' => $ipwan ,
         'netmask_wan' => $netmaskwan ,
@@ -116,6 +140,6 @@ class Engineer extends CI_Controller
         'hostname' => $hostname 
         );
         $data = $this->engineer_model->insertdatafinal($in_final,$p_final);
-        //redirect('engineer','refresh');
+        redirect('engineer','refresh');
     }
 }

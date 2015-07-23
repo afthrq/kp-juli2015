@@ -110,4 +110,25 @@ class Engineer_model extends CI_Model
 		$query = $this->db->get("t_nw_site"); 
 		return $query->row()->t_nw_site_id;	
 	}
+
+	function inputtahap($in_tahap)
+	{
+
+		$this->db->set('valid_fr','NOW()',FALSE);
+		$this->db->insert('t_process',$in_tahap);		
+	}
+
+	public function getorderupid ($site_id)
+  	{
+		$this->db->where('t_nw_site_id',$site_id);
+		$query = $this->db->get("t_network_order");
+		return $query->row()->t_network_order_id;
+  	}
+
+  	public function getdetailupid ($order_up_id)
+  	{
+		$this->db->where('t_network_order_id',$order_up_id);
+		$query = $this->db->get("t_network_order");
+		return $query->row()->t_detail_network_order_id;
+  	}
 }

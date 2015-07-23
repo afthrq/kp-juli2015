@@ -25,6 +25,8 @@
     <!-- /.col-lg-12 -->
 </div>
 <form method="POST" action="<?php echo base_url('engineer/insertdatainstalasi')?>">
+
+
 <div class="row">
     <div class="input-group col-lg-6">
         <?php foreach ($update_list as $row) : ?>
@@ -129,6 +131,7 @@
         </div>
     </div>
     <br>
+<input type="hidden" name="tahap" value="4">
 </form>
 </div>
 <!-- /#page-wrapper -->

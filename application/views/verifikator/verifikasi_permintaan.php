@@ -128,6 +128,8 @@
     <div id="sectionB" class="tab-pane fade">
         <br>
         <form method="POST" action="<?php echo base_url('verifikator/submit_verifikasi_permintaan')?>">
+
+        <input type="hidden" name="user" value="<?php echo  $this->session->userdata('user_name')?>">
         <?php foreach ($lokasiid as $row): ?>   
             <input type="hidden" name="site_id" value="<?php echo $row->t_nw_site_id?>">
         <?php endforeach ?>
@@ -188,6 +190,7 @@
                     <input type="submit" name="submit" value="Submit" class="btn btn-outline btn-primary btn-success" style="padding: 5px 12px;">
                 </div>
             </div>
+                <input type="hidden" name="tahap" value="2">
         </form>
     </div>
 </div>

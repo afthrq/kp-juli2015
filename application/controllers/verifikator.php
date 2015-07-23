@@ -29,24 +29,41 @@ class Verifikator extends CI_Controller
         $tipe_dokumen = $this->input->post('tipe_dokumen');
         $caption = $this->input->post('caption');
         $filename = $this->input->post('path');
+        $tahap = $this->input->post('tahap');
+        $user = $this->input->post('user');
         $path = "uploads/$filename";
 
         $order_up_id = $this->verifikator_model->getorderupid($site_id);
         $detail_id = $this->verifikator_model->getdetailupid($order_up_id);
+        $in_detail_id = array ('t_detail_network_order_id' => $detail_id,
+                        'p_process_id' => $tahap,
+                        'closed_by' => $user);
+        $work_id = $this->verifikator_model->getworkid($in_detail_id);
 
-        $this->verifikator_model->insert_detail_order($no_form, $tanggal_permintaan, $detail_id);
-        $this->verifikator_model->insert_dokumen($tipe_dokumen, $caption, $path);
+        $this->verifikator_model->insert_detail_order($no_form, $tanggal_permintaan, $detail_id,$user);
+        $this->verifikator_model->insert_dokumen($tipe_dokumen, $caption, $path, $work_id);
         redirect('verifikator','refresh');
     }
 
      function submit_verifikasi_balo()
-    {   
+    {
+        $site_id = $this->input->post('site_id');   
         $tipe_dokumen = $this->input->post('tipe_dokumen');
         $caption = $this->input->post('caption');
         $filename = $this->input->post('path');
+        $tahap = $this->input->post('tahap');
+        $user = $this->input->post('user');
         $path = "uploads/$filename";
-        $this->verifikator_model->insert_dokumen($tipe_dokumen, $caption, $path);
-        //redirect('verifikator','refresh');
+
+        $order_up_id = $this->verifikator_model->getorderupid($site_id);
+        $detail_id = $this->verifikator_model->getdetailupid($order_up_id);
+        $in_detail_id = array ('t_detail_network_order_id' => $detail_id,
+                        'p_process_id' => $tahap,
+                        'closed_by' => $user);
+        $work_id = $this->verifikator_model->getworkid($in_detail_id);
+
+        $this->verifikator_model->insert_dokumen($tipe_dokumen, $caption, $path, $work_id);
+        redirect('verifikator','refresh');
     }
 
     function menu_list_permintaan()
@@ -76,9 +93,11 @@ class Verifikator extends CI_Controller
     }    
 
     function verifikasi_balo()
-    {
+    {        
+        $o_id = $this->input->post('order_id');
+        $data['lokasiid'] = $this->verifikator_model->getlokasiid($o_id);
     	$this->load->view('includes/header');
-    	$this->load->view('verifikator/verifikasi_balo');
+    	$this->load->view('verifikator/verifikasi_balo', $data);
     	$this->load->view('includes/footer');
     }
 

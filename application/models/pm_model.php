@@ -50,13 +50,19 @@ class Pm_model extends CI_Model
 	{
 		$this->db->select('p_site_type_id');  
 		$this->db->get('t_nw_site'); 
-		//save the sub query in variable $sub_query = $this->db->last_query(); 
 		$sub_query = $this->db->last_query();
 
 		$this->db->select('type_name');
 		$this->db->where("p_site_type_id = ($sub_query)", NULL, False);
 		$query = $this->db->get("p_site_type");		
 		return $query->result();
+	}
+
+	function inputtahap($in_tahap)
+	{
+
+		$this->db->set('valid_fr','NOW()',FALSE);
+		$this->db->insert('t_process',$in_tahap);		
 	}
 
 	public function getorderupid ($site_id)
@@ -72,54 +78,39 @@ class Pm_model extends CI_Model
 		$query = $this->db->get("t_network_order");
 		return $query->row()->t_detail_network_order_id;
   	}
-/*
-	function getdatalayanan()
-	{
-		$this->db->select('p_nw_service_id'); 
-		//where ke status 
-		$query = $this->db->get('t_network_order'); 
-		//save the sub query in variable $sub_query = $this->db->last_query(); 
-		return $query->result();
 
-		$this->db->select('p_service_id');
-		$this->db->where("p_nw_service_id = ($sub_query)", NULL, False);
-		$this->db->get("p_nw_service"); 
-		//save the sub query in variable $sub_query = $this->db->last_query(); 
-		$sub_query = $this->db->last_query();
+  	public function getdataorder($site_id)
+  	{
+  		$this->db->select('t_nw_site_id');
+  		$this->db->select('p_lastmile_id');
+  		$this->db->select('no_jar');
+  		$this->db->select('ip_wan');
+  		$this->db->select('ip_lan');
+  		$this->db->select('ip_loop');
+  		$this->db->select('asn');
+  		$this->db->select('bw');
+  		$this->db->select('netmask_wan');
+  		$this->db->select('netmask_lan');
+  		$this->db->select('hostname');
+  		$this->db->select('sla');
+  		$this->db->select('valid_fr');
+  		$this->db->select('valid_to');
+  		$this->db->select('mon_cacti');
+  		$this->db->select('mon_npmd');
+  		$this->db->select('mon_sms');
+  		$this->db->select('mon_log');
 
-		$this->db->select('name');
-		$this->db->where("p_service_id = ($sub_query)", NULL, False);
-		$query = $this->db->get("p_service");		
-    	foreach ($query->result() as $row)
-		{
-   			return $row->name;
-		}
+  		$this->db->where('t_nw_site_id',$site_id);
+  		$query = $this->db->get("t_network_order");
+  		return $query->row();
+  	}
 
-	}
+  	public function copydata($input)
+  	{
+  		$this->db->insert('t_network',$input);
 
-	function getdatapaket()
-	{
-		$this->db->select('p_nw_service_id'); 
-		//where ke status 
-		$query = $this->db->get('t_network_order'); 
-		//save the sub query in variable $sub_query = $this->db->last_query(); 
-		return $query->result();
-/*
-		$this->db->select('package');
-		$this->db->where("p_nw_service_id = ($sub_query)", NULL, False);
-		$query = $this->db->get("p_nw_service"); 
-		//save the sub query in variable $sub_query = $this->db->last_query(); 
-    	foreach ($query->result() as $row)
-		{
-   			return $row->name;
-		}
+  	}
 
-	}
-	function getdatabandwidth()
-	{
-		$this->db->select('bw');
-		$query = $this->db->get('t_network_order');
-    	return $query->result();
-	}*/
+
 
 }

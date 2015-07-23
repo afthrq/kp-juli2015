@@ -24,6 +24,7 @@
     <!-- /.col-lg-12 -->
 </div>
 <div class="row">
+
     <div class="col-lg-2">
         <h4>Biaya Instalasi</h4>
     </div>
@@ -60,10 +61,15 @@
 </div>
 <br><br>
 <div class="row">
-    <div class="col-lg-6">
-        <a href="verifikasi_balo.html"><input type="submit" name="submit" value="Reject" class="btn btn-outline btn-primary btn-danger" style="padding: 5px 12px;"></a>
-        <input type="submit" name="submit" value="Submit" class="btn btn-outline btn-primary btn-success" style="padding: 5px 12px;">
-    </div>
+    <form method="POST" action="<?php echo base_url('pm/submit_online_billing')?>">
+    <?php foreach ($lokasiid as $row): ?>   
+        <input type="text" name="site_id" value="<?php echo $row->t_nw_site_id?>">
+    <?php endforeach ?>
+        <div class="col-lg-6">
+            <a href="verifikasi_balo.html"><input type="submit" name="submit" value="Reject" class="btn btn-outline btn-primary btn-danger" style="padding: 5px 12px;"></a>
+            <input type="submit" name="submit" value="Submit" class="btn btn-outline btn-primary btn-success" style="padding: 5px 12px;">
+        </div>
+    </form>
 </div>
 </div>
 <!-- /#page-wrapper -->

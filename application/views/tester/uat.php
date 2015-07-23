@@ -21,6 +21,12 @@
     <!-- /.col-lg-12 -->
 </div>
 <form method="POST" action="<?php echo base_url('tester/submit_upload_tester')?>">
+<input type="hidden" name="tahap" value="4">
+<?php foreach ($lokasiid as $row): ?>   
+    <input type="hidden" name="site_id" value="<?php echo $row->t_nw_site_id?>">
+<?php endforeach ?>
+<input type="hidden" name="user" value="<?php echo  $this->session->userdata('user_name')?>">
+
     <div class="row">
         <div class=" col-lg-6">
             <div class="input-group">
@@ -60,6 +66,7 @@
             <input type="submit" name="submit" value="Submit" class="btn btn-outline btn-primary btn-success" style="padding: 5px 12px;">
         </div>
     </div>
+
 </form>
 </div>
 <!-- /#page-wrapper -->

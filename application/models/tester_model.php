@@ -9,6 +9,14 @@ class Tester_model extends CI_Model
 		$this->load->database();
 	}
 
+	function getlokasiid($o_id)
+	{
+		$this->db->distinct();
+		$this->db->where('site_name', $o_id);
+		$query = $this->db->get('t_nw_site');
+		return $query->result();
+	}
+
   	function getdatapermintaan()
 	{
 		$this->db->select('t_nw_site.site_name');
@@ -31,14 +39,38 @@ class Tester_model extends CI_Model
     	return $query->result();
 	}
 	
-	function insert_dokumen($tipe_dokumen, $caption, $path)
+	function insert_dokumen($tipe_dokumen, $caption, $path ,$work_id)
 	{
-		$data = array(
+		$data = array('t_work_id' => $work_id,
         'p_doc_type_id' => $tipe_dokumen,
         'caption' => $caption,
         'path' => $path);
         $this->db->insert('t_document', $data);
         //$this->db->where('t_work_id', "1"); //change "1" with parameter that shows current process id
+	}
+
+	public function getorderupid ($site_id)
+  	{
+		$this->db->where('t_nw_site_id',$site_id);
+		$query = $this->db->get("t_network_order");
+		return $query->row()->t_network_order_id;
+  	}
+
+  	public function getdetailupid ($order_up_id)
+  	{
+		$this->db->where('t_network_order_id',$order_up_id);
+		$query = $this->db->get("t_network_order");
+		return $query->row()->t_detail_network_order_id;
+  	}
+
+  	function getworkid($in_tahap)
+	{
+		$this->db->set('valid_fr','NOW()',FALSE);
+		$this->db->insert('t_process',$in_tahap);
+		$id = $this->db->insert_id();
+		$this->db->where('t_work_id',$id);
+		$query = $this->db->get("t_process");
+		return $query->row()->t_work_id;
 	}
 
 }

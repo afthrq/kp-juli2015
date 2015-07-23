@@ -1,8 +1,8 @@
 <div class="navbar-default sidebar" role="navigation">
     <div class="sidebar-nav navbar-collapse">
-      <ul class="nav" id="side-menu">
+        <ul class="nav" id="side-menu">
             <li>
-            <a href="<?php echo base_url() ?>inputor"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                <a href="<?php echo base_url() ?>inputor"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <li class="dropdown">
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-edit fa-fw"></i> Form Permintaan <i class="fa fa-fw fa-caret-down"></i></a>
@@ -19,6 +19,29 @@
     </div>
     <!-- /.sidebar-collapse -->
 </div>
+
+<link href="<?php echo base_url('assets/css/jquery-ui.css') ?>" rel="stylesheet" type="text/css"/>
+<script src="<?php echo base_url('assets/js/jquery-1.4.4.min.js') ?>"></script>
+<script src="<?php echo base_url('assets/js/jquery-ui.min.js') ?>"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(function () {
+            $( "#autocomplete" ).autocomplete({
+                source: function(request, response) {
+                    $.ajax({ 
+                        url: "<?php echo base_url('inputor/suggestions'); ?>",
+                        data: { id: $("#autocomplete").val()},
+                        dataType: "json",
+                        type: "POST",
+                        success: function(data){
+                            response(data);
+                        }    
+                    });
+                },
+            });
+        });
+    });
+</script>
 
 <script type="text/javascript">  
           $(document).ready(function() {  
@@ -51,28 +74,19 @@
        });  
     });  
 </script>
-<link href="<?php echo base_url('assets/css/jquery-ui.css') ?>" rel="stylesheet" type="text/css"/>
-<script src="<?php echo base_url('assets/js/jquery-1.4.4.min.js') ?>"></script>
-<script src="<?php echo base_url('assets/js/jquery-ui.min.js') ?>"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $(function () {
-            $( "#autocomplete" ).autocomplete({
-                source: function(request, response) {
-                    $.ajax({ 
-                        url: "<?php echo base_url('inputor/suggestions'); ?>",
-                        data: { id: $("#autocomplete").val()},
-                        dataType: "json",
-                        type: "POST",
-                        success: function(data){
-                            response(data);
-                        }    
-                    });
-                },
-            });
-        });
-    });
+
+<script type="text/javascript"> 
+
+function stopRKey(evt) { 
+  var evt = (evt) ? evt : ((event) ? event : null); 
+  var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null); 
+  if ((evt.keyCode == 13) && (node.type=="text"))  {return false;} 
+} 
+
+document.onkeypress = stopRKey; 
+
 </script>
+
 
 <!-- /.navbar-static-side -->
 </nav>
@@ -117,7 +131,7 @@
                     <option><php echo $row->name ?></option>
                 <php endforeach?>     
             </select>-->
-        <?php echo form_dropdown('perusahaan', $perusahaan_list,'','class="form-control" id="perusahaan" name="perusahaan"'); ?>
+        <?php echo form_dropdown('perusahaan', $perusahaan_list,'','class="form-control" id="perusahaan" name="perusahaan" '); ?>
         </div>
     </div>
 </div>

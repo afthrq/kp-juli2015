@@ -25,10 +25,12 @@
     <!-- /.col-lg-12 -->
 </div>
 <form method="POST" action="<?php echo base_url('engineer/insert_data_balo')?>">
+<input type="hidden" name="tahap" value="5">
+<input type="hidden" name="user" value="<?php echo  $this->session->userdata('user_name')?>">
 <div class="row">
     <div class="input-group col-lg-6">
         <?php foreach ($balo_list as $row) : ?>
-            <input type="hidden" value="<?php echo $row->site_name ?>" name="lokasi"><?php echo $row->site_name ?>
+            <input type="hidden" value="<?php echo $row->site_name ?>" name="lokasi">
         <?php endforeach?>
     </div>
 </div>
