@@ -170,7 +170,7 @@ document.onkeypress = stopRKey;
 <br>
 <div class="row">
     <div class="input-group col-lg-6">
-        <span class="input-group-addon input-permintaan" id="basic-addon1">Layanan</span>
+        <span class="input-group-addon input-permintaan" id="basic-addon1">Link</span>
         <div class="dropdown dropdown-permintaan">
             <!--<select placeholder="Pilih Perusahaan" class="form-control" name="layanan">    
                 <php foreach ($layanan_list as $row) : ?>
@@ -184,10 +184,34 @@ document.onkeypress = stopRKey;
 <br>
 <div class="row">
     <div class="input-group col-lg-6">
-        <span class="input-group-addon input-permintaan" id="basic-addon1">Paket Layanan</span>
+        <span class="input-group-addon input-permintaan" id="basic-addon1">Paket Link</span>
         <div class="dropdown">
             <select class="form-control" name="paket" id="paket">
                 <option value="">Pilih Layanan Terlebih Dahulu</option>    
+            </select>
+        </div>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="input-group">
+            <span class="input-group-addon input-instalasi" id="basic-addon1">Router</span>
+            <select name="router" class="form-control">
+                <option value="14">Cisco 2801-V/K9</option>
+                <option value="15">Cisco 2901-V/K9</option>
+            </select>
+        </div>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="input-group">
+            <span class="input-group-addon input-instalasi" id="basic-addon1">Modul</span>
+            <select name="modul" class="form-control">
+                <option value="16">HWIC-2T</option>
+                <option value="17">HWIC-2FE</option>
             </select>
         </div>
     </div>

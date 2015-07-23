@@ -1,15 +1,18 @@
 <div class="navbar-default sidebar" role="navigation">
   <div class="sidebar-nav navbar-collapse">
-    <ul class="nav" id="side-menu">
+    <ul class="nav" id="side-menu">  
       <li>
-        <a href="<?php echo base_url() ?>engineer"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-      </li> 
-      <li>
-        <a href="<?php echo base_url() ?>engineer/menu_list_permintaan"><i class="fa fa-edit fa-fw"></i> Instalasi</a>
+          <a href="<?php echo base_url() ?>network_architect"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
       </li>
       <li>
-        <a href="<?php echo base_url() ?>engineer/menu_list_permintaan_balo"><i class="fa fa-edit fa-fw"></i> Berita Acara Laik Operasi</a>
-      </li> 
+          <a href="<?php echo base_url() ?>network_architect/menu_list_permintaan_vp"><i class="fa fa-edit fa-fw"></i> Verifikasi Permintaan</a>
+      </li>
+      <li>
+          <a href="<?php echo base_url() ?>network_architect/menu_list_permintaan_kp"><i class="fa fa-edit fa-fw"></i> Koordinasi Provider</a>
+      </li>
+      <li>
+          <a href="<?php echo base_url() ?>network_architect/menu_list_permintaan_ob"><i class="fa fa-edit fa-fw"></i> Online Billing</a>
+      </li>
     </ul>
   </div>
   <!-- /.sidebar-collapse -->
@@ -19,7 +22,7 @@
 <div id="page-wrapper">
 <div class="row">
   <div class="col-lg-12">
-    <h1 class="page-header"><?php echo $this->session->userdata('user_name') ?> Home</h1>
+    <h1 class="page-header"><?php echo $this->session->userdata('user_name') ?> Home </h1>
   </div>
   <!-- /.col-lg-12 -->
 </div>

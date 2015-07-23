@@ -44,7 +44,7 @@ class User extends CI_Controller
 				$this->session->set_userdata($data);
 				redirect('inputor');
 			}
-			elseif ($rolecheck == "networkarchitect") 
+			elseif ($rolecheck == "pm") 
 			{	
 				$data = array(
 				'user_name' => $user_name,
@@ -52,9 +52,9 @@ class User extends CI_Controller
 				'role' => $rolecheck
 				);
 				$this->session->set_userdata($data);
-				redirect('network_architect');
+				redirect('pm');
 			}
-			elseif ($rolecheck == "wananalyst") 
+			elseif ($rolecheck == "verifikator") 
 			{	
 				$data = array(
 				'user_name' => $user_name,
@@ -62,9 +62,9 @@ class User extends CI_Controller
 				'role' => $rolecheck
 				);
 				$this->session->set_userdata($data);
-				redirect('wan_analyst');
+				redirect('verifikator');
 			}
-			elseif ($rolecheck == "wanengineer") 
+			elseif ($rolecheck == "engineer") 
 			{	
 				$data = array(
 				'user_name' => $user_name,
@@ -72,9 +72,9 @@ class User extends CI_Controller
 				'role' => $rolecheck
 				);
 				$this->session->set_userdata($data);
-				redirect('wan_engineer');
+				redirect('engineer');
 			}
-			elseif ($rolecheck == "wanperformance") 
+			elseif ($rolecheck == "tester") 
 			{	
 				$data = array(
 				'user_name' => $user_name,
@@ -82,7 +82,7 @@ class User extends CI_Controller
 				'role' => $rolecheck
 				);
 				$this->session->set_userdata($data);
-				redirect('wan_performance_analyst');
+				redirect('tester');
 			}
 			
 		}

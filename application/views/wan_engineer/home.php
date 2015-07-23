@@ -2,13 +2,10 @@
   <div class="sidebar-nav navbar-collapse">
     <ul class="nav" id="side-menu">
       <li>
-        <a href="<?php echo base_url() ?>pm"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+        <a href="<?php echo base_url() ?>wan_engineer"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
       </li>
       <li>
-        <a href="<?php echo base_url() ?>pm/menu_list_permintaan"><i class="fa fa-edit fa-fw"></i> Koordinasi Provider</a>
-      </li>
-      <li>
-        <a href="<?php echo base_url() ?>pm/menu_list_permintaan_ob"><i class="fa fa-edit fa-fw"></i> Online Billing</a>
+        <a href="<?php echo base_url() ?>wan_engineer/menu_list_permintaan"><i class="fa fa-edit fa-fw"></i> UAT</a>
       </li>
     </ul>
   </div>

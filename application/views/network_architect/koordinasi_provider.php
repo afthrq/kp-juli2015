@@ -2,13 +2,16 @@
     <div class="sidebar-nav navbar-collapse">
         <ul class="nav" id="side-menu">
             <li>
-                <a href="<?php echo base_url() ?>pm"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                <a href="<?php echo base_url() ?>network_architect"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <li>
-                <a href="<?php echo base_url() ?>pm/menu_list_permintaan"><i class="fa fa-edit fa-fw"></i> Koordinasi Provider</a>
+                <a href="<?php echo base_url() ?>network_architect/menu_list_permintaan_vp"><i class="fa fa-edit fa-fw"></i> Verifikasi Permintaan</a>
             </li>
             <li>
-                <a href="<?php echo base_url() ?>pm/menu_list_permintaan_ob"><i class="fa fa-edit fa-fw"></i> Online Billing</a>
+                <a href="<?php echo base_url() ?>network_architect/menu_list_permintaan_kp"><i class="fa fa-edit fa-fw"></i> Koordinasi Provider</a>
+            </li>
+            <li>
+                <a href="<?php echo base_url() ?>network_architect/menu_list_permintaan_ob"><i class="fa fa-edit fa-fw"></i> Online Billing</a>
             </li>
         </ul>
     </div>
@@ -31,7 +34,7 @@
 <div class="row">
     <div class=" col-lg-6">
         <div class="input-group">
-            <span class="input-group-addon input-permintaan" id="basic-addon1">Tiket Provider</span>
+            <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:137px">Tiket Provider</span>
             <input type="text" class="form-control" aria-describedby="basic-addon1" name="tiket_provider">
         </div>
     </div>
@@ -40,11 +43,38 @@
 <div class="row">
     <div class=" col-lg-6">
         <div class="input-group">
-            <span class="input-group-addon input-permintaan" id="basic-addon1">PIC Provider</span>
+            <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:137px">PIC Provider</span>
             <input type="text" class="form-control" aria-describedby="basic-addon1" name="pic_provider">
         </div>
     </div>
 </div>
+<br>
+<div class="row">
+        <div class=" col-lg-6">
+            <div class="input-group">
+                <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:137px">Caption Dokumen</span>
+                <input type="text" class="form-control" aria-describedby="basic-addon1" name="caption">
+            </div>
+        </div>
+    </div>
+    <br>
+    <input type="hidden" value="5" name="tipe_dokumen">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="input-group">
+                <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:137px">Keterangan</span>
+                <textarea class="form-control" name="keterangan" cols="40" rows="5"></textarea>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class=" col-lg-6">
+            <div class="uploadify-queue" id="file-queue"></div>
+            <input type="file" id="upload_btn" />
+            <input type="hidden" class="form-control" aria-describedby="basic-addon1" id="path" name="path">
+        </div>
+    </div>
 <br><br>
 <div class="row">
     <div class="col-lg-6">

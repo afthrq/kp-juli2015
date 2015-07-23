@@ -2,14 +2,17 @@
 <div class="navbar-default sidebar" role="navigation">
     <div class="sidebar-nav navbar-collapse">
         <ul class="nav" id="side-menu">
-            <li>
-                <a href="<?php echo base_url() ?>engineer"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+             <li>
+                <a href="<?php echo base_url() ?>wan_analyst"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <li>
-                <a href="<?php echo base_url() ?>engineer/menu_list_permintaan"><i class="fa fa-edit fa-fw"></i> Instalasi</a>
+                <a href="<?php echo base_url() ?>wan_analyst/menu_list_permintaan_srv"><i class="fa fa-edit fa-fw"></i> Survey</a>
             </li>
             <li>
-                <a href="<?php echo base_url() ?>engineer/menu_list_permintaan_balo"><i class="fa fa-edit fa-fw"></i> Berita Acara Laik Operasi</a>
+                <a href="<?php echo base_url() ?>wan_analyst/menu_list_permintaan_imp"><i class="fa fa-edit fa-fw"></i> Implementasi</a>
+            </li>
+            <li>
+                <a href="<?php echo base_url() ?>wan_analyst/menu_list_permintaan_balo"><i class="fa fa-edit fa-fw"></i> Berita Acara Laik Operasi</a>
             </li>
         </ul>
     </div>
@@ -20,7 +23,7 @@
 <div id="page-wrapper">
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Instalasi</h1>
+        <h1 class="page-header">Implementasi</h1>
     </div>
     <!-- /.col-lg-12 -->
 </div>
@@ -98,10 +101,15 @@
     </div>
     <br>
     <div class="row">
-        <div class=" col-lg-6">
+        <div class="col-lg-6">
             <div class="input-group">
                 <span class="input-group-addon input-instalasi" id="basic-addon1">Traffic Management</span>
-                <input type="text" class="form-control" aria-describedby="basic-addon1" name="traffic">
+                <select name="traffic" class="form-control">
+                    <option value="Load Balance">Load Balance</option>
+                    <option value="Load Sharing">Load Sharing</option>
+                    <option value="Automatic Fail Over">Automatic Fail Over</option>
+                    <option value="Manual Fail Over">Manual Fail Over</option>
+                </select>
             </div>
         </div>
     </div>
@@ -109,7 +117,7 @@
     <div class="row">
         <div class=" col-lg-6">
             <div class="input-group">
-                <span class="input-group-addon input-instalasi" id="basic-addon1">SLA</span>
+                <span class="input-group-addon input-instalasi" id="basic-addon1">SLA (%)</span>
                 <input type="text" class="form-control" aria-describedby="basic-addon1" name="sla">
             </div>
         </div>
@@ -131,7 +139,7 @@
         </div>
     </div>
     <br>
-<input type="hidden" name="tahap" value="4">
+<input type="hidden" name="tahap" value="5">
 </form>
 </div>
 <!-- /#page-wrapper -->

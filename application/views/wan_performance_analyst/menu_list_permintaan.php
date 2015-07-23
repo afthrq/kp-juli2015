@@ -3,10 +3,10 @@
     <div class="sidebar-nav navbar-collapse">
         <ul class="nav" id="side-menu">
             <li>
-                <a href="<?php echo base_url() ?>tester"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                <a href="<?php echo base_url() ?>wan_performance_analyst"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <li>
-                <a href="<?php echo base_url() ?>tester/menu_list_permintaan"><i class="fa fa-edit fa-fw"></i> UAT</a>
+                <a href="<?php echo base_url() ?>wan_performance_analyst/menu_list_permintaan"><i class="fa fa-edit fa-fw"></i> Monitoring</a>
             </li>
         </ul>
     </div>
@@ -17,7 +17,7 @@
 <div id="page-wrapper">
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Koordinasi Provider yang perlu dilakukan</h1>
+        <h1 class="page-header">Verifikasi BALO yang perlu dilakukan</h1>
     </div>
     <!-- /.col-lg-12 -->
 </div>
@@ -42,7 +42,7 @@
                         </thead>
                         <tbody>
                             <?php $count = 0; foreach ($list_permintaan as $row) : $count++;?>
-                                <form method="POST" action="<?php echo base_url('tester/uat')?>">
+                                <form method="POST" action="<?php echo base_url('verifikator/verifikasi_balo')?>">
                                 <tr>
                                   <td><?php echo $count?></td>
                                   <td><input type="hidden" name="order_id" value="<?php echo $row->site_name ?>"><input type="submit" value="<?php echo $row->site_name ?>" class="btn btn-default btn-table"></td>
