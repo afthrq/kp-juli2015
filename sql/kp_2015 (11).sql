@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 23, 2015 at 09:41 AM
+-- Generation Time: Jul 23, 2015 at 10:04 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -347,10 +347,10 @@ CREATE TABLE IF NOT EXISTS `p_role` (
 
 INSERT INTO `p_role` (`p_role_id`, `name`, `desc`) VALUES
 (1, 'inputor', ''),
-(2, 'verifikator', ''),
-(3, 'pm', ''),
-(4, 'engineer', ''),
-(5, 'tester', '');
+(2, 'networkarchitect', ''),
+(3, 'wananalyst', ''),
+(4, 'wanengineer', ''),
+(5, 'wanperformance', '');
 
 -- --------------------------------------------------------
 
