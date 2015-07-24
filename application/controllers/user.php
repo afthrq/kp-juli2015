@@ -52,7 +52,7 @@ class User extends CI_Controller
 				'role' => $rolecheck
 				);
 				$this->session->set_userdata($data);
-				redirect('network_architect');
+				redirect('networkarchitect');
 			}
 			elseif ($rolecheck == "wananalyst") 
 			{	
@@ -62,7 +62,7 @@ class User extends CI_Controller
 				'role' => $rolecheck
 				);
 				$this->session->set_userdata($data);
-				redirect('wan_analyst');
+				redirect('wananalyst');
 			}
 			elseif ($rolecheck == "wanengineer") 
 			{	
@@ -72,7 +72,7 @@ class User extends CI_Controller
 				'role' => $rolecheck
 				);
 				$this->session->set_userdata($data);
-				redirect('wan_engineer');
+				redirect('wanengineer');
 			}
 			elseif ($rolecheck == "wanperformance") 
 			{	
@@ -82,7 +82,7 @@ class User extends CI_Controller
 				'role' => $rolecheck
 				);
 				$this->session->set_userdata($data);
-				redirect('wan_performance_analyst');
+				redirect('wanperformance');
 			}
 			
 		}

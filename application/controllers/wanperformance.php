@@ -1,6 +1,6 @@
 <?php
 
-class Wan_performance_analyst extends CI_Controller 
+class Wanperformance extends CI_Controller 
 {
 	public function __construct()
 	{
@@ -37,7 +37,7 @@ class Wan_performance_analyst extends CI_Controller
         $this->load->view('includes/footer');
     }
 
-     public function insert_data_balo ()
+     public function insert_monitoring ()
      {
         $lokasi = $this->input->post('lokasi');
         $mon_cacti = $this->input->post('cacti');
@@ -66,7 +66,7 @@ class Wan_performance_analyst extends CI_Controller
         'mon_log' => $mon_logbook
         );
         $data = $this->wan_performance_model->insert_data_balo($data,$siteid);
-        redirect('engineer','refresh');
+        redirect('wanperformance','refresh');
     }
 
     

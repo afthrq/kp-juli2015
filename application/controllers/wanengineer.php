@@ -1,6 +1,6 @@
 <?php
 
-class Wan_engineer extends CI_Controller 
+class Wanengineer extends CI_Controller 
 {
 	public function __construct()
 	{
@@ -41,7 +41,7 @@ class Wan_engineer extends CI_Controller
         $this->wan_engineer_model->insert_dokumen($tipe_dokumen, $caption, $path, $work_id);
 
 
-        redirect('wan_engineer','refresh');
+        redirect('wanengineer','refresh');
     }
 
     function menu_list_permintaan()

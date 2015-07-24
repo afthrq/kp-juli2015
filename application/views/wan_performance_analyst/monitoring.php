@@ -3,10 +3,10 @@
     <div class="sidebar-nav navbar-collapse">
         <ul class="nav" id="side-menu">
             <li>
-                <a href="<?php echo base_url() ?>wan_performance_analyst"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                <a href="<?php echo base_url() ?>wanperformance"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <li>
-                <a href="<?php echo base_url() ?>wan_performance_analyst/menu_list_permintaan"><i class="fa fa-edit fa-fw"></i> Monitoring</a>
+                <a href="<?php echo base_url() ?>wanperformance/menu_list_permintaan"><i class="fa fa-edit fa-fw"></i> Monitoring</a>
             </li>
         </ul>
     </div>
@@ -21,18 +21,16 @@
     </div>
     <!-- /.col-lg-12 -->
 </div>
-<form method="POST" action="<?php echo base_url('wan_performance_analyst/insert_data_balo')?>">
+<form method="POST" action="<?php echo base_url('wanperformance/insert_monitoring')?>">
 <input type="hidden" name="tahap" value="7">
 <input type="hidden" name="user" value="<?php echo  $this->session->userdata('user_name')?>">
 <div class="row">
     <div class="input-group col-lg-6">
-        <?php foreach ($balo_list as $row) : ?>
+        <?php foreach ($lokasiid as $row) : ?>
             <input type="hidden" value="<?php echo $row->site_name ?>" name="lokasi">
         <?php endforeach?>
     </div>
 </div>
-<br>
-<br>
     <div class="row">
          <div class="col-lg-6">
             <div class="input-group">

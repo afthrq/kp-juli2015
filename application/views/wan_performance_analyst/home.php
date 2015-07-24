@@ -2,10 +2,10 @@
   <div class="sidebar-nav navbar-collapse">
     <ul class="nav" id="side-menu">
       <li>
-        <a href="<?php echo base_url() ?>wan_performance_analyst"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+        <a href="<?php echo base_url() ?>wanperformance"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
       </li>
       <li>
-        <a href="<?php echo base_url() ?>wan_performance_analyst/menu_list_permintaan"><i class="fa fa-edit fa-fw"></i> Monitoring</a>
+        <a href="<?php echo base_url() ?>wanperformance/menu_list_permintaan"><i class="fa fa-edit fa-fw"></i> Monitoring</a>
       </li>
     </ul>
   </div>

@@ -1,12 +1,12 @@
 <?php
 
-class Wan_analyst extends CI_Controller 
+class Wananalyst extends CI_Controller 
 {
 	public function __construct()
 	{
 		parent::__construct();
         $this->load->helper('url');
-        $this->load->model('engineer_model');
+        $this->load->model('wan_analyst_model');
 		session_start();
 		if($this->session->userdata('role') != "wananalyst")
 		{
@@ -36,7 +36,7 @@ class Wan_analyst extends CI_Controller
     public function balo()
     {
         $order_id = $this->input->post('order_id');
-        $data['balo_list'] = $this->engineer_model->getdataupdate($order_id);
+        $data['balo_list'] = $this->wan_analyst_model->getdataupdate($order_id);
         $this->load->view('includes/header');
         $this->load->view('wan_analyst/balo',$data);
         $this->load->view('includes/footer');
@@ -61,7 +61,7 @@ class Wan_analyst extends CI_Controller
 
     function menu_list_permintaan_balo()
     {
-        $data['list_permintaan'] = $this->engineer_model->getdatapermintaan();
+        $data['list_permintaan'] = $this->wan_analyst_model->getdatapermintaan();
         $this->load->view('includes/header');
         $this->load->view('wan_analyst/menu_list_permintaan_balo', $data);
         $this->load->view('includes/footer');
@@ -75,35 +75,9 @@ class Wan_analyst extends CI_Controller
         $this->load->view('includes/footer');
     }
 
-    public function insert_data_balo (){
-        $lokasi = $this->input->post('lokasi');
-        $mon_cacti = $this->input->post('cacti');
-        $mon_npmd = $this->input->post('npmd');
-        $mon_sms = $this->input->post('sms');
-        $mon_logbook = $this->input->post('logbook');
-
-        $cek_lokasi = array ('site_name' => $lokasi);
-        $siteid = $this->engineer_model->getsiteid($cek_lokasi);
-        //------------------------------------------------------------------//
-        $tahap = $this->input->post('tahap');
-        $user = $this->input->post('user');
-        $order_up_id = $this->engineer_model->getorderupid($siteid);
-        $detail_id = $this->engineer_model->getdetailupid($order_up_id);
-        $in_tahap = array ('p_process_id' => $tahap ,
-                't_detail_network_order_id' => $detail_id,
-                'closed_by' => $user);
-        $tahap_id = $this->engineer_model->inputtahap($in_tahap);
-        //------------------------------------------------------------------//
-
-
-        $data = array(
-        'mon_cacti' => $mon_cacti ,
-        'mon_npmd' => $mon_npmd ,
-        'mon_sms' => $mon_sms ,
-        'mon_log' => $mon_logbook
-        );
-        $data = $this->engineer_model->insert_data_balo($data,$siteid);
-        redirect('wan_analyst','refresh');
+    public function insert_data_balo ()
+    {
+        //right here
     }
 
     public function insertdatasurvey ()

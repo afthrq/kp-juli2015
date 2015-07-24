@@ -2,16 +2,16 @@
   <div class="sidebar-nav navbar-collapse">
     <ul class="nav" id="side-menu">
       <li>
-        <a href="<?php echo base_url() ?>wan_analyst"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+        <a href="<?php echo base_url() ?>wananalyst"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
       </li>
       <li>
-        <a href="<?php echo base_url() ?>wan_analyst/menu_list_permintaan_srv"><i class="fa fa-edit fa-fw"></i> Survey</a>
+        <a href="<?php echo base_url() ?>wananalyst/menu_list_permintaan_srv"><i class="fa fa-edit fa-fw"></i> Survey</a>
       </li> 
       <li>
-        <a href="<?php echo base_url() ?>wan_analyst/menu_list_permintaan_imp"><i class="fa fa-edit fa-fw"></i> Implementasi</a>
+        <a href="<?php echo base_url() ?>wananalyst/menu_list_permintaan_imp"><i class="fa fa-edit fa-fw"></i> Implementasi</a>
       </li>
       <li>
-        <a href="<?php echo base_url() ?>wan_analyst/menu_list_permintaan_balo"><i class="fa fa-edit fa-fw"></i> Berita Acara Laik Operasi</a>
+        <a href="<?php echo base_url() ?>wananalyst/menu_list_permintaan_balo"><i class="fa fa-edit fa-fw"></i> Berita Acara Laik Operasi</a>
       </li> 
     </ul>
   </div>
