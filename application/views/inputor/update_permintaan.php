@@ -138,7 +138,7 @@
             <span class="input-group-addon input-permintaan" id="basic-addon1">Paket Layanan</span>
             <div class="dropdown">
                 <select class="form-control" name="update_paket" id="up_paket">
-                    <option value="1">Pilih Layanan Terlebih Dahulu</option>    
+                    <option value="1">(Pilih Link Terlebih Dahulu)</option>    
                 </select>
             </div>
         </div>

@@ -36,6 +36,8 @@ class Inputor extends CI_Controller
     {        
 
         $data['jenis_list'] = $this->inputor_model->getdatajenis();
+        $data['provider_list'] = $this->inputor_model->getdataprovider();
+        $data['provinsi_list'] = $this->inputor_model->getdataprovinsi();
         $data['layanan_list'] = $this->inputor_model->getservid();
         $data['perusahaan_list'] = $this->inputor_model->getcompid();
         $this->load->view('includes/header');
@@ -103,8 +105,10 @@ class Inputor extends CI_Controller
         //------------------------------------------------------------------//
         $tahap = $this->input->post('tahap');
         $user = $this->input->post('user');
+        $keterangan = $this->input->post('keterangan');
         $in_tahap = array ('p_process_id' => $tahap ,
                 't_detail_network_order_id' => $serv_type_id,
+                'keterangan' => $keterangan,
                 'closed_by' => $user);
         $tahap_id = $this->inputor_model->inputtahap($in_tahap);
         //------------------------------------------------------------------//
@@ -119,6 +123,9 @@ class Inputor extends CI_Controller
         $layanan = $this->input->post('layanan');
         $paket = $this->input->post('paket');
         $bw = $this->input->post('bw');
+        $router = $this->input->post('router');
+        $modul = $this->input->post('modul');
+        $provider = $this->input->post('provider');
 
         //setting parent table
         $in_prov = array ('provinsi_name' => $provinsi);
@@ -126,6 +133,7 @@ class Inputor extends CI_Controller
 
         $this->inputor_model->inputparent($in_prov,$in_pic);
 
+        $provider_id = $this->inputor_model->getproviderid($provider); 
         $provid = $this->inputor_model->getprovinsiid($provinsi);
         $picid = $this->inputor_model->getpicid($pic);
         $jenid = $this->inputor_model->getjenid($jenis);
@@ -161,7 +169,22 @@ class Inputor extends CI_Controller
         $in_serv = array ('t_network_order_id' => $orderid ,
                         'p_nw_service_id' => $packid);
 
-        $this->inputor_model->inputfinal($in_serv, $in_pic_site); 
+        $in_router = array ('t_network_order_id' => $orderid ,
+                        'p_nw_service_id' => $router);
+
+
+
+        $in_price = array ('p_nw_service_id' => $packid ,
+                    'provider_id' => $provider_id);
+
+        $this->inputor_model->inputfinal($in_serv, $in_pic_site, $in_router, $in_price);
+        if($modul)
+        { 
+            $in_modul = array ('t_network_order_id' => $orderid ,
+                    'p_nw_service_id' => $modul);
+
+            $this->inputor_model->inputmodul($in_modul);
+        } 
         redirect('inputor','refresh');
     }
 
