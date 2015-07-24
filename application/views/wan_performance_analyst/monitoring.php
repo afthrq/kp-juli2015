@@ -21,7 +21,7 @@
     </div>
     <!-- /.col-lg-12 -->
 </div>
-<!--<form method="POST" action="<?php echo base_url('engineer/insert_data_balo')?>">
+<form method="POST" action="<?php echo base_url('wan_performance_analyst/insert_data_balo')?>">
 <input type="hidden" name="tahap" value="7">
 <input type="hidden" name="user" value="<?php echo  $this->session->userdata('user_name')?>">
 <div class="row">
@@ -30,7 +30,7 @@
             <input type="hidden" value="<?php echo $row->site_name ?>" name="lokasi">
         <?php endforeach?>
     </div>
-</div>-->
+</div>
 <br>
 <br>
     <div class="row">

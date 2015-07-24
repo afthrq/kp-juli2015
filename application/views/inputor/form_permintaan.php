@@ -106,27 +106,26 @@ document.onkeypress = stopRKey;
 <input type="hidden" name="tahap" value="1">
 <input type="hidden" name="user" value="<?php echo  $this->session->userdata('user_name')?>">
 <div class="row">
-    <div class="input-group col-lg-6">
-        <span class="input-group-addon input-permintaan" id="basic-addon1">Perusahaan</span>
-        <div class="dropdown">
-            <!--<select placeholder="Pilih Perusahaan" class="form-control" name="perusahaan" id="perusahaan">    
-                <php foreach ($perusahaan_list as $row) : ?>
-                    <option><php echo $row->name ?></option>
-                <php endforeach?>     
-            </select>-->
-        <?php echo form_dropdown('perusahaan', $perusahaan_list,'','class="form-control" id="perusahaan" name="perusahaan"'); ?>
+    <div class="col-lg-6">
+        <div class="input-group">
+            <span class="input-group-addon input-permintaan" id="basic-addon1">Perusahaan</span>
+            <div class="dropdown">
+            <?php echo form_dropdown('perusahaan', $perusahaan_list,'','class="form-control" id="perusahaan" name="perusahaan"'); ?>
+            </div>
         </div>
     </div>
 </div>
 <br>
 
 <div class="row">
-    <div class="input-group col-lg-6">
-        <span class="input-group-addon input-permintaan" id="basic-addon1">Region</span>
-        <div class="dropdown">
-            <select class="form-control" name="region" id="region">
-                <option value="">(Pilih Perusahaan Terlebih Dahulu)</option>    
-            </select>
+    <div class="col-lg-6">
+        <div class="input-group">
+            <span class="input-group-addon input-permintaan" id="basic-addon1">Region</span>
+            <div class="dropdown">
+                <select class="form-control" name="region" id="region">
+                    <option value="">(Pilih Perusahaan Terlebih Dahulu)</option>    
+                </select>
+            </div>
         </div>
     </div>
 </div>
@@ -134,16 +133,18 @@ document.onkeypress = stopRKey;
 
 
 <div class="row">
-    <div class="input-group col-lg-6">
-        <span class="input-group-addon input-permintaan" id="basic-addon1">Lokasi</span>
-        <input type="text" class="form-control" aria-describedby="basic-addon1" name="lokasi">
+    <div class="col-lg-6">
+        <div class="input-group">
+            <span class="input-group-addon input-permintaan" id="basic-addon1">Lokasi</span>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" name="lokasi">
+        </div>
     </div>
 </div>
 <br>
 
 <div class="row">
     <div class=" col-lg-6">
-        <div class="input-group col-lg-6">
+        <div class="input-group">
             <span class="input-group-addon input-permintaan" id="basic-addon1">Jenis Lokasi</span>
             <div class="dropdown">
                 <select placeholder="Pilih Perusahaan" class="form-control" name="jenis">    
@@ -159,7 +160,7 @@ document.onkeypress = stopRKey;
 
 <div class="row">
     <div class="col-lg-6">
-        <div class="input-group col-lg-6">
+        <div class="input-group">
             <span class="input-group-addon input-permintaan" id="basic-addon1">Provinsi</span>
             <div class="dropdown">
                 <select placeholder="Pilih Perusahaan" class="form-control" name="provinsi">    
@@ -174,8 +175,8 @@ document.onkeypress = stopRKey;
 <br>
 
 <div class="row">
-    <div class="">
-        <div class="input-group col-lg-6">
+    <div class="col-lg-6">
+        <div class="input-group">
             <span class="input-group-addon input-permintaan" id="basic-addon1">Alamat</span>
             <input type="text" class="form-control" aria-describedby="basic-addon1" name="alamat" id="autocomplete">
         </div>
@@ -184,49 +185,10 @@ document.onkeypress = stopRKey;
 <br>
 
 <div class="row">
-    <div class="input-group col-lg-6">
-        <span class="input-group-addon input-permintaan" id="basic-addon1">PIC</span>
-        <input type="text" class="form-control" aria-describedby="basic-addon1" name="pic">
-    </div>
-</div>
-<br>
-
-<div class="row">
-    <div class="input-group col-lg-6">
-        <span class="input-group-addon input-permintaan" id="basic-addon1">Provider</span>
-        <div class="dropdown">
-            <select placeholder="Pilih Perusahaan" class="form-control" name="provider">    
-                <?php foreach ($provider_list as $row) : ?>
-                    <option><?php echo $row->provider_name ?></option>
-                <?php endforeach?>
-            </select>
-        </div>
-    </div>
-</div>
-<br>
-
-<div class="row">
-    <div class="input-group col-lg-6">
-        <span class="input-group-addon input-permintaan" id="basic-addon1">Layanan</span>
-        <div class="dropdown dropdown-permintaan">
-            <!--<select placeholder="Pilih Perusahaan" class="form-control" name="layanan">    
-                <php foreach ($layanan_list as $row) : ?>
-                    <option><php echo $row->name ></option>
-                <php endforeach?>
-            </select>-->
-            <?php echo form_dropdown('layanan', $layanan_list,'','class="form-control" id="layanan" name="layanan"');  ?>
-        </div>
-    </div>
-</div>
-<br>
-
-<div class="row">
-    <div class="input-group col-lg-6">
-        <span class="input-group-addon input-permintaan" id="basic-addon1">Paket Layanan</span>
-        <div class="dropdown">
-            <select class="form-control" name="paket" id="paket">
-                <option value="">(Pilih Layanan Terlebih Dahulu)</option>    
-            </select>
+    <div class="col-lg-6">
+        <div class="input-group">
+            <span class="input-group-addon input-permintaan" id="basic-addon1">PIC</span>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" name="pic">
         </div>
     </div>
 </div>
@@ -234,7 +196,49 @@ document.onkeypress = stopRKey;
 
 <div class="row">
     <div class="col-lg-6">
-        <div class="input-group col-lg-6">
+        <div class="input-group">
+            <span class="input-group-addon input-permintaan" id="basic-addon1">Provider</span>
+            <div class="dropdown">
+                <select placeholder="Pilih Perusahaan" class="form-control" name="provider">    
+                    <?php foreach ($provider_list as $row) : ?>
+                        <option><?php echo $row->provider_name ?></option>
+                    <?php endforeach?>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="input-group">
+            <span class="input-group-addon input-permintaan" id="basic-addon1">Layanan</span>
+            <div class="dropdown dropdown-permintaan">
+                <?php echo form_dropdown('layanan', $layanan_list,'','class="form-control" id="layanan" name="layanan"');  ?>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="input-group">
+            <span class="input-group-addon input-permintaan" id="basic-addon1">Paket Layanan</span>
+            <div class="dropdown">
+                <select class="form-control" name="paket" id="paket">
+                    <option value="">(Pilih Layanan Terlebih Dahulu)</option>    
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="input-group">
             <span class="input-group-addon input-permintaan" id="basic-addon1">Router</span>
             <select name="router" class="form-control">
                 <option value="14">Cisco 2801-V/K9</option>
@@ -247,7 +251,7 @@ document.onkeypress = stopRKey;
 
 <div class="row">
     <div class="col-lg-6">
-        <div class="input-group col-lg-6">
+        <div class="input-group">
             <span class="input-group-addon input-permintaan" id="basic-addon1">Module</span>
             <select name="modul" class="form-control">
                 <option value="">-</option>
@@ -261,7 +265,7 @@ document.onkeypress = stopRKey;
 
 <div class="row">
     <div class="col-lg-6">
-        <div class="input-group col-lg-6">
+        <div class="input-group">
             <span class="input-group-addon input-permintaan" id="basic-addon1">Bandwidth</span>
             <input type="text" class="form-control" aria-describedby="basic-addon1" name="bw">
         </div>
@@ -270,16 +274,20 @@ document.onkeypress = stopRKey;
 <br>
 
 <div class="row">
-    <div class="input-group col-lg-6">
-        <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:162px">Keterangan</span>
-        <textarea class="form-control" name="keterangan" cols="40" rows="5"></textarea>
+    <div class="col-lg-6">
+        <div class="input-group">
+            <span class="input-group-addon input-permintaan" id="basic-addon1">Keterangan</span>
+            <textarea class="form-control" name="keterangan" cols="40" rows="5"></textarea>
+        </div>
     </div>
 </div>
 
 <br><br>
 <div class="row">
-    <a href="koordinasi_provider.html"><input type="submit" name="submit" value="Reject" class="btn btn-outline btn-primary btn-danger" style="padding: 5px 12px;"></a>
-    <input type="submit" name="submit" value="Submit" class="btn btn-outline btn-primary btn-success" style="padding: 5px 12px;">
+    <div class="col-lg-6">
+        <a href="koordinasi_provider.html"><input type="submit" name="submit" value="Reject" class="btn btn-outline btn-primary btn-danger" style="padding: 5px 12px;"></a>
+        <input type="submit" name="submit" value="Submit" class="btn btn-outline btn-primary btn-success" style="padding: 5px 12px;">
+    </div>
 </div>
 </form>
 </div>

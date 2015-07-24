@@ -6,7 +6,7 @@ class Wan_performance_analyst extends CI_Controller
 	{
 		parent::__construct();
 		session_start();
-        $this->load->model('verifikator_model');
+        $this->load->model('wan_performance_model');
 		if($this->session->userdata('role') != "wanperformance")
 		{
 			redirect('user','refresh');	
@@ -20,84 +20,57 @@ class Wan_performance_analyst extends CI_Controller
     	$this->load->view('includes/footer');
 	}
 
-    function submit_verifikasi_permintaan()
-    {
-        $site_id = $this->input->post('site_id');
-        $no_form = $this->input->post('no_form');
-        $tanggal_permintaan = $this->input->post('tanggal_permintaan');
-        $tipe_dokumen = $this->input->post('tipe_dokumen');
-        $caption = $this->input->post('caption');
-        $filename = $this->input->post('path');
-        $tahap = $this->input->post('tahap');
-        $user = $this->input->post('user');
-        $path = "uploads/$filename";
-
-        $order_up_id = $this->verifikator_model->getorderupid($site_id);
-        $detail_id = $this->verifikator_model->getdetailupid($order_up_id);
-        $in_detail_id = array ('t_detail_network_order_id' => $detail_id,
-                        'p_process_id' => $tahap,
-                        'closed_by' => $user);
-        $work_id = $this->verifikator_model->getworkid($in_detail_id);
-
-        $this->verifikator_model->insert_detail_order($no_form, $tanggal_permintaan, $detail_id,$user);
-        $this->verifikator_model->insert_dokumen($tipe_dokumen, $caption, $path, $work_id);
-        redirect('verifikator','refresh');
-    }
-
-     function submit_verifikasi_balo()
-    {
-        $site_id = $this->input->post('site_id');   
-        $tipe_dokumen = $this->input->post('tipe_dokumen');
-        $caption = $this->input->post('caption');
-        $filename = $this->input->post('path');
-        $tahap = $this->input->post('tahap');
-        $user = $this->input->post('user');
-        $path = "uploads/$filename";
-
-        $order_up_id = $this->verifikator_model->getorderupid($site_id);
-        $detail_id = $this->verifikator_model->getdetailupid($order_up_id);
-        $in_detail_id = array ('t_detail_network_order_id' => $detail_id,
-                        'p_process_id' => $tahap,
-                        'closed_by' => $user);
-        $work_id = $this->verifikator_model->getworkid($in_detail_id);
-
-        $this->verifikator_model->insert_dokumen($tipe_dokumen, $caption, $path, $work_id);
-        redirect('verifikator','refresh');
-    }
-
     function menu_list_permintaan()
     {
-        $data['list_permintaan'] = $this->verifikator_model->getdatapermintaan();        
+        $data['list_permintaan'] = $this->wan_performance_model->getdatapermintaan();        
         $this->load->view('includes/header');
         $this->load->view('wan_performance_analyst/menu_list_permintaan', $data);
         $this->load->view('includes/footer');
     }
 
-    function menu_list_permintaan_vb()
-    {
-        $data['list_permintaan'] = $this->verifikator_model->getdatapermintaan();        
-        $this->load->view('includes/header');
-        $this->load->view('verifikator/menu_list_permintaan_vb', $data);
-        $this->load->view('includes/footer');
-    }
-
-    function verifikasi_permintaan()
-    {
-        $o_id = $this->input->post('order_id');
-        $data['lokasiid'] = $this->verifikator_model->getlokasiid($o_id);
-        $data['data_permintaan'] = $this->verifikator_model->get_data_permintaan($o_id);  
-        $this->load->view('includes/header');
-        $this->load->view('verifikator/verifikasi_permintaan', $data);
-        $this->load->view('includes/footer');
-    }    
-
     function monitoring()
     {        
         $o_id = $this->input->post('order_id');
-        $data['lokasiid'] = $this->verifikator_model->getlokasiid($o_id);
-    	$this->load->view('includes/header');
-    	$this->load->view('wan_performance_analyst/monitoring', $data);
-    	$this->load->view('includes/footer');
+        $data['lokasiid'] = $this->wan_performance_model->get_id($o_id);
+        $this->load->view('includes/header');
+        $this->load->view('wan_performance_analyst/monitoring', $data);
+        $this->load->view('includes/footer');
     }
+
+     public function insert_data_balo ()
+     {
+        $lokasi = $this->input->post('lokasi');
+        $mon_cacti = $this->input->post('cacti');
+        $mon_npmd = $this->input->post('npmd');
+        $mon_sms = $this->input->post('sms');
+        $mon_logbook = $this->input->post('logbook');
+
+        $cek_lokasi = array ('site_name' => $lokasi);
+        $siteid = $this->wan_performance_model->getsiteid($cek_lokasi);
+        //------------------------------------------------------------------//
+        $tahap = $this->input->post('tahap');
+        $user = $this->input->post('user');
+        $order_up_id = $this->wan_performance_model->getorderupid($siteid);
+        $detail_id = $this->wan_performance_model->getdetailupid($order_up_id);
+        $in_tahap = array ('p_process_id' => $tahap ,
+                't_detail_network_order_id' => $detail_id,
+                'closed_by' => $user);
+        $tahap_id = $this->wan_performance_model->inputtahap($in_tahap);
+        //------------------------------------------------------------------//
+
+
+        $data = array(
+        'mon_cacti' => $mon_cacti ,
+        'mon_npmd' => $mon_npmd ,
+        'mon_sms' => $mon_sms ,
+        'mon_log' => $mon_logbook
+        );
+        $data = $this->wan_performance_model->insert_data_balo($data,$siteid);
+        redirect('engineer','refresh');
+    }
+
+    
+
+    
 
 }
