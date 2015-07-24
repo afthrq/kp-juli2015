@@ -27,7 +27,7 @@
     </div>
     <!-- /.col-lg-12 -->
 </div>
-<form method="POST" action="<?php echo base_url('wan_analyst/insertdatainstalasi')?>">
+<form method="POST" action="<?php echo base_url('wananalyst/insertdatainstalasi')?>">
     <input type="hidden" name="user" value="<?php echo  $this->session->userdata('user_name')?>">
 
 <div class="row">

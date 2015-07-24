@@ -21,7 +21,7 @@
     <!-- /.col-lg-12 -->
 </div>
 <form method="POST" action="<?php echo base_url('wanengineer/submit_upload_wan_engineer')?>">
-<input type="hidden" name="tahap" value="4">
+<input type="hidden" name="tahap" value="6">
 <?php foreach ($lokasiid as $row): ?>   
     <input type="hidden" name="site_id" value="<?php echo $row->t_nw_site_id?>">
 <?php endforeach ?>
