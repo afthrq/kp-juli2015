@@ -135,4 +135,30 @@ class Wan_analyst_model extends CI_Model
 		$query = $this->db->get("t_network_order");
 		return $query->row()->t_detail_network_order_id;
   	}
+
+  	//
+  	public function inputdatabalo($data)
+  	{
+  		$this->db->update('t_detail_network_order', $data);
+  	}
+
+  	function insert_dokumen($tipe_dokumen, $caption, $path ,$work_id)
+	{
+		$data = array('t_work_id' => $work_id,
+        'p_doc_type_id' => $tipe_dokumen,
+        'caption' => $caption,
+        'path' => $path);
+        $this->db->insert('t_document', $data);
+        //$this->db->where('t_work_id', "1"); //change "1" with parameter that shows current process id
+	}
+
+	function getworkid($in_tahap)
+	{
+		$this->db->set('valid_fr','NOW()',FALSE);
+		$this->db->insert('t_process',$in_tahap);
+		$id = $this->db->insert_id();
+		$this->db->where('t_work_id',$id);
+		$query = $this->db->get("t_process");
+		return $query->row()->t_work_id;
+	}
 }

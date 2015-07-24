@@ -136,6 +136,15 @@
             </div>
         </div>
     </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="input-group">
+                <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:162px">Keterangan</span>
+                <textarea class="form-control" name="keterangan" cols="40" rows="5"></textarea>
+            </div>
+        </div>
+    </div>
     <br><br>
     <div class="row">
         <div class="col-lg-6">
@@ -144,6 +153,7 @@
         </div>
     </div>
     <br>
+
 <input type="hidden" name="tahap" value="5">
 </form>
 </div>

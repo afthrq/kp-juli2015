@@ -3,16 +3,16 @@
     <div class="sidebar-nav navbar-collapse">
         <ul class="nav" id="side-menu">
             <li>
-                <a href="<?php echo base_url() ?>network_architect"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                <a href="<?php echo base_url() ?>networkarchitect"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <li>
-                <a href="<?php echo base_url() ?>network_architect/menu_list_permintaan_vp"><i class="fa fa-edit fa-fw"></i> Verifikasi Permintaan</a>
+                <a href="<?php echo base_url() ?>networkarchitect/menu_list_permintaan_vp"><i class="fa fa-edit fa-fw"></i> Verifikasi Permintaan</a>
             </li>
             <li>
-                <a href="<?php echo base_url() ?>network_architect/menu_list_permintaan_kp"><i class="fa fa-edit fa-fw"></i> Koordinasi Provider</a>
+                <a href="<?php echo base_url() ?>networkarchitect/menu_list_permintaan_kp"><i class="fa fa-edit fa-fw"></i> Koordinasi Provider</a>
             </li>
             <li>
-                <a href="<?php echo base_url() ?>network_architect/menu_list_permintaan_ob"><i class="fa fa-edit fa-fw"></i> Online Billing</a>
+                <a href="<?php echo base_url() ?>networkarchitect/menu_list_permintaan_ob"><i class="fa fa-edit fa-fw"></i> Online Billing</a>
             </li>
         </ul>
     </div>
@@ -48,7 +48,7 @@
                         </thead>
                         <tbody>
                             <?php $count = 0; foreach ($list_permintaan as $row) : $count++;?>
-                                <form method="POST" action="<?php echo base_url('pm/koordinasi_provider')?>">
+                                <form method="POST" action="<?php echo base_url('networkarchitect/koordinasi_provider')?>">
                                 <tr>
                                   <td><?php echo $count?></td>
                                   <td><input type="hidden" name="order_id" value="<?php echo $row->site_name ?>"><input type="submit" value="<?php echo $row->site_name ?>" class="btn btn-default btn-table"></td>

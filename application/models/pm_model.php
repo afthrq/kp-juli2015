@@ -94,18 +94,20 @@ class Pm_model extends CI_Model
   		$this->db->select('valid_to');
   		$this->db->select('mon_cacti');
   		$this->db->select('mon_npmd');
-  		$this->db->select('mon_sms');
-  		$this->db->select('mon_log');
+  		$this->db->select('mon_sp');
 
   		$this->db->where('t_nw_site_id',$site_id);
   		$query = $this->db->get("t_network_order");
   		return $query->row();
   	}
 
-  	public function copydata($input)
+  	public function copydata($arrayorder)
   	{
-  		$this->db->insert('t_network',$input);
-
+		$this->db->insert('t_network',$arrayorder);
+		$id = $this->db->insert_id();
+		$this->db->where('t_network_id',$id);
+		$query = $this->db->get("t_network");
+		return $query->row()->t_network_id;
   	}
 
   	function getworkid($in_detail_id)
@@ -127,4 +129,41 @@ class Pm_model extends CI_Model
         $this->db->insert('t_document', $data);
 	}
 
+	function getarraylink($order_id)
+	{
+		$this->db->where('t_network_order_id', $order_id);
+		$this->db->where('p_nw_service_id >= "1"');
+		$this->db->where('p_nw_service_id <= "13"');
+		$query = $this->db->get('t_nw_service');
+		return $query->row()->p_nw_service_id;
+	}
+
+	function getarrayrouter($order_id)
+	{
+		$this->db->where('t_network_order_id', $order_id);
+		$this->db->where('p_nw_service_id >= "14"');
+		$this->db->where('p_nw_service_id <= "15"');
+		$query = $this->db->get('t_nw_service');		
+		return $query->row()->p_nw_service_id;
+	}
+
+	function getarraymodule($order_id)
+	{
+		$this->db->where('t_network_order_id', $order_id);
+		$this->db->where('p_nw_service_id >= "16"');
+		$this->db->where('p_nw_service_id <= "17"');
+		$query = $this->db->get('t_nw_service');
+		return $query->row()->p_nw_service_id;
+	}
+
+  	public function copyservice($arraylink, $arrayrouter)
+  	{
+  		$this->db->insert('t_nw_service_fix',$arraylink);
+  		$this->db->insert('t_nw_service_fix',$arrayrouter);  		
+  	}
+
+  	public function copymodule($arraymodule)
+  	{
+  		$this->db->insert('t_nw_service_fix',$arraymodule);
+  	}
 }

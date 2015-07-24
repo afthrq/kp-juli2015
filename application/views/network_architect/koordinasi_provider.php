@@ -2,16 +2,16 @@
     <div class="sidebar-nav navbar-collapse">
         <ul class="nav" id="side-menu">
             <li>
-                <a href="<?php echo base_url() ?>network_architect"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                <a href="<?php echo base_url() ?>networkarchitect"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <li>
-                <a href="<?php echo base_url() ?>network_architect/menu_list_permintaan_vp"><i class="fa fa-edit fa-fw"></i> Verifikasi Permintaan</a>
+                <a href="<?php echo base_url() ?>networkarchitect/menu_list_permintaan_vp"><i class="fa fa-edit fa-fw"></i> Verifikasi Permintaan</a>
             </li>
             <li>
-                <a href="<?php echo base_url() ?>network_architect/menu_list_permintaan_kp"><i class="fa fa-edit fa-fw"></i> Koordinasi Provider</a>
+                <a href="<?php echo base_url() ?>networkarchitect/menu_list_permintaan_kp"><i class="fa fa-edit fa-fw"></i> Koordinasi Provider</a>
             </li>
             <li>
-                <a href="<?php echo base_url() ?>network_architect/menu_list_permintaan_ob"><i class="fa fa-edit fa-fw"></i> Online Billing</a>
+                <a href="<?php echo base_url() ?>networkarchitect/menu_list_permintaan_ob"><i class="fa fa-edit fa-fw"></i> Online Billing</a>
             </li>
         </ul>
     </div>
@@ -26,7 +26,7 @@
     </div>
     <!-- /.col-lg-12 -->
 </div>
-<form method="POST" action="<?php echo base_url('network_architect/submit_koordinasi_provider')?>">
+<form method="POST" action="<?php echo base_url('networkarchitect/submit_koordinasi_provider')?>">
 <input type="hidden" name="user" value="<?php echo  $this->session->userdata('user_name')?>">
 <?php foreach ($lokasiid as $row): ?>   
     <input type="hidden" name="site_id" value="<?php echo $row->t_nw_site_id?>">

@@ -27,7 +27,7 @@
     </div>
     <!-- /.col-lg-12 -->
 </div>
-<form method="POST" action="<?php echo base_url('wan_analyst/insertdatasurvey')?>">
+<form method="POST" action="<?php echo base_url('wananalyst/insertdatasurvey')?>">
     <input type="hidden" name="user" value="<?php echo  $this->session->userdata('user_name')?>">
     <?php foreach ($lokasiid as $row): ?>   
         <input type="hidden" name="site_id" value="<?php echo $row->t_nw_site_id?>">
