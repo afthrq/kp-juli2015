@@ -130,7 +130,7 @@
     </div>
     <div id="sectionB" class="tab-pane fade">
         <br>
-        <form method="POST" action="<?php echo base_url('verifikator/submit_verifikasi_permintaan')?>">
+        <form method="POST" action="<?php echo base_url('network_architect/submit_verifikasi_permintaan')?>">
 
         <input type="hidden" name="user" value="<?php echo  $this->session->userdata('user_name')?>">
         <?php foreach ($lokasiid as $row): ?>   
@@ -162,22 +162,7 @@
                     </div>
                 </div>
             </div>
-            <br>
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="input-group">
-                        <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:162px">Tipe Dokumen</span>
-                        <select name="tipe_dokumen" class="form-control">
-                            <option value="1">Form Permintaan</option>
-                            <option value="2">Memo</option>
-                            <option value="3">Nota Pengantar</option>
-                            <option value="4">BALO</option>
-                            <option value="5">Form UAT</option>
-                            <option value="6">Lain - Lain</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+            <input type="hidden" value="1" name="tipe_dokumen">
             <br>
             <div class="row">
                 <div class="col-lg-6">
@@ -186,6 +171,15 @@
                     <input type="hidden" class="form-control" aria-describedby="basic-addon1" id="path" name="path">
                 </div>
             </div>
+            <br>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:137px">Keterangan</span>
+                            <textarea class="form-control" name="keterangan" cols="40" rows="5"></textarea>
+                        </div>
+                    </div>
+                </div>
             <br>
             <div class="row">
                 <div class="col-lg-6">

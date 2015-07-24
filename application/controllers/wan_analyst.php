@@ -44,8 +44,8 @@ class Wan_analyst extends CI_Controller
 
     public function survey()
     {
-        $order_id = $this->input->post('order_id');
-        $data['balo_list'] = $this->engineer_model->getdataupdate($order_id);
+        $o_id = $this->input->post('order_id');
+        $data['lokasiid'] = $this->engineer_model->getlokasiid($o_id); 
         $this->load->view('includes/header');
         $this->load->view('wan_analyst/survey',$data);
         $this->load->view('includes/footer');
@@ -106,6 +106,24 @@ class Wan_analyst extends CI_Controller
         redirect('wan_analyst','refresh');
     }
 
+    public function insertdatasurvey ()
+    {
+        $site_id = $this->input->post('site_id');
+        //------------------------------------------------------------------//
+        $tahap = $this->input->post('tahap');
+        $user = $this->input->post('user');
+        $order_up_id = $this->engineer_model->getorderupid($site_id);
+        $detail_id = $this->engineer_model->getdetailupid($order_up_id);
+        $keterangan = $this->input->post('keterangan');
+        $in_tahap = array ('p_process_id' => $tahap ,
+                't_detail_network_order_id' => $detail_id,
+                'keterangan' => $keterangan,
+                'closed_by' => $user);
+        $tahap_id = $this->engineer_model->inputtahap($in_tahap);
+        //------------------------------------------------------------------//
+        redirect('wan_analyst','refresh');
+    }
+
     public function insertdatainstalasi ()
     {
         $lokasi = $this->input->post('lokasi');
@@ -120,17 +138,12 @@ class Wan_analyst extends CI_Controller
         $sla = $this->input->post('sla');
         $hostname = $this->input->post('hostname'); 
 
-        //contoh karena belum ada data dalam tabel lastmile
-        $in_lastmile = array ('name' => $lastmile);
-        $this->engineer_model->inputlastmile($in_lastmile); 
 
-        //ambil id dari inputan lastmile
-        $lmid = $this->engineer_model->getlastmileid($lastmile);
-
-        $in_traffic = array ('traffic_mgmt' => $traffic);
+        $in_traffic = array ('traffic_mgmt' => $traffic);       
         $cek_lokasi = array ('site_name' => $lokasi);
         $this->engineer_model->updatenwsite($in_traffic,$lokasi);
-        $nwsiteid = $this->engineer_model->getnwsiteid($in_traffic,$cek_lokasi);
+        $nwsiteid = $this->engineer_model->getnwsiteid($cek_lokasi);
+
 
         //------------------------------------------------------------------//
         $tahap = $this->input->post('tahap');
@@ -150,7 +163,7 @@ class Wan_analyst extends CI_Controller
         'netmask_lan' => $netmasklan ,
         'ip_loop' => $iploop ,
         'asn' => $asn ,
-        'p_lastmile_id' => $lmid ,
+        'p_lastmile_id' => $lastmile,
         'sla' => $sla ,
         'hostname' => $hostname 
         );

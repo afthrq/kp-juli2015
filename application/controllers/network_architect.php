@@ -21,6 +21,33 @@ class Network_architect extends CI_Controller
     	$this->load->view('includes/footer');
 	}
 
+    function submit_verifikasi_permintaan()
+    {
+        $site_id = $this->input->post('site_id');
+        $no_form = $this->input->post('no_form');
+        $tanggal_permintaan = $this->input->post('tanggal_permintaan');
+        $tipe_dokumen = $this->input->post('tipe_dokumen');
+        $caption = $this->input->post('caption');
+        $filename = $this->input->post('path');
+        $tahap = $this->input->post('tahap');
+        $user = $this->input->post('user');
+
+        $path = "uploads/$filename";
+
+        $keterangan = $this->input->post('keterangan');
+        $order_up_id = $this->verifikator_model->getorderupid($site_id);
+        $detail_id = $this->verifikator_model->getdetailupid($order_up_id);
+        $in_detail_id = array ('p_process_id' => $tahap ,
+                't_detail_network_order_id' => $detail_id,
+                'keterangan' => $keterangan,
+                'closed_by' => $user);
+        $work_id = $this->verifikator_model->getworkid($in_detail_id);
+
+        $this->verifikator_model->insert_detail_order($no_form, $tanggal_permintaan, $detail_id,$user);
+        $this->verifikator_model->insert_dokumen($tipe_dokumen, $caption, $path, $work_id);
+        redirect('network_architect','refresh');
+    }
+
     function submit_online_billing()
     {
         $site_id = $this->input->post('site_id');
@@ -36,21 +63,27 @@ class Network_architect extends CI_Controller
         $site_id = $this->input->post('site_id');
         $tiket_provider = $this->input->post('tiket_provider');
         $pic_provider = $this->input->post('pic_provider');
+        $tipe_dokumen = $this->input->post('tipe_dokumen');
+        $caption = $this->input->post('caption');
+        $filename = $this->input->post('path');
+
+        $path = "uploads/$filename";
 
         //------------------------------------------------------------------//
         $tahap = $this->input->post('tahap');
         $user = $this->input->post('user');
+        $keterangan = $this->input->post('keterangan');
         $order_up_id = $this->pm_model->getorderupid($site_id);
         $detail_id = $this->pm_model->getdetailupid($order_up_id);
-        $in_tahap = array ('p_process_id' => $tahap ,
+        $in_detail_id = array ('p_process_id' => $tahap ,
                 't_detail_network_order_id' => $detail_id,
+                'keterangan' => $keterangan,
                 'closed_by' => $user);
-        $tahap_id = $this->pm_model->inputtahap($in_tahap);
+        $work_id = $this->pm_model->getworkid($in_detail_id);
         //------------------------------------------------------------------//
 
-        $detail_id = $this->pm_model->getdetailupid($order_up_id);
-
         $this->pm_model->insert_koordinasi_provider($tiket_provider, $pic_provider, $detail_id);
+        $this->pm_model->insert_dokumen($tipe_dokumen, $caption, $path, $work_id);
         redirect('network_architect','refresh');
     }
 

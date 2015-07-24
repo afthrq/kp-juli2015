@@ -26,7 +26,7 @@
     </div>
     <!-- /.col-lg-12 -->
 </div>
-<form method="POST" action="<?php echo base_url('pm/submit_koordinasi_provider')?>">
+<form method="POST" action="<?php echo base_url('network_architect/submit_koordinasi_provider')?>">
 <input type="hidden" name="user" value="<?php echo  $this->session->userdata('user_name')?>">
 <?php foreach ($lokasiid as $row): ?>   
     <input type="hidden" name="site_id" value="<?php echo $row->t_nw_site_id?>">
@@ -58,7 +58,7 @@
         </div>
     </div>
     <br>
-    <input type="hidden" value="5" name="tipe_dokumen">
+    <input type="hidden" value="6" name="tipe_dokumen">
     <div class="row">
         <div class="col-lg-6">
             <div class="input-group">

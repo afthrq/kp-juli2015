@@ -27,8 +27,8 @@
     </div>
     <!-- /.col-lg-12 -->
 </div>
-<form method="POST" action="<?php echo base_url('engineer/insertdatainstalasi')?>">
-
+<form method="POST" action="<?php echo base_url('wan_analyst/insertdatainstalasi')?>">
+    <input type="hidden" name="user" value="<?php echo  $this->session->userdata('user_name')?>">
 
 <div class="row">
     <div class="input-group col-lg-6">
@@ -95,7 +95,12 @@
         <div class=" col-lg-6">
             <div class="input-group">
                 <span class="input-group-addon input-instalasi" id="basic-addon1">Lastmile</span>
-                <input type="text" class="form-control" aria-describedby="basic-addon1" name="lastmile">
+                <select name="lastmile" class="form-control">
+                    <option value="1">Fiber Optic</option>
+                    <option value="2">Tembaga</option>
+                    <option value="3">Radio Terestrial</option>
+                    <option value="4">Radio VSAT</option>
+                </select>
             </div>
         </div>
     </div>
