@@ -23,7 +23,7 @@
 <div id="page-wrapper">
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Implementasi - Dismantle</h1>
+        <h1 class="page-header">Implementasi - Upgrade/Downgrade</h1>
     </div>
     <!-- /.col-lg-12 -->
 </div>
@@ -95,7 +95,6 @@
             </div>
         </div>
     </div>
-    <input type="hidden" name="traffic" value="">
     <br>
     <div class="row">
         <div class=" col-lg-6">
@@ -115,6 +114,20 @@
         </div>
     </div>
     <?php //endforeach ?>
+    <br>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="input-group">
+                <span class="input-group-addon input-instalasi" id="basic-addon1">Traffic Management</span>
+                <select name="traffic" class="form-control">
+                    <option value="Load Balance">Load Balance</option>
+                    <option value="Load Sharing">Load Sharing</option>
+                    <option value="Automatic Fail Over">Automatic Fail Over</option>
+                    <option value="Manual Fail Over">Manual Fail Over</option>
+                </select>
+            </div>
+        </div>
+    </div>
     <br>
     <div class="row">
         <div class="col-lg-6">
