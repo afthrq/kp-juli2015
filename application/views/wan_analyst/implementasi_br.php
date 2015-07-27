@@ -23,7 +23,7 @@
 <div id="page-wrapper">
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Implementasi</h1>
+        <h1 class="page-header">Implementasi - Permintaan Baru</h1>
     </div>
     <!-- /.col-lg-12 -->
 </div>
@@ -140,7 +140,7 @@
     <div class="row">
         <div class="col-lg-6">
             <div class="input-group">
-                <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:162px">Keterangan</span>
+                <span class="input-group-addon input-instalasi" id="basic-addon1">Keterangan</span>
                 <textarea class="form-control" name="keterangan" cols="40" rows="5"></textarea>
             </div>
         </div>

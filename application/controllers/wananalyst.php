@@ -29,7 +29,7 @@ class Wananalyst extends CI_Controller
         //$data['layanan_list'] = $this->wan_analyst_model->getservid();
         //$data['perusahaan_list'] = $this->wan_analyst_model->getcompid(); 
     	$this->load->view('includes/header');
-    	$this->load->view('wan_analyst/implementasi',$data);
+    	$this->load->view('wan_analyst/implementasi_br',$data);
     	$this->load->view('includes/footer');
     }
 

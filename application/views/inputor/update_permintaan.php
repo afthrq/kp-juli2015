@@ -54,7 +54,7 @@
     <div class="col-lg-6">
         <div class="input-group">
             <span class="input-group-addon input-permintaan" id="basic-addon1">Lokasi</span>
-            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->site_name ?>" name ="lokasi" disabled>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->site_name ?>" name ="lokasi" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
         </div>
     </div>
 </div>
@@ -64,7 +64,7 @@
     <div class="col-lg-6">
         <div class="input-group">
             <span class="input-group-addon input-permintaan" id="basic-addon1">Jenis Lokasi</span>
-            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->type_name ?>" name="jenis" disabled>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->type_name ?>" name="jenis" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
         </div>
     </div>
 </div>
@@ -73,7 +73,7 @@
     <div class="col-lg-6">
         <div class="input-group">
             <span class="input-group-addon input-permintaan" id="basic-addon1">Perusahaan</span>
-            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->company_name ?>" name="perusahaan" disabled>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->company_name ?>" name="perusahaan" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
         </div>
     </div>
 </div>
@@ -82,7 +82,7 @@
     <div class="col-lg-6">
         <div class="input-group">
             <span class="input-group-addon input-permintaan" id="basic-addon1">Alamat</span>
-            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->address ?>" name ="alamat" disabled>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->address ?>" name ="alamat" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
         </div>
     </div>
 </div>
@@ -91,7 +91,7 @@
     <div class="col-lg-6">
         <div class="input-group">
             <span class="input-group-addon input-permintaan" id="basic-addon1">Region</span>
-            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->region_name ?>" name="region" disabled>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->region_name ?>" name="region" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
         </div>
     </div>
 </div>
@@ -100,7 +100,7 @@
     <div class="col-lg-6">
         <div class="input-group">
             <span class="input-group-addon input-permintaan" id="basic-addon1">Provinsi</span>
-            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->provinsi_name ?>" name="provinsi" disabled>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->provinsi_name ?>" name="provinsi" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
         </div>
     </div>
 </div>
@@ -109,7 +109,7 @@
     <div class="col-lg-6">
         <div class="input-group">
             <span class="input-group-addon input-permintaan" id="basic-addon1">PIC</span>
-            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->pic_name ?>" name="pic" disabled>
+            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->pic_name ?>" name="pic" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
         </div>
     </div>
 </div>

@@ -139,7 +139,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="input-group">
-                        <span class="input-group-addon input-permintaan" id="basic-addon1">No. Form Permintaan</span>
+                        <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:163px">No. Form Permintaan</span>
                         <input type="text" class="form-control" aria-describedby="basic-addon1" name="no_form">
                     </div>
                 </div>
@@ -148,7 +148,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="input-group">
-                        <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:162px">Tanggal Permintaan</span>
+                        <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:163px">Tanggal Permintaan</span>
                         <input type="date" class="form-control" aria-describedby="basic-addon1" name="tanggal_permintaan">
                     </div>
                 </div>
@@ -157,12 +157,21 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="input-group">
-                        <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:162px">Caption Dokumen</span>
+                        <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:163px">Caption Dokumen</span>
                         <input type="text" class="form-control" aria-describedby="basic-addon1" name="caption">
                     </div>
                 </div>
             </div>
             <input type="hidden" value="1" name="tipe_dokumen">
+            <br>
+            <div class="row">
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:163px">Keterangan</span>
+                            <textarea class="form-control" name="keterangan" cols="40" rows="5"></textarea>
+                        </div>
+                    </div>
+                </div>
             <br>
             <div class="row">
                 <div class="col-lg-6">
@@ -171,15 +180,6 @@
                     <input type="hidden" class="form-control" aria-describedby="basic-addon1" id="path" name="path">
                 </div>
             </div>
-            <br>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="input-group">
-                            <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:137px">Keterangan</span>
-                            <textarea class="form-control" name="keterangan" cols="40" rows="5"></textarea>
-                        </div>
-                    </div>
-                </div>
             <br>
             <div class="row">
                 <div class="col-lg-6">
