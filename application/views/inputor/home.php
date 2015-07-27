@@ -1,28 +1,25 @@
 <div class="navbar-default sidebar" role="navigation">
-  <div class="sidebar-nav navbar-collapse">
-    <ul class="nav" id="side-menu">
-      <li>
-        <a href="<?php echo base_url() ?>inputor"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-      </li>
-      <li class="dropdown">
-          <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-edit fa-fw"></i> Form Permintaan <i class="fa fa-fw fa-caret-down"></i></a>
-            <ul id="demo" class="collapse">
-              <li class="dropdown">
-                <form method="POST" action="<?php echo base_url('inputor/form_permintaan')?>">
-                  <input type="hidden" name="proses" value="1"><input type="submit" value="Permintaan Baru" class="btn btn-default btn-table">
-                </form>
-              </li>
-              <li class="dropdown">
-                <form method="POST" action="<?php echo base_url('inputor/menu_list_permintaan')?>">
-                  <input type="hidden" name="proses" value="2"><input type="submit" value="Update Permintaan" class="btn btn-default btn-table">
-                </form>
-              </li>
-            </ul>
-      </li>
-    </ul>
-  </div>
-  <!-- /.sidebar-collapse -->
+    <div class="sidebar-nav navbar-collapse">
+        <ul class="nav" id="side-menu">
+            <li>
+                <a href="<?php echo base_url() ?>inputor"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+            </li>
+            <li class="dropdown">
+                <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-edit fa-fw"></i> Form Permintaan <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="demo" class="collapse">
+                    <li class="dropdown">
+                        <a href="<?php echo base_url() ?>inputor/form_permintaan"><i class="fa fa-edit fa-fw"></i> Permintaan Baru</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="<?php echo base_url() ?>inputor/menu_list_permintaan"><i class="fa fa-edit fa-fw"></i> Update Permintaan</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <!-- /.sidebar-collapse -->
 </div>
+
 <!-- /.navbar-static-side -->
 </nav>
 <div id="page-wrapper">

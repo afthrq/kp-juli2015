@@ -23,17 +23,32 @@ class Wanengineer extends CI_Controller
     function submit_upload_wan_engineer()
     {
         $site_id = $this->input->post('site_id');
-        //------------------------------------------------------------------//
+        //--------------------------------------------------------------------//
         $tahap = $this->input->post('tahap');
         $user = $this->input->post('user');
         $keterangan = $this->input->post('keterangan');
         $order_up_id = $this->wan_engineer_model->getorderupid($site_id);
         $detail_id = $this->wan_engineer_model->getdetailupid($order_up_id);
-        $in_tahap = array ('p_process_id' => $tahap ,
-                't_detail_network_order_id' => $detail_id ,
-                'keterangan' => $keterangan ,
+        $in_detail_id = array ('keterangan' => $keterangan,
                 'closed_by' => $user);
-        $work_id = $this->wan_engineer_model->getworkid($in_tahap);
+        $this->wan_engineer_model->updateprocessuat($in_detail_id,$detail_id);
+
+        $work_id = $this->wan_engineer_model->getworkid($detail_id);
+
+        $in_unrec = array ('p_process_id' => $tahap);
+        $this->wan_engineer_model->inputunrec($in_unrec, $detail_id);
+        //--------------------------------------------------------------------//
+
+        //-----------------------------------------------------------------//
+        $get_next = array ('p_process_id' => $tahap);
+        $getnext = $this->wan_engineer_model->getnext($tahap, $get_next);
+
+        $in_next = array ('p_process_id' => $getnext ,
+            't_detail_network_order_id' => $detail_id);
+        $this->wan_engineer_model->nexttahap($in_next);
+
+        $up_unrec = array ('p_process_id' => $getnext);
+        $this->wan_engineer_model->updateunrec($up_unrec, $detail_id);
         //------------------------------------------------------------------//
 
         $tipe_dokumen = $this->input->post('tipe_dokumen');

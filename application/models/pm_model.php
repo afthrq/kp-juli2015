@@ -166,4 +166,10 @@ class Pm_model extends CI_Model
   	{
   		$this->db->insert('t_nw_service_fix',$arraymodule);
   	}
+
+  	public function dropunrecdata($detail_id)
+  	{
+  		$this->db->where('t_unrec_process.t_detail_network_order_id', $detail_id);
+  		$this->db->delete('t_unrec_process');
+  	}
 }

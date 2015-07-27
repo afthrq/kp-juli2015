@@ -44,7 +44,7 @@ class Networkarchitect extends CI_Controller
         $work_id = $this->verifikator_model->getworkid($detail_id);
 
         $in_unrec = array ('p_process_id' => $tahap);
-        $this->verifikator_model->inputunrec($in_unrec);
+        $this->verifikator_model->inputunrec($in_unrec, $detail_id);
         //--------------------------------------------------------------------//
 
         //-----------------------------------------------------------------//
@@ -80,7 +80,7 @@ class Networkarchitect extends CI_Controller
         $work_id = $this->verifikator_model->getworkid($detail_id);
 
         $in_unrec = array ('p_process_id' => $tahap);
-        $this->verifikator_model->inputunrec($in_unrec);
+        $this->verifikator_model->inputunrec($in_unrec,$detail_id);
         //--------------------------------------------------------------------//
 
         //-----------------------------------------------------------------//
@@ -100,6 +100,7 @@ class Networkarchitect extends CI_Controller
         $arrayorder = json_decode(json_encode($input),true);
         $nwid = $this->pm_model->copydata($arrayorder);
 
+        $order_id = $this->pm_model->getorderupid($site_id);
         $link = $this->pm_model->getarraylink($order_id);
         $router = $this->pm_model->getarrayrouter($order_id);
         $module = $this->pm_model->getarraymodule($order_id);
@@ -119,6 +120,7 @@ class Networkarchitect extends CI_Controller
             $this->pm_model->copymodule($arraymodule);
         } 
 
+        $this->pm_model->dropunrecdata($detail_id);
 
         redirect('networkarchitect','refresh');
     }
@@ -147,7 +149,7 @@ class Networkarchitect extends CI_Controller
         $work_id = $this->verifikator_model->getworkid($detail_id);
 
         $in_unrec = array ('p_process_id' => $tahap);
-        $this->verifikator_model->inputunrec($in_unrec);
+        $this->verifikator_model->inputunrec($in_unrec, $detail_id);
         //--------------------------------------------------------------------//
 
         //-----------------------------------------------------------------//

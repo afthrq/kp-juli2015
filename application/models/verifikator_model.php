@@ -10,9 +10,9 @@ class Verifikator_model extends CI_Model
 		return $query->result();
 	}
 
-
 	function getdatapermintaankp()
 	{
+		$this->db->distinct();
 		//$this->db->select('t_nw_site.site_name');
 		//$this->db->select('p_site_type.type_name');
 		//$this->db->select('p_service.service_name');
@@ -21,18 +21,22 @@ class Verifikator_model extends CI_Model
 		$this->db->where('t_unrec_process.p_process_id = "3"');
 		$this->db->where('t_nw_service.p_nw_service_id >= "1"');
 		$this->db->where('t_nw_service.p_nw_service_id <= "13"');
+		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
+		$this->db->where('t_network_order.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
 		$this->db->where('t_nw_site.t_nw_site_id = t_network_order.t_nw_site_id');
 		$this->db->where('p_site_type.p_site_type_id = t_nw_site.p_site_type_id');
 		$this->db->where('t_network_order.t_network_order_id = t_nw_service.t_network_order_id');
 		$this->db->where('p_nw_service.p_nw_service_id = t_nw_service.p_nw_service_id');
 		$this->db->where('t_network_order.t_nw_site_id = t_nw_site.t_nw_site_id');
 		$this->db->where('p_service.p_service_id = p_nw_service.p_service_id');
-		$query = $this->db->get('t_nw_site,t_network_order,p_site_type,p_nw_service,p_service,t_nw_service,t_unrec_process');
+		$query = $this->db->get('t_nw_site,t_network_order,p_site_type,p_nw_service,p_service,t_nw_service,t_unrec_process,t_detail_network_order');
     	return $query->result();
 	}
 
+
 	function getdatapermintaanob()
 	{
+		$this->db->distinct();
 		//$this->db->select('t_nw_site.site_name');
 		//$this->db->select('p_site_type.type_name');
 		//$this->db->select('p_service.service_name');
@@ -41,18 +45,21 @@ class Verifikator_model extends CI_Model
 		$this->db->where('t_unrec_process.p_process_id = "9"');
 		$this->db->where('t_nw_service.p_nw_service_id >= "1"');
 		$this->db->where('t_nw_service.p_nw_service_id <= "13"');
+		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
+		$this->db->where('t_network_order.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
 		$this->db->where('t_nw_site.t_nw_site_id = t_network_order.t_nw_site_id');
 		$this->db->where('p_site_type.p_site_type_id = t_nw_site.p_site_type_id');
 		$this->db->where('t_network_order.t_network_order_id = t_nw_service.t_network_order_id');
 		$this->db->where('p_nw_service.p_nw_service_id = t_nw_service.p_nw_service_id');
 		$this->db->where('t_network_order.t_nw_site_id = t_nw_site.t_nw_site_id');
 		$this->db->where('p_service.p_service_id = p_nw_service.p_service_id');
-		$query = $this->db->get('t_nw_site,t_network_order,p_site_type,p_nw_service,p_service,t_nw_service,t_unrec_process');
+		$query = $this->db->get('t_nw_site,t_network_order,p_site_type,p_nw_service,p_service,t_nw_service,t_unrec_process,t_detail_network_order');
     	return $query->result();
 	}
 
 	function getdatapermintaanvp()
 	{
+		$this->db->distinct();
 		//$this->db->select('t_nw_site.site_name');
 		//$this->db->select('p_site_type.type_name');
 		//$this->db->select('p_service.service_name');
@@ -61,15 +68,18 @@ class Verifikator_model extends CI_Model
 		$this->db->where('t_unrec_process.p_process_id = "2"');
 		$this->db->where('t_nw_service.p_nw_service_id >= "1"');
 		$this->db->where('t_nw_service.p_nw_service_id <= "13"');
+		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
+		$this->db->where('t_network_order.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
 		$this->db->where('t_nw_site.t_nw_site_id = t_network_order.t_nw_site_id');
 		$this->db->where('p_site_type.p_site_type_id = t_nw_site.p_site_type_id');
 		$this->db->where('t_network_order.t_network_order_id = t_nw_service.t_network_order_id');
 		$this->db->where('p_nw_service.p_nw_service_id = t_nw_service.p_nw_service_id');
 		$this->db->where('t_network_order.t_nw_site_id = t_nw_site.t_nw_site_id');
 		$this->db->where('p_service.p_service_id = p_nw_service.p_service_id');
-		$query = $this->db->get('t_nw_site,t_network_order,p_site_type,p_nw_service,p_service,t_nw_service,t_unrec_process');
+		$query = $this->db->get('t_nw_site,t_network_order,p_site_type,p_nw_service,p_service,t_nw_service,t_unrec_process,t_detail_network_order');
     	return $query->result();
 	}
+
 	function get_data_permintaan($o_id)
 	{
 		$this->db->select('t_nw_site.site_name');
@@ -165,15 +175,15 @@ class Verifikator_model extends CI_Model
 	function getworkid($detail_id)
 	{
 		$this->db->where('t_process.t_detail_network_order_id',$detail_id);
-		$this->db->where('t_process.p_process_id = "2"');
 		$this->db->select('t_process.t_work_id');
 		$query = $this->db->get('t_process');
 
 		return $query->row()->t_work_id;
 	}
 
-	function inputunrec($in_unrec)
+	function inputunrec($in_unrec, $detail_id)
 	{
+		$this->db->where('t_unrec_process.t_detail_network_order_id',$detail_id);
 		$this->db->update('t_unrec_process',$in_unrec);			
 	}
 
@@ -183,10 +193,12 @@ class Verifikator_model extends CI_Model
 		$this->db->where ('t_unrec_process.p_process_id',$tahap);
 		$this->db->where('t_unrec_process.p_process_id = p_process.p_process_id');
 		$this->db->where('p_process.p_process_id = workflow.p_process_id');
+		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
+		$this->db->where('t_network_order.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
 		//$this->db->where('t_detail_network_order.p_order_type_id',$proses);
 		$this->db->where('t_detail_network_order.p_order_type_id = p_order_type.p_order_type_id');
 		$this->db->where('p_order_type.p_order_type_id = workflow.p_order_type_id');
-		$query = $this->db->get ('workflow, t_unrec_process, p_process, t_detail_network_order, p_order_type');
+		$query = $this->db->get ('workflow, t_unrec_process, p_process, t_detail_network_order, p_order_type,t_network_order');
 		return $query->row()->next_process_id;
 	}
 

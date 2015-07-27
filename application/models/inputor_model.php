@@ -213,7 +213,7 @@ class Inputor_model extends CI_Model
 
 	function inputunrec($in_unrec)
 	{
-		$this->db->insert('t_unrec_process',$in_unrec);			
+		$this->db->update('t_unrec_process',$in_unrec);			
 	}
 
 	function getnext ($tahap, $proses, $get_next)
