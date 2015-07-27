@@ -206,9 +206,40 @@ class Inputor_model extends CI_Model
 	//input-----------------------------------------------------------------//
 	function inputtahap($in_tahap)
 	{
-
 		$this->db->set('valid_fr','NOW()',FALSE);
-		$this->db->insert('t_process',$in_tahap);		
+		$this->db->set('valid_to','NOW()',FALSE);
+		$this->db->insert('t_process',$in_tahap);	
+	}
+
+	function inputunrec($in_unrec)
+	{
+		$this->db->insert('t_unrec_process',$in_unrec);			
+	}
+
+	function getnext ($tahap, $proses, $get_next)
+	{
+		$this->db->select ('workflow.next_process_id');
+		$this->db->where ('t_unrec_process.p_process_id',$tahap);
+		$this->db->where('t_unrec_process.p_process_id = p_process.p_process_id');
+		$this->db->where('p_process.p_process_id = workflow.p_process_id');
+		$this->db->where('t_detail_network_order.p_order_type_id',$proses);
+		$this->db->where('t_detail_network_order.p_order_type_id = p_order_type.p_order_type_id');
+		$this->db->where('p_order_type.p_order_type_id = workflow.p_order_type_id');
+		$query = $this->db->get ('workflow, t_unrec_process, p_process, t_detail_network_order, p_order_type');
+		return $query->row()->next_process_id;
+	}
+
+	function nexttahap($in_next)
+	{
+		$this->db->set('valid_fr','NOW()',FALSE);
+		$this->db->insert('t_process',$in_next);
+	
+	}
+
+	function updateunrec($up_unrec, $serv_type_id)
+	{
+		$this->db->where('t_unrec_process.t_detail_network_order_id',$serv_type_id);	
+		$this->db->update('t_unrec_process',$up_unrec);
 	}
 
 	function inputfinal($in_serv, $in_pic_site, $in_router, $in_price)
@@ -224,9 +255,8 @@ class Inputor_model extends CI_Model
 		$this->db->insert('t_nw_service',$in_modul);
 	}
 
-	function inputparent($in_prov,$in_pic)
+	function inputparent($in_pic)
 	{
-		$this->db->insert('provinsi',$in_prov);
 		$this->db->insert('t_pic',$in_pic);
 	}
 

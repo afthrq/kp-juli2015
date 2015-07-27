@@ -29,19 +29,35 @@ class Networkarchitect extends CI_Controller
         $tipe_dokumen = $this->input->post('tipe_dokumen');
         $caption = $this->input->post('caption');
         $filename = $this->input->post('path');
-        $tahap = $this->input->post('tahap');
-        $user = $this->input->post('user');
 
         $path = "uploads/$filename";
-
+        //--------------------------------------------------------------------//
+        $tahap = $this->input->post('tahap');
+        $user = $this->input->post('user');
         $keterangan = $this->input->post('keterangan');
         $order_up_id = $this->verifikator_model->getorderupid($site_id);
         $detail_id = $this->verifikator_model->getdetailupid($order_up_id);
-        $in_detail_id = array ('p_process_id' => $tahap ,
-                't_detail_network_order_id' => $detail_id,
-                'keterangan' => $keterangan,
+        $in_detail_id = array ('keterangan' => $keterangan,
                 'closed_by' => $user);
-        $work_id = $this->verifikator_model->getworkid($in_detail_id);
+        $this->verifikator_model->updateprocessvp($in_detail_id,$detail_id);
+
+        $work_id = $this->verifikator_model->getworkid($detail_id);
+
+        $in_unrec = array ('p_process_id' => $tahap);
+        $this->verifikator_model->inputunrec($in_unrec);
+        //--------------------------------------------------------------------//
+
+        //-----------------------------------------------------------------//
+        $get_next = array ('p_process_id' => $tahap);
+        $getnext = $this->verifikator_model->getnext($tahap, $get_next);
+
+        $in_next = array ('p_process_id' => $getnext ,
+            't_detail_network_order_id' => $detail_id);
+        $this->verifikator_model->nexttahap($in_next);
+
+        $up_unrec = array ('p_process_id' => $getnext);
+        $this->verifikator_model->updateunrec($up_unrec, $detail_id);
+        //------------------------------------------------------------------//
 
         $this->verifikator_model->insert_detail_order($no_form, $tanggal_permintaan, $detail_id,$user);
         $this->verifikator_model->insert_dokumen($tipe_dokumen, $caption, $path, $work_id);
@@ -51,17 +67,32 @@ class Networkarchitect extends CI_Controller
     function submit_online_billing()
     {
         $site_id = $this->input->post('site_id');
-        //------------------------------------------------------------------//
+        //--------------------------------------------------------------------//
         $tahap = $this->input->post('tahap');
         $user = $this->input->post('user');
-        $order_id = $this->pm_model->getorderupid($site_id);
-        $detail_id = $this->pm_model->getdetailupid($order_id);
         $keterangan = $this->input->post('keterangan');
-        $in_tahap = array ('p_process_id' => $tahap ,
-                't_detail_network_order_id' => $detail_id,
-                'keterangan' => $keterangan,
+        $order_up_id = $this->verifikator_model->getorderupid($site_id);
+        $detail_id = $this->verifikator_model->getdetailupid($order_up_id);
+        $in_detail_id = array ('keterangan' => $keterangan,
                 'closed_by' => $user);
-        $tahap_id = $this->pm_model->inputtahap($in_tahap);
+        $this->verifikator_model->updateprocessob($in_detail_id,$detail_id);
+
+        $work_id = $this->verifikator_model->getworkid($detail_id);
+
+        $in_unrec = array ('p_process_id' => $tahap);
+        $this->verifikator_model->inputunrec($in_unrec);
+        //--------------------------------------------------------------------//
+
+        //-----------------------------------------------------------------//
+        $get_next = array ('p_process_id' => $tahap);
+        $getnext = $this->verifikator_model->getnext($tahap, $get_next);
+
+        $in_next = array ('p_process_id' => $getnext ,
+            't_detail_network_order_id' => $detail_id);
+        $this->verifikator_model->nexttahap($in_next);
+
+        $up_unrec = array ('p_process_id' => $getnext);
+        $this->verifikator_model->updateunrec($up_unrec, $detail_id);
         //------------------------------------------------------------------//
 
 
@@ -103,17 +134,32 @@ class Networkarchitect extends CI_Controller
 
         $path = "uploads/$filename";
 
-        //------------------------------------------------------------------//
+        //--------------------------------------------------------------------//
         $tahap = $this->input->post('tahap');
         $user = $this->input->post('user');
         $keterangan = $this->input->post('keterangan');
-        $order_up_id = $this->pm_model->getorderupid($site_id);
-        $detail_id = $this->pm_model->getdetailupid($order_up_id);
-        $in_detail_id = array ('p_process_id' => $tahap ,
-                't_detail_network_order_id' => $detail_id,
-                'keterangan' => $keterangan,
+        $order_up_id = $this->verifikator_model->getorderupid($site_id);
+        $detail_id = $this->verifikator_model->getdetailupid($order_up_id);
+        $in_detail_id = array ('keterangan' => $keterangan,
                 'closed_by' => $user);
-        $work_id = $this->pm_model->getworkid($in_detail_id);
+        $this->verifikator_model->updateprocesskp($in_detail_id,$detail_id);
+
+        $work_id = $this->verifikator_model->getworkid($detail_id);
+
+        $in_unrec = array ('p_process_id' => $tahap);
+        $this->verifikator_model->inputunrec($in_unrec);
+        //--------------------------------------------------------------------//
+
+        //-----------------------------------------------------------------//
+        $get_next = array ('p_process_id' => $tahap);
+        $getnext = $this->verifikator_model->getnext($tahap, $get_next);
+
+        $in_next = array ('p_process_id' => $getnext ,
+            't_detail_network_order_id' => $detail_id);
+        $this->verifikator_model->nexttahap($in_next);
+
+        $up_unrec = array ('p_process_id' => $getnext);
+        $this->verifikator_model->updateunrec($up_unrec, $detail_id);
         //------------------------------------------------------------------//
 
         $this->pm_model->insert_koordinasi_provider($tiket_provider, $pic_provider, $detail_id);
@@ -123,7 +169,7 @@ class Networkarchitect extends CI_Controller
 
     function menu_list_permintaan_kp()
     {
-        $data['list_permintaan'] = $this->pm_model->getdatapermintaan();
+        $data['list_permintaan'] = $this->verifikator_model->getdatapermintaankp();
         $this->load->view('includes/header');
         $this->load->view('network_architect/menu_list_permintaan_kp', $data);
         $this->load->view('includes/footer');
@@ -131,7 +177,7 @@ class Networkarchitect extends CI_Controller
 
     function menu_list_permintaan_ob()
     {
-        $data['list_permintaan'] = $this->pm_model->getdatapermintaan();
+        $data['list_permintaan'] = $this->verifikator_model->getdatapermintaanob();
         $this->load->view('includes/header');
         $this->load->view('network_architect/menu_list_permintaan_ob', $data);
         $this->load->view('includes/footer');
@@ -139,7 +185,7 @@ class Networkarchitect extends CI_Controller
 
     function menu_list_permintaan_vp()
     {
-        $data['list_permintaan'] = $this->pm_model->getdatapermintaan();
+        $data['list_permintaan'] = $this->verifikator_model->getdatapermintaanvp();
         $this->load->view('includes/header');
         $this->load->view('network_architect/menu_list_permintaan_vp', $data);
         $this->load->view('includes/footer');

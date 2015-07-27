@@ -163,7 +163,7 @@ document.onkeypress = stopRKey;
         <div class="input-group">
             <span class="input-group-addon input-permintaan" id="basic-addon1">Provinsi</span>
             <div class="dropdown">
-                <select placeholder="Pilih Perusahaan" class="form-control" name="provinsi">    
+                <select placeholder="Pilih Perusahaan" class="form-control" name="prov">    
                     <?php foreach ($provinsi_list as $row) : ?>
                         <option><?php echo $row->provinsi_name ?></option>
                     <?php endforeach?>

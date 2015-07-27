@@ -23,7 +23,7 @@
 <div id="page-wrapper">
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">Koordinasi Provider yang perlu dilakukan</h1>
+        <h1 class="page-header">Verifikasi Permintaan yang perlu dilakukan</h1>
     </div>
     <!-- /.col-lg-12 -->
 </div>

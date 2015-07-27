@@ -110,8 +110,26 @@ class Inputor extends CI_Controller
                 't_detail_network_order_id' => $serv_type_id,
                 'keterangan' => $keterangan,
                 'closed_by' => $user);
-        $tahap_id = $this->inputor_model->inputtahap($in_tahap);
+        $this->inputor_model->inputtahap($in_tahap);
+
+        $in_unrec = array ('p_process_id' => $tahap ,
+                't_detail_network_order_id' => $serv_type_id);
+        $this->inputor_model->inputunrec($in_unrec);
+        //-----------------------------------------------------------------//
+
+        //-----------------------------------------------------------------//
+        $get_next = array ('p_process_id' => $tahap ,
+                    'p_order_type_id' => $proses);
+        $getnext = $this->inputor_model->getnext($tahap, $proses, $get_next);
+
+        $in_next = array ('p_process_id' => $getnext ,
+            't_detail_network_order_id' => $serv_type_id);
+        $this->inputor_model->nexttahap($in_next);
+
+        $up_unrec = array ('p_process_id' => $getnext);
+        $this->inputor_model->updateunrec($up_unrec, $serv_type_id);
         //------------------------------------------------------------------//
+
 
         $lokasi = $this->input->post('lokasi');
         $jenis = $this->input->post('jenis');
@@ -128,10 +146,9 @@ class Inputor extends CI_Controller
         $provider = $this->input->post('provider');
 
         //setting parent table
-        $in_prov = array ('provinsi_name' => $provinsi);
         $in_pic = array ('pic_name' => $pic);
 
-        $this->inputor_model->inputparent($in_prov,$in_pic);
+        $this->inputor_model->inputparent($in_pic);
 
         $provider_id = $this->inputor_model->getproviderid($provider); 
         $provid = $this->inputor_model->getprovinsiid($provinsi);
