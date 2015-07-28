@@ -7,11 +7,10 @@
         <meta name="description" content="">
         <title>DB WAN</title>
         <link href="<?php echo base_url('assets/css/bootstrap.min.css') ?>" rel="stylesheet">
-        <link href="<?php echo base_url('assets/css/font-awesome.min.css') ?>" rel="stylesheet">
-        <link href="<?php echo base_url('assets/css/timeline.css') ?>" rel="stylesheet">
-        <link href="<?php echo base_url('assets/css/morris.css') ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/css/metisMenu.min.css"') ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/css/sb-admin-2.css') ?>" rel="stylesheet">
+        <link href="<?php echo base_url('assets/css/font-awesome.min.css') ?>" rel="stylesheet">
+        <link href="<?php echo base_url('assets/css/morris.css') ?>" rel="stylesheet">
         <script src="<?php echo base_url('assets/js/jquery.min.js') ?>"></script>
         <script src="<?php echo base_url('assets/js/lib/jquery.uploadify.min.js') ?>"></script>
         <script type='text/javascript' >
@@ -53,6 +52,7 @@
     <body>
         <div id="wrapper">
             <!-- Navigation -->
+            
             <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="<?php print_r($this->session->userdata('user_name')) ?>">Welcome, <?php print_r($this->session->userdata('user_name')) ?></a>

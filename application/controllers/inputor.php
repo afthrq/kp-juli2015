@@ -20,16 +20,12 @@ class Inputor extends CI_Controller
         $data['update_list'] = $this->inputor_model->getdataupdate($o_id);
         $data['upserv_list'] = $this->inputor_model->getupdateid();
         $data['lokasiid'] = $this->inputor_model->getlokasiid($o_id); 
-        $this->load->view('includes/header');
         $this->load->view('inputor/update_permintaan',$data);
-        $this->load->view('includes/footer');
     }
 
     public function index()
     {
-        $this->load->view('includes/header');
         $this->load->view('inputor/home');
-        $this->load->view('includes/footer');
     }
 
     public function form_permintaan()
@@ -40,18 +36,14 @@ class Inputor extends CI_Controller
         $data['provinsi_list'] = $this->inputor_model->getdataprovinsi();
         $data['layanan_list'] = $this->inputor_model->getservid();
         $data['perusahaan_list'] = $this->inputor_model->getcompid();
-        $this->load->view('includes/header');
         $this->load->view('inputor/form_permintaan',$data);
-        $this->load->view('includes/footer');
 
     }
 
     function menu_list_permintaan()
     {        
         $data['list_permintaan'] = $this->inputor_model->getdatapermintaan();
-        $this->load->view('includes/header');
         $this->load->view('inputor/menu_list_permintaan', $data);
-        $this->load->view('includes/footer');
     }
 
 

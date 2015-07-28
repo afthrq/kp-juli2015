@@ -89,9 +89,7 @@ class Wananalyst extends CI_Controller
     function menu_list_permintaan_balo()
     {
         $data['list_permintaan'] = $this->wan_analyst_model->getdatapermintaanbalo();
-        $this->load->view('includes/header');
         $this->load->view('wan_analyst/menu_list_permintaan_balo', $data);
-        $this->load->view('includes/footer');
     }
 
     function menu_list_permintaan_srv()
