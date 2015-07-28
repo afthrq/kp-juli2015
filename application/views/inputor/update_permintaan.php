@@ -69,22 +69,7 @@
                         <!-- /.col-lg-12 -->
                     </div>
                     <form method ="POST" action ="<?php echo base_url('inputor/form_update')?>">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="input-group">
-                                <span class="input-group-addon input-permintaan" id="basic-addon1">Tipe Upgrade</span>
-                                <select name="proses" class="form-control">
-                                    <option value="2">Upgrade</option>
-                                    <option value="3">Upgrade (ganti Infra)</option>
-                                    <option value="4">Ugrade Temporer</option>
-                                    <option value="5">Downgrade</option>
-                                    <option value="6">Relokasi</option>
-                                    <option value="7">Dismantle</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
+
                     <?php foreach ($update_list as $row): ?>
                     <div class="row">
                         <div class="col-lg-6">
@@ -155,7 +140,6 @@
                     <?php foreach ($lokasiid as $row): ?>   
                         <input type="hidden" name="site_id" value="<?php echo $row->t_nw_site_id?>">
                     <?php endforeach ?>
-                    <input type="hidden" name="proses" value="2">
                     <br>
                     <div class="row">
                         <div class="col-lg-6">
@@ -186,6 +170,33 @@
                             <div class="input-group">
                                 <span class="input-group-addon input-permintaan" id="basic-addon1">Bandwidth</span>
                                 <input type="text" class="form-control" aria-describedby="basic-addon1" name="update_bw">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="input-group">
+                                <span class="input-group-addon input-permintaan" id="basic-addon1">Tipe Upgrade</span>
+                                <select name="proses" class="form-control">
+                                    <option value="2">Upgrade</option>
+                                    <option value="3">Upgrade (ganti Infra)</option>
+                                    <option value="4">Ugrade Temporer</option>
+                                    <option value="5">Downgrade</option>
+                                    <option value="6">Relokasi</option>
+                                    <option value="7">Dismantle</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="tahap" value="1">
+                    <input type="hidden" name="user" value="<?php echo  $this->session->userdata('user_name')?>">
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="input-group">
+                                <span class="input-group-addon input-permintaan" id="basic-addon1">Keterangan</span>
+                                <textarea class="form-control" name="keterangan" cols="40" rows="5"></textarea>
                             </div>
                         </div>
                     </div>

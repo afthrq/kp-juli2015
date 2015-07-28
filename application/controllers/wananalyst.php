@@ -25,9 +25,10 @@ class Wananalyst extends CI_Controller
     public function implementasi()
     {
         $order_id = $this->input->post('order_id');
+        $data['service_list'] = $this->wan_analyst_model->getdataservice($order_id);
         $data['update_list'] = $this->wan_analyst_model->getdataupdate($order_id);
         //get data service type id disini kasih variable $srv_id
-        /****************
+        /*
         if ($srv_id == 1)
         {
             $this->load->view('includes/header');
@@ -45,18 +46,18 @@ class Wananalyst extends CI_Controller
             $this->load->view('includes/header');
             $this->load->view('wan_analyst/implementasi_rl',$data);
             $this->load->view('includes/footer');
-        }
+        }*/
         else if ($srv_id == 7)
         {
             $this->load->view('includes/header');
             $this->load->view('wan_analyst/implementasi_dm',$data);
             $this->load->view('includes/footer');
         }
-        ****************/
-
+        /*
     	$this->load->view('includes/header');
         $this->load->view('wan_analyst/implementasi_br',$data);
         $this->load->view('includes/footer');
+        */
     }
 
     public function balo()

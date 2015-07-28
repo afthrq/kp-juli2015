@@ -103,24 +103,7 @@ class Inputor extends CI_Controller
                 'keterangan' => $keterangan,
                 'closed_by' => $user);
         $this->inputor_model->inputtahap($in_tahap);
-
-        $in_unrec = array ('p_process_id' => $tahap ,
-                't_detail_network_order_id' => $serv_type_id);
-        $this->inputor_model->inputunrec($in_unrec);
-        //-----------------------------------------------------------------//
-
-        //-----------------------------------------------------------------//
-        $get_next = array ('p_process_id' => $tahap ,
-                    'p_order_type_id' => $proses);
-        $getnext = $this->inputor_model->getnext($tahap, $proses, $get_next);
-
-        $in_next = array ('p_process_id' => $getnext ,
-            't_detail_network_order_id' => $serv_type_id);
-        $this->inputor_model->nexttahap($in_next);
-
-        $up_unrec = array ('p_process_id' => $getnext);
-        $this->inputor_model->updateunrec($up_unrec, $serv_type_id);
-        //------------------------------------------------------------------//
+        //-------------------------------------------------------------------//
 
 
         $lokasi = $this->input->post('lokasi');
@@ -163,6 +146,25 @@ class Inputor extends CI_Controller
         $this->inputor_model->inputlvl2($in_site);
         $siteid = $this->inputor_model->getsiteid($lokasi);
 
+        //-----------------------------------------------------------------//
+        $in_unrec = array ('p_process_id' => $tahap ,
+                't_detail_network_order_id' => $serv_type_id ,
+                't_nw_site_id' => $siteid);
+        $this->inputor_model->inputunrec($in_unrec);
+        //-----------------------------------------------------------------//
+
+        //-----------------------------------------------------------------//
+        $get_next = array ('p_process_id' => $tahap ,
+                    'p_order_type_id' => $proses);
+        $getnext = $this->inputor_model->getnext($tahap, $proses, $get_next);
+
+        $in_next = array ('p_process_id' => $getnext ,
+            't_detail_network_order_id' => $serv_type_id);
+        $this->inputor_model->nexttahap($in_next);
+
+        $up_unrec = array ('p_process_id' => $getnext);
+        $this->inputor_model->updateunrec($up_unrec, $serv_type_id);
+        //------------------------------------------------------------------//
 
         //setting child table level 3
         $in_order = array ('t_nw_site_id' => $siteid,
@@ -201,15 +203,46 @@ class Inputor extends CI_Controller
     {
         //------------------------------------------------------------------//
         $proses = $this->input->post('proses');
+
         $in_proses = array ('p_order_type_id' => $proses);
+
         $serv_type_id = $this->inputor_model->inputproses($in_proses);
+
         //------------------------------------------------------------------//
+
+        //------------------------------------------------------------------//
+        $tahap = $this->input->post('tahap');
+
+        $user = $this->input->post('user');
+        $keterangan = $this->input->post('keterangan');
+        $in_tahap = array ('p_process_id' => $tahap ,
+                't_detail_network_order_id' => $serv_type_id,
+                'keterangan' => $keterangan,
+                'closed_by' => $user);
+        $this->inputor_model->inputtahap($in_tahap);
+        //----------------------------------------------------------------//
 
         $site_id = $this->input->post('site_id');
         $serv_up = $_POST['up_layanan'];
         $pack_up = $this->input->post('update_paket');
         $bw_up = $this->input->post('update_bw');
+        //-----------------------------------------------------------------//
+        $in_unrec = array ('p_process_id' => $tahap ,
+                't_detail_network_order_id' => $serv_type_id ,
+                't_nw_site_id' => $site_id);
+        $this->inputor_model->inputunrec($in_unrec);
 
+        $get_next = array ('p_process_id' => $tahap ,
+                    'p_order_type_id' => $proses);
+        $getnext = $this->inputor_model->getnext($tahap, $proses, $get_next);
+
+        $in_next = array ('p_process_id' => $getnext ,
+            't_detail_network_order_id' => $serv_type_id);
+        $this->inputor_model->nexttahap($in_next);
+
+        $up_unrec = array ('p_process_id' => $getnext);
+        $this->inputor_model->updateunrec($up_unrec, $serv_type_id);
+        //------------------------------------------------------------------//
 
         $cekpackid = array ('p_service_id' => $serv_up ,
                     'package' => $pack_up);
