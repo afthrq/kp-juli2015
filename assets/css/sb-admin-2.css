@@ -453,11 +453,43 @@ html{
 
 @font-face{
     font-family: Roboto;
-     src: url('../fonts/Roboto-Light.ttf');
+    src: url('../fonts/Roboto-Light.ttf');
 }
+
+@font-face{
+    font-family: Lato;
+    src: url('../fonts/Lato-Regular.ttf');
+}
+
+@font-face{
+    font-family: Raleway;
+    src: url('../fonts/Raleway-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face{
+    font-family: Raleway;
+    src: url('../fonts/Raleway-SemiBold.ttf');
+    font-weight: bold;
+    font-style: normal;
+
+}
+
+
 
 .sidebar-nav{
     font-family: roboto;
+}
+
+.page-header{
+    font-family: raleway;
+    font-weight: bold;
+}
+
+.navbar-brand{
+    font-family: Lato;
 }
 
 .sidebar ul li a.active {
@@ -467,3 +499,6 @@ html{
 .sidebar ul li a.sidebar-active {
     background-color: #eee;
 }
+
+
+
