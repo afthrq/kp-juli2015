@@ -100,16 +100,6 @@
                     <br>
 
                     <div class="row">
-                        <div class="col-lg-6">
-                            <div class="input-group">
-                                <span class="input-group-addon input-permintaan" id="basic-addon1">Lokasi</span>
-                                <input type="text" class="form-control" aria-describedby="basic-addon1" name="lokasi">
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-
-                    <div class="row">
                         <div class=" col-lg-6">
                             <div class="input-group">
                                 <span class="input-group-addon input-permintaan" id="basic-addon1">Jenis Lokasi</span>
@@ -124,6 +114,18 @@
                         </div>
                     </div>
                     <br>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="input-group">
+                                <span class="input-group-addon input-permintaan" id="basic-addon1">Lokasi</span>
+                                <input type="text" class="form-control" aria-describedby="basic-addon1" name="lokasi">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+
+                    
 
                     <div class="row">
                         <div class="col-lg-6">

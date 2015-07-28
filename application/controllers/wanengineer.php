@@ -15,9 +15,7 @@ class Wanengineer extends CI_Controller
 
 	function index()
 	{
-		$this->load->view('includes/header');
     	$this->load->view('wan_engineer/home');
-    	$this->load->view('includes/footer');
 	}
 
     function submit_upload_wan_engineer()
@@ -64,18 +62,14 @@ class Wanengineer extends CI_Controller
     function menu_list_permintaan()
     {
         $data['list_permintaan'] = $this->wan_engineer_model->getdatapermintaan();        
-        $this->load->view('includes/header');
         $this->load->view('wan_engineer/menu_list_permintaan', $data);
-        $this->load->view('includes/footer');
     }
 
     function uat()
     {
         $o_id = $this->input->post('order_id');
         $data['lokasiid'] = $this->wan_engineer_model->getlokasiid($o_id);
-        $this->load->view('includes/header');
         $this->load->view('wan_engineer/uat',$data);
-        $this->load->view('includes/footer');
     }    
 
 }

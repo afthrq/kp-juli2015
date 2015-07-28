@@ -2,13 +2,10 @@
   <div class="sidebar-nav navbar-collapse">
     <ul class="nav" id="side-menu">
       <li>
-        <a href="<?php echo base_url() ?>verifikator"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+        <a href="<?php echo base_url() ?>wanengineer"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
       </li>
       <li>
-        <a href="<?php echo base_url() ?>verifikator/menu_list_permintaan"><i class="fa fa-edit fa-fw"></i> Verifikasi Permintaan</a>
-      </li>
-      <li>
-        <a href="<?php echo base_url() ?>verifikator/menu_list_permintaan_vb"><i class="fa fa-edit fa-fw"></i> Verifikasi Balo</a>
+        <a href="<?php echo base_url() ?>wanengineer/menu_list_permintaan"><i class="fa fa-edit fa-fw"></i> UAT</a>
       </li>
     </ul>
   </div>

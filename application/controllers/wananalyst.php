@@ -31,32 +31,22 @@ class Wananalyst extends CI_Controller
         /*
         if ($srv_id == 1)
         {
-            $this->load->view('includes/header');
             $this->load->view('wan_analyst/implementasi_br',$data);
-            $this->load->view('includes/footer');
         }
         else if ($srv_id == 2 || $srv_id == 3 || $srv_id == 4 || $srv_id == 5)
         {
-            $this->load->view('includes/header');
             $this->load->view('wan_analyst/implementasi_upd',$data);
-            $this->load->view('includes/footer');
         }
         else if ($srv_id == 6)
         {
-            $this->load->view('includes/header');
             $this->load->view('wan_analyst/implementasi_rl',$data);
-            $this->load->view('includes/footer');
         }*/
         else if ($srv_id == 7)
         {
-            $this->load->view('includes/header');
             $this->load->view('wan_analyst/implementasi_dm',$data);
-            $this->load->view('includes/footer');
         }
         /*
-    	$this->load->view('includes/header');
         $this->load->view('wan_analyst/implementasi_br',$data);
-        $this->load->view('includes/footer');
         */
     }
 
@@ -65,26 +55,20 @@ class Wananalyst extends CI_Controller
         $o_id = $this->input->post('order_id');
         $data['balo_list'] = $this->wan_analyst_model->getdataupdate($o_id);
         $data['lokasiid'] = $this->wan_analyst_model->getlokasiid($o_id); 
-        $this->load->view('includes/header');
         $this->load->view('wan_analyst/balo',$data);
-        $this->load->view('includes/footer');
     }
 
     public function survey()
     {
         $o_id = $this->input->post('order_id');
         $data['lokasiid'] = $this->wan_analyst_model->getlokasiid($o_id); 
-        $this->load->view('includes/header');
         $this->load->view('wan_analyst/survey',$data);
-        $this->load->view('includes/footer');
     }
 
     function menu_list_permintaan_imp()
     {
         $data['list_permintaan'] = $this->wan_analyst_model->getdatapermintaanimp();
-        $this->load->view('includes/header');
         $this->load->view('wan_analyst/menu_list_permintaan_imp', $data);
-        $this->load->view('includes/footer');
     }
 
     function menu_list_permintaan_balo()
@@ -96,9 +80,7 @@ class Wananalyst extends CI_Controller
     function menu_list_permintaan_srv()
     {
         $data['list_permintaan'] = $this->wan_analyst_model->getdatapermintaansrv();
-        $this->load->view('includes/header');
         $this->load->view('wan_analyst/menu_list_permintaan_srv', $data);
-        $this->load->view('includes/footer');
     }
 
     public function insert_data_balo ()

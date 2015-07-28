@@ -179,9 +179,7 @@ class Networkarchitect extends CI_Controller
     function menu_list_permintaan_vp()
     {
         $data['list_permintaan'] = $this->verifikator_model->getdatapermintaanvp();
-        $this->load->view('includes/header');
         $this->load->view('network_architect/menu_list_permintaan_vp', $data);
-        $this->load->view('includes/footer');
     }
 
     function verifikasi_permintaan()
@@ -189,27 +187,21 @@ class Networkarchitect extends CI_Controller
         $o_id = $this->input->post('order_id');
         $data['lokasiid'] = $this->verifikator_model->getlokasiid($o_id);
         $data['data_permintaan'] = $this->verifikator_model->get_data_permintaan($o_id);  
-        $this->load->view('includes/header');
         $this->load->view('network_architect/verifikasi_permintaan', $data);
-        $this->load->view('includes/footer');
     }   
 
     function koordinasi_provider()
     {
         $o_id = $this->input->post('order_id');
         $data['lokasiid'] = $this->pm_model->getlokasiid($o_id);
-        $this->load->view('includes/header');
         $this->load->view('network_architect/koordinasi_provider',$data);
-        $this->load->view('includes/footer');
     }
 
     function online_billing()
     {
         $o_id = $this->input->post('order_id');
         $data['lokasiid'] = $this->pm_model->getlokasiid($o_id);
-    	$this->load->view('includes/header');
     	$this->load->view('network_architect/online_billing',$data);
-    	$this->load->view('includes/footer');
     }
 
 }

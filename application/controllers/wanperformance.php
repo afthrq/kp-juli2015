@@ -15,26 +15,20 @@ class Wanperformance extends CI_Controller
 
 	function index()
 	{
-		$this->load->view('includes/header');
     	$this->load->view('wan_performance_analyst/home');
-    	$this->load->view('includes/footer');
 	}
 
     function menu_list_permintaan()
     {
         $data['list_permintaan'] = $this->wan_performance_model->getdatapermintaan();        
-        $this->load->view('includes/header');
         $this->load->view('wan_performance_analyst/menu_list_permintaan', $data);
-        $this->load->view('includes/footer');
     }
 
     function monitoring()
     {        
         $o_id = $this->input->post('order_id');
         $data['lokasiid'] = $this->wan_performance_model->get_id($o_id);
-        $this->load->view('includes/header');
         $this->load->view('wan_performance_analyst/monitoring', $data);
-        $this->load->view('includes/footer');
     }
 
      public function insert_monitoring ()
