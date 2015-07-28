@@ -87,6 +87,7 @@
                         <tbody>
                             <?php $count = 0; foreach ($list_permintaan as $row) : $count++;?>
                                 <form method="POST" action="<?php echo base_url('wananalyst/implementasi')?>">
+                                <input type="hidden" name="service_id" value="<?php echo $row->p_order_type_id ?>">
                                 <tr>
                                   <td><?php echo $count?></td>
                                   <td><input type="hidden" name="order_id" value="<?php echo $row->site_name ?>"><input type="submit" value="<?php echo $row->site_name ?>" class="btn btn-default btn-table"></td>
