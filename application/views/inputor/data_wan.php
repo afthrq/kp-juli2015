@@ -17,7 +17,7 @@
             <!-- Navigation -->
             <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="<?php print_r($this->session->userdata('user_name')) ?>">Welcome, <?php print_r($this->session->userdata('user_name')) ?>!</a>
+                    <a class="navbar-brand" href="<?php echo base_url($this->session->userdata('role')); ?>">Welcome, <?php print_r($this->session->userdata('user_name')) ?>!</a>
                 </div>
                 <!-- /.navbar-header -->
                 <ul class="nav navbar-top-links navbar-right">
@@ -51,7 +51,7 @@
                                         <a href="<?php echo base_url() ?>inputor/form_permintaan">Permintaan Baru</a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo base_url() ?>inputor/menu_list_permintaan" class="sidebar-active">Update Permintaan</a>
+                                        <a href="<?php echo base_url() ?>inputor/menu_list_permintaan">Update Permintaan</a>
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
