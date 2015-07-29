@@ -28,6 +28,12 @@ class Inputor extends CI_Controller
         $this->load->view('inputor/home');
     }
 
+    function data_wan()
+    {        
+        $data['list_permintaan'] = $this->inputor_model->getdatapermintaan();
+        $this->load->view('inputor/data_wan', $data);
+    }
+
     public function form_permintaan()
     {        
 

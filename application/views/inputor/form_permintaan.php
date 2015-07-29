@@ -40,16 +40,19 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
-                                <a href="<?php echo base_url() ?>inputor"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                                <a href="<?php echo base_url() ?>inputor"><i class="fa fa-dashboard fa-fw"></i> Home</a>
                             </li>   
+                            <li>
+                                <a href="<?php echo base_url() ?>inputor/data_wan"><i class="fa fa-table fa-fw"></i> Data Jaringan WAN</a>
+                            </li>
                             <li>
                                 <a href="#"><i class="fa fa-edit fa-fw"></i> Form Permintaan<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="<?php echo base_url() ?>inputor/form_permintaan">Permintaan Baru</a>
+                                        <a href="<?php echo base_url() ?>inputor/form_permintaan" class="sidebar-active">Permintaan Baru</a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo base_url() ?>inputor/menu_list_permintaan" class="sidebar-active">Update Permintaan</a>
+                                        <a href="<?php echo base_url() ?>inputor/menu_list_permintaan">Update Permintaan</a>
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
@@ -235,7 +238,7 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="input-group">
-                                <span class="input-group-addon input-permintaan" id="basic-addon1">Bandwidth</span>
+                                <span class="input-group-addon input-permintaan" id="basic-addon1">Bandwidth (Kb)</span>
                                 <input type="text" class="form-control" aria-describedby="basic-addon1" name="bw">
                             </div>
                         </div>
@@ -274,43 +277,6 @@
         <!-- Custom Theme JavaScript -->
         <script src="<?php echo base_url('assets/js/sb-admin-2.js')?>"></script>
 
-        <script src="<?php echo base_url('assets/js/lib/jquery.uploadify.min.js') ?>"></script>
-        <script type='text/javascript' >
-        $(function() {
-            $('#upload_btn').uploadify({
-                'debug'   : false,
-                'swf'   : '<?php echo base_url() ?>assets/js/lib/uploadify.swf',
-                'uploader'  : '<?php echo base_url('upload/uploadify')?>',
-                'cancelImage' : '<?php echo base_url() ?>assets/js/lib/uploadify-cancel.png',
-                'queueID'  : 'file-queue',
-                'buttonClass'  : 'btn btn-default up-btn',
-                'buttonText' : "Upload Dokumen",
-                'multi'   : true,
-                'auto'   : true,
-                
-                'fileExt'   : '*.jpg;*.gif;*.png;*.txt;*.pdf;*.doc;*.docx',   // any extension you want to allow
-                'fileDesc'  : 'Upload Files (.JPG, .GIF, .PNG, .TXT, .PDF, .DOC, .DOCX)',
-                'method'  : 'post',
-                'fileObjName' : 'userfile',
-                'queueSizeLimit': 40,
-                'simUploadLimit': 2,
-                'sizeLimit'  : 10240000,
-                'onUploadSuccess' : function(file, data, response) {
-                var json = jQuery.parseJSON(data);
-                alert('The file ' + file.name + ' was successfully uploaded as ' + ':' + json.file_name);
-                $("#path").attr('value',json.file_name);
-                },
-                /*'onUploadComplete' : function(file) {
-                alert('The file ' + file.name + ' finished processing.');
-                },*/
-                'onQueueFull': function(event, queueSizeLimit) {
-                alert("Please don't put anymore files in me! You can upload " + queueSizeLimit + " files at once");
-                return false;
-                },
-            });
-        });
-        </script>
-
         <script type="text/javascript">  
             $(document).ready(function() {  
                 $("#up_layanan").change(function(){  
@@ -326,11 +292,13 @@
                 });  
             });  
         </script>
+
         <script src="<?php echo base_url('assets/js/jquery-1.4.4.min.js') ?>"></script>
 
         <script type="text/javascript">
             var oldJquery = $.noConflict(true);
         </script>
+
         <script src="<?php echo base_url('assets/js/jquery-ui.min.js') ?>"></script>
         <script type="text/javascript">
             $(document).ready(function () {

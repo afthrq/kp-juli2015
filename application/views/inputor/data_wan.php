@@ -42,8 +42,8 @@
                                 <a href="<?php echo base_url() ?>inputor"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                             </li>
                             <li>
-                                <a href="<?php echo base_url() ?>inputor/data_wan"><i class="fa fa-table fa-fw"></i> Data Jaringan WAN</a>
-                            </li>   
+                                <a href="<?php echo base_url() ?>inputor/data_wan" class="sidebar-active"><i class="fa fa-table fa-fw"></i> Data Jaringan WAN</a>
+                            </li>       
                             <li>
                                 <a href="#"><i class="fa fa-edit fa-fw"></i> Form Permintaan<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
@@ -67,7 +67,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header">Lokasi yang ingin dilakuakan perubahan jaringan</h1>
+                            <h1 class="page-header">Data Jaringan WAN</h1>
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
@@ -75,7 +75,7 @@
                         <div class="col-lg-8">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    List Permintaan
+                                    Jaringan Wan
                                 </div>
                                 <!-- /.panel-heading -->
                                 <div class="panel-body">
@@ -86,21 +86,21 @@
                                                     <th>#</th>
                                                     <th>Lokasi</th>
                                                     <th>Jenis Lokasi</th>
-                                                    <th>Layanan</th>
+                                                    <th>Alamat</th>
+                                                    <th>IP WAN</th>
                                                     <th>Bandwidth</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php $count = 0; foreach ($list_permintaan as $row) : $count++;?>
-                                                    <form method="POST" action="<?php echo base_url('inputor/update')?>">
                                                     <tr>
                                                       <td><?php echo $count?></td>
-                                                      <td><input type="hidden" name="order_id" value="<?php echo $row->site_name ?>"><input type="submit" value="<?php echo $row->site_name ?>" class="btn btn-default btn-table"></td>
+                                                      <td><?php echo $row->site_name ?></td>
                                                       <td><?php echo $row->type_name?></td>
-                                                      <td><?php echo $row->service_name?> | <?php echo $row->package?></td>
-                                                      <td><?php echo $row->bw ?></td>
+                                                      <td><?php echo $row->address ?></td>
+                                                      <td><?php echo $row->ip_wan?></td>
+                                                      <td><?php echo $row->bw ?> Kb</td>
                                                     </tr>
-                                                    </form>
                                                 <?php endforeach ?>
                                             </tbody>
                                         </table>
