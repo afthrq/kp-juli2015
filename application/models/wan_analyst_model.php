@@ -87,6 +87,27 @@ class Wan_analyst_model extends CI_Model
     	return $query->result();
 	}
 
+	public function getdatabaru($o_id)
+  	{
+  		$this->db->select('t_nw_site.site_name');
+		$this->db->where('t_nw_site.site_name',$o_id);
+		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
+		$this->db->where('t_network_order.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
+		$this->db->where('t_nw_site.t_nw_site_id = t_network_order.t_nw_site_id');
+		$this->db->where('p_site_type.p_site_type_id = t_nw_site.p_site_type_id');
+		$this->db->where('p_nw_service.p_nw_service_id = t_nw_service.p_nw_service_id');
+		$this->db->where('t_nw_service.t_network_order_id = t_network_order.t_network_order_id');
+		$this->db->where('t_network_order.t_nw_site_id = t_nw_site.t_nw_site_id');
+		$this->db->where('p_service.p_service_id = p_nw_service.p_service_id');
+		$this->db->where('t_pic.t_pic_id = t_nw_site_pic.t_pic_id');
+		$this->db->where('t_nw_site_pic.t_nw_site_id = t_nw_site.t_nw_site_id');
+		$this->db->where('company.company_id = p_region.company_id');
+		$this->db->where('t_nw_site.p_region_id = p_region.p_region_id');
+		$this->db->where('provinsi.provinsi_id = t_nw_site.provinsi_id');
+		$query = $this->db->get('p_lastmile, t_nw_service,t_nw_site,t_network_order,p_site_type,p_nw_service,p_service,company,p_region,t_pic,provinsi,t_nw_site_pic,t_unrec_process,t_detail_network_order');
+    	return $query->result();
+  	}
+
 	public function getdataupdate($o_id)
   	{
   		$this->db->select('t_nw_site.site_name');
@@ -127,7 +148,7 @@ class Wan_analyst_model extends CI_Model
 
 	function getlastmileid($lastmile){
 		$this->db->distinct();
-		$this->db->where('name', $lastmile);
+		$this->db->where('p_lastmile.name', $lastmile);
 		$query = $this->db->get("p_lastmile"); 
 		return $query->row()->p_lastmile_id;	
 	}
@@ -186,23 +207,12 @@ class Wan_analyst_model extends CI_Model
 		$this->db->insert('t_process',$in_tahap);		
 	}
 
-	public function getorderupid ($site_id)
-  	{
-		$this->db->where('t_nw_site_id',$site_id);
-		$query = $this->db->get("t_network_order");
-		return $query->row()->t_network_order_id;
-  	}
 
-  	public function getdetailupid ($order_up_id)
-  	{
-		$this->db->where('t_network_order_id',$order_up_id);
-		$query = $this->db->get("t_network_order");
-		return $query->row()->t_detail_network_order_id;
-  	}
 
   	//
-  	public function inputdatabalo($data)
+  	public function inputdatabalo($data, $detail_id)
   	{
+  		$this->db->where('t_detail_network_order.t_detail_network_order_id', $detail_id);
   		$this->db->update('t_detail_network_order', $data);
   	}
 
@@ -239,14 +249,23 @@ class Wan_analyst_model extends CI_Model
 		$this->db->set('t_process.valid_to','NOW()',FALSE);		
 		$this->db->update('t_process',$in_detail_id);
 	}
-	function getworkid($detail_id)
+
+	function getworkid($detail_id,$tahap)
 	{
 		$this->db->where('t_process.t_detail_network_order_id',$detail_id);
+		$this->db->where('t_process.p_process_id',$tahap);
 		$this->db->select('t_process.t_work_id');
 		$query = $this->db->get('t_process');
 
 		return $query->row()->t_work_id;
 	}
+
+	public function getunrecupid ($site_id)
+  	{
+		$this->db->where('t_nw_site_id',$site_id);
+		$query = $this->db->get("t_unrec_process");
+		return $query->row()->t_detail_network_order_id;
+  	}
 
 	function inputunrec($in_unrec, $detail_id)
 	{
@@ -254,16 +273,19 @@ class Wan_analyst_model extends CI_Model
 		$this->db->update('t_unrec_process',$in_unrec);			
 	}
 	
-	function getnext ($tahap, $get_next)
+	function getnext ($tahap, $detail_id)
 	{
 		$this->db->select ('workflow.next_process_id');
 		$this->db->where ('t_unrec_process.p_process_id',$tahap);
+		$this->db->where('t_detail_network_order.t_detail_network_order_id',$detail_id);
 		$this->db->where('t_unrec_process.p_process_id = p_process.p_process_id');
 		$this->db->where('p_process.p_process_id = workflow.p_process_id');
+		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
+		$this->db->where('t_network_order.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
 		//$this->db->where('t_detail_network_order.p_order_type_id',$proses);
 		$this->db->where('t_detail_network_order.p_order_type_id = p_order_type.p_order_type_id');
 		$this->db->where('p_order_type.p_order_type_id = workflow.p_order_type_id');
-		$query = $this->db->get ('workflow, t_unrec_process, p_process, t_detail_network_order, p_order_type');
+		$query = $this->db->get ('workflow, t_unrec_process, p_process, t_detail_network_order, p_order_type,t_network_order');
 		return $query->row()->next_process_id;
 	}
 
@@ -277,5 +299,38 @@ class Wan_analyst_model extends CI_Model
 	{
 		$this->db->where('t_unrec_process.t_detail_network_order_id',$detail_id);	
 		$this->db->update('t_unrec_process',$up_unrec);
+	}
+
+	function getdataupinstalasi($site_id)
+	{
+		$this->db->select('t_network.ip_wan');
+		$this->db->select('t_network.netmask_wan');
+		$this->db->select('t_network.ip_lan');
+		$this->db->select('t_network.netmask_lan');
+		$this->db->select('t_network.ip_loop');
+		$this->db->select('t_network.asn');
+		$this->db->select('t_network.hostname');
+		$this->db->select('t_network.sla');
+		$this->db->select('t_network.p_lastmile_id');
+		$this->db->where('t_network.t_nw_site_id',$site_id);
+		$this->db->where('t_nw_site.t_nw_site_id = t_network.t_nw_site_id');
+		$this->db->where('t_network_order.t_nw_site_id = t_nw_site.t_nw_site_id');
+		$this->db->where('t_unrec_process.t_nw_site_id = t_nw_site.t_nw_site_id');
+		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
+		$this->db->where('t_detail_network_order.t_detail_network_order_id = t_network_order.t_detail_network_order_id');
+		$query = $this->db->get('t_network, t_nw_site, t_network_order, t_unrec_process, t_detail_network_order');
+		return $query->row_array();
+	}
+
+	function updateorder ($copynetwork, $detail_id)
+	{
+		$this->db->where('t_network_order.t_detail_network_order_id',$detail_id);	
+		$this->db->update('t_network_order',$copynetwork);		
+	}
+
+	function updatesite ($in_traffic, $site_id)
+	{
+		$this->db->where('t_nw_site.t_nw_site_id',$site_id);	
+		$this->db->update('t_nw_site',$in_traffic);		
 	}
 }

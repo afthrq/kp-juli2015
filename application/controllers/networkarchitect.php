@@ -16,9 +16,7 @@ class Networkarchitect extends CI_Controller
 
 	function index()
 	{
-		$this->load->view('includes/header');
     	$this->load->view('network_architect/home');
-    	$this->load->view('includes/footer');
 	}
 
     function submit_verifikasi_permintaan()
@@ -40,13 +38,13 @@ class Networkarchitect extends CI_Controller
                 'closed_by' => $user);
         $this->verifikator_model->updateprocessvp($in_detail_id,$detail_id);
 
-        $work_id = $this->verifikator_model->getworkid($detail_id);
+        $work_id = $this->verifikator_model->getworkid($detail_id,$tahap);
 
         $in_unrec = array ('p_process_id' => $tahap);
         $this->verifikator_model->inputunrec($in_unrec, $site_id);
 
         $get_next = array ('p_process_id' => $tahap);
-        $getnext = $this->verifikator_model->getnext($tahap, $get_next);
+        $getnext = $this->verifikator_model->getnext($tahap, $detail_id);
 
         $in_next = array ('p_process_id' => $getnext ,
             't_detail_network_order_id' => $detail_id);
@@ -71,15 +69,15 @@ class Networkarchitect extends CI_Controller
         $detail_id = $this->verifikator_model->getunrecupid($site_id);
         $in_detail_id = array ('keterangan' => $keterangan,
                 'closed_by' => $user);
-        $this->verifikator_model->updateprocessvp($in_detail_id,$detail_id);
+        $this->verifikator_model->updateprocessob($in_detail_id,$detail_id);
 
-        $work_id = $this->verifikator_model->getworkid($detail_id);
+        $work_id = $this->verifikator_model->getworkid($detail_id, $tahap);
 
         $in_unrec = array ('p_process_id' => $tahap);
         $this->verifikator_model->inputunrec($in_unrec, $site_id);
 
         $get_next = array ('p_process_id' => $tahap);
-        $getnext = $this->verifikator_model->getnext($tahap, $get_next);
+        $getnext = $this->verifikator_model->getnext($tahap, $detail_id);
 
         $in_next = array ('p_process_id' => $getnext ,
             't_detail_network_order_id' => $detail_id);
@@ -89,33 +87,56 @@ class Networkarchitect extends CI_Controller
         $this->verifikator_model->updateunrec($up_unrec, $detail_id);
         //------------------------------------------------------------------//
 
+        $service_id = $this->input->post('service_id');
+        if($service_id == 1)
+        {    
+            $input = $this->pm_model->getdataorder($site_id);
+            $arrayorder = json_decode(json_encode($input),true);
+            $nwid = $this->pm_model->copydata($arrayorder);
 
-        $input = $this->pm_model->getdataorder($site_id);
-        $arrayorder = json_decode(json_encode($input),true);
-        $nwid = $this->pm_model->copydata($arrayorder);
+            $order_id = $this->pm_model->getorderupid($site_id);
+            $link = $this->pm_model->getarraylink($site_id);
+            $router = $this->pm_model->getarrayrouter($site_id);
+            $module = $this->pm_model->getarraymodule($site_id);
 
-        $order_id = $this->pm_model->getorderupid($site_id);
-        $link = $this->pm_model->getarraylink($order_id);
-        $router = $this->pm_model->getarrayrouter($order_id);
-        $module = $this->pm_model->getarraymodule($order_id);
+            $arraylink = array ('t_network_id' => $nwid ,
+                        'p_nw_service_id' => $link);
+            $arrayrouter = array ('t_network_id' => $nwid ,
+                        'p_nw_service_id' => $router);
 
-        $arraylink = array ('t_network_id' => $nwid ,
-                    'p_nw_service_id' => $link);
-        $arrayrouter = array ('t_network_id' => $nwid ,
-                    'p_nw_service_id' => $router);
+            $this->pm_model->copyservice($arraylink, $arrayrouter);
 
-        $this->pm_model->copyservice($arraylink, $arrayrouter);
+            if($module)
+            { 
+                $arraymodule = array ('t_network_id' => $nwid ,
+                            'p_nw_service_id' => $module);
 
-        if($module)
-        { 
-            $arraymodule = array ('t_network_id' => $nwid ,
-                        'p_nw_service_id' => $module);
+                $this->pm_model->copymodule($arraymodule);
+            } 
+        }
 
-            $this->pm_model->copymodule($arraymodule);
-        } 
+        else if ($service_id == 2 || $service_id == 3 || $service_id == 4 || $service_id == 5 || $service_id == 6)
+        {
+            $input = $this->pm_model->getdataorderup($site_id);
+            $nwid = $this->pm_model->getnetworkid($site_id);
+            $arrayorder = json_decode(json_encode($input),true);
+
+            $this->pm_model->copydataup($arrayorder,$nwid);
+
+            $order_id = $this->pm_model->getorderupid($site_id);
+            $link = $this->pm_model->getarraylink($site_id);
+
+            $arraylink = array ('p_nw_service_id' => $link);
+
+            $this->pm_model->copyserviceup($arraylink, $nwid); 
+        }
+
+        else if($service_id == 7)
+        {     
+            $this->pm_model->dismantle($site_id);
+        }
 
         $this->pm_model->dropunrecdata($detail_id);
-
         redirect('networkarchitect','refresh');
     }
 
@@ -137,15 +158,15 @@ class Networkarchitect extends CI_Controller
         $detail_id = $this->verifikator_model->getunrecupid($site_id);
         $in_detail_id = array ('keterangan' => $keterangan,
                 'closed_by' => $user);
-        $this->verifikator_model->updateprocessvp($in_detail_id,$detail_id);
+        $this->verifikator_model->updateprocesskp($in_detail_id,$detail_id);
 
-        $work_id = $this->verifikator_model->getworkid($detail_id);
+        $work_id = $this->verifikator_model->getworkid($detail_id,$tahap);
 
         $in_unrec = array ('p_process_id' => $tahap);
         $this->verifikator_model->inputunrec($in_unrec, $site_id);
 
         $get_next = array ('p_process_id' => $tahap);
-        $getnext = $this->verifikator_model->getnext($tahap, $get_next);
+        $getnext = $this->verifikator_model->getnext($tahap, $detail_id);
 
         $in_next = array ('p_process_id' => $getnext ,
             't_detail_network_order_id' => $detail_id);
@@ -193,14 +214,14 @@ class Networkarchitect extends CI_Controller
     function koordinasi_provider()
     {
         $o_id = $this->input->post('order_id');
-        $data['lokasiid'] = $this->pm_model->getlokasiid($o_id);
+        $data['lokasiid'] = $this->verifikator_model->getlokasiid($o_id);
         $this->load->view('network_architect/koordinasi_provider',$data);
     }
 
     function online_billing()
     {
         $o_id = $this->input->post('order_id');
-        $data['lokasiid'] = $this->pm_model->getlokasiid($o_id);
+        $data['sitenserviceid'] = $this->pm_model->getsitenserviceid($o_id);
     	$this->load->view('network_architect/online_billing',$data);
     }
 

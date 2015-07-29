@@ -105,8 +105,9 @@
                     <div class="row">
                         <form method="POST" action="<?php echo base_url('networkarchitect/submit_online_billing')?>">
                         <input type="hidden" name="user" value="<?php echo  $this->session->userdata('user_name')?>"></input>
-                        <?php foreach ($lokasiid as $row): ?>   
+                        <?php foreach ($sitenserviceid as $row): ?>   
                             <input type="hidden" name="site_id" value="<?php echo $row->t_nw_site_id?>">
+                            <input type="hidden" name="service_id" value="<?php echo $row->p_order_type_id?>">
                         <?php endforeach ?>
                         <input type="hidden" name="tahap" value="9"></input>
                             <br>

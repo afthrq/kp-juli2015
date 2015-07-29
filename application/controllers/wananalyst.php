@@ -17,34 +17,35 @@ class Wananalyst extends CI_Controller
 
 	public function index()
 	{
-		$this->load->view('includes/header');
     	$this->load->view('wan_analyst/home');
-    	$this->load->view('includes/footer');
 	}
 
     public function implementasi()
     {
         $order_id = $this->input->post('order_id');
         $service_id = $this->input->post('service_id');
-        $data['update_list'] = $this->wan_analyst_model->getdataupdate($order_id);
+
 
         //get data service type id disini kasih variable $srv_id
-        /*
-        if ($srv_id == 1)
+        
+        if ($service_id == 1)
         {
+        $data['update_list'] = $this->wan_analyst_model->getdatabaru($order_id);
             $this->load->view('wan_analyst/implementasi_br',$data);
         }
-        else if ($srv_id == 2 || $srv_id == 3 || $srv_id == 4 || $srv_id == 5)
+        else if ($service_id == 2 || $service_id == 3 || $service_id == 4 || $service_id == 5)
         {
+            $data['update_list'] = $this->wan_analyst_model->getdataupdate($order_id);
             $this->load->view('wan_analyst/implementasi_upd',$data);
         }
-        else if ($srv_id == 6)
+        else if ($service_id == 6)
         {
+            $data['update_list'] = $this->wan_analyst_model->getdataupdate($order_id);
             $this->load->view('wan_analyst/implementasi_rl',$data);
-        }*/
-        if ($service_id== 7)
+        }
+        else if ($service_id== 7)
         {
-            //$data['imp_list'] = $this->wan_analyst_model->getdatadm($order_id);
+            $data['update_list'] = $this->wan_analyst_model->getdataupdate($order_id);
             $this->load->view('wan_analyst/implementasi_dm',$data);
         }
         /*
@@ -96,21 +97,18 @@ class Wananalyst extends CI_Controller
         $tahap = $this->input->post('tahap');
         $user = $this->input->post('user');
         $keterangan = $this->input->post('keterangan');
-        $order_up_id = $this->wan_analyst_model->getorderupid($site_id);
-        $detail_id = $this->wan_analyst_model->getdetailupid($order_up_id);
+        $detail_id = $this->wan_analyst_model->getunrecupid($site_id);
         $in_detail_id = array ('keterangan' => $keterangan,
                 'closed_by' => $user);
         $this->wan_analyst_model->updateprocessbalo($in_detail_id,$detail_id);
 
-        $work_id = $this->wan_analyst_model->getworkid($detail_id);
+        $work_id = $this->wan_analyst_model->getworkid($detail_id,$tahap);
 
         $in_unrec = array ('p_process_id' => $tahap);
-        $this->wan_analyst_model->inputunrec($in_unrec, $detail_id);
-        //--------------------------------------------------------------------//
+        $this->wan_analyst_model->inputunrec($in_unrec, $site_id);
 
-        //-----------------------------------------------------------------//
         $get_next = array ('p_process_id' => $tahap);
-        $getnext = $this->wan_analyst_model->getnext($tahap, $get_next);
+        $getnext = $this->wan_analyst_model->getnext($tahap, $detail_id);
 
         $in_next = array ('p_process_id' => $getnext ,
             't_detail_network_order_id' => $detail_id);
@@ -123,7 +121,7 @@ class Wananalyst extends CI_Controller
         $data = array ('no_balo_provider' => $baloprv ,
                 'no_balo_pertamina' => $baloptm ,
                 'tgl_tagih' => $tgltagih);
-        $this->wan_analyst_model->inputdatabalo($data);
+        $this->wan_analyst_model->inputdatabalo($data, $detail_id);
 
         $tipe_dokumen = $this->input->post('tipe_dokumen');
         $caption = $this->input->post('caption');
@@ -141,21 +139,18 @@ class Wananalyst extends CI_Controller
         $tahap = $this->input->post('tahap');
         $user = $this->input->post('user');
         $keterangan = $this->input->post('keterangan');
-        $order_up_id = $this->wan_analyst_model->getorderupid($site_id);
-        $detail_id = $this->wan_analyst_model->getdetailupid($order_up_id);
+        $detail_id = $this->wan_analyst_model->getunrecupid($site_id);
         $in_detail_id = array ('keterangan' => $keterangan,
                 'closed_by' => $user);
         $this->wan_analyst_model->updateprocesssrv($in_detail_id,$detail_id);
 
-        $work_id = $this->wan_analyst_model->getworkid($detail_id);
+        $work_id = $this->wan_analyst_model->getworkid($detail_id,$tahap);
 
         $in_unrec = array ('p_process_id' => $tahap);
-        $this->wan_analyst_model->inputunrec($in_unrec, $detail_id);
-        //--------------------------------------------------------------------//
+        $this->wan_analyst_model->inputunrec($in_unrec, $site_id);
 
-        //-----------------------------------------------------------------//
         $get_next = array ('p_process_id' => $tahap);
-        $getnext = $this->wan_analyst_model->getnext($tahap, $get_next);
+        $getnext = $this->wan_analyst_model->getnext($tahap, $detail_id);
 
         $in_next = array ('p_process_id' => $getnext ,
             't_detail_network_order_id' => $detail_id);
@@ -192,21 +187,18 @@ class Wananalyst extends CI_Controller
         $tahap = $this->input->post('tahap');
         $user = $this->input->post('user');
         $keterangan = $this->input->post('keterangan');
-        $order_up_id = $this->wan_analyst_model->getorderupid($site_id);
-        $detail_id = $this->wan_analyst_model->getdetailupid($order_up_id);
+        $detail_id = $this->wan_analyst_model->getunrecupid($site_id);
         $in_detail_id = array ('keterangan' => $keterangan,
                 'closed_by' => $user);
         $this->wan_analyst_model->updateprocessimp($in_detail_id,$detail_id);
 
-        $work_id = $this->wan_analyst_model->getworkid($detail_id);
+        $work_id = $this->wan_analyst_model->getworkid($detail_id, $tahap);
 
         $in_unrec = array ('p_process_id' => $tahap);
-        $this->wan_analyst_model->inputunrec($in_unrec, $detail_id);
-        //--------------------------------------------------------------------//
+        $this->wan_analyst_model->inputunrec($in_unrec, $site_id);
 
-        //-----------------------------------------------------------------//
         $get_next = array ('p_process_id' => $tahap);
-        $getnext = $this->wan_analyst_model->getnext($tahap, $get_next);
+        $getnext = $this->wan_analyst_model->getnext($tahap, $detail_id);
 
         $in_next = array ('p_process_id' => $getnext ,
             't_detail_network_order_id' => $detail_id);
@@ -217,6 +209,7 @@ class Wananalyst extends CI_Controller
         //------------------------------------------------------------------//
 
         $p_final = array ('t_nw_site_id' => $site_id);
+
         $in_final = array ( 'ip_wan' => $ipwan ,
         'netmask_wan' => $netmaskwan ,
         'ip_lan' => $iplan ,
@@ -228,6 +221,81 @@ class Wananalyst extends CI_Controller
         'hostname' => $hostname 
         );
         $data = $this->wan_analyst_model->insertdatafinal($in_final,$p_final);
+        redirect('wananalyst','refresh');
+    }
+
+    public function updatedatainstalasi()
+    {
+        $lokasi = $this->input->post('lokasi');
+        $cek_lokasi = array ('site_name' => $lokasi);
+        $site_id = $this->wan_analyst_model->getnwsiteid($cek_lokasi);
+
+        $traffic = $this->input->post('traffic');
+        $in_traffic = array ('traffic_mgmt' => $traffic);
+
+        //--------------------------------------------------------------------//
+        $tahap = $this->input->post('tahap');
+        $user = $this->input->post('user');
+        $keterangan = $this->input->post('keterangan');
+        $detail_id = $this->wan_analyst_model->getunrecupid($site_id);
+        $in_detail_id = array ('keterangan' => $keterangan,
+                'closed_by' => $user);
+
+        $this->wan_analyst_model->updateprocessimp($in_detail_id,$detail_id);
+
+        $work_id = $this->wan_analyst_model->getworkid($detail_id, $tahap);
+
+        $in_unrec = array ('p_process_id' => $tahap);
+        $this->wan_analyst_model->inputunrec($in_unrec, $site_id);
+
+        $get_next = array ('p_process_id' => $tahap);
+        $getnext = $this->wan_analyst_model->getnext($tahap, $detail_id);
+
+        $in_next = array ('p_process_id' => $getnext ,
+            't_detail_network_order_id' => $detail_id);
+        $this->wan_analyst_model->nexttahap($in_next);
+
+        $up_unrec = array ('p_process_id' => $getnext);
+        $this->wan_analyst_model->updateunrec($up_unrec, $detail_id);
+        //------------------------------------------------------------------//
+
+        $copynetwork = $this->wan_analyst_model->getdataupinstalasi($site_id);
+        $this->wan_analyst_model->updateorder($copynetwork, $detail_id);
+        $this->wan_analyst_model->updatesite($in_traffic,$site_id);
+        redirect('wananalyst','refresh');
+    }
+
+    public function dismantle ()
+    {
+        $lokasi = $this->input->post('lokasi');
+        $cek_lokasi = array ('site_name' => $lokasi);
+        $site_id = $this->wan_analyst_model->getnwsiteid($cek_lokasi);
+
+        //--------------------------------------------------------------------//
+        $tahap = $this->input->post('tahap');
+        $user = $this->input->post('user');
+        $keterangan = $this->input->post('keterangan');
+        $detail_id = $this->wan_analyst_model->getunrecupid($site_id);
+        $in_detail_id = array ('keterangan' => $keterangan,
+                'closed_by' => $user);
+
+        $this->wan_analyst_model->updateprocessimp($in_detail_id,$detail_id);
+
+        $work_id = $this->wan_analyst_model->getworkid($detail_id, $tahap);
+
+        $in_unrec = array ('p_process_id' => $tahap);
+        $this->wan_analyst_model->inputunrec($in_unrec, $site_id);
+
+        $get_next = array ('p_process_id' => $tahap);
+        $getnext = $this->wan_analyst_model->getnext($tahap, $detail_id);
+
+        $in_next = array ('p_process_id' => $getnext ,
+            't_detail_network_order_id' => $detail_id);
+        $this->wan_analyst_model->nexttahap($in_next);
+
+        $up_unrec = array ('p_process_id' => $getnext);
+        $this->wan_analyst_model->updateunrec($up_unrec, $detail_id);
+        //------------------------------------------------------------------//
         redirect('wananalyst','refresh');
     }
 }

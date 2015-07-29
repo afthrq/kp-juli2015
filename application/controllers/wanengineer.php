@@ -25,21 +25,19 @@ class Wanengineer extends CI_Controller
         $tahap = $this->input->post('tahap');
         $user = $this->input->post('user');
         $keterangan = $this->input->post('keterangan');
-        $order_up_id = $this->wan_engineer_model->getorderupid($site_id);
-        $detail_id = $this->wan_engineer_model->getdetailupid($order_up_id);
+        $detail_id = $this->wan_engineer_model->getunrecupid($site_id);
         $in_detail_id = array ('keterangan' => $keterangan,
                 'closed_by' => $user);
+
         $this->wan_engineer_model->updateprocessuat($in_detail_id,$detail_id);
 
-        $work_id = $this->wan_engineer_model->getworkid($detail_id);
+        $work_id = $this->wan_engineer_model->getworkid($detail_id, $tahap);
 
         $in_unrec = array ('p_process_id' => $tahap);
-        $this->wan_engineer_model->inputunrec($in_unrec, $detail_id);
-        //--------------------------------------------------------------------//
+        $this->wan_engineer_model->inputunrec($in_unrec, $site_id);
 
-        //-----------------------------------------------------------------//
         $get_next = array ('p_process_id' => $tahap);
-        $getnext = $this->wan_engineer_model->getnext($tahap, $get_next);
+        $getnext = $this->wan_engineer_model->getnext($tahap, $detail_id);
 
         $in_next = array ('p_process_id' => $getnext ,
             't_detail_network_order_id' => $detail_id);

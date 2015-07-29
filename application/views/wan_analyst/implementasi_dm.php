@@ -65,7 +65,7 @@
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
-                    <form method="POST" action="<?php echo base_url('wananalyst/insertdatainstalasi')?>">
+                    <form method="POST" action="<?php echo base_url('wananalyst/dismantle')?>">
                         <input type="hidden" name="user" value="<?php echo  $this->session->userdata('user_name')?>">
                         <?php foreach ($update_list as $row) : ?>
                         <input type="hidden" value="<?php echo $row->site_name ?>" name="lokasi">

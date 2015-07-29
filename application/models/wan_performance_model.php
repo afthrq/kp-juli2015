@@ -55,7 +55,7 @@ class Wan_performance_model extends CI_Model
 		return $query->row()->t_detail_network_order_id;
   	}
 
-	function updateprocessuat($in_detail_id, $detail_id)
+	function updateprocessmon($in_detail_id, $detail_id)
 	{
 		$this->db->where('t_process.t_detail_network_order_id',$detail_id);
 		$this->db->where('t_process.p_process_id = "7"');
@@ -71,6 +71,13 @@ class Wan_performance_model extends CI_Model
 
 		return $query->row()->t_work_id;
 	}
+	
+	public function getunrecupid ($site_id)
+  	{
+		$this->db->where('t_nw_site_id',$site_id);
+		$query = $this->db->get("t_unrec_process");
+		return $query->row()->t_detail_network_order_id;
+  	}
 
 	function inputunrec($in_unrec, $detail_id)
 	{
@@ -78,16 +85,19 @@ class Wan_performance_model extends CI_Model
 		$this->db->update('t_unrec_process',$in_unrec);			
 	}
 
-	function getnext ($tahap, $get_next)
+	function getnext ($tahap, $detail_id)
 	{
 		$this->db->select ('workflow.next_process_id');
 		$this->db->where ('t_unrec_process.p_process_id',$tahap);
+		$this->db->where('t_detail_network_order.t_detail_network_order_id',$detail_id);
 		$this->db->where('t_unrec_process.p_process_id = p_process.p_process_id');
 		$this->db->where('p_process.p_process_id = workflow.p_process_id');
+		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
+		$this->db->where('t_network_order.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
 		//$this->db->where('t_detail_network_order.p_order_type_id',$proses);
 		$this->db->where('t_detail_network_order.p_order_type_id = p_order_type.p_order_type_id');
 		$this->db->where('p_order_type.p_order_type_id = workflow.p_order_type_id');
-		$query = $this->db->get ('workflow, t_unrec_process, p_process, t_detail_network_order, p_order_type');
+		$query = $this->db->get ('workflow, t_unrec_process, p_process, t_detail_network_order, p_order_type,t_network_order');
 		return $query->row()->next_process_id;
 	}
 

@@ -2,19 +2,18 @@
 
 class Pm_model extends CI_Model 
 {
-	function getlokasiid($o_id)
+
+	function getsitenserviceid($o_id)
 	{
 		$this->db->distinct();
-		$this->db->where('site_name', $o_id);
-		$query = $this->db->get('t_nw_site');
+		$this->db->where('t_nw_site.site_name', $o_id);
+		$this->db->where('t_nw_site.t_nw_site_id = t_unrec_process.t_nw_site_id');
+		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
+		$query = $this->db->get('t_nw_site,t_unrec_process,t_detail_network_order');
 		return $query->result();
 	}
 
 
-	function get_list_permintaan()
-	{
-		
-	}
 	function insert_koordinasi_provider($tiket_provider,$pic_provider,$detail_id)
 	{
 		$this->db->where('t_detail_network_order_id', $detail_id);
@@ -76,6 +75,9 @@ class Pm_model extends CI_Model
 		return $query->row()->t_detail_network_order_id;
   	}
 
+
+
+  	//insert new---------------------------------------------//
   	public function getdataorder($site_id)
   	{
   		$this->db->select('t_nw_site_id');
@@ -98,9 +100,8 @@ class Pm_model extends CI_Model
 
   		$this->db->where('t_nw_site_id',$site_id);
   		$query = $this->db->get("t_network_order");
-  		return $query->row();
+   		return $query->row();
   	}
-
   	public function copydata($arrayorder)
   	{
 		$this->db->insert('t_network',$arrayorder);
@@ -109,6 +110,51 @@ class Pm_model extends CI_Model
 		$query = $this->db->get("t_network");
 		return $query->row()->t_network_id;
   	}
+
+  	//update-------------------------------------------------------//
+  	public function getdataorderup($site_id)
+  	{
+  		$this->db->select('t_nw_site.t_nw_site_id');
+  		$this->db->select('t_network_order.p_lastmile_id');
+  		$this->db->select('t_network_order.no_jar');
+  		$this->db->select('t_network_order.ip_wan');
+  		$this->db->select('t_network_order.ip_lan');
+  		$this->db->select('t_network_order.ip_loop');
+  		$this->db->select('t_network_order.asn');
+  		$this->db->select('t_network_order.bw');
+  		$this->db->select('t_network_order.netmask_wan');
+  		$this->db->select('t_network_order.netmask_lan');
+  		$this->db->select('t_network_order.hostname');
+  		$this->db->select('t_network_order.sla');
+  		$this->db->select('t_network_order.valid_fr');
+  		$this->db->select('t_network_order.valid_to');
+  		$this->db->select('t_network_order.mon_cacti');
+  		$this->db->select('t_network_order.mon_npmd');
+  		$this->db->select('t_network_order.mon_sp');
+  		$this->db->where('t_unrec_process.t_nw_site_id',$site_id);
+		$this->db->where('t_nw_site.t_nw_site_id = t_network.t_nw_site_id');
+		$this->db->where('t_network_order.t_nw_site_id = t_nw_site.t_nw_site_id');
+		$this->db->where('t_unrec_process.t_nw_site_id = t_nw_site.t_nw_site_id');
+		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
+		$this->db->where('t_detail_network_order.t_detail_network_order_id = t_network_order.t_detail_network_order_id');
+		$query = $this->db->get('t_network, t_nw_site, t_network_order, t_unrec_process, t_detail_network_order');
+  		return $query->row();
+  	}
+
+  	function getnetworkid($site_id)
+  	{
+  		$this->db->where('t_network.t_nw_site_id',$site_id);
+  		$query = $this->db->get('t_network');
+
+  		return $query->row()->t_network_id;
+  	}
+
+  	public function copydataup($arrayorder, $nwid)
+  	{
+		$this->db->where('t_network.t_network_id',$nwid);
+		$this->db->update('t_network',$arrayorder);
+  	}
+
 
   	function getworkid($in_detail_id)
 	{
@@ -129,37 +175,63 @@ class Pm_model extends CI_Model
         $this->db->insert('t_document', $data);
 	}
 
-	function getarraylink($order_id)
+	function getarraylink($site_id)
 	{
-		$this->db->where('t_network_order_id', $order_id);
-		$this->db->where('p_nw_service_id >= "1"');
-		$this->db->where('p_nw_service_id <= "13"');
-		$query = $this->db->get('t_nw_service');
+		$this->db->where('t_nw_service.p_nw_service_id >= "1"');
+		$this->db->where('t_nw_service.p_nw_service_id <= "13"');
+		$this->db->where('t_network.t_nw_site_id',$site_id);
+		$this->db->where('t_nw_site.t_nw_site_id = t_network.t_nw_site_id');
+		$this->db->where('t_network_order.t_nw_site_id = t_nw_site.t_nw_site_id');
+		$this->db->where('t_unrec_process.t_nw_site_id = t_nw_site.t_nw_site_id');
+		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
+		$this->db->where('t_detail_network_order.t_detail_network_order_id = t_network_order.t_detail_network_order_id');
+		$this->db->where('t_nw_service.t_network_order_id = t_network_order.t_network_order_id');
+		$query = $this->db->get('t_network, t_nw_site, t_network_order, t_unrec_process, t_detail_network_order,t_nw_service');
 		return $query->row()->p_nw_service_id;
 	}
 
-	function getarrayrouter($order_id)
+	function getarrayrouter($site_id)
 	{
-		$this->db->where('t_network_order_id', $order_id);
-		$this->db->where('p_nw_service_id >= "14"');
-		$this->db->where('p_nw_service_id <= "15"');
-		$query = $this->db->get('t_nw_service');		
+		$this->db->where('t_nw_service.p_nw_service_id >= "14"');
+		$this->db->where('t_nw_service.p_nw_service_id <= "15"');
+		$this->db->where('t_network.t_nw_site_id',$site_id);
+		$this->db->where('t_nw_site.t_nw_site_id = t_network.t_nw_site_id');
+		$this->db->where('t_network_order.t_nw_site_id = t_nw_site.t_nw_site_id');
+		$this->db->where('t_unrec_process.t_nw_site_id = t_nw_site.t_nw_site_id');
+		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
+		$this->db->where('t_detail_network_order.t_detail_network_order_id = t_network_order.t_detail_network_order_id');
+		$this->db->where('t_nw_service.t_network_order_id = t_network_order.t_network_order_id');
+		$query = $this->db->get('t_network, t_nw_site, t_network_order, t_unrec_process, t_detail_network_order,t_nw_service');
 		return $query->row()->p_nw_service_id;
 	}
 
-	function getarraymodule($order_id)
+	function getarraymodule($site_id)
 	{
-		$this->db->where('t_network_order_id', $order_id);
-		$this->db->where('p_nw_service_id >= "16"');
-		$this->db->where('p_nw_service_id <= "17"');
-		$query = $this->db->get('t_nw_service');
+		$this->db->where('t_nw_service.p_nw_service_id >= "16"');
+		$this->db->where('t_nw_service.p_nw_service_id <= "17"');
+		$this->db->where('t_network.t_nw_site_id',$site_id);
+		$this->db->where('t_nw_site.t_nw_site_id = t_network.t_nw_site_id');
+		$this->db->where('t_network_order.t_nw_site_id = t_nw_site.t_nw_site_id');
+		$this->db->where('t_unrec_process.t_nw_site_id = t_nw_site.t_nw_site_id');
+		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
+		$this->db->where('t_detail_network_order.t_detail_network_order_id = t_network_order.t_detail_network_order_id');
+		$this->db->where('t_nw_service.t_network_order_id = t_network_order.t_network_order_id');
+		$query = $this->db->get('t_network, t_nw_site, t_network_order, t_unrec_process, t_detail_network_order,t_nw_service');
 		return $query->row()->p_nw_service_id;
 	}
 
   	public function copyservice($arraylink, $arrayrouter)
   	{
   		$this->db->insert('t_nw_service_fix',$arraylink);
-  		$this->db->insert('t_nw_service_fix',$arrayrouter);  		
+  		$this->db->insert('t_nw_service_fix',$arrayrouter);
+  	}
+
+  	public function copyserviceup($arraylink, $nwid)
+  	{
+  		$this->db->where('t_nw_service_fix.p_nw_service_id >= "1"');
+  		$this->db->where('t_nw_service_fix.p_nw_service_id <= "13"');  		
+  		$this->db->where('t_nw_service_fix.t_network_id', $nwid);
+  		$this->db->update('t_nw_service_fix',$arraylink);
   	}
 
   	public function copymodule($arraymodule)
@@ -171,5 +243,11 @@ class Pm_model extends CI_Model
   	{
   		$this->db->where('t_unrec_process.t_detail_network_order_id', $detail_id);
   		$this->db->delete('t_unrec_process');
+  	}
+
+  	public function dismantle($site_id)
+  	{
+  		$data = array ('t_nw_site_id' => $site_id);
+  		$this->db->delete('t_network', $data);
   	}
 }
