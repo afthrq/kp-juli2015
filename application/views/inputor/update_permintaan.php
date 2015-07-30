@@ -158,7 +158,7 @@
                                 <span class="input-group-addon input-permintaan" id="basic-addon1">Paket Layanan</span>
                                 <div class="dropdown">
                                     <select class="form-control" name="update_paket" id="up_paket">
-                                        <option value="1">(Pilih Link Terlebih Dahulu)</option>    
+                                        <option value="1">(Pilih Layanan Terlebih Dahulu)</option>    
                                     </select>
                                 </div>
                             </div>
@@ -181,7 +181,7 @@
                                 <select name="proses" class="form-control">
                                     <option value="2">Upgrade</option>
                                     <option value="3">Upgrade (ganti Infra)</option>
-                                    <option value="4">Ugrade Temporer</option>
+                                    <option value="4">Upgrade Temporer</option>
                                     <option value="5">Downgrade</option>
                                     <option value="6">Relokasi</option>
                                     <option value="7">Dismantle</option>

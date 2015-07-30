@@ -92,8 +92,8 @@ class Pm_model extends CI_Model
   		$this->db->select('netmask_lan');
   		$this->db->select('hostname');
   		$this->db->select('sla');
-  		$this->db->select('valid_fr');
-  		$this->db->select('valid_to');
+  		//$this->db->select('valid_fr');
+  		//$this->db->select('valid_to');
   		$this->db->select('mon_cacti');
   		$this->db->select('mon_npmd');
   		$this->db->select('mon_sp');
@@ -104,6 +104,7 @@ class Pm_model extends CI_Model
   	}
   	public function copydata($arrayorder)
   	{
+		$this->db->set('valid_fr','NOW()',FALSE);
 		$this->db->insert('t_network',$arrayorder);
 		$id = $this->db->insert_id();
 		$this->db->where('t_network_id',$id);
@@ -151,6 +152,7 @@ class Pm_model extends CI_Model
 
   	public function copydataup($arrayorder, $nwid)
   	{
+		$this->db->set('valid_fr','NOW()',FALSE);
 		$this->db->where('t_network.t_network_id',$nwid);
 		$this->db->update('t_network',$arrayorder);
   	}

@@ -184,17 +184,13 @@ class Networkarchitect extends CI_Controller
     function menu_list_permintaan_kp()
     {
         $data['list_permintaan'] = $this->verifikator_model->getdatapermintaankp();
-        $this->load->view('includes/header');
         $this->load->view('network_architect/menu_list_permintaan_kp', $data);
-        $this->load->view('includes/footer');
     }
 
     function menu_list_permintaan_ob()
     {
         $data['list_permintaan'] = $this->verifikator_model->getdatapermintaanob();
-        $this->load->view('includes/header');
         $this->load->view('network_architect/menu_list_permintaan_ob', $data);
-        $this->load->view('includes/footer');
     }
 
     function menu_list_permintaan_vp()

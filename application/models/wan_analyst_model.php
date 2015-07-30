@@ -202,7 +202,6 @@ class Wan_analyst_model extends CI_Model
 
 	function inputtahap($in_tahap)
 	{
-
 		$this->db->set('valid_fr','NOW()',FALSE);
 		$this->db->insert('t_process',$in_tahap);		
 	}
