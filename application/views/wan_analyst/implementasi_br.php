@@ -65,130 +65,235 @@
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
-                    <form method="POST" action="<?php echo base_url('wananalyst/insertdatainstalasi')?>">
-
-                        <div class="row">
-                            <div class=" col-lg-6">
-                                <div class="input-group">
-                                    <span class="input-group-addon input-instalasi" id="basic-addon1">IP WAN</span>
-                                    <input type="text" class="form-control" aria-describedby="basic-addon1" name="ipwan">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#sectionA">Data Implentasi Sekarang</a></li>
+                        <li><a data-toggle="tab" href="#sectionB">Form Data Implementasi</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="sectionA" class="tab-pane fade in active">
+                            <br>
+                            <?php foreach ($data_permintaan as $row): ?>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1">Lokasi</span>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->site_name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class=" col-lg-6">
-                                <div class="input-group">
-                                    <span class="input-group-addon input-instalasi" id="basic-addon1">Netmask WAN</span>
-                                    <input type="text" class="form-control" aria-describedby="basic-addon1" name="netmaskwan">
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1">Jenis Lokasi</span>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->type_name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;"> <!-- type_name -->
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class=" col-lg-6">
-                                <div class="input-group">
-                                    <span class="input-group-addon input-instalasi" id="basic-addon1">IP LAN</span>
-                                    <input type="text" class="form-control" aria-describedby="basic-addon1" name="iplan">
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1">Perusahaan</span>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->company_name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class=" col-lg-6">
-                                <div class="input-group">
-                                    <span class="input-group-addon input-instalasi" id="basic-addon1">Netmask LAN</span>
-                                    <input type="text" class="form-control" aria-describedby="basic-addon1" name="netmasklan">
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1">Alamat</span>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->address ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;"><!-- address -->
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class=" col-lg-6">
-                                <div class="input-group">
-                                    <span class="input-group-addon input-instalasi" id="basic-addon1">IP Loop</span>
-                                    <input type="text" class="form-control" aria-describedby="basic-addon1" name="iploop">
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1">Region</span>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->region_name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class=" col-lg-6">
-                                <div class="input-group">
-                                    <span class="input-group-addon input-instalasi" id="basic-addon1">ASN</span>
-                                    <input type="text" class="form-control" aria-describedby="basic-addon1" name="asn">
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1">Provinsi</span>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->provinsi_name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class=" col-lg-6">
-                                <div class="input-group">
-                                    <span class="input-group-addon input-instalasi" id="basic-addon1">Lastmile</span>
-                                    <select name="lastmile" class="form-control">
-                                        <option value="1">Fiber Optic</option>
-                                        <option value="2">Tembaga</option>
-                                        <option value="3">Radio Terestrial</option>
-                                        <option value="4">Radio VSAT</option>
-                                    </select>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1">PIC</span>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->pic_name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="input-group">
-                                    <span class="input-group-addon input-instalasi" id="basic-addon1">Traffic Management</span>
-                                    <select name="traffic" class="form-control">
-                                        <option value="Load Balance">Load Balance</option>
-                                        <option value="Load Sharing">Load Sharing</option>
-                                        <option value="Automatic Fail Over">Automatic Fail Over</option>
-                                        <option value="Manual Fail Over">Manual Fail Over</option>
-                                    </select>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1">Layanan</span>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->service_name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class=" col-lg-6">
-                                <div class="input-group">
-                                    <span class="input-group-addon input-instalasi" id="basic-addon1">SLA (%)</span>
-                                    <input type="text" class="form-control" aria-describedby="basic-addon1" name="sla">
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1">Paket Layanan</span>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->package ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;"><!-- package -->
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class=" col-lg-6">
-                                <div class="input-group">
-                                    <span class="input-group-addon input-instalasi" id="basic-addon1">Hostname</span>
-                                    <input type="text" class="form-control" aria-describedby="basic-addon1" name="hostname">
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1">Bandwidth</span>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->bw ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;"><!-- bw -->
+                                    </div>
                                 </div>
                             </div>
+                            <br>
+                            <br>
+                            <br>
+                            <?php endforeach ?>
                         </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="input-group">
-                                    <span class="input-group-addon input-instalasi" id="basic-addon1">Keterangan</span>
-                                    <textarea class="form-control" name="keterangan" cols="40" rows="5"></textarea>
+                        <div id="sectionB" class="tab-pane fade">
+                            <form method="POST" action="<?php echo base_url('wananalyst/insertdatainstalasi')?>">
+                            <div class="row">
+                                <div class=" col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-instalasi" id="basic-addon1">IP WAN</span>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="ipwan">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <br><br>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <a href="koordinasi_provider.html"><input type="submit" name="submit" value="Reject" class="btn btn-outline btn-primary btn-danger" style="padding: 5px 12px;"></a>
-                                <input type="submit" name="submit" value="Submit" class="btn btn-outline btn-primary btn-success" style="padding: 5px 12px;">
+                            <br>
+                            <div class="row">
+                                <div class=" col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-instalasi" id="basic-addon1">Netmask WAN</span>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="netmaskwan">
+                                    </div>
+                                </div>
                             </div>
+                            <br>
+                            <div class="row">
+                                <div class=" col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-instalasi" id="basic-addon1">IP LAN</span>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="iplan">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class=" col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-instalasi" id="basic-addon1">Netmask LAN</span>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="netmasklan">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class=" col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-instalasi" id="basic-addon1">IP Loop</span>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="iploop">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class=" col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-instalasi" id="basic-addon1">ASN</span>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="asn">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class=" col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-instalasi" id="basic-addon1">Lastmile</span>
+                                        <select name="lastmile" class="form-control">
+                                            <option value="1">Fiber Optic</option>
+                                            <option value="2">Tembaga</option>
+                                            <option value="3">Radio Terestrial</option>
+                                            <option value="4">Radio VSAT</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-instalasi" id="basic-addon1">Traffic Management</span>
+                                        <select name="traffic" class="form-control">
+                                            <option value="Load Balance">Load Balance</option>
+                                            <option value="Load Sharing">Load Sharing</option>
+                                            <option value="Automatic Fail Over">Automatic Fail Over</option>
+                                            <option value="Manual Fail Over">Manual Fail Over</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class=" col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-instalasi" id="basic-addon1">SLA (%)</span>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="sla">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class=" col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-instalasi" id="basic-addon1">Hostname</span>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="hostname">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-instalasi" id="basic-addon1">Keterangan</span>
+                                        <textarea class="form-control" name="keterangan" cols="40" rows="5"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <br><br>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <a href="koordinasi_provider.html"><input type="submit" name="submit" value="Reject" class="btn btn-outline btn-primary btn-danger" style="padding: 5px 12px;"></a>
+                                    <input type="submit" name="submit" value="Submit" class="btn btn-outline btn-primary btn-success" style="padding: 5px 12px;">
+                                </div>
+                            </div>
+                            <br>
+                            <input type="hidden" name="user" value="<?php echo  $this->session->userdata('user_name')?>">
+                            <?php foreach ($update_list as $row) : ?>
+                                <input type="hidden" value="<?php echo $row->site_name ?>" name="lokasi">
+                            <?php endforeach?>
+                            <input type="hidden" name="tahap" value="5">
+                            </form>
                         </div>
-                        <br>
-                        <input type="hidden" name="user" value="<?php echo  $this->session->userdata('user_name')?>">
-                        <?php foreach ($update_list as $row) : ?>
-                            <input type="hidden" value="<?php echo $row->site_name ?>" name="lokasi">
-                        <?php endforeach?>
-                        <input type="hidden" name="tahap" value="5">
-                    </form>
+                    </div>
+                   
                 <!-- /.container-fluid -->
                 </div>
                 <!-- /#page-wrapper -->
