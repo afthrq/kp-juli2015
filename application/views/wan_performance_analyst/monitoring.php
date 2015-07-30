@@ -53,6 +53,19 @@
             <!-- Page Content -->
             <div id="page-wrapper">
                 <div class="container-fluid">
+                    <!--<div class="row">
+                        <center>
+                            <div class="btn-group btn-breadcrumb group-crumbs" id="milestone">
+                                <?php //foreach ($breadcrumbs as $row): ?>
+                                    <?php //if (echo $row->flow == "Monitoring"): ?>
+                                        <a href="#" class="btn crumbs crumbs-size" value="1"><?php //echo $nama-flow ?></a>
+                                    <?php //else: ?>
+                                        <a href="#" class="btn crumbs crumbs-size" value="0"><?php //echo $nama-flow ?></a>
+                                    <?php //endif ?>
+                                <?php //endforeach ?>
+                            </div>
+                        </center>
+                    </div> -->
                     <div class="row">
                         <div class="col-lg-12">
                             <h1 class="page-header">Monitoring</h1>
@@ -131,5 +144,9 @@
         <script src="<?php echo base_url('assets/js/metisMenu.min.js')?>"></script>
         <!-- Custom Theme JavaScript -->
         <script src="<?php echo base_url('assets/js/sb-admin-2.js')?>"></script>
+
+        <script type="text/javascript">
+            $("#milestone").find("a[value='1']").addClass("japimg");
+        </script>
     </body>
 </html>

@@ -214,8 +214,9 @@
                                 <br>
                                 <div class="row">
                                     <div class="col-lg-6">
+                                        <div><input type="file" id="userfile" /></div>
                                         <div class="uploadify-queue" id="file-queue"></div>
-                                        <input type="file" id="upload_btn" />
+                                        <input type="submit" value="Upload" class="btn btn-default btn-primary" id="upload-btn">
                                         <input type="hidden" class="form-control" aria-describedby="basic-addon1" id="path" name="path">
                                     </div>
                                 </div>
@@ -247,27 +248,34 @@
         <script src="<?php echo base_url('assets/js/lib/jquery.uploadify.min.js') ?>"></script>
         <script type='text/javascript' >
         $(function() {
-            $('#upload_btn').uploadify({
+
+            $('#upload-btn').click(function (e) {
+                e.preventDefault();
+            $('#userfile').uploadify('upload', '*');
+            });
+
+            $('#userfile').uploadify({
                 'debug'   : false,
                 'swf'   : '<?php echo base_url() ?>assets/js/lib/uploadify.swf',
                 'uploader'  : '<?php echo base_url('upload/uploadify')?>',
                 'cancelImage' : '<?php echo base_url() ?>assets/js/lib/uploadify-cancel.png',
                 'queueID'  : 'file-queue',
                 'buttonClass'  : 'btn btn-default up-btn',
-                'buttonText' : "Upload Dokumen",
-                'multi'   : true,
-                'auto'   : true,
+                'buttonText' : "Pilih Dokumen",
+                'multi'   : false,
+                'auto'   : false,
                 
-                'fileExt'   : '*.jpg;*.gif;*.png;*.txt;*.pdf;*.doc;*.docx',   // any extension you want to allow
-                'fileDesc'  : 'Upload Files (.JPG, .GIF, .PNG, .TXT, .PDF, .DOC, .DOCX)',
+                'fileTypeExts':'*.pdf;*.doc;*.docx',
+                'fileTypeDesc':'Image Files (.pdf,.doc,.docx,)',
                 'method'  : 'post',
                 'fileObjName' : 'userfile',
-                'queueSizeLimit': 40,
-                'simUploadLimit': 2,
+                'queueSizeLimit': 1,
+                'simUploadLimit': 1,
                 'sizeLimit'  : 10240000,
+                'removeCompleted' : false,
                 'onUploadSuccess' : function(file, data, response) {
                 var json = jQuery.parseJSON(data);
-                alert('The file ' + file.name + ' was successfully uploaded as ' + ':' + json.file_name);
+                alert('File bernama ' + file.name + ' telah berhasil di upload dengan nama ' + ': ' + json.file_name);
                 $("#path").attr('value',json.file_name);
                 },
                 /*'onUploadComplete' : function(file) {
