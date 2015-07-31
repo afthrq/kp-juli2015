@@ -72,196 +72,226 @@
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
-                    <form method="POST" action="<?php echo base_url('inputor/form_input')?>">
-                    <input type="hidden" name="proses" value="1">
-                    <input type="hidden" name="tahap" value="1">
-                    <input type="hidden" name="user" value="<?php echo  $this->session->userdata('user_name')?>">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="input-group">
-                                <span class="input-group-addon input-permintaan" id="basic-addon1">Perusahaan</span>
-                                <div class="dropdown">
-                                <?php echo form_dropdown('perusahaan', $perusahaan_list,'','class="form-control" id="perusahaan" name="perusahaan"'); ?>
+                     <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#sectionA">Form Permintaan #1</a></li>
+                        <li><a data-toggle="tab" href="#sectionB">Form Permintaan #2</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="sectionA" class="tab-pane fade in active">
+                            <br>
+                            <form method="POST" action="<?php echo base_url('inputor/form_input')?>">
+                            <input type="hidden" name="proses" value="1">
+                            <input type="hidden" name="tahap" value="1">
+                            <input type="hidden" name="user" value="<?php echo  $this->session->userdata('user_name')?>">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1">Perusahaan</span>
+                                        <div class="dropdown">
+                                        <?php echo form_dropdown('perusahaan', $perusahaan_list,'','class="form-control" id="perusahaan" name="perusahaan"'); ?>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <br>
+                            <br>
 
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="input-group">
-                                <span class="input-group-addon input-permintaan" id="basic-addon1">Region</span>
-                                <div class="dropdown">
-                                    <select class="form-control" name="region" id="region">
-                                        <option value="">(Pilih Perusahaan Terlebih Dahulu)</option>    
-                                    </select>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1">Region</span>
+                                        <div class="dropdown">
+                                            <select class="form-control" name="region" id="region">
+                                                <option value="">(Pilih Perusahaan Terlebih Dahulu)</option>    
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <br>
+                            <br>
 
-                    <div class="row">
-                        <div class=" col-lg-6">
-                            <div class="input-group">
-                                <span class="input-group-addon input-permintaan" id="basic-addon1">Jenis Lokasi</span>
-                                <div class="dropdown">
-                                    <select placeholder="Pilih Perusahaan" class="form-control" name="jenis">    
-                                        <?php foreach ($jenis_list as $row) : ?>
-                                            <option><?php echo $row->type_name ?></option>
-                                        <?php endforeach?>
-                                    </select>
+                            <div class="row">
+                                <div class=" col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1">Jenis Lokasi</span>
+                                        <div class="dropdown">
+                                            <select placeholder="Pilih Perusahaan" class="form-control" name="jenis">    
+                                                <?php foreach ($jenis_list as $row) : ?>
+                                                    <option><?php echo $row->type_name ?></option>
+                                                <?php endforeach?>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <br>
+                            <br>
 
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="input-group">
-                                <span class="input-group-addon input-permintaan" id="basic-addon1">Lokasi</span>
-                                <input type="text" class="form-control" aria-describedby="basic-addon1" name="lokasi">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1">Lokasi</span>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="lokasi">
+                                    </div>
+                                </div>
                             </div>
+                            <br>
+
+                            
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1">Provinsi</span>
+                                        <div class="dropdown">
+                                            <select placeholder="Pilih Perusahaan" class="form-control" name="prov">    
+                                                <?php foreach ($provinsi_list as $row) : ?>
+                                                    <option><?php echo $row->provinsi_name ?></option>
+                                                <?php endforeach?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1">Alamat</span>
+                                        <textarea class="form-control" name="alamat" cols="40" rows="5" id="alamat"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1">Latitude</span>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="latitude">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1">Longitude</span>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="longitude">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1">PIC</span>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="pic">
+                                    </div>
+                                </div>
+                            </div>
+                            <br><br><br>
+                        </div>
+                        <div id="sectionB" class="tab-pane fade">
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1">Provider</span>
+                                        <div class="dropdown">
+                                            <select placeholder="Pilih Perusahaan" class="form-control" name="provider">    
+                                                <?php foreach ($provider_list as $row) : ?>
+                                                    <option><?php echo $row->provider_name ?></option>
+                                                <?php endforeach?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1">Layanan</span>
+                                        <div class="dropdown">
+                                            <?php echo form_dropdown('layanan', $layanan_list,'','class="form-control" id="layanan" name="layanan"');  ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1">Paket Layanan</span>
+                                        <div class="dropdown">
+                                            <select class="form-control" name="paket" id="paket">
+                                                <option value="">(Pilih Layanan Terlebih Dahulu)</option>    
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1">Router</span>
+                                        <select name="router" class="form-control">
+                                            <option value="14">Cisco 2801-V/K9</option>
+                                            <option value="15">Cisco 2901-V/K9</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1">Module</span>
+                                        <select name="modul" class="form-control">
+                                            <option value="">-</option>
+                                            <option value="16">HWIC-2T</option>
+                                            <option value="17">HWIC-2FE</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1">Bandwidth (Kb)</span>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="bw">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1">Keterangan</span>
+                                        <textarea class="form-control" name="keterangan" cols="40" rows="5"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br><br>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <a href="koordinasi_provider.html"><input type="submit" name="submit" value="Reject" class="btn btn-outline btn-primary btn-danger" style="padding: 5px 12px;"></a>
+                                    <input type="submit" name="submit" value="Submit" class="btn btn-outline btn-primary btn-success" style="padding: 5px 12px;">
+                                </div>
+                                <br><br>
+                            </div>
+                            </form>
                         </div>
                     </div>
-                    <br>
-
                     
-
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="input-group">
-                                <span class="input-group-addon input-permintaan" id="basic-addon1">Provinsi</span>
-                                <div class="dropdown">
-                                    <select placeholder="Pilih Perusahaan" class="form-control" name="prov">    
-                                        <?php foreach ($provinsi_list as $row) : ?>
-                                            <option><?php echo $row->provinsi_name ?></option>
-                                        <?php endforeach?>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="input-group">
-                                <span class="input-group-addon input-permintaan" id="basic-addon1">Alamat</span>
-                                <input type="text" class="form-control" aria-describedby="basic-addon1" name="alamat" id="autocomplete">
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="input-group">
-                                <span class="input-group-addon input-permintaan" id="basic-addon1">PIC</span>
-                                <input type="text" class="form-control" aria-describedby="basic-addon1" name="pic">
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="input-group">
-                                <span class="input-group-addon input-permintaan" id="basic-addon1">Provider</span>
-                                <div class="dropdown">
-                                    <select placeholder="Pilih Perusahaan" class="form-control" name="provider">    
-                                        <?php foreach ($provider_list as $row) : ?>
-                                            <option><?php echo $row->provider_name ?></option>
-                                        <?php endforeach?>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="input-group">
-                                <span class="input-group-addon input-permintaan" id="basic-addon1">Layanan</span>
-                                <div class="dropdown dropdown-permintaan">
-                                    <?php echo form_dropdown('layanan', $layanan_list,'','class="form-control" id="layanan" name="layanan"');  ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="input-group">
-                                <span class="input-group-addon input-permintaan" id="basic-addon1">Paket Layanan</span>
-                                <div class="dropdown">
-                                    <select class="form-control" name="paket" id="paket">
-                                        <option value="">(Pilih Layanan Terlebih Dahulu)</option>    
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="input-group">
-                                <span class="input-group-addon input-permintaan" id="basic-addon1">Router</span>
-                                <select name="router" class="form-control">
-                                    <option value="14">Cisco 2801-V/K9</option>
-                                    <option value="15">Cisco 2901-V/K9</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="input-group">
-                                <span class="input-group-addon input-permintaan" id="basic-addon1">Module</span>
-                                <select name="modul" class="form-control">
-                                    <option value="">-</option>
-                                    <option value="16">HWIC-2T</option>
-                                    <option value="17">HWIC-2FE</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="input-group">
-                                <span class="input-group-addon input-permintaan" id="basic-addon1">Bandwidth (Kb)</span>
-                                <input type="text" class="form-control" aria-describedby="basic-addon1" name="bw">
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="input-group">
-                                <span class="input-group-addon input-permintaan" id="basic-addon1">Keterangan</span>
-                                <textarea class="form-control" name="keterangan" cols="40" rows="5"></textarea>
-                            </div>
-                        </div>
-                    </div>
-
-                    <br><br>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <a href="koordinasi_provider.html"><input type="submit" name="submit" value="Reject" class="btn btn-outline btn-primary btn-danger" style="padding: 5px 12px;"></a>
-                            <input type="submit" name="submit" value="Submit" class="btn btn-outline btn-primary btn-success" style="padding: 5px 12px;">
-                        </div>
-                    </div>
-                    </form>
                 </div>
                 <!-- /.container-fluid -->
             </div>
@@ -300,13 +330,34 @@
         </script>
 
         <script src="<?php echo base_url('assets/js/jquery-ui.min.js') ?>"></script>
+        <!-- autocomplete alamat -->
+        <script type="text/javascript">
+            $(document).ready(function () {
+                oldJquery(function () {
+                    $( "#alamat" ).autocomplete({
+                        source: function(request, response) {
+                            $.ajax({ 
+                                url: "<?php echo base_url('inputor/ac_alamat'); ?>",
+                                data: { id: $("#alamat").val()},
+                                dataType: "json",
+                                type: "POST",
+                                success: function(data){
+                                    response(data);
+                                }    
+                            });
+                        },
+                    });
+                });
+            });
+        </script>
+        <!-- autocomplete PIC -->
         <script type="text/javascript">
             $(document).ready(function () {
                 oldJquery(function () {
                     $( "#autocomplete" ).autocomplete({
                         source: function(request, response) {
                             $.ajax({ 
-                                url: "<?php echo base_url('inputor/suggestions'); ?>",
+                                url: "<?php echo base_url('inputor/ac_pic'); ?>",
                                 data: { id: $("#autocomplete").val()},
                                 dataType: "json",
                                 type: "POST",
@@ -319,6 +370,7 @@
                 });
             });
         </script>
+
 
         <script type="text/javascript">  
                   $(document).ready(function() {  
