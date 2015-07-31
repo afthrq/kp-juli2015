@@ -574,4 +574,20 @@ html{
     margin-top: 0.5%;
 }
 
+.ui-autocomplete {
+    border-radius: 0px !important;
+}
 
+.ui-menu .ui-menu-item a {
+    color: inherit;
+    font-family: inherit;
+    border-radius: 0px;
+}
+
+.ui-menu .ui-menu-item a:hover {
+    background: #eee;
+    color: inherit
+}
+.ui-menu .ui-menu-item a:active {
+    box-shadow: 0 0 30px #96f226
+}

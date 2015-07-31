@@ -146,7 +146,7 @@
         <script src="<?php echo base_url('assets/js/sb-admin-2.js')?>"></script>
 
         <script type="text/javascript">
-            $("#milestone").find("a[value='1']").addClass("japimg");
+            $("#milestone").find("a[value='1']").addClass("btn-active");
         </script>
     </body>
 </html>
