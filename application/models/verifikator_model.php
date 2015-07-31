@@ -39,6 +39,19 @@ class Verifikator_model extends CI_Model
 		return $query->count_all_results();
 	}
 
+	function getbreadcrumbs($o_id)
+	{
+		$this->db->select('p_process.name');
+		$this->db->where('t_nw_site.site_name',$o_id);
+		$this->db->where('t_nw_site.t_nw_site_id = t_unrec_process.t_nw_site_id');
+		$this->db->where('t_detail_network_order.t_detail_network_order_id = t_unrec_process.t_detail_network_order_id');
+		$this->db->where('t_detail_network_order.p_order_type_id = p_order_type.p_order_type_id');
+		$this->db->where('p_order_type.p_order_type_id = workflow.p_order_type_id');
+		$this->db->where('workflow.p_process_id = p_process.p_process_id');
+		$query = $this->db->get('t_nw_site, t_unrec_process, t_detail_network_order, p_order_type, workflow, p_process');
+		return $query->result();
+	}
+
 	function getdatapermintaankp()
 	{
 		$this->db->distinct();
@@ -265,6 +278,13 @@ class Verifikator_model extends CI_Model
 	}
 
 	//reject----------------------------------------------------------------
+	function dropdetailnw($detail_id)
+	{
+		$this->db->where('t_detail_network_order_id',$detail_id);
+		$this->db->delete('t_detail_network_order');
+		$this->db->delete('t_unrec_process');
+	}
+
 	function getprevid($detail_id)
 	{
 		$this->db->select('workflow.p_process_id');

@@ -53,19 +53,19 @@
             <!-- Page Content -->
             <div id="page-wrapper">
                 <div class="container-fluid">
-                    <!--<div class="row">
+                    <div class="row">
                         <center>
                             <div class="btn-group btn-breadcrumb group-crumbs" id="milestone">
-                                <?php //foreach ($breadcrumbs as $row): ?>
-                                    <?php //if (echo $row->flow == "Monitoring"): ?>
-                                        <a href="#" class="btn crumbs crumbs-size" value="1"><?php //echo $nama-flow ?></a>
-                                    <?php //else: ?>
-                                        <a href="#" class="btn crumbs crumbs-size" value="0"><?php //echo $nama-flow ?></a>
-                                    <?php //endif ?>
-                                <?php //endforeach ?>
+                                <?php foreach ($breadcrumbs as $row): ?>
+                                    <?php if ($row->name == "Monitoring"): ?>
+                                        <a href="#" class="btn crumbs crumbs-size" value="1"><?php echo $row->name ?></a>
+                                    <?php else: ?>
+                                        <a href="#" class="btn crumbs crumbs-size" value="0"><?php echo $row->name ?></a>
+                                    <?php endif ?>
+                                <?php endforeach ?>
                             </div>
                         </center>
-                    </div> -->
+                    </div>
                     <div class="row">
                         <div class="col-lg-12">
                             <h1 class="page-header">Monitoring</h1>

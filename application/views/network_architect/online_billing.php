@@ -60,8 +60,22 @@
             <div id="page-wrapper">
                 <div class="container-fluid">
                     <div class="row">
+                        <center>
+                            <div class="btn-group btn-breadcrumb group-crumbs" id="milestone">
+                                <?php foreach ($breadcrumbs as $row): ?>
+                                    <?php 
+                                        if ($row->name == "Online Billing"): ?>
+                                        <a href="#" class="btn crumbs crumbs-size" value="1"><?php echo $row->name ?></a>
+                                    <?php else: ?>
+                                        <a href="#" class="btn crumbs crumbs-size" value="0"><?php echo $row->name ?></a>
+                                    <?php endif ?>
+                                <?php endforeach ?>
+                            </div>
+                        </center>
+                    </div>
+                    <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header">Online Billing</h1>
+                            <h1 class="page-header">Component Online Billing</h1>
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
@@ -188,6 +202,10 @@
                 // disable unload warning
                 $(window).off('beforeunload');
             });
+        </script>
+
+        <script type="text/javascript">
+            $("#milestone").find("a[value='1']").addClass("btn-active");
         </script>
     </body>
 </html>

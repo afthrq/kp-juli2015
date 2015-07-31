@@ -70,6 +70,10 @@ class Networkarchitect extends CI_Controller
             $detail_id = $this->verifikator_model->getunrecupid($site_id);
             $prev_id = $this->verifikator_model->getprevid($detail_id);
 
+            if($prev_id == 1)
+            {
+                $this->verifikator_model->dropdetailnw($detail_id);
+            }
             $this->verifikator_model->rejectunrec($detail_id, $prev_id);
             $this->verifikator_model->dropprocess($detail_id, $tahap);
             $this->verifikator_model->rejectdate($detail_id, $prev_id);
@@ -266,6 +270,7 @@ class Networkarchitect extends CI_Controller
         $o_id = $this->input->post('order_id');
         $doc_id = $this->input->post('doc_id');
         $data['count_vp'] = $this->verifikator_model->getcountvp();
+        $data['breadcrumbs'] = $this->verifikator_model->getbreadcrumbs($o_id);
         $data['count_kp'] = $this->verifikator_model->getcountkp();
         $data['count_ob'] = $this->verifikator_model->getcountob(); 
         $data['lokasiid'] = $this->verifikator_model->getlokasiid($o_id);
@@ -277,6 +282,7 @@ class Networkarchitect extends CI_Controller
     function koordinasi_provider()
     {
         $o_id = $this->input->post('order_id');
+        $data['breadcrumbs'] = $this->verifikator_model->getbreadcrumbs($o_id);
         $data['count_vp'] = $this->verifikator_model->getcountvp();
         $data['count_kp'] = $this->verifikator_model->getcountkp();
         $data['count_ob'] = $this->verifikator_model->getcountob(); 
@@ -287,6 +293,7 @@ class Networkarchitect extends CI_Controller
     function online_billing()
     {
         $o_id = $this->input->post('order_id');
+        $data['breadcrumbs'] = $this->verifikator_model->getbreadcrumbs($o_id);
         $data['count_vp'] = $this->verifikator_model->getcountvp();
         $data['count_kp'] = $this->verifikator_model->getcountkp();
         $data['count_ob'] = $this->verifikator_model->getcountob(); 

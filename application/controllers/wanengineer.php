@@ -82,6 +82,7 @@ class Wanengineer extends CI_Controller
     function uat()
     {
         $o_id = $this->input->post('order_id');
+        $data['breadcrumbs'] = $this->wan_engineer_model->getbreadcrumbs($o_id);
         $data['count_uat'] = $this->wan_engineer_model->getcountuat();
         $data['lokasiid'] = $this->wan_engineer_model->getlokasiid($o_id);
         $this->load->view('wan_engineer/uat',$data);

@@ -60,6 +60,20 @@
             <div id="page-wrapper">
                 <div class="container-fluid">
                     <div class="row">
+                        <center>
+                            <div class="btn-group btn-breadcrumb group-crumbs" id="milestone">
+                                <?php foreach ($breadcrumbs as $row): ?>
+                                    <?php 
+                                        if ($row->name == "Verifikasi Permintaan"): ?>
+                                        <a href="#" class="btn crumbs crumbs-size" value="1"><?php echo $row->name ?></a>
+                                    <?php else: ?>
+                                        <a href="#" class="btn crumbs crumbs-size" value="0"><?php echo $row->name ?></a>
+                                    <?php endif ?>
+                                <?php endforeach ?>
+                            </div>
+                        </center>
+                    </div>
+                    <div class="row">
                         <div class="col-lg-12">
                             <h1 class="page-header">Verifikasi Permintaan</h1>
                         </div>
@@ -237,7 +251,7 @@
                                     </div>
                                 </div>
                                 <input type="hidden" name="tahap" value="2">
-                            </form>
+
                             <div id="modal" class="popupContainer" style="display:none;">
                                 <header class="popupHeader">
                                     <span class="header_title">Reject</span>
@@ -256,6 +270,7 @@
                                             <br>
                                         </div>
                                     </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -353,6 +368,10 @@
 
         <script type="text/javascript">
             oldJquery("#modal_trigger").leanModal({top : 200, overlay : 0.6, closeButton: ".modal_close" });
+        </script>
+
+        <script type="text/javascript">
+            $("#milestone").find("a[value='1']").addClass("btn-active");
         </script>
     </body>
 </html>

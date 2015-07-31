@@ -42,10 +42,10 @@
                                   <a href="<?php echo base_url() ?>networkarchitect"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                               </li>
                               <li>
-                                  <a href="<?php echo base_url() ?>networkarchitect/menu_list_permintaan_vp" class="sidebar-active"><i class="fa fa-edit fa-fw"></i> Verifikasi Permintaan <span class="badge pull-right"><?php echo $count_vp?></span></a>
+                                  <a href="<?php echo base_url() ?>networkarchitect/menu_list_permintaan_vp"><i class="fa fa-edit fa-fw"></i> Verifikasi Permintaan <span class="badge pull-right"><?php echo $count_vp?></span></a>
                               </li>
                               <li>
-                                  <a href="<?php echo base_url() ?>networkarchitect/menu_list_permintaan_kp"><i class="fa fa-edit fa-fw"></i> Koordinasi Provider <span class="badge pull-right"><?php echo $count_kp?></span></a>
+                                  <a href="<?php echo base_url() ?>networkarchitect/menu_list_permintaan_kp"  class="sidebar-active"><i class="fa fa-edit fa-fw"></i> Koordinasi Provider <span class="badge pull-right"><?php echo $count_kp?></span></a>
                               </li>
                               <li>
                                   <a href="<?php echo base_url() ?>networkarchitect/menu_list_permintaan_ob"><i class="fa fa-edit fa-fw"></i> Online Billing <span class="badge pull-right"><?php echo $count_ob?></span></a>
@@ -59,6 +59,20 @@
             <!-- Page Content -->
             <div id="page-wrapper">
                 <div class="container-fluid">
+                    <div class="row">
+                        <center>
+                            <div class="btn-group btn-breadcrumb group-crumbs" id="milestone">
+                                <?php foreach ($breadcrumbs as $row): ?>
+                                    <?php 
+                                        if ($row->name == "Koordinasi Provider"): ?>
+                                        <a href="#" class="btn crumbs crumbs-size" value="1"><?php echo $row->name ?></a>
+                                    <?php else: ?>
+                                        <a href="#" class="btn crumbs crumbs-size" value="0"><?php echo $row->name ?></a>
+                                    <?php endif ?>
+                                <?php endforeach ?>
+                            </div>
+                        </center>
+                    </div>
                     <div class="row">
                         <div class="col-lg-12">
                             <h1 class="page-header">Koordinasi Provider</h1>
@@ -184,6 +198,24 @@
                 // disable unload warning
                 $(window).off('beforeunload');
             });
+        </script>
+
+        <script type="text/javascript">
+        $(document).ready(function() {
+            $('#submit').bind("click",function() 
+            { 
+                var imgVal = $('#path').val(); 
+                if(imgVal=='') 
+                { 
+                    alert("Dokumen yang dibutuhkan belum di upload!"); 
+                    return false; 
+                } 
+            }); 
+        });
+        </script>
+
+        <script type="text/javascript">
+            $("#milestone").find("a[value='1']").addClass("btn-active");
         </script>
     </body>
 </html>

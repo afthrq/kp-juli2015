@@ -125,6 +125,8 @@ class Inputor extends CI_Controller
         $router = $this->input->post('router');
         $modul = $this->input->post('modul');
         $provider = $this->input->post('provider');
+        $latitude = $this->input->post('latitude');
+        $longitude = $this->input->post('longitude');
 
         //setting parent table
         $in_pic = array ('pic_name' => $pic);
@@ -147,6 +149,8 @@ class Inputor extends CI_Controller
                         'p_site_type_id' => $jenid,
                         'p_region_id' => $regid,
                         'site_name' => $lokasi ,
+                        'latitude' => $latitude ,
+                        'longitude' => $longitude ,
                         'address' => $alamat);
 
         $this->inputor_model->inputlvl2($in_site);

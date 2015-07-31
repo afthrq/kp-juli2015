@@ -28,8 +28,10 @@ class Wanperformance extends CI_Controller
 
     function monitoring()
     {        
-        $o_id = $this->input->post('order_id');
+        $o_id = $this->input->post('order_id');        
+
         $data['count_mon'] = $this->wan_performance_model->getcountmon();
+        $data['breadcrumbs'] = $this->wan_performance_model->getbreadcrumbs($o_id);
         $data['lokasiid'] = $this->wan_performance_model->get_id($o_id);
         $this->load->view('wan_performance_analyst/monitoring', $data);
     }

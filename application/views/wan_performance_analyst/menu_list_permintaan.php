@@ -76,6 +76,7 @@
                                                     <th>Jenis Lokasi</th>
                                                     <th>Layanan</th>
                                                     <th>Bandwidth</th>
+                                                    <th>Tipe Permintaan</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -87,6 +88,7 @@
                                                       <td><?php echo $row->type_name?></td>
                                                       <td><?php echo $row->service_name?> | <?php echo $row->package?></td>
                                                       <td><?php echo $row->bw ?></td>
+                                                      <td><?php echo $row->name ?></td>
                                                     </tr>
                                                     </form>
                                                 <?php endforeach ?>

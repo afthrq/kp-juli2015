@@ -44,6 +44,19 @@ class Wan_analyst_model extends CI_Model
 		return $query->count_all_results();
 	}
 
+	function getbreadcrumbs($o_id)
+	{
+		$this->db->select('p_process.name');
+		$this->db->where('t_nw_site.site_name',$o_id);
+		$this->db->where('t_nw_site.t_nw_site_id = t_unrec_process.t_nw_site_id');
+		$this->db->where('t_detail_network_order.t_detail_network_order_id = t_unrec_process.t_detail_network_order_id');
+		$this->db->where('t_detail_network_order.p_order_type_id = p_order_type.p_order_type_id');
+		$this->db->where('p_order_type.p_order_type_id = workflow.p_order_type_id');
+		$this->db->where('workflow.p_process_id = p_process.p_process_id');
+		$query = $this->db->get('t_nw_site, t_unrec_process, t_detail_network_order, p_order_type, workflow, p_process');
+		return $query->result();
+	}
+
 	function getdatapermintaansrv()
 	{
 		$this->db->distinct();
@@ -63,7 +76,8 @@ class Wan_analyst_model extends CI_Model
 		$this->db->where('p_nw_service.p_nw_service_id = t_nw_service.p_nw_service_id');
 		$this->db->where('t_network_order.t_nw_site_id = t_nw_site.t_nw_site_id');
 		$this->db->where('p_service.p_service_id = p_nw_service.p_service_id');
-		$query = $this->db->get('t_nw_site,t_network_order,p_site_type,p_nw_service,p_service,t_nw_service,t_unrec_process,t_detail_network_order');
+		$this->db->where('t_detail_network_order.p_order_type_id = p_order_type.p_order_type_id');
+		$query = $this->db->get('t_nw_site,t_network_order,p_site_type,p_nw_service,p_service,t_nw_service,t_unrec_process,t_detail_network_order,p_order_type');
     	return $query->result();
 	}
 
@@ -110,7 +124,8 @@ class Wan_analyst_model extends CI_Model
 		$this->db->where('p_nw_service.p_nw_service_id = t_nw_service.p_nw_service_id');
 		$this->db->where('t_network_order.t_nw_site_id = t_nw_site.t_nw_site_id');
 		$this->db->where('p_service.p_service_id = p_nw_service.p_service_id');
-		$query = $this->db->get('t_nw_site,t_network_order,p_site_type,p_nw_service,p_service,t_nw_service,t_unrec_process,t_detail_network_order');
+		$this->db->where('t_detail_network_order.p_order_type_id = p_order_type.p_order_type_id');
+		$query = $this->db->get('t_nw_site,t_network_order,p_site_type,p_nw_service,p_service,t_nw_service,t_unrec_process,t_detail_network_order,p_order_type');
     	return $query->result();
 	}
 

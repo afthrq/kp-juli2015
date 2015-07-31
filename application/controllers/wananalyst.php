@@ -27,6 +27,7 @@ class Wananalyst extends CI_Controller
     {
         $order_id = $this->input->post('order_id');
         $service_id = $this->input->post('service_id');
+        $data['breadcrumbs'] = $this->wan_analyst_model->getbreadcrumbs($order_id);
         $data['count_srv'] = $this->wan_analyst_model->getcountsrv();
         $data['count_imp'] = $this->wan_analyst_model->getcountimp();
         $data['count_balo'] = $this->wan_analyst_model->getcountbalo();
@@ -64,6 +65,7 @@ class Wananalyst extends CI_Controller
     public function balo()
     {
         $o_id = $this->input->post('order_id');
+        $data['breadcrumbs'] = $this->wan_analyst_model->getbreadcrumbs($o_id);
         $data['count_srv'] = $this->wan_analyst_model->getcountsrv();
         $data['count_imp'] = $this->wan_analyst_model->getcountimp();
         $data['count_balo'] = $this->wan_analyst_model->getcountbalo();
@@ -75,6 +77,7 @@ class Wananalyst extends CI_Controller
     public function survey()
     {
         $o_id = $this->input->post('order_id');
+        $data['breadcrumbs'] = $this->wan_analyst_model->getbreadcrumbs($o_id);
         $data['count_srv'] = $this->wan_analyst_model->getcountsrv();
         $data['count_imp'] = $this->wan_analyst_model->getcountimp();
         $data['count_balo'] = $this->wan_analyst_model->getcountbalo();
