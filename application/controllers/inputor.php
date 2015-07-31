@@ -268,7 +268,17 @@ class Inputor extends CI_Controller
         redirect ('inputor','refresh');
     }
 
-    public function suggestions()
+    public function ac_alamat()
+    {
+        $id = $this->input->post('id',TRUE);
+        $rows = $this->inputor_model->get_alamat($id);
+        $json_array = array();
+        foreach ($rows as $row)
+            $json_array[]=$row->address;
+        echo json_encode($json_array);
+    }
+
+    public function ac_pic()
     {
         $id = $this->input->post('id',TRUE);
         $rows = $this->inputor_model->get_alamat($id);

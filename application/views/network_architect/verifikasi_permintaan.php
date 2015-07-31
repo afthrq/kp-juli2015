@@ -232,12 +232,31 @@
                                 <br>
                                 <div class="row">
                                     <div class="col-lg-6">
-                            <?php echo form_submit('reject', ' Reject ', 'class="btn btn-outline btn-primary btn-danger" style="padding: 5px 12px;"'); ?>
-                            <?php echo form_submit('submit', ' Submit ', 'class="btn btn-outline btn-primary btn-success" style="padding: 5px 12px;"'); ?>
+                                    <button class="btn btn-outline btn-primary btn-danger"id="modal_trigger" href="#modal">Reject</button>
+                                    <?php echo form_submit('submit', ' Submit ', 'class="btn btn-outline btn-primary btn-success" style="padding: 5px 12px;"'); ?>
                                     </div>
                                 </div>
-                                    <input type="hidden" name="tahap" value="2">
+                                <input type="hidden" name="tahap" value="2">
                             </form>
+                            <div id="modal" class="popupContainer" style="display:none;">
+                                <header class="popupHeader">
+                                    <span class="header_title">Reject</span>
+                                    <span class="modal_close"><i class="fa fa-times"></i></span>
+                                </header>
+                                    <div class="social_login">
+                                        <div class="">
+                                            <br>
+                                            <center>
+                                                Anda yakin ingin mereject permintaan ?
+                                                <br><br>
+                                                <textarea placeholder="Tuliskan alasan penolakan..." class="form-control ket-reject" name="reject" cols="35" rows="3"></textarea>
+                                                <br>
+                                                <?php echo form_submit('reject', ' Reject ', 'class="btn btn-outline btn-primary btn-danger" style="padding: 5px 12px;"'); ?>
+                                            </center>
+                                            <br>
+                                        </div>
+                                    </div>
+                            </div>
                         </div>
                     </div>
                     <!-- /.container-fluid -->
@@ -322,6 +341,18 @@
                 } 
             }); 
         });
+        </script>
+
+        <script src="<?php echo base_url('assets/js/jquery-1.4.4.min.js') ?>"></script>
+
+        <script type="text/javascript" src="<?php echo base_url('assets/js/jquery.leanModal.min.js') ?>"></script>
+
+        <script type="text/javascript">
+            var oldJquery = $.noConflict(true);
+        </script>
+
+        <script type="text/javascript">
+            oldJquery("#modal_trigger").leanModal({top : 200, overlay : 0.6, closeButton: ".modal_close" });
         </script>
     </body>
 </html>
