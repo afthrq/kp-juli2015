@@ -10,6 +10,35 @@ class Verifikator_model extends CI_Model
 		return $query->result();
 	}
 
+	function getdocname($doc_id)
+	{
+		$this->db->distinct();
+		$this->db->where('p_doc_type_id', $doc_id);
+		$query = $this->db->get('p_doc_type');
+		return $query->result();
+	}
+
+	function getcountvp()
+	{
+		$this->db->where('t_unrec_process.p_process_id = "2"');
+		$query = $this->db->from('t_unrec_process');
+		return $query->count_all_results();
+	}
+
+	function getcountkp()
+	{
+		$this->db->where('t_unrec_process.p_process_id = "3"');
+		$query = $this->db->from('t_unrec_process');
+		return $query->count_all_results();
+	}
+
+	function getcountob()
+	{
+		$this->db->where('t_unrec_process.p_process_id = "9"');
+		$query = $this->db->from('t_unrec_process');
+		return $query->count_all_results();
+	}
+
 	function getdatapermintaankp()
 	{
 		$this->db->distinct();
@@ -29,7 +58,8 @@ class Verifikator_model extends CI_Model
 		$this->db->where('p_nw_service.p_nw_service_id = t_nw_service.p_nw_service_id');
 		$this->db->where('t_network_order.t_nw_site_id = t_nw_site.t_nw_site_id');
 		$this->db->where('p_service.p_service_id = p_nw_service.p_service_id');
-		$query = $this->db->get('t_nw_site,t_network_order,p_site_type,p_nw_service,p_service,t_nw_service,t_unrec_process,t_detail_network_order');
+		$this->db->where('t_detail_network_order.p_order_type_id = p_order_type.p_order_type_id');
+		$query = $this->db->get('t_nw_site,t_network_order,p_site_type,p_nw_service,p_service,t_nw_service,t_unrec_process,t_detail_network_order,p_order_type');
     	return $query->result();
 	}
 
@@ -77,7 +107,8 @@ class Verifikator_model extends CI_Model
 		$this->db->where('p_nw_service.p_nw_service_id = t_nw_service.p_nw_service_id');
 		$this->db->where('t_network_order.t_nw_site_id = t_nw_site.t_nw_site_id');
 		$this->db->where('p_service.p_service_id = p_nw_service.p_service_id');
-		$query = $this->db->get('t_nw_site,t_network_order,p_site_type,p_nw_service,p_service,t_nw_service,t_unrec_process,t_detail_network_order');
+		$this->db->where('t_detail_network_order.p_order_type_id = p_order_type.p_order_type_id');
+		$query = $this->db->get('t_nw_site,t_network_order,p_site_type,p_nw_service,p_service,t_nw_service,t_unrec_process,t_detail_network_order,p_order_type');
     	return $query->result();
 	}
 
@@ -111,7 +142,6 @@ class Verifikator_model extends CI_Model
 		$this->db->where('provinsi.provinsi_id = t_nw_site.provinsi_id');
 		$query = $this->db->get('t_nw_service,t_nw_site,t_network_order,p_site_type,p_nw_service,p_service,company,p_region,t_pic,provinsi,t_nw_site_pic,t_unrec_process,t_detail_network_order');
     	return $query->result();
-		
 	}
 
 	function insert_detail_order($no_form, $tanggal_permintaan, $detail_id)
@@ -232,5 +262,42 @@ class Verifikator_model extends CI_Model
 	{
 		$this->db->where('t_unrec_process.t_detail_network_order_id',$detail_id);	
 		$this->db->update('t_unrec_process',$up_unrec);
+	}
+
+	//reject----------------------------------------------------------------
+	function getprevid($detail_id)
+	{
+		$this->db->select('workflow.p_process_id');
+		$this->db->where('t_unrec_process.t_detail_network_order_id', $detail_id);
+		$this->db->where('t_unrec_process.p_process_id = workflow.next_process_id');
+		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
+		$this->db->where('t_detail_network_order.p_order_type_id = p_order_type.p_order_type_id');
+		$this->db->where('p_order_type.p_order_type_id = workflow.p_order_type_id');
+		$query = $this->db->get('t_detail_network_order, t_unrec_process, workflow, p_order_type');
+		return $query->row()->p_process_id;
+	}
+
+	function dropprocess($detail_id, $tahap)
+	{
+		$this->db->where('t_process.t_detail_network_order_id', $detail_id);
+		$this->db->where('t_process.p_process_id', $tahap);
+		$this->db->delete('t_process');
+	}
+
+	function rejectdate($detail_id, $prev_id)
+	{
+		$this->db->where('t_process.t_detail_network_order_id', $detail_id);
+		$this->db->where('t_process.p_process_id', $prev_id);
+		$this->db->set('valid_to','',FALSE);
+		$this->db->update('t_process');
+
+	}
+
+	function rejectunrec($detail_id, $prev_id)
+	{
+		$process = array ( 'p_process_id' => $prev_id);
+
+		$this->db->where('t_unrec_process.t_detail_network_order_id', $detail_id);
+		$this->db->update('t_unrec_process', $process);
 	}
 }

@@ -42,7 +42,7 @@
                                 <a href="<?php echo base_url() ?>wanengineer" class="sidebar-active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                             </li>
                             <li>
-                                <a href="<?php echo base_url() ?>wanengineer/menu_list_permintaan"><i class="fa fa-edit fa-fw"></i> UAT <span class="badge pull-right">14</span></a>
+                                <a href="<?php echo base_url() ?>wanengineer/menu_list_permintaan"><i class="fa fa-edit fa-fw"></i> UAT <span class="badge pull-right"><?php echo $count_uat?></span></a>
                             </li>     
                         </ul>
                     </div>

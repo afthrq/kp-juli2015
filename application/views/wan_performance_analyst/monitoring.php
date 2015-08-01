@@ -42,7 +42,7 @@
                                 <a href="<?php echo base_url() ?>wanperformance"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                             </li>
                             <li>
-                                <a href="<?php echo base_url() ?>wanperformance/menu_list_permintaan" class="sidebar-active"><i class="fa fa-edit fa-fw"></i> Monitoring</a>
+                                <a href="<?php echo base_url() ?>wanperformance/menu_list_permintaan" class="sidebar-active"><i class="fa fa-edit fa-fw"></i> Monitoring <span class="badge pull-right"><?php echo $count_mon?></span></a>
                             </li>
                         </ul>
                     </div>
@@ -126,8 +126,8 @@
                         <br><br>
                         <div class="row">
                             <div class="col-lg-6">
-                                <a href="koordinasi_provider.html"><input type="submit" name="submit" value="Reject" class="btn btn-outline btn-primary btn-danger" style="padding: 5px 12px;"></a>
-                                <input type="submit" name="submit" value="Submit" class="btn btn-outline btn-primary btn-success" style="padding: 5px 12px;">
+                            <?php echo form_submit('reject', ' Reject ', 'class="btn btn-outline btn-primary btn-danger" style="padding: 5px 12px;"'); ?>
+                            <?php echo form_submit('submit', ' Submit ', 'class="btn btn-outline btn-primary btn-success" style="padding: 5px 12px;"'); ?>
                             </div>
                         </div>
                     </form>

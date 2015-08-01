@@ -17,6 +17,12 @@ class Wan_engineer_model extends CI_Model
 		return $query->result();
 	}
 
+	function getcountuat()
+	{
+		$this->db->where('t_unrec_process.p_process_id = "6"');
+		$query = $this->db->from('t_unrec_process');
+		return $query->count_all_results();
+	}
 
 	function getdatapermintaan()
 	{
@@ -108,6 +114,43 @@ class Wan_engineer_model extends CI_Model
 	{
 		$this->db->where('t_unrec_process.t_detail_network_order_id',$detail_id);	
 		$this->db->update('t_unrec_process',$up_unrec);
+	}
+
+	//reject----------------------------------------------------------------
+	function getprevid($detail_id)
+	{
+		$this->db->select('workflow.p_process_id');
+		$this->db->where('t_unrec_process.t_detail_network_order_id', $detail_id);
+		$this->db->where('t_unrec_process.p_process_id = workflow.next_process_id');
+		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
+		$this->db->where('t_detail_network_order.p_order_type_id = p_order_type.p_order_type_id');
+		$this->db->where('p_order_type.p_order_type_id = workflow.p_order_type_id');
+		$query = $this->db->get('t_detail_network_order, t_unrec_process, workflow, p_order_type');
+		return $query->row()->p_process_id;
+	}
+
+	function dropprocess($detail_id, $tahap)
+	{
+		$this->db->where('t_process.t_detail_network_order_id', $detail_id);
+		$this->db->where('t_process.p_process_id', $tahap);
+		$this->db->delete('t_process');
+	}
+
+	function rejectdate($detail_id, $prev_id)
+	{
+		$this->db->where('t_process.t_detail_network_order_id', $detail_id);
+		$this->db->where('t_process.p_process_id', $prev_id);
+		$this->db->set('valid_to','',FALSE);
+		$this->db->update('t_process');
+
+	}
+
+	function rejectunrec($detail_id, $prev_id)
+	{
+		$process = array ( 'p_process_id' => $prev_id);
+
+		$this->db->where('t_unrec_process.t_detail_network_order_id', $detail_id);
+		$this->db->update('t_unrec_process', $process);
 	}
 
 }

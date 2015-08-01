@@ -42,13 +42,13 @@
                               <a href="<?php echo base_url() ?>wananalyst" class="sidebar-active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                             </li>
                             <li>
-                              <a href="<?php echo base_url() ?>wananalyst/menu_list_permintaan_srv"><i class="fa fa-edit fa-fw"></i> Survey</a>
+                              <a href="<?php echo base_url() ?>wananalyst/menu_list_permintaan_srv"><i class="fa fa-edit fa-fw"></i> Survey  <span class="badge pull-right"><?php echo $count_srv?></span></a>
                             </li> 
                             <li>
-                              <a href="<?php echo base_url() ?>wananalyst/menu_list_permintaan_imp"><i class="fa fa-edit fa-fw"></i> Implementasi</a>
+                              <a href="<?php echo base_url() ?>wananalyst/menu_list_permintaan_imp"><i class="fa fa-edit fa-fw"></i> Implementasi  <span class="badge pull-right"><?php echo $count_imp?></span></a>
                             </li>
                             <li>
-                              <a href="<?php echo base_url() ?>wananalyst/menu_list_permintaan_balo"><i class="fa fa-edit fa-fw"></i> Berita Acara Laik Operasi</a>
+                              <a href="<?php echo base_url() ?>wananalyst/menu_list_permintaan_balo"><i class="fa fa-edit fa-fw"></i> Berita Acara Laik Operasi  <span class="badge pull-right"><?php echo $count_balo?></span></a>
                             </li>    
                         </ul>
                     </div>

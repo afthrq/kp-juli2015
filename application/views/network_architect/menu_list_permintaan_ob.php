@@ -42,13 +42,13 @@
                                   <a href="<?php echo base_url() ?>networkarchitect"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                               </li>
                               <li>
-                                  <a href="<?php echo base_url() ?>networkarchitect/menu_list_permintaan_vp"><i class="fa fa-edit fa-fw"></i> Verifikasi Permintaan</a>
+                                  <a href="<?php echo base_url() ?>networkarchitect/menu_list_permintaan_vp"><i class="fa fa-edit fa-fw"></i> Verifikasi Permintaan <span class="badge pull-right"><?php echo $count_vp?></span></a>
                               </li>
                               <li>
-                                  <a href="<?php echo base_url() ?>networkarchitect/menu_list_permintaan_kp"><i class="fa fa-edit fa-fw"></i> Koordinasi Provider</a>
+                                  <a href="<?php echo base_url() ?>networkarchitect/menu_list_permintaan_kp"><i class="fa fa-edit fa-fw"></i> Koordinasi Provider <span class="badge pull-right"><?php echo $count_kp?></span></a>
                               </li>
                               <li>
-                                  <a href="<?php echo base_url() ?>networkarchitect/menu_list_permintaan_ob" class="sidebar-active"><i class="fa fa-edit fa-fw"></i> Online Billing</a>
+                                  <a href="<?php echo base_url() ?>networkarchitect/menu_list_permintaan_ob" class="sidebar-active"><i class="fa fa-edit fa-fw"></i> Online Billing <span class="badge pull-right"><?php echo $count_ob?></span></a>
                               </li>     
                         </ul>
                     </div>
@@ -82,18 +82,20 @@
                                                     <th>Jenis Lokasi</th>
                                                     <th>Layanan</th>
                                                     <th>Bandwidth</th>
+                                                    <th>Tipe Permintaan</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php $count = 0; foreach ($list_permintaan as $row) : $count++;?>
                                                     <form method="POST" action="<?php echo base_url('networkarchitect/online_billing')?>">
-                                                    <input type="hidden" name="service_id" value="<?php echo $row->p_order_type_id ?>">
+                                                    <input type="hidden" name="doc_id" value="1">
                                                     <tr>
                                                       <td><?php echo $count?></td>
                                                       <td><input type="hidden" name="order_id" value="<?php echo $row->site_name ?>"><input type="submit" value="<?php echo $row->site_name ?>" class="btn btn-default btn-table"></td>
                                                       <td><?php echo $row->type_name?></td>
                                                       <td><?php echo $row->service_name?> | <?php echo $row->package?></td>
                                                       <td><?php echo $row->bw ?></td>
+                                                      <td><?php echo $row->name ?></td>
                                                     </tr>
                                                     </form>
                                                 <?php endforeach ?>

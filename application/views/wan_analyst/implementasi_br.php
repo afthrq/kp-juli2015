@@ -42,13 +42,13 @@
                                 <a href="<?php echo base_url() ?>wananalyst"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                             </li>
                             <li>
-                                <a href="<?php echo base_url() ?>wananalyst/menu_list_permintaan_srv"><i class="fa fa-edit fa-fw"></i> Survey</a>
+                                <a href="<?php echo base_url() ?>wananalyst/menu_list_permintaan_srv"><i class="fa fa-edit fa-fw"></i> Survey <span class="badge pull-right"><?php echo $count_srv?></span></a>
                             </li>
                             <li>
-                                <a href="<?php echo base_url() ?>wananalyst/menu_list_permintaan_imp" class="sidebar-active"><i class="fa fa-edit fa-fw"></i> Implementasi</a>
+                                <a href="<?php echo base_url() ?>wananalyst/menu_list_permintaan_imp" class="sidebar-active"><i class="fa fa-edit fa-fw"></i> Implementasi <span class="badge pull-right"><?php echo $count_imp?></span></a>
                             </li>
                             <li>
-                                <a href="<?php echo base_url() ?>wananalyst/menu_list_permintaan_balo"><i class="fa fa-edit fa-fw"></i> Berita Acara Laik Operasi</a>
+                                <a href="<?php echo base_url() ?>wananalyst/menu_list_permintaan_balo"><i class="fa fa-edit fa-fw"></i> Berita Acara Laik Operasi <span class="badge pull-right"><?php echo $count_balo?></span></a>
                             </li>
                         </ul>
                     </div>
@@ -66,7 +66,7 @@
                         <!-- /.col-lg-12 -->
                     </div>
                     <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#sectionA">Data Implentasi Sekarang</a></li>
+                        <li class="active"><a data-toggle="tab" href="#sectionA">Data Permintaan</a></li>
                         <li><a data-toggle="tab" href="#sectionB">Form Data Implementasi</a></li>
                     </ul>
                     <div class="tab-content">
@@ -168,6 +168,7 @@
                             <?php endforeach ?>
                         </div>
                         <div id="sectionB" class="tab-pane fade">
+                            <br>
                             <form method="POST" action="<?php echo base_url('wananalyst/insertdatainstalasi')?>">
                             <div class="row">
                                 <div class=" col-lg-6">
@@ -227,12 +228,13 @@
                                 <div class=" col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-instalasi" id="basic-addon1">Lastmile</span>
-                                        <select name="lastmile" class="form-control">
-                                            <option value="1">Fiber Optic</option>
-                                            <option value="2">Tembaga</option>
-                                            <option value="3">Radio Terestrial</option>
-                                            <option value="4">Radio VSAT</option>
-                                        </select>
+                                        <div class="dropdown">
+                                            <select placeholder="Pilih Perusahaan" class="form-control" name="lastmile">    
+                                                <?php foreach ($lastmile_list as $row) : ?>
+                                                    <option><?php echo $row->name ?></option>
+                                                <?php endforeach?>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -277,11 +279,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <br><br>
+                            <br>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <a href="koordinasi_provider.html"><input type="submit" name="submit" value="Reject" class="btn btn-outline btn-primary btn-danger" style="padding: 5px 12px;"></a>
-                                    <input type="submit" name="submit" value="Submit" class="btn btn-outline btn-primary btn-success" style="padding: 5px 12px;">
+                                    <?php echo form_submit('reject', ' Reject ', 'class="btn btn-outline btn-primary btn-danger" style="padding: 5px 12px;"'); ?>
+                                    <?php echo form_submit('submit', ' Submit ', 'class="btn btn-outline btn-primary btn-success" style="padding: 5px 12px;"'); ?>
                                 </div>
                             </div>
                             <br>
