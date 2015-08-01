@@ -87,7 +87,7 @@
                                             </thead>
                                             <tbody>
                                                 <?php $count = 0; foreach ($list_permintaan as $row) : $count++;?>
-                                                    <form method="POST" action="<?php echo base_url('networkarchitect/verifikasi_permintaan')?>">
+                                                    <form method="POST" action="<?php echo base_url('networkarchitect/koordinasi_provider')?>">
                                                     <input type="hidden" name="doc_id" value="1">
                                                     <tr>
                                                       <td><?php echo $count?></td>

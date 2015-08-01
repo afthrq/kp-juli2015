@@ -42,13 +42,13 @@
                                   <a href="<?php echo base_url() ?>networkarchitect"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                               </li>
                               <li>
-                                  <a href="<?php echo base_url() ?>networkarchitect/menu_list_permintaan_vp" class="sidebar-active"><i class="fa fa-edit fa-fw"></i> Verifikasi Permintaan</a>
+                                  <a href="<?php echo base_url() ?>networkarchitect/menu_list_permintaan_vp" class="sidebar-active"><i class="fa fa-edit fa-fw"></i> Verifikasi Permintaan <span class="badge pull-right"><?php echo $count_vp?></a>
                               </li>
                               <li>
-                                  <a href="<?php echo base_url() ?>networkarchitect/menu_list_permintaan_kp"><i class="fa fa-edit fa-fw"></i> Koordinasi Provider</a>
+                                  <a href="<?php echo base_url() ?>networkarchitect/menu_list_permintaan_kp"><i class="fa fa-edit fa-fw"></i> Koordinasi Provider <span class="badge pull-right"><?php echo $count_kp?></a>
                               </li>
                               <li>
-                                  <a href="<?php echo base_url() ?>networkarchitect/menu_list_permintaan_ob"><i class="fa fa-edit fa-fw"></i> Online Billing</a>
+                                  <a href="<?php echo base_url() ?>networkarchitect/menu_list_permintaan_ob"><i class="fa fa-edit fa-fw"></i> Online Billing <span class="badge pull-right"><?php echo $count_ob?></a>
                               </li>     
                         </ul>
                     </div>
@@ -232,8 +232,8 @@
                                 <br>
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        <a href="verifikasi_permintaan.html"><input type="submit" name="submit" value="Reject" class="btn btn-outline btn-primary btn-danger" style="padding: 5px 12px;"></a>
-                                        <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-outline btn-primary btn-success" style="padding: 5px 12px;">
+                            <?php echo form_submit('reject', ' Reject ', 'class="btn btn-outline btn-primary btn-danger" style="padding: 5px 12px;"'); ?>
+                            <?php echo form_submit('submit', ' Submit ', 'class="btn btn-outline btn-primary btn-success" style="padding: 5px 12px;"'); ?>
                                     </div>
                                 </div>
                                     <input type="hidden" name="tahap" value="2">
@@ -314,7 +314,7 @@
         $(document).ready(function() {
             $('#submit').bind("click",function() 
             { 
-                var imgVal = $('#userfile').val(); 
+                var imgVal = $('#path').val(); 
                 if(imgVal=='') 
                 { 
                     alert("Dokumen yang dibutuhkan belum di upload!"); 
