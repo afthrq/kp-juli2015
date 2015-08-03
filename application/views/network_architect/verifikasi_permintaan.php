@@ -80,11 +80,111 @@
                         <!-- /.col-lg-12 -->
                     </div>
                     <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#sectionA">Data Permintaan</a></li>
-                        <li><a data-toggle="tab" href="#sectionB">Verifikasi Permintaan</a></li>
+                        <li class="active"><a data-toggle="tab" href="#sectionA">Verifikasi Permintaan</a></li>
+                        <li><a data-toggle="tab" href="#sectionB">Data Administrasi</a></li>
+                        <li><a data-toggle="tab" href="#sectionC">Data Teknis</a></li>
+                        <li><a data-toggle="tab" href="#sectionD">Histori Permintaan</a></li>
                     </ul>
                     <div class="tab-content">
                         <div id="sectionA" class="tab-pane fade in active">
+                            <br>
+                            <form method="POST" action="<?php echo base_url('networkarchitect/submit_verifikasi_permintaan')?>">
+
+                            <input type="hidden" name="user" value="<?php echo  $this->session->userdata('user_name')?>">
+                            <?php foreach ($lokasiid as $row): ?>   
+                                <input type="hidden" name="site_id" value="<?php echo $row->t_nw_site_id?>">
+                            <?php endforeach ?>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:163px">No. Form Permintaan</span>
+                                            <input type="text" class="form-control" aria-describedby="basic-addon1" name="no_form">
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:163px">Tanggal Permintaan</span>
+                                            <input type="date" class="form-control" aria-describedby="basic-addon1" name="tanggal_permintaan">
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:163px">Keterangan</span>
+                                            <textarea class="form-control" name="keterangan" cols="40" rows="5"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br><br>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:163px">Judul Dokumen</span>
+                                            <input type="text" class="form-control" aria-describedby="basic-addon1" name="caption">
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:163px">Tipe Dokumen</span>
+                                            <select name="tipe_dokumen" class="form-control">
+                                                <option value="1">Form Permintaan</option>
+                                                <option value="2">Memo</option>
+                                                <option value="3">Nota Pengantar</option>
+                                                <option value="4">BALO</option>
+                                                <option value="5">Form UAT</option>
+                                                <option value="6">Lain - Lain</option>
+                                            </select>
+                                       </div>
+                                   </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div><input type="file" id="userfile" /></div>
+                                        <div class="uploadify-queue" id="file-queue"></div>
+                                        <input type="submit" value="Upload" class="btn btn-default btn-primary" id="upload-btn">
+                                        <input type="hidden" class="form-control" aria-describedby="basic-addon1" id="path" name="path">
+                                    </div>
+                                </div>
+                                <br><br>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                    <button class="btn btn-outline btn-primary btn-danger"id="modal_trigger" href="#modal">Reject</button>
+                                    <?php echo form_submit('submit', ' Submit ', 'class="btn btn-outline btn-primary btn-success" style="padding: 5px 12px;"'); ?>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="tahap" value="2">
+
+                            <div id="modal" class="popupContainer" style="display:none;">
+                                <header class="popupHeader">
+                                    <span class="header_title">Reject</span>
+                                    <span class="modal_close"><i class="fa fa-times"></i></span>
+                                </header>
+                                <div class="social_login">
+                                    <div class="">
+                                        <br>
+                                        <center>
+                                            Anda yakin ingin mereject permintaan ?
+                                            <br><br>
+                                            <textarea placeholder="Tuliskan alasan penolakan..." class="form-control ket-reject" name="reject" cols="35" rows="3"></textarea>
+                                            <br>
+                                            <?php echo form_submit('reject', ' Reject ', 'class="btn btn-outline btn-primary btn-danger" style="padding: 5px 12px;"'); ?>
+                                        </center>
+                                        <br>
+                                    </div>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div id="sectionB" class="tab-pane fade">
                             <br>
                             <?php foreach ($data_permintaan as $row): ?>
                             <div class="row">
@@ -149,6 +249,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <br><br><br>
+                        </div>
+                        <div id="sectionC" class="tab-pane fade">
                             <br>
                             <div class="row">
                                 <div class="col-lg-6">
@@ -176,101 +279,44 @@
                                     </div>
                                 </div>
                             </div>
-                            <br>
-                            <br>
-                            <br>
                             <?php endforeach ?>
                         </div>
-                        <div id="sectionB" class="tab-pane fade">
+                        <div id="sectionD" class="tab-pane fade">
                             <br>
-                            <form method="POST" action="<?php echo base_url('networkarchitect/submit_verifikasi_permintaan')?>">
-
-                            <input type="hidden" name="user" value="<?php echo  $this->session->userdata('user_name')?>">
-                            <?php foreach ($lokasiid as $row): ?>   
-                                <input type="hidden" name="site_id" value="<?php echo $row->t_nw_site_id?>">
-                            <?php endforeach ?>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="input-group">
-                                            <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:163px">No. Form Permintaan</span>
-                                            <input type="text" class="form-control" aria-describedby="basic-addon1" name="no_form">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            List Permintaan
                                         </div>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="input-group">
-                                            <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:163px">Tanggal Permintaan</span>
-                                            <input type="date" class="form-control" aria-describedby="basic-addon1" name="tanggal_permintaan">
+                                        <!-- /.panel-heading -->
+                                        <div class="panel-body">
+                                            <div class="table-responsive">
+                                                <table class="table table-striped table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>Proses</th>
+                                                            <th>Keterangan</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php //$count = 0; foreach ($list_keterangan as $row) : $count++;?>
+                                                            <tr>
+                                                              <td><?php //echo $count?></td>
+                                                              <td><?php //echo $row->name?></td>
+                                                              <td><?php //echo $row->keterangan?></td>
+                                                            </tr>
+                                                        <?php //endforeach ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <!-- /.table-responsive -->
                                         </div>
+                                        <!-- /.panel-body -->
                                     </div>
+                                    <!-- /.panel -->
                                 </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="input-group">
-                                            <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:163px">Caption Dokumen</span>
-                                            <input type="text" class="form-control" aria-describedby="basic-addon1" name="caption">
-                                        </div>
-                                    </div>
-                                </div>
-                                <input type="hidden" value="1" name="tipe_dokumen">
-                                <br>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="input-group">
-                                            <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:163px">Keterangan</span>
-                                            <textarea class="form-control" name="keterangan" cols="40" rows="5"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="input-group">
-                                            <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:163px">Tipe Dokumen</span>
-                                            <input type="text" class="form-control" aria-describedby="basic-addon1" name="caption" readonly>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div><input type="file" id="userfile" /></div>
-                                        <div class="uploadify-queue" id="file-queue"></div>
-                                        <input type="submit" value="Upload" class="btn btn-default btn-primary" id="upload-btn">
-                                        <input type="hidden" class="form-control" aria-describedby="basic-addon1" id="path" name="path">
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                    <button class="btn btn-outline btn-primary btn-danger"id="modal_trigger" href="#modal">Reject</button>
-                                    <?php echo form_submit('submit', ' Submit ', 'class="btn btn-outline btn-primary btn-success" style="padding: 5px 12px;"'); ?>
-                                    </div>
-                                </div>
-                                <input type="hidden" name="tahap" value="2">
-
-                            <div id="modal" class="popupContainer" style="display:none;">
-                                <header class="popupHeader">
-                                    <span class="header_title">Reject</span>
-                                    <span class="modal_close"><i class="fa fa-times"></i></span>
-                                </header>
-                                    <div class="social_login">
-                                        <div class="">
-                                            <br>
-                                            <center>
-                                                Anda yakin ingin mereject permintaan ?
-                                                <br><br>
-                                                <textarea placeholder="Tuliskan alasan penolakan..." class="form-control ket-reject" name="reject" cols="35" rows="3"></textarea>
-                                                <br>
-                                                <?php echo form_submit('reject', ' Reject ', 'class="btn btn-outline btn-primary btn-danger" style="padding: 5px 12px;"'); ?>
-                                            </center>
-                                            <br>
-                                        </div>
-                                    </div>
-                                </form>
                             </div>
                         </div>
                     </div>

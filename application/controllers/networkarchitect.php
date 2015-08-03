@@ -286,6 +286,7 @@ class Networkarchitect extends CI_Controller
         $data['count_vp'] = $this->verifikator_model->getcountvp();
         $data['count_kp'] = $this->verifikator_model->getcountkp();
         $data['count_ob'] = $this->verifikator_model->getcountob(); 
+        $data['data_permintaan'] = $this->verifikator_model->get_data_permintaan($o_id);
         $data['lokasiid'] = $this->verifikator_model->getlokasiid($o_id);
         $this->load->view('network_architect/koordinasi_provider',$data);
     }

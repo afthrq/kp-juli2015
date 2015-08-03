@@ -66,7 +66,7 @@
                         <!-- /.col-lg-12 -->
                     </div>
                     <div class="row">
-                        <div class="col-lg-8">
+                        <div class="col-lg-12">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     List Permintaan
@@ -78,11 +78,16 @@
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Lokasi</th>
+                                                    <th>Perusahaan</th>
                                                     <th>Jenis Lokasi</th>
+                                                    <th>Lokasi</th>
                                                     <th>Layanan</th>
                                                     <th>Bandwidth</th>
                                                     <th>Tipe Permintaan</th>
+                                                    <th>No. Permintaan</th>
+                                                    <th>Tanggal Permintaan</th>
+                                                    <th>Tgl. Akhir Perngerjaan</th>
+                                                    <th>Status</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -91,11 +96,16 @@
                                                     <input type="hidden" name="doc_id" value="1">
                                                     <tr>
                                                       <td><?php echo $count?></td>
-                                                      <td><input type="hidden" name="order_id" value="<?php echo $row->site_name ?>"><input type="submit" value="<?php echo $row->site_name ?>" class="btn btn-default btn-table"></td>
+                                                      <td><?php //echo $row->company_name?></td>
                                                       <td><?php echo $row->type_name?></td>
+                                                      <td><input type="hidden" name="order_id" value="<?php echo $row->site_name ?>"><input type="submit" value="<?php echo $row->site_name ?>" class="btn btn-default btn-table"></td>
                                                       <td><?php echo $row->service_name?> | <?php echo $row->package?></td>
                                                       <td><?php echo $row->bw ?></td>
                                                       <td><?php echo $row->name ?></td>
+                                                      <td><?php echo $row->no_form_permintaan ?></td>
+                                                      <td><?php echo $row->tgl_permintaan ?></td>
+                                                      <td><?php //echo $row-> ?></td>
+                                                      <td></td>
                                                     </tr>
                                                     </form>
                                                 <?php endforeach ?>

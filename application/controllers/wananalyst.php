@@ -70,6 +70,7 @@ class Wananalyst extends CI_Controller
         $data['count_imp'] = $this->wan_analyst_model->getcountimp();
         $data['count_balo'] = $this->wan_analyst_model->getcountbalo();
         $data['balo_list'] = $this->wan_analyst_model->getdataupdate($o_id);
+        $data['data_permintaan'] = $this->wan_analyst_model->get_data_permintaan($o_id);
         $data['lokasiid'] = $this->wan_analyst_model->getlokasiid($o_id); 
         $this->load->view('wan_analyst/balo',$data);
     }
@@ -81,6 +82,7 @@ class Wananalyst extends CI_Controller
         $data['count_srv'] = $this->wan_analyst_model->getcountsrv();
         $data['count_imp'] = $this->wan_analyst_model->getcountimp();
         $data['count_balo'] = $this->wan_analyst_model->getcountbalo();
+        $data['data_permintaan'] = $this->wan_analyst_model->get_data_permintaan($o_id);
         $data['lokasiid'] = $this->wan_analyst_model->getlokasiid($o_id); 
         $this->load->view('wan_analyst/survey',$data);
     }

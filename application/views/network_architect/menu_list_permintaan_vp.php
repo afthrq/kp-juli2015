@@ -78,8 +78,9 @@
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Lokasi</th>
+                                                    <th>Perusahaan</th>
                                                     <th>Jenis Lokasi</th>
+                                                    <th>Lokasi</th>
                                                     <th>Layanan</th>
                                                     <th>Bandwidth</th>
                                                     <th>Tipe Permintaan</th>
@@ -91,8 +92,9 @@
                                                     <input type="hidden" name="doc_id" value="1">
                                                     <tr>
                                                       <td><?php echo $count?></td>
-                                                      <td><input type="hidden" name="order_id" value="<?php echo $row->site_name ?>"><input type="submit" value="<?php echo $row->site_name ?>" class="btn btn-default btn-table"></td>
+                                                      <td><?php //echo $row->company_name?></td>
                                                       <td><?php echo $row->type_name?></td>
+                                                      <td><input type="hidden" name="order_id" value="<?php echo $row->site_name ?>"><input type="submit" value="<?php echo $row->site_name ?>" class="btn btn-default btn-table"></td>
                                                       <td><?php echo $row->service_name?> | <?php echo $row->package?></td>
                                                       <td><?php echo $row->bw ?></td>
                                                       <td><?php echo $row->name ?></td>

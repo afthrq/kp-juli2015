@@ -199,6 +199,49 @@
         <script src="<?php echo base_url('assets/js/metisMenu.min.js')?>"></script>
         <!-- Custom Theme JavaScript -->
         <script src="<?php echo base_url('assets/js/sb-admin-2.js')?>"></script>
+        <script src="<?php echo base_url('assets/js/lib/jquery.uploadify.min.js') ?>"></script>
+        <script type='text/javascript' >
+        $(function() {
+
+            $('#upload-btn').click(function (e) {
+                e.preventDefault();
+            $('#userfile').uploadify('upload', '*');
+            });
+
+            $('#userfile').uploadify({
+                'debug'   : false,
+                'swf'   : '<?php echo base_url() ?>assets/js/lib/uploadify.swf',
+                'uploader'  : '<?php echo base_url('upload/uploadify')?>',
+                'cancelImage' : '<?php echo base_url() ?>assets/js/lib/uploadify-cancel.png',
+                'queueID'  : 'file-queue',
+                'buttonClass'  : 'btn btn-default up-btn',
+                'buttonText' : "Pilih Dokumen",
+                'multi'   : false,
+                'auto'   : false,
+                
+                'fileTypeExts':'*.pdf;*.doc;*.docx',
+                'fileTypeDesc':'Image Files (.pdf,.doc,.docx,)',
+                'method'  : 'post',
+                'fileObjName' : 'userfile',
+                'queueSizeLimit': 1,
+                'simUploadLimit': 1,
+                'sizeLimit'  : 10240000,
+                'removeCompleted' : false,
+                'onUploadSuccess' : function(file, data, response) {
+                var json = jQuery.parseJSON(data);
+                alert('File bernama ' + file.name + ' telah berhasil di upload dengan nama ' + ': ' + json.file_name);
+                $("#path").attr('value',json.file_name);
+                },
+                /*'onUploadComplete' : function(file) {
+                alert('The file ' + file.name + ' finished processing.');
+                },*/
+                'onQueueFull': function(event, queueSizeLimit) {
+                alert("Please don't put anymore files in me! You can upload " + queueSizeLimit + " files at once");
+                return false;
+                },
+            });
+        });
+        </script>
 
         <script type="text/javascript">
             $(window).on('beforeunload', function(){
@@ -210,6 +253,22 @@
                 // disable unload warning
                 $(window).off('beforeunload');
             });
+        </script>
+
+        <script src="<?php echo base_url('assets/js/jquery-1.4.4.min.js') ?>"></script>
+
+        <script type="text/javascript" src="<?php echo base_url('assets/js/jquery.leanModal.min.js') ?>"></script>
+
+        <script type="text/javascript">
+            var oldJquery = $.noConflict(true);
+        </script>
+
+        <script type="text/javascript">
+            oldJquery("#modal_trigger").leanModal({top : 200, overlay : 0.6, closeButton: ".modal_close" });
+        </script>
+
+        <script type="text/javascript">
+            $("#milestone").find("a[value='1']").addClass("btn-active");
         </script>
     </body>
 </html>

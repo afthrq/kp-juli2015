@@ -207,5 +207,15 @@
         <script type="text/javascript">
             $("#milestone").find("a[value='1']").addClass("btn-active");
         </script>
+
+        <script type="text/javascript" src="<?php echo base_url('assets/js/jquery.leanModal.min.js') ?>"></script>
+
+        <script type="text/javascript">
+            var oldJquery = $.noConflict(true);
+        </script>
+
+        <script type="text/javascript">
+            oldJquery("#modal_trigger").leanModal({top : 200, overlay : 0.6, closeButton: ".modal_close" });
+        </script>
     </body>
 </html>
