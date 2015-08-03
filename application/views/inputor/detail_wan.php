@@ -11,13 +11,14 @@
         <link href="<?php echo base_url('assets/css/metisMenu.min.css"') ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/css/sb-admin-2.css') ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/css/font-awesome.min.css') ?>" rel="stylesheet">
+        <link href="<?php echo base_url('assets/css/morris.css') ?>" rel="stylesheet">
     </head>
     <body>
         <div id="wrapper">
             <!-- Navigation -->
             <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="<?php print_r($this->session->userdata('user_name')) ?>">Welcome, <?php print_r($this->session->userdata('user_name')) ?>!</a>
+                    <a class="navbar-brand" href="<?php echo base_url($this->session->userdata('role')); ?>">Welcome, <?php print_r($this->session->userdata('user_name')) ?>!</a>
                 </div>
                 <!-- /.navbar-header -->
                 <ul class="nav navbar-top-links navbar-right">
@@ -42,8 +43,8 @@
                                 <a href="<?php echo base_url() ?>inputor"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                             </li>
                             <li>
-                                <a href="<?php echo base_url() ?>inputor/data_wan"><i class="fa fa-table fa-fw"></i> Data Jaringan WAN</a>
-                            </li>   
+                                <a href="<?php echo base_url() ?>inputor/data_wan" class="sidebar-active"><i class="fa fa-table fa-fw"></i> Data Jaringan WAN</a>
+                            </li>       
                             <li>
                                 <a href="#"><i class="fa fa-edit fa-fw"></i> Form Permintaan<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
@@ -78,7 +79,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header">Lokasi yang ingin dilakuakan perubahan jaringan</h1>
+                            <h1 class="page-header">Data Jaringan WAN - Lokasi</h1>
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
@@ -86,46 +87,20 @@
                         <div class="col-lg-8">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    Data WAN
+                                    Area Chart Example
                                 </div>
                                 <!-- /.panel-heading -->
                                 <div class="panel-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-striped table-bordered table-hover">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Lokasi</th>
-                                                    <th>Jenis Lokasi</th>
-                                                    <th>Layanan</th>
-                                                    <th>Bandwidth</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php $count = 0; foreach ($list_permintaan as $row) : $count++;?>
-                                                    <form method="POST" action="<?php echo base_url('inputor/update')?>">
-                                                    <tr>
-                                                      <td><?php echo $count?></td>
-                                                      <td><input type="hidden" name="order_id" value="<?php echo $row->site_name ?>"><input type="submit" value="<?php echo $row->site_name ?>" class="btn btn-default btn-table"></td>
-                                                      <td><?php echo $row->type_name?></td>
-                                                      <td><?php echo $row->service_name?> | <?php echo $row->package?></td>
-                                                      <td><?php echo $row->bw ?></td>
-                                                    </tr>
-                                                    </form>
-                                                <?php endforeach ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <!-- /.table-responsive -->
+                                    <div id="morris-area-chart"></div>
                                 </div>
                                 <!-- /.panel-body -->
                             </div>
                             <!-- /.panel -->
                         </div>
                     <!-- /.row -->
-                </div>
+                    </div>
                 <!-- /.container-fluid -->
-            </div>
+                </div>
             <!-- /#page-wrapper -->
         </div>
         <!-- /#wrapper -->
@@ -137,5 +112,6 @@
         <script src="<?php echo base_url('assets/js/metisMenu.min.js')?>"></script>
         <!-- Custom Theme JavaScript -->
         <script src="<?php echo base_url('assets/js/sb-admin-2.js')?>"></script>
+        <script src="<?php echo base_url('assets/js/morris.min.js')?>"></script>
     </body>
 </html>

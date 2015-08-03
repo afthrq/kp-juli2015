@@ -10,9 +10,12 @@
     <link href="<?php echo base_url('assets/css/metisMenu.min.css"') ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/sb-admin-2.css') ?>" rel="stylesheet">
   </head>
-  <body>
+  <body style="background-color:#fff;">
     <div class="container">
-      <div class="row">
+    <center>
+      <img src="<?php echo base_url('assets/img/Logo-pertamina.png') ?>" alt="" style="max-width:20%; max-height:20%;">
+    </center>
+      <div class="row" style="margin-top:-5%;">
         <div class="col-md-4 col-md-offset-4">
           <div class="login-panel panel panel-default">
             <div class="panel-heading">
@@ -36,6 +39,16 @@
               'class' => 'form-control',
               );
               echo form_password($password);
+              echo "<br>";
+              $role = array(
+                /*foreach ($role as $row) {
+                  $row->role => $row->role,
+                }*/
+                'inputor' => 'Inputor',
+                'networkarchitect' => 'Network Architect',
+              );
+              
+              echo form_dropdown('role',$role,'','class="form-control"');
               if(isset($message_error) && $message_error){
               echo '<div class="alert alert-error">';
                 echo '<a class="close" data-dismiss="alert">×</a>';

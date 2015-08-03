@@ -127,11 +127,11 @@ class Inputor_model extends CI_Model
 	
 	}
 
-	public function get_alamat($bahasa)
+    public function get_pic($pic)
     {
-        $this->db->select('address');
-        $this->db->like('address', $bahasa);
-           $query = $this->db->get('t_nw_site');
+        $this->db->select('pic_name');
+        $this->db->like('pic_name', $pic);
+           $query = $this->db->get('t_pic');
         return $query->result();
     }
 

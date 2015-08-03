@@ -51,7 +51,18 @@
                                         <a href="<?php echo base_url() ?>inputor/form_permintaan">Permintaan Baru</a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo base_url() ?>inputor/menu_list_permintaan">Update Permintaan</a>
+                                        <a href="#">Permintaan Perubahaan WAN <span class="fa arrow"></span></a>
+                                        <ul class="nav nav-third-level">
+                                            <li>
+                                                <a href="<?php echo base_url() ?>inputor/menu_list_permintaan">Upgrade WAN</a>
+                                            </li>
+                                            <li>
+                                                <a href="<?php echo base_url() ?>inputor/menu_list_permintaan_rl">Relokasi WAN</a>
+                                            </li>
+                                            <li>
+                                                <a href="<?php echo base_url() ?>inputor/menu_list_permintaan_dm">Dismantle WAN</a>
+                                            </li>
+                                        </ul>
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->

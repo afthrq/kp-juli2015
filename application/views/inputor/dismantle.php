@@ -84,8 +84,8 @@
                         <!-- /.col-lg-12 -->
                     </div>
                      <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#sectionA">Data Administrasi</a></li>
-                        <li><a data-toggle="tab" href="#sectionB">Data Teknis</a></li>
+                        <li class="active"><a data-toggle="tab" href="#sectionA">Form Permintaan #1</a></li>
+                        <li><a data-toggle="tab" href="#sectionB">Form Permintaan #2</a></li>
                     </ul>
                     <div class="tab-content">
                         <div id="sectionA" class="tab-pane fade in active">
@@ -98,9 +98,7 @@
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Perusahaan</span>
-                                        <div class="dropdown">
-                                        <?php echo form_dropdown('perusahaan', $perusahaan_list,'','class="form-control" id="perusahaan" name="perusahaan"'); ?>
-                                        </div>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="" name="perusahaan" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
                                     </div>
                                 </div>
                             </div>
@@ -110,11 +108,7 @@
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Region</span>
-                                        <div class="dropdown">
-                                            <select class="form-control" name="region" id="region">
-                                                <option value="">(Pilih Perusahaan Terlebih Dahulu)</option>    
-                                            </select>
-                                        </div>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="" name="region" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
                                     </div>
                                 </div>
                             </div>
@@ -124,13 +118,7 @@
                                 <div class=" col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Jenis Lokasi</span>
-                                        <div class="dropdown">
-                                            <select placeholder="Pilih Perusahaan" class="form-control" name="jenis">    
-                                                <?php foreach ($jenis_list as $row) : ?>
-                                                    <option><?php echo $row->type_name ?></option>
-                                                <?php endforeach?>
-                                            </select>
-                                        </div>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="" name="jenis" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
                                     </div>
                                 </div>
                             </div>
@@ -140,7 +128,7 @@
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Lokasi</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="lokasi">
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="lokasi" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
                                     </div>
                                 </div>
                             </div>
@@ -152,13 +140,7 @@
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Provinsi</span>
-                                        <div class="dropdown">
-                                            <select placeholder="Pilih Perusahaan" class="form-control" name="prov">    
-                                                <?php foreach ($provinsi_list as $row) : ?>
-                                                    <option><?php echo $row->provinsi_name ?></option>
-                                                <?php endforeach?>
-                                            </select>
-                                        </div>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="" name="prov" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
                                     </div>
                                 </div>
                             </div>
@@ -168,7 +150,7 @@
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Alamat</span>
-                                        <textarea class="form-control" name="alamat" cols="40" rows="5" id="alamat"></textarea>
+                                        <textarea class="form-control" name="alamat" cols="40" rows="5" id="alamat" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -177,7 +159,7 @@
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Latitude</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="latitude">
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="latitude" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
                                     </div>
                                 </div>
                             </div>
@@ -186,7 +168,7 @@
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Longitude</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="longitude">
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="longitude" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
                                     </div>
                                 </div>
                             </div>
@@ -198,7 +180,7 @@
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">PIC</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="pic" id="pic">
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="pic" id="pic" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
                                     </div>
                                 </div>
                             </div>
@@ -207,13 +189,7 @@
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Provider</span>
-                                        <div class="dropdown">
-                                            <select placeholder="Pilih Perusahaan" class="form-control" name="provider">    
-                                                <?php foreach ($provider_list as $row) : ?>
-                                                    <option><?php echo $row->provider_name ?></option>
-                                                <?php endforeach?>
-                                            </select>
-                                        </div>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="" name="provider" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
                                     </div>
                                 </div>
                             </div>
@@ -223,9 +199,7 @@
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Layanan</span>
-                                        <div class="dropdown">
-                                            <?php echo form_dropdown('layanan', $layanan_list,'','class="form-control" id="layanan" name="layanan"');  ?>
-                                        </div>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="" name="layanan" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
                                     </div>
                                 </div>
                             </div>
@@ -235,11 +209,7 @@
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Paket Layanan</span>
-                                        <div class="dropdown">
-                                            <select class="form-control" name="paket" id="paket">
-                                                <option value="">(Pilih Layanan Terlebih Dahulu)</option>    
-                                            </select>
-                                        </div>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="" name="paket" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
                                     </div>
                                 </div>
                             </div>
@@ -249,10 +219,7 @@
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Router</span>
-                                        <select name="router" class="form-control">
-                                            <option value="14">Cisco 2801-V/K9</option>
-                                            <option value="15">Cisco 2901-V/K9</option>
-                                        </select>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="" name="router" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
                                     </div>
                                 </div>
                             </div>
@@ -262,11 +229,7 @@
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Module</span>
-                                        <select name="modul" class="form-control">
-                                            <option value="">-</option>
-                                            <option value="16">HWIC-2T</option>
-                                            <option value="17">HWIC-2FE</option>
-                                        </select>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="" name="modul" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
                                     </div>
                                 </div>
                             </div>
@@ -276,7 +239,7 @@
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Bandwidth (Kb)</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="bw">
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="" name="bw" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
                                     </div>
                                 </div>
                             </div>
@@ -318,93 +281,18 @@
         <!-- Custom Theme JavaScript -->
         <script src="<?php echo base_url('assets/js/sb-admin-2.js')?>"></script>
 
-        <script type="text/javascript">  
-            $(document).ready(function() {  
-                $("#up_layanan").change(function(){  
-                    /*dropdown post *///  
-                    $.ajax({  
-                        url:"<?php echo base_url();?>index.php/inputor/buildpaketupdate",  
-                        data: {id: $(this).val()},  
-                        type: "POST",  
-                        success:function(data){  
-                        $("#up_paket").html(data);  
-                        }  
-                    });  
-                });  
-            });  
-        </script>
-
-        <script src="<?php echo base_url('assets/js/jquery-1.4.4.min.js') ?>"></script>
-
-        <script type="text/javascript">
-            var oldJquery = $.noConflict(true);
-        </script>
-
         <script src="<?php echo base_url('assets/js/jquery-ui.min.js') ?>"></script>
-        <!-- autocomplete PIC -->
+
         <script type="text/javascript">
-            $(document).ready(function () {
-                oldJquery(function () {
-                    $( "#pic" ).autocomplete({
-                        source: function(request, response) {
-                            $.ajax({ 
-                                url: "<?php echo base_url('inputor/ac_pic'); ?>",
-                                data: { id: $("#pic").val()},
-                                dataType: "json",
-                                type: "POST",
-                                success: function(data){
-                                    response(data);
-                                }    
-                            });
-                        },
-                    });
-                });
+            $(window).on('beforeunload', function(){
+            return "Any changes will be lost";
             });
-        </script>
 
-
-        <script type="text/javascript">  
-                  $(document).ready(function() {  
-                     $("#perusahaan").change(function(){  
-                     /*dropdown post *///  
-                     $.ajax({  
-                        url:"<?php echo base_url();?>index.php/inputor/buildregion",  
-                        data: {id: $(this).val()},  
-                        type: "POST",  
-                        success:function(data){  
-                        $("#region").html(data);  
-                     }  
-                  });  
-               });  
-            });  
-        </script> 
-
-        <script type="text/javascript">  
-                  $(document).ready(function() {  
-                     $("#layanan").change(function(){  
-                     /*dropdown post *///  
-                     $.ajax({  
-                        url:"<?php echo base_url();?>index.php/inputor/buildpaket",  
-                        data: {id: $(this).val()},  
-                        type: "POST",  
-                        success:function(data){  
-                        $("#paket").html(data);  
-                     }  
-                  });  
-               });  
-            });  
-        </script>
-
-        <script type="text/javascript"> 
-
-        function stopRKey(evt) { 
-          var evt = (evt) ? evt : ((event) ? event : null); 
-          var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null); 
-          if ((evt.keyCode == 13) && (node.type=="text"))  {return false;} 
-        } 
-
-        document.onkeypress = stopRKey; 
-
+            // Form Submit
+            $(document).on("submit", "form", function(event){
+                // disable unload warning
+                $(window).off('beforeunload');
+            });
         </script>
     </body>
 </html>

@@ -23,6 +23,24 @@ class Inputor extends CI_Controller
         $this->load->view('inputor/update_permintaan',$data);
     }
 
+    public function relokasi()
+    {
+        $o_id = $this->input->post('order_id');
+        $data['update_list'] = $this->inputor_model->getdataupdate($o_id);
+        $data['upserv_list'] = $this->inputor_model->getupdateid();
+        $data['lokasiid'] = $this->inputor_model->getlokasiid($o_id); 
+        $this->load->view('inputor/relokasi',$data);
+    }
+
+    public function dismantle()
+    {
+        $o_id = $this->input->post('order_id');
+        $data['update_list'] = $this->inputor_model->getdataupdate($o_id);
+        $data['upserv_list'] = $this->inputor_model->getupdateid();
+        $data['lokasiid'] = $this->inputor_model->getlokasiid($o_id); 
+        $this->load->view('inputor/dismantle',$data);
+    }
+
     public function index()
     {
         $this->load->view('inputor/home');
@@ -52,6 +70,17 @@ class Inputor extends CI_Controller
         $this->load->view('inputor/menu_list_permintaan', $data);
     }
 
+     function menu_list_permintaan_rl()
+    {        
+        $data['list_permintaan'] = $this->inputor_model->getdatapermintaan();
+        $this->load->view('inputor/menu_list_permintaan_rl', $data);
+    }
+
+    function menu_list_permintaan_dm()
+    {        
+        $data['list_permintaan'] = $this->inputor_model->getdatapermintaan();
+        $this->load->view('inputor/menu_list_permintaan_dm', $data);
+    }
 
     public function buildregion()  
     {  
@@ -270,16 +299,6 @@ class Inputor extends CI_Controller
 
         $this->inputor_model->updatefinal($update);
         redirect ('inputor','refresh');
-    }
-
-    public function ac_alamat()
-    {
-        $id = $this->input->post('id',TRUE);
-        $rows = $this->inputor_model->get_alamat($id);
-        $json_array = array();
-        foreach ($rows as $row)
-            $json_array[]=$row->address;
-        echo json_encode($json_array);
     }
 
     public function ac_pic()
