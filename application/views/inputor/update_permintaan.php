@@ -39,16 +39,30 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
-                                <a href="<?php echo base_url() ?>inputor"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                            </li>   
+                                <a href="<?php echo base_url() ?>inputor" class="sidebar-active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            </li>
                             <li>
-                                <a href="#"><i class="fa fa-edit fa-fw"></i> Form Permintaan<span class="fa arrow"></span></a>
+                                <a href="<?php echo base_url() ?>inputor/data_wan"><i class="fa fa-table fa-fw"></i> Data Jaringan WAN</a>
+                            </li>      
+                            <li>
+                                <a href="#"><i class="fa fa-edit fa-fw"></i> Permintaan<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="<?php echo base_url() ?>inputor/form_permintaan">Permintaan Baru</a>
+                                        <a href="<?php echo base_url() ?>inputor/menu_list_permintaan_br">Form Permintaan</a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo base_url() ?>inputor/menu_list_permintaan" class="sidebar-active">Update Permintaan</a>
+                                        <a href="#">Permintaan Perubahaan WAN <span class="fa arrow"></span></a>
+                                        <ul class="nav nav-third-level">
+                                            <li>
+                                                <a href="<?php echo base_url() ?>inputor/menu_list_permintaan">Upgrade WAN</a>
+                                            </li>
+                                            <li>
+                                                <a href="<?php echo base_url() ?>inputor/menu_list_permintaan_rl">Relokasi WAN</a>
+                                            </li>
+                                            <li>
+                                                <a href="<?php echo base_url() ?>inputor/menu_list_permintaan_dm">Dismantle WAN</a>
+                                            </li>
+                                        </ul>
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->

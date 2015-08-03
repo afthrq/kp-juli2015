@@ -45,10 +45,10 @@
                                 <a href="<?php echo base_url() ?>inputor/data_wan"><i class="fa fa-table fa-fw"></i> Data Jaringan WAN</a>
                             </li>      
                             <li>
-                                <a href="#"><i class="fa fa-edit fa-fw"></i> Form Permintaan<span class="fa arrow"></span></a>
+                                <a href="#"><i class="fa fa-edit fa-fw"></i> Permintaan<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="<?php echo base_url() ?>inputor/form_permintaan">Permintaan Baru</a>
+                                        <a href="<?php echo base_url() ?>inputor/menu_list_permintaan_br">Form Permintaan</a>
                                     </li>
                                     <li>
                                         <a href="#">Permintaan Perubahaan WAN <span class="fa arrow"></span></a>

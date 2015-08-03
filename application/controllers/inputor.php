@@ -64,8 +64,26 @@ class Inputor extends CI_Controller
 
     }
 
-    function menu_list_permintaan()
+    public function permintaan_reject()
     {        
+
+        $data['jenis_list'] = $this->inputor_model->getdatajenis();
+        $data['provider_list'] = $this->inputor_model->getdataprovider();
+        $data['provinsi_list'] = $this->inputor_model->getdataprovinsi();
+        $data['layanan_list'] = $this->inputor_model->getservid();
+        $data['perusahaan_list'] = $this->inputor_model->getcompid();
+        $this->load->view('inputor/permintaan_reject',$data);
+
+    }
+
+    function menu_list_permintaan_br()
+    {        
+        $data['list_permintaan'] = $this->inputor_model->getdatapermintaan();
+        $this->load->view('inputor/menu_list_permintaan_br', $data);
+    }
+
+    function menu_list_permintaan()
+    {           
         $data['list_permintaan'] = $this->inputor_model->getdatapermintaan();
         $this->load->view('inputor/menu_list_permintaan', $data);
     }

@@ -39,16 +39,16 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
-                                <a href="<?php echo base_url() ?>inputor"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                                <a href="<?php echo base_url() ?>inputor" class="sidebar-active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                             </li>
                             <li>
                                 <a href="<?php echo base_url() ?>inputor/data_wan"><i class="fa fa-table fa-fw"></i> Data Jaringan WAN</a>
-                            </li>   
+                            </li>      
                             <li>
-                                <a href="#"><i class="fa fa-edit fa-fw"></i> Form Permintaan<span class="fa arrow"></span></a>
+                                <a href="#"><i class="fa fa-edit fa-fw"></i> Permintaan<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="<?php echo base_url() ?>inputor/form_permintaan">Permintaan Baru</a>
+                                        <a href="<?php echo base_url() ?>inputor/menu_list_permintaan_br">Form Permintaan</a>
                                     </li>
                                     <li>
                                         <a href="#">Permintaan Perubahaan WAN <span class="fa arrow"></span></a>
@@ -95,19 +95,21 @@
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Lokasi</th>
+                                                    <th>Perusahaan</th>
                                                     <th>Jenis Lokasi</th>
+                                                    <th>Lokasi</th>
                                                     <th>Layanan</th>
                                                     <th>Bandwidth</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php $count = 0; foreach ($list_permintaan as $row) : $count++;?>
-                                                    <form method="POST" action="<?php echo base_url('inputor/update')?>">
+                                                    <form method="POST" action="<?php echo base_url('inputor/form_permintaan')?>">
                                                     <tr>
                                                       <td><?php echo $count?></td>
-                                                      <td><input type="hidden" name="order_id" value="<?php echo $row->site_name ?>"><input type="submit" value="<?php echo $row->site_name ?>" class="btn btn-default btn-table"></td>
+                                                      <td><?php echo $row->company_name?></td>
                                                       <td><?php echo $row->type_name?></td>
+                                                      <td><input type="hidden" name="order_id" value="<?php echo $row->site_name ?>"><input type="submit" value="<?php echo $row->site_name ?>" class="btn btn-default btn-table"></td>
                                                       <td><?php echo $row->service_name?> | <?php echo $row->package?></td>
                                                       <td><?php echo $row->bw ?></td>
                                                     </tr>
