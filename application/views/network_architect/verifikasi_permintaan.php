@@ -80,7 +80,7 @@
                         <!-- /.col-lg-12 -->
                     </div>
                     <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#sectionA">Verifikasi Permintaan</a></li>
+                        <li class="active"><a data-toggle="tab" href="#sectionA">Form Verifikasi</a></li>
                         <li><a data-toggle="tab" href="#sectionB">Data Administrasi</a></li>
                         <li><a data-toggle="tab" href="#sectionC">Data Teknis</a></li>
                         <li><a data-toggle="tab" href="#sectionD">Histori Permintaan</a></li>
@@ -157,7 +157,7 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                     <button class="btn btn-outline btn-primary btn-danger"id="modal_trigger" href="#modal">Reject</button>
-                                    <?php echo form_submit('submit', ' Submit ', 'class="btn btn-outline btn-primary btn-success" style="padding: 5px 12px;"'); ?>
+                                    <input type="submit" id="submit" name="submit" value="Submit" class="btn btn-outline btn-primary btn-success" style="padding: 5px 12px;">
                                     </div>
                                 </div>
                                 <input type="hidden" name="tahap" value="2">
@@ -324,10 +324,11 @@
                             </div>
                         </div>
                     </div>
-                    <!-- /.container-fluid -->
+                    <!-- /#tab-content -->
                 </div>
-                <!-- /#page-wrapper -->
+                <!-- /.container-fluid -->
             </div>
+            <!-- /#page-wrapper -->
         </div>
         <!-- /#wrapper -->
         <!-- jQuery -->

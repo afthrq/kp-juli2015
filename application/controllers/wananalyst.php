@@ -32,6 +32,7 @@ class Wananalyst extends CI_Controller
         $data['count_imp'] = $this->wan_analyst_model->getcountimp();
         $data['count_balo'] = $this->wan_analyst_model->getcountbalo();
         $data['data_permintaan'] = $this->wan_analyst_model->get_data_permintaan($order_id);
+        $data['lokasiid'] = $this->wan_analyst_model->getlokasiid($order_id); 
 
 
         //get data service type id disini kasih variable $srv_id
@@ -331,12 +332,12 @@ class Wananalyst extends CI_Controller
     {
         $site_id = $this->input->post('site_id');
         $tahap = $this->input->post('tahap');
-        $detail_id = $this->verifikator_model->getunrecupid($site_id);
-        $prev_id = $this->verifikator_model->getprevid($detail_id);
+        $detail_id = $this->wan_analyst_model->getunrecupid($site_id);
+        $prev_id = $this->wan_analyst_model->getprevid($detail_id);
 
-        $this->verifikator_model->rejectunrec($detail_id, $prev_id);
-        $this->verifikator_model->dropprocess($detail_id, $tahap);
-        $this->verifikator_model->rejectdate($detail_id, $prev_id);
+        $this->wan_analyst_model->rejectunrec($detail_id, $prev_id);
+        $this->wan_analyst_model->dropprocess($detail_id, $tahap);
+        $this->wan_analyst_model->rejectdate($detail_id, $prev_id);
 
         redirect('wananalyst','refresh');
     }

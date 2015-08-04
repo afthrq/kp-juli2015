@@ -34,6 +34,7 @@ class Networkarchitect extends CI_Controller
         $path = "uploads/$filename";
         //--------------------------------------------------------------------//
         $tahap = $this->input->post('tahap');
+
         $user = $this->input->post('user');
         $keterangan = $this->input->post('keterangan');
         $detail_id = $this->verifikator_model->getunrecupid($site_id);
@@ -59,7 +60,9 @@ class Networkarchitect extends CI_Controller
 
         $this->verifikator_model->insert_detail_order($no_form, $tanggal_permintaan, $detail_id, $user);
         $this->verifikator_model->insert_dokumen($tipe_dokumen, $caption, $path, $work_id);
+
         redirect('networkarchitect','refresh');
+
     }
 
     function submit_online_billing()
@@ -261,6 +264,8 @@ class Networkarchitect extends CI_Controller
         $data['count_kp'] = $this->verifikator_model->getcountkp();
         $data['count_ob'] = $this->verifikator_model->getcountob(); 
         $data['sitenserviceid'] = $this->pm_model->getsitenserviceid($o_id);
+        $data['lokasiid'] = $this->verifikator_model->getlokasiid($o_id);
+        $data['data_permintaan'] = $this->verifikator_model->get_data_permintaan($o_id);
     	$this->load->view('network_architect/online_billing',$data);
     }
 

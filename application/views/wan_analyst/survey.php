@@ -80,7 +80,7 @@
                         <!-- /.col-lg-12 -->
                     </div>
                     <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#sectionA">Verifikasi Permintaan</a></li>
+                        <li class="active"><a data-toggle="tab" href="#sectionA">Form Survey</a></li>
                         <li><a data-toggle="tab" href="#sectionB">Data Administrasi</a></li>
                         <li><a data-toggle="tab" href="#sectionC">Data Teknis</a></li>
                         <li><a data-toggle="tab" href="#sectionD">Histori Permintaan</a></li>
