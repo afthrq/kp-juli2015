@@ -438,13 +438,15 @@ html{
     cursor: pointer;
     overflow: hidden;
     outline: none;
-    color: rgb(42, 126, 255);
-    text-decoration: underline;
+    padding: 0;
+    white-space: normal;
 }
 
 .btn-table:hover
 {
     background-color: transparent;
+    color: rgb(42, 126, 255);
+    text-decoration: underline;
 }
 
 .input-instalasi{
@@ -624,4 +626,12 @@ html{
 textarea.ket-reject{
     height: auto;
     width: auto;
+}
+
+td{
+    text-align: center;
+}
+
+th{
+    text-align: center; 
 }

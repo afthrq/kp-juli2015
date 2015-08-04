@@ -94,18 +94,19 @@
                                                 <?php $count = 0; foreach ($list_permintaan as $row) : $count++;?>
                                                     <form method="POST" action="<?php echo base_url('networkarchitect/koordinasi_provider')?>">
                                                     <input type="hidden" name="doc_id" value="1">
+                                                    <input type="hidden" name="order_id" value="<?php echo $row->site_name ?>">
                                                     <tr>
                                                       <td><?php echo $count?></td>
-                                                      <td><?php //echo $row->company_name?></td>
-                                                      <td><?php echo $row->type_name?></td>
-                                                      <td><input type="hidden" name="order_id" value="<?php echo $row->site_name ?>"><input type="submit" value="<?php echo $row->site_name ?>" class="btn btn-default btn-table"></td>
-                                                      <td><?php echo $row->service_name?> | <?php echo $row->package?></td>
-                                                      <td><?php echo $row->bw ?></td>
-                                                      <td><?php echo $row->name ?></td>
-                                                      <td><?php echo $row->no_form_permintaan ?></td>
-                                                      <td><?php echo $row->tgl_permintaan ?></td>
-                                                      <td><?php //echo $row-> ?></td>
-                                                      <td></td>
+                                                      <td><input type="submit" value="" class="btn btn-default btn-table"><?php //echo $row->company_name?></td>
+                                                      <td><input type="submit" value="<?php echo $row->type_name?>" class="btn btn-default btn-table"></td>
+                                                      <td><input type="submit" value="<?php echo $row->site_name ?>" class="btn btn-default btn-table"></td>
+                                                      <td><input type="submit" value="<?php echo $row->service_name?> | <?php echo $row->package?>" class="btn btn-default btn-table"></td>
+                                                      <td><input type="submit" value="<?php echo $row->bw ?>" class="btn btn-default btn-table"></td>
+                                                      <td><input type="submit" value="<?php echo $row->name ?>" class="btn btn-default btn-table"></td>
+                                                      <td><input type="submit" value="<?php echo $row->no_form_permintaan ?>" class="btn btn-default btn-table"></td>
+                                                      <td><input type="submit" value="<?php echo $row->tgl_permintaan ?>" class="btn btn-default btn-table"></td>
+                                                      <td><input type="submit" value="<?php //echo $row-> ?>" class="btn btn-default btn-table"></td>
+                                                      <td><input type="submit" value="" class="btn btn-default btn-table"></td>
                                                     </tr>
                                                     </form>
                                                 <?php endforeach ?>

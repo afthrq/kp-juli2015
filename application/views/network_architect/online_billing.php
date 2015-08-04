@@ -89,6 +89,14 @@
                         <div id="sectionA" class="tab-pane fade in active">
                             <br>
                             <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:162px">Tanggal Tagih</span>
+                                        <input type="date" class="form-control" aria-describedby="basic-addon1" name="tgltagih">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-lg-2">
                                     <h4>Biaya Instalasi</h4>
                                 </div>
@@ -200,7 +208,7 @@
                                                 <textarea placeholder="Tuliskan alasan penolakan..." class="form-control ket-reject" name="reject" cols="35" rows="3"></textarea>
                                                 <br>
                                                 <?php echo form_submit('reject', ' Reject ', 'class="btn btn-outline btn-primary btn-danger" style="padding: 5px 12px;"'); ?>
-                                                <input type="hidden" name="tahap" value="2">
+                                                <input type="hidden" name="tahap" value="9">
                                             </form>
                                         </center>
                                         <br>
