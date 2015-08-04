@@ -89,79 +89,80 @@
                         <div id="sectionA" class="tab-pane fade in active">
                             <br>
                             <form method="POST" action="<?php echo base_url('networkarchitect/submit_koordinasi_provider')?>">
-                            <input type="hidden" name="user" value="<?php echo  $this->session->userdata('user_name')?>">
-                            <?php foreach ($lokasiid as $row): ?>   
-                                <input type="hidden" name="site_id" value="<?php echo $row->t_nw_site_id?>">
-                            <?php endforeach ?>
-                            <div class="row">
-                                <div class=" col-lg-6">
-                                    <div class="input-group">
-                                        <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:137px">Tiket Provider</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="tiket_provider">
+                                <input type="hidden" name="user" value="<?php echo  $this->session->userdata('user_name')?>">
+                                <?php foreach ($lokasiid as $row): ?>   
+                                    <input type="hidden" name="site_id" value="<?php echo $row->t_nw_site_id?>">
+                                <?php endforeach ?>
+                                <div class="row">
+                                    <div class=" col-lg-6">
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:137px">Tiket Provider</span>
+                                            <input type="text" class="form-control" aria-describedby="basic-addon1" name="tiket_provider">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class=" col-lg-6">
-                                    <div class="input-group">
-                                        <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:137px">PIC Provider</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="pic_provider">
+                                <br>
+                                <div class="row">
+                                    <div class=" col-lg-6">
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:137px">PIC Provider</span>
+                                            <input type="text" class="form-control" aria-describedby="basic-addon1" name="pic_provider">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <br>
-                            <input type="hidden" value="6" name="tipe_dokumen">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="input-group">
-                                        <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:137px">Keterangan</span>
-                                        <textarea class="form-control" name="keterangan" cols="40" rows="5"></textarea>
+                                <br>
+                                <input type="hidden" value="6" name="tipe_dokumen">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:137px">Keterangan</span>
+                                            <textarea class="form-control" name="keterangan" cols="40" rows="5"></textarea>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <br><br>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="input-group">
-                                        <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:137px">Judul Dokumen</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="caption">
+                                <br><br>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:137px">Judul Dokumen</span>
+                                            <input type="text" class="form-control" aria-describedby="basic-addon1" name="caption">
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="input-group">
-                                        <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:137px">Tipe Dokumen</span>
-                                        <select name="tipe_dokumen" class="form-control">
-                                            <option value="1">Form Permintaan</option>
-                                            <option value="2">Memo</option>
-                                            <option value="3">Nota Pengantar</option>
-                                            <option value="4">BALO</option>
-                                            <option value="5">Form UAT</option>
-                                            <option value="6">Lain - Lain</option>
-                                        </select>
+                                <br>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:137px">Tipe Dokumen</span>
+                                            <select name="tipe_dokumen" class="form-control">
+                                                <option value="1">Form Permintaan</option>
+                                                <option value="2">Memo</option>
+                                                <option value="3">Nota Pengantar</option>
+                                                <option value="4">BALO</option>
+                                                <option value="5">Form UAT</option>
+                                                <option value="6">Lain - Lain</option>
+                                            </select>
+                                       </div>
                                    </div>
-                               </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div><input type="file" id="userfile" /></div>
-                                    <div class="uploadify-queue" id="file-queue"></div>
-                                    <input type="submit" value="Upload" class="btn btn-default btn-primary" id="upload-btn">
-                                    <input type="hidden" class="form-control" aria-describedby="basic-addon1" id="path" name="path">
                                 </div>
-                            </div>
-                            <br><br>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <button class="btn btn-outline btn-primary btn-danger"id="modal_trigger" href="#modal">Reject</button>
-                                    <?php echo form_submit('submit', ' Submit ', 'class="btn btn-outline btn-primary btn-success" style="padding: 5px 12px;"'); ?>
+                                <br>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div><input type="file" id="userfile" /></div>
+                                        <div class="uploadify-queue" id="file-queue"></div>
+                                        <input type="submit" value="Upload" class="btn btn-default btn-primary" id="upload-btn">
+                                        <input type="hidden" class="form-control" aria-describedby="basic-addon1" id="path" name="path">
+                                    </div>
                                 </div>
-                            </div>
-                            <input type="hidden" name="tahap" value="3">
+                                <br><br>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <button class="btn btn-outline btn-primary btn-danger"id="modal_trigger" href="#modal">Reject</button>
+                                        <?php echo form_submit('submit', ' Submit ', 'class="btn btn-outline btn-primary btn-success" style="padding: 5px 12px;"'); ?>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="tahap" value="3">
+                            </form>
                             
                             <div id="modal" class="popupContainer" style="display:none;">
                                 <header class="popupHeader">
@@ -174,14 +175,20 @@
                                         <center>
                                             Anda yakin ingin mereject permintaan ?
                                             <br><br>
-                                            <textarea placeholder="Tuliskan alasan penolakan..." class="form-control ket-reject" name="reject" cols="35" rows="3"></textarea>
-                                            <br>
-                                            <?php echo form_submit('reject', ' Reject ', 'class="btn btn-outline btn-primary btn-danger" style="padding: 5px 12px;"'); ?>
+                                            <form method="POST" action="<?php echo base_url('networkarchitect/reject')?>">
+                                                <?php foreach ($lokasiid as $row): ?>   
+                                                    <input type="hidden" name="site_id" value="<?php echo $row->t_nw_site_id?>">
+                                                <?php endforeach ?>
+                                                <textarea placeholder="Tuliskan alasan penolakan..." class="form-control ket-reject" name="reject" cols="35" rows="3"></textarea>
+                                                <br>
+                                                <?php echo form_submit('reject', ' Reject ', 'class="btn btn-outline btn-primary btn-danger" style="padding: 5px 12px;"'); ?>
+                                                <input type="hidden" name="tahap" value="2">
+                                            </form>
                                         </center>
                                         <br>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                         <div id="sectionB" class="tab-pane fade">
                             <br>
