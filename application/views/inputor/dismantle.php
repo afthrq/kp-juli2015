@@ -79,13 +79,13 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
-                             <h1 class="page-header">Form Permintaan</h1>
+                             <h1 class="page-header">Form Dismantle</h1>
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
                      <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#sectionA">Form Permintaan #1</a></li>
-                        <li><a data-toggle="tab" href="#sectionB">Form Permintaan #2</a></li>
+                        <li class="active"><a data-toggle="tab" href="#sectionA">Data Administrasi</a></li>
+                        <li><a data-toggle="tab" href="#sectionB">Data Teknis</a></li>
                     </ul>
                     <div class="tab-content">
                         <div id="sectionA" class="tab-pane fade in active">

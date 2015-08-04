@@ -143,15 +143,6 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="input-group">
-                                <span class="input-group-addon input-permintaan" id="basic-addon1">Provinsi</span>
-                                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->provinsi_name ?>" name="provinsi" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="input-group">
                                 <span class="input-group-addon input-permintaan" id="basic-addon1">Latitude</span>
                                 <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->latitude ?>" name="provinsi" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
                             </div>

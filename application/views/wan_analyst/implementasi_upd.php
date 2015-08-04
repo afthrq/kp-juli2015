@@ -336,13 +336,15 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <?php //$count = 0; foreach ($list_keterangan as $row) : $count++;?>
+                                                        <?php $count = 0; foreach ($list_keterangan as $row) : $count++;?>
                                                             <tr>
-                                                              <td><?php //echo $count?></td>
-                                                              <td><?php //echo $row->name?></td>
-                                                              <td><?php //echo $row->keterangan?></td>
+                                                            <?php if ($row->name != "Implementasi"): ?>
+                                                              <td><?php echo $count?></td>
+                                                              <td><?php echo $row->name?></td>
+                                                              <td><?php echo $row->keterangan?></td>
+                                                            <?php endif ?>
                                                             </tr>
-                                                        <?php //endforeach ?>
+                                                        <?php endforeach ?>
                                                     </tbody>
                                                 </table>
                                             </div>

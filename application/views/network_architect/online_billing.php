@@ -96,6 +96,8 @@
                                     </div>
                                 </div>
                             </div>
+                            <br>
+                            <?php foreach ($price_link as $row): ?>
                             <div class="row">
                                 <div class="col-lg-2">
                                     <h4>Biaya Instalasi</h4>
@@ -103,11 +105,13 @@
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon" id="basic-addon1">Rp</span>
-                                        <input type="number" class="form-control" aria-describedby="basic-addon1" value="100000" disabled>
+                                        <input type="number" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->price_mrc?>" disabled>
                                     </div>
                                  </div>
                             </div>
                             <br>
+                            <?php endforeach ?>
+                            <?php foreach ($price_router as $row): ?>
                             <div class="row">
                                 <div class="col-lg-2">
                                     <h4>Biaya Router</h4>
@@ -115,22 +119,24 @@
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon" id="basic-addon1">Rp</span>
-                                        <input type="number" class="form-control" aria-describedby="basic-addon1" value="100000" disabled>
+                                        <input type="number" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->price_otc?>" disabled>
                                     </div>
                                  </div>
                             </div>
                             <br>
+                            <?php endforeach ?>
                             <div class="row">
                                 <div class="col-lg-2">
-                                    <h4>Biaya Modul</h4>
+                                    <h4>Biaya Module</h4>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon" id="basic-addon1">Rp</span>
-                                        <input type="number" class="form-control" aria-describedby="basic-addon1" value="100000" disabled>
+                                        <input type="number" class="form-control" aria-describedby="basic-addon1" value="<?php echo $price_module?>" disabled>
                                     </div>
                                  </div>
                             </div>
+                            <br>
                             <form method="POST" action="<?php echo base_url('networkarchitect/submit_online_billing')?>">
                             <input type="hidden" name="user" value="<?php echo  $this->session->userdata('user_name')?>"></input>
                             <?php foreach ($sitenserviceid as $row): ?>   
@@ -333,13 +339,15 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <?php //$count = 0; foreach ($list_keterangan as $row) : $count++;?>
+                                                        <?php $count = 0; foreach ($list_keterangan as $row) : $count++;?>
                                                             <tr>
-                                                              <td><?php //echo $count?></td>
-                                                              <td><?php //echo $row->name?></td>
-                                                              <td><?php //echo $row->keterangan?></td>
+                                                            <?php if ($row->name != "Online Billing"): ?>
+                                                              <td><?php echo $count?></td>
+                                                              <td><?php echo $row->name?></td>
+                                                              <td><?php echo $row->keterangan?></td>
+                                                            <?php endif ?>
                                                             </tr>
-                                                        <?php //endforeach ?>
+                                                        <?php endforeach ?>
                                                     </tbody>
                                                 </table>
                                             </div>

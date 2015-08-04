@@ -32,7 +32,10 @@ class Wanperformance extends CI_Controller
 
         $data['count_mon'] = $this->wan_performance_model->getcountmon();
         $data['breadcrumbs'] = $this->wan_performance_model->getbreadcrumbs($o_id);
-        $data['lokasiid'] = $this->wan_performance_model->get_id($o_id);
+        $data['count_uat'] = $this->wan_performance_model->getcountmon();
+        $data['lokasiid'] = $this->wan_performance_model->getlokasiid($o_id);
+        $data['data_permintaan'] = $this->wan_performance_model->get_data_permintaan($o_id);
+        $data['list_keterangan'] = $this->wan_performance_model->getproses($o_id);
         $this->load->view('wan_performance_analyst/monitoring', $data);
     }
 

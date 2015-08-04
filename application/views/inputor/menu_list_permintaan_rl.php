@@ -78,7 +78,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header">Lokasi yang ingin dilakuakan perubahan jaringan</h1>
+                            <h1 class="page-header">Jaringan yang ingin direlokasi</h1>
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
@@ -104,7 +104,7 @@
                                             </thead>
                                             <tbody>
                                                 <?php $count = 0; foreach ($list_permintaan as $row) : $count++;?>
-                                                    <form method="POST" action="<?php echo base_url('inputor/form_permintaan')?>">
+                                                    <form method="POST" action="<?php echo base_url('inputor/relokasi')?>">
                                                     <tr>
                                                       <td><?php echo $count?></td>
                                                       <td><?php echo $row->company_name?></td>

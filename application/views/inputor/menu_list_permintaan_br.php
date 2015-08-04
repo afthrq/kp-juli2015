@@ -100,6 +100,7 @@
                                                     <th>Lokasi</th>
                                                     <th>Layanan</th>
                                                     <th>Bandwidth</th>
+                                                    <th>Keterangan</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -109,9 +110,18 @@
                                                       <td><?php echo $count?></td>
                                                       <td><?php echo $row->company_name?></td>
                                                       <td><?php echo $row->type_name?></td>
-                                                      <td><input type="hidden" name="order_id" value="<?php echo $row->site_name ?>"><input type="submit" value="<?php echo $row->site_name ?>" class="btn btn-default btn-table"></td>
+                                                      <?php if ($row->p_process_id == 1): ?>
+                                                        <td><input type="hidden" name="order_id" value="<?php echo $row->site_name ?>"><input type="submit" value="<?php echo $row->site_name ?>" class="btn btn-default btn-table"></td>
+                                                      <?php else: ?>
+                                                        <td><?php echo $row->site_name ?></td>
+                                                      <?php endif ?>
                                                       <td><?php echo $row->service_name?> | <?php echo $row->package?></td>
                                                       <td><?php echo $row->bw ?></td>
+                                                      <?php if ($row->p_process_id == 1): ?>
+                                                        <td><?php echo "Rejected ("; echo $row->ket_reject; echo")" ?></td>
+                                                      <?php else: ?>
+                                                        <td><?php echo $row->name?></td>
+                                                      <?php endif ?>
                                                     </tr>
                                                     </form>
                                                 <?php endforeach ?>

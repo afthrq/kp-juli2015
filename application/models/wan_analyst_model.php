@@ -44,6 +44,17 @@ class Wan_analyst_model extends CI_Model
 		return $query->count_all_results();
 	}
 
+	function getproses($o_id)
+	{
+		$this->db->where('t_nw_site.site_name', $o_id);
+		$this->db->where('t_nw_site.t_nw_site_id = t_unrec_process.t_nw_site_id');
+		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
+		$this->db->where('t_detail_network_order.t_detail_network_order_id = t_process.t_detail_network_order_id');
+		$this->db->where('t_process.p_process_id = p_process.p_process_id');
+		$query = $this->db->get('t_nw_site, t_unrec_process, t_detail_network_order, t_process, p_process');
+		return $query->result();
+	}
+
 	function getbreadcrumbs($o_id)
 	{
 		$this->db->select('p_process.name');
@@ -77,7 +88,9 @@ class Wan_analyst_model extends CI_Model
 		$this->db->where('t_network_order.t_nw_site_id = t_nw_site.t_nw_site_id');
 		$this->db->where('p_service.p_service_id = p_nw_service.p_service_id');
 		$this->db->where('t_detail_network_order.p_order_type_id = p_order_type.p_order_type_id');
-		$query = $this->db->get('t_nw_site,t_network_order,p_site_type,p_nw_service,p_service,t_nw_service,t_unrec_process,t_detail_network_order,p_order_type');
+		$this->db->where('t_nw_site.p_region_id = p_region.p_region_id');
+		$this->db->where('p_region.company_id = company.company_id');
+		$query = $this->db->get('p_region, company, t_nw_site,t_network_order,p_site_type,p_nw_service,p_service,t_nw_service,t_unrec_process,t_detail_network_order,p_order_type');
     	return $query->result();
 	}
 
@@ -101,7 +114,9 @@ class Wan_analyst_model extends CI_Model
 		$this->db->where('t_network_order.t_nw_site_id = t_nw_site.t_nw_site_id');
 		$this->db->where('p_service.p_service_id = p_nw_service.p_service_id');
 		$this->db->where('t_detail_network_order.p_order_type_id = p_order_type.p_order_type_id');
-		$query = $this->db->get('t_nw_site,t_network_order,p_site_type,p_nw_service,p_service,t_nw_service,t_unrec_process,t_detail_network_order,p_order_type');
+		$this->db->where('t_nw_site.p_region_id = p_region.p_region_id');
+		$this->db->where('p_region.company_id = company.company_id');
+		$query = $this->db->get('p_region, company, t_nw_site,t_network_order,p_site_type,p_nw_service,p_service,t_nw_service,t_unrec_process,t_detail_network_order,p_order_type');
     	return $query->result();
 	}
 
@@ -125,7 +140,9 @@ class Wan_analyst_model extends CI_Model
 		$this->db->where('t_network_order.t_nw_site_id = t_nw_site.t_nw_site_id');
 		$this->db->where('p_service.p_service_id = p_nw_service.p_service_id');
 		$this->db->where('t_detail_network_order.p_order_type_id = p_order_type.p_order_type_id');
-		$query = $this->db->get('t_nw_site,t_network_order,p_site_type,p_nw_service,p_service,t_nw_service,t_unrec_process,t_detail_network_order,p_order_type');
+		$this->db->where('t_nw_site.p_region_id = p_region.p_region_id');
+		$this->db->where('p_region.company_id = company.company_id');
+		$query = $this->db->get('p_region, company, t_nw_site,t_network_order,p_site_type,p_nw_service,p_service,t_nw_service,t_unrec_process,t_detail_network_order,p_order_type');
     	return $query->result();
 	}
 
@@ -141,6 +158,8 @@ class Wan_analyst_model extends CI_Model
 		$this->db->select('p_region.region_name');
 		$this->db->select('provinsi.provinsi_name');
 		$this->db->select('t_pic.pic_name');
+		$this->db->select('t_nw_site.latitude');
+		$this->db->select('t_nw_site.longitude');
 		$this->db->where('t_nw_site.site_name',$o_id);
 		$this->db->where('t_nw_service.p_nw_service_id >= "1"');
 		$this->db->where('t_nw_service.p_nw_service_id <= "13"');

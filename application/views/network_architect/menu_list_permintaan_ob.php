@@ -97,12 +97,12 @@
                                                     <input type="hidden" name="order_id" value="<?php echo $row->site_name ?>">
                                                     <tr>
                                                       <td><?php echo $count?></td>
-                                                      <td><input type="submit" value="<?php //echo $row->company_name?>" class="btn btn-default btn-table"></td>
+                                                      <td><input type="submit" value="<?php echo $row->company_name?>" class="btn btn-default btn-table"></td>
                                                       <td><input type="submit" value="<?php echo $row->type_name?>" class="btn btn-default btn-table"></td>
                                                       <td><input type="submit" value="<?php echo $row->site_name ?>" class="btn btn-default btn-table"></td>
                                                       <td><input type="submit" value="<?php echo $row->service_name?> | <?php echo $row->package?>" class="btn btn-default btn-table"></td>
                                                       <td><input type="submit" value="<?php echo $row->bw ?>" class="btn btn-default btn-table"></td>
-                                                      <td><input type="submit" value="<?php echo $row->name ?>" class="btn btn-default btn-table"></td>
+                                                      <td><input type="submit" value="<?php echo $row->ord_name ?>" class="btn btn-default btn-table"></td>
                                                       <td><input type="submit" value="<?php echo $row->no_form_permintaan ?>" class="btn btn-default btn-table"></td>
                                                       <td><input type="submit" value="<?php echo $row->tgl_permintaan ?>" class="btn btn-default btn-table"></td>
                                                       <td><input type="submit" value="<?php //echo $row-> ?>" class="btn btn-default btn-table"></td>

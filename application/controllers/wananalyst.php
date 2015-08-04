@@ -32,7 +32,8 @@ class Wananalyst extends CI_Controller
         $data['count_imp'] = $this->wan_analyst_model->getcountimp();
         $data['count_balo'] = $this->wan_analyst_model->getcountbalo();
         $data['data_permintaan'] = $this->wan_analyst_model->get_data_permintaan($order_id);
-        $data['lokasiid'] = $this->wan_analyst_model->getlokasiid($order_id); 
+        $data['lokasiid'] = $this->wan_analyst_model->getlokasiid($order_id);
+        $data['list_keterangan'] = $this->wan_analyst_model->getproses($order_id); 
 
 
         //get data service type id disini kasih variable $srv_id
@@ -72,7 +73,8 @@ class Wananalyst extends CI_Controller
         $data['count_balo'] = $this->wan_analyst_model->getcountbalo();
         $data['balo_list'] = $this->wan_analyst_model->getdataupdate($o_id);
         $data['data_permintaan'] = $this->wan_analyst_model->get_data_permintaan($o_id);
-        $data['lokasiid'] = $this->wan_analyst_model->getlokasiid($o_id); 
+        $data['lokasiid'] = $this->wan_analyst_model->getlokasiid($o_id);
+        $data['list_keterangan'] = $this->wan_analyst_model->getproses($o_id); 
         $this->load->view('wan_analyst/balo',$data);
     }
 
@@ -84,7 +86,8 @@ class Wananalyst extends CI_Controller
         $data['count_imp'] = $this->wan_analyst_model->getcountimp();
         $data['count_balo'] = $this->wan_analyst_model->getcountbalo();
         $data['data_permintaan'] = $this->wan_analyst_model->get_data_permintaan($o_id);
-        $data['lokasiid'] = $this->wan_analyst_model->getlokasiid($o_id); 
+        $data['lokasiid'] = $this->wan_analyst_model->getlokasiid($o_id);
+        $data['list_keterangan'] = $this->wan_analyst_model->getproses($o_id);
         $this->load->view('wan_analyst/survey',$data);
     }
 
@@ -120,7 +123,7 @@ class Wananalyst extends CI_Controller
         $site_id = $this->input->post('site_id');
         $baloptm = $this->input->post('baloptm');
         $baloprv = $this->input->post('baloprv');
-        $tgltagih = $this->input->post('tgltagih');
+        $tglaktivasi = $this->input->post('tglaktivasi');
 
         //--------------------------------------------------------------------//
         $tahap = $this->input->post('tahap');
@@ -149,7 +152,7 @@ class Wananalyst extends CI_Controller
 
         $data = array ('no_balo_provider' => $baloprv ,
                 'no_balo_pertamina' => $baloptm ,
-                'tgl_tagih' => $tgltagih);
+                'tgl_aktivasi' => $tglaktivasi);
         $this->wan_analyst_model->inputdatabalo($data, $detail_id);
 
         $tipe_dokumen = $this->input->post('tipe_dokumen');

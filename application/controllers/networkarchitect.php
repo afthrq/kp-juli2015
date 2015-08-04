@@ -240,6 +240,7 @@ class Networkarchitect extends CI_Controller
         $data['count_ob'] = $this->verifikator_model->getcountob(); 
         $data['lokasiid'] = $this->verifikator_model->getlokasiid($o_id);
         $data['data_permintaan'] = $this->verifikator_model->get_data_permintaan($o_id);
+        $data['list_keterangan'] = $this->verifikator_model->getproses($o_id);
         $data['dokumenid'] = $this->verifikator_model->getdocname($doc_id);
         $this->load->view('network_architect/verifikasi_permintaan', $data);
     }   
@@ -253,6 +254,7 @@ class Networkarchitect extends CI_Controller
         $data['count_ob'] = $this->verifikator_model->getcountob(); 
         $data['data_permintaan'] = $this->verifikator_model->get_data_permintaan($o_id);
         $data['lokasiid'] = $this->verifikator_model->getlokasiid($o_id);
+        $data['list_keterangan'] = $this->verifikator_model->getproses($o_id);
         $this->load->view('network_architect/koordinasi_provider',$data);
     }
 
@@ -266,6 +268,11 @@ class Networkarchitect extends CI_Controller
         $data['sitenserviceid'] = $this->pm_model->getsitenserviceid($o_id);
         $data['lokasiid'] = $this->verifikator_model->getlokasiid($o_id);
         $data['data_permintaan'] = $this->verifikator_model->get_data_permintaan($o_id);
+        $data['list_keterangan'] = $this->verifikator_model->getproses($o_id);
+        $data['price_link'] = $this->pm_model->getprlink($o_id);
+        $data['price_router'] = $this->pm_model->getprrouter($o_id);
+        $count = $this->pm_model->getcountmodule($o_id);
+        $data['price_module'] = $this->pm_model->getprmodule($o_id, $count);
     	$this->load->view('network_architect/online_billing',$data);
     }
 
