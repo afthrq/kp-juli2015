@@ -79,36 +79,36 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
-                             <h1 class="page-header">Form Dismantle</h1>
+                             <h1 class="page-header">Dismantle</h1>
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
-                     <ul class="nav nav-tabs">
+                    <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#sectionA">Data Administrasi</a></li>
                         <li><a data-toggle="tab" href="#sectionB">Data Teknis</a></li>
                     </ul>
                     <div class="tab-content">
                         <div id="sectionA" class="tab-pane fade in active">
                             <br>
-                            <form method="POST" action="<?php echo base_url('inputor/form_input')?>">
+                            <form method="POST" action="<?php echo base_url('inputor/dismantle')?>">
                             <input type="hidden" name="proses" value="1">
                             <input type="hidden" name="tahap" value="1">
                             <input type="hidden" name="user" value="<?php echo  $this->session->userdata('user_name')?>">
+                            <?php foreach ($update_list as $row): ?>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Perusahaan</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="" name="perusahaan" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->company_name ?>" name="perusahaan" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
                                     </div>
                                 </div>
                             </div>
                             <br>
-
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Region</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="" name="region" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->region_name ?>" name="region" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
                                     </div>
                                 </div>
                             </div>
@@ -118,7 +118,7 @@
                                 <div class=" col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Jenis Lokasi</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="" name="jenis" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->type_name ?>" name="jenis" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
                                     </div>
                                 </div>
                             </div>
@@ -128,19 +128,16 @@
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Lokasi</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="lokasi" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->site_name ?>" name="lokasi" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
                                     </div>
                                 </div>
                             </div>
-                            <br>
-
-                            
-
+                            <br>                     
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Provinsi</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="" name="prov" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->provinsi_name ?>" name="prov" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
                                     </div>
                                 </div>
                             </div>
@@ -150,7 +147,7 @@
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Alamat</span>
-                                        <textarea class="form-control" name="alamat" cols="40" rows="5" id="alamat" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;"></textarea>
+                                        <textarea class="form-control" name="alamat" cols="40" rows="5" id="alamat"  value="" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;"><?php echo $row->address ?></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -159,7 +156,7 @@
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Latitude</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="latitude" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->latitude ?>" name="latitude" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
                                     </div>
                                 </div>
                             </div>
@@ -168,7 +165,7 @@
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Longitude</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="longitude" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->longitude ?>" name="longitude" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
                                     </div>
                                 </div>
                             </div>
@@ -180,7 +177,7 @@
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">PIC</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="pic" id="pic" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->pic_name ?>" name="pic" id="pic" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
                                     </div>
                                 </div>
                             </div>
@@ -189,62 +186,62 @@
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Provider</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="" name="provider" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->provider_name ?>" name="provider" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
                                     </div>
                                 </div>
                             </div>
                             <br>
-
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Layanan</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="" name="layanan" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->service_name ?>" name="layanan" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
                                     </div>
                                 </div>
                             </div>
                             <br>
-
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Paket Layanan</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="" name="paket" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->package ?>" name="paket" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
                                     </div>
                                 </div>
                             </div>
                             <br>
-
+                            <?php endforeach ?>
+                            <?php foreach ($router_list as $row): ?>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Router</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="" name="router" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->service_name ?>" name="router" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
                                     </div>
                                 </div>
                             </div>
                             <br>
+                            <?php endforeach ?>
 
+                            <?php foreach ($modul_list as $row): ?>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Module</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="" name="modul" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->service_name ?>" name="modul" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
                                     </div>
                                 </div>
                             </div>
                             <br>
-
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Bandwidth (Kb)</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="" name="bw" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->bw ?>" name="bw" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
                                     </div>
                                 </div>
                             </div>
                             <br>
-
+                            <?php endforeach ?>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="input-group">
@@ -257,7 +254,6 @@
                             <br><br>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <a href="koordinasi_provider.html"><input type="submit" name="submit" value="Reject" class="btn btn-outline btn-primary btn-danger" style="padding: 5px 12px;"></a>
                                     <input type="submit" name="submit" value="Submit" class="btn btn-outline btn-primary btn-success" style="padding: 5px 12px;">
                                 </div>
                                 <br><br>
@@ -265,7 +261,6 @@
                             </form>
                         </div>
                     </div>
-                    
                 </div>
                 <!-- /.container-fluid -->
             </div>

@@ -195,18 +195,19 @@ class Wan_engineer_model extends CI_Model
 		$this->db->delete('t_process');
 	}
 
-	function rejectdate($detail_id, $prev_id)
+	function reject($detail_id, $prev_id, $reject)
 	{
+		$keterangan = array ('ket_reject' => $reject);
 		$this->db->where('t_process.t_detail_network_order_id', $detail_id);
 		$this->db->where('t_process.p_process_id', $prev_id);
-		$this->db->set('valid_to','',FALSE);
-		$this->db->update('t_process');
+		$this->db->update('t_process', $keterangan);
 
 	}
 
-	function rejectunrec($detail_id, $prev_id)
+	function rejectunrec($detail_id, $prev_id, $reject)
 	{
-		$process = array ( 'p_process_id' => $prev_id);
+		$process = array ( 'p_process_id' => $prev_id ,
+				'ket_reject' => $reject);
 
 		$this->db->where('t_unrec_process.t_detail_network_order_id', $detail_id);
 		$this->db->update('t_unrec_process', $process);

@@ -9,6 +9,13 @@ class Inputor_model extends CI_Model
 		$this->load->database();
 	}
 	//inisiasi-----------------------------------------------//
+	function getcountlokasi($lokasi)
+	{
+		$this->db->where('t_nw_site.site_name', $lokasi);
+		$query = $this->db->from('t_nw_site');
+		return $query->count_all_results();
+	}
+
 	function getdatajenis()
 	{
 		$query = $this->db->get('p_site_type');
@@ -266,12 +273,11 @@ class Inputor_model extends CI_Model
 		$this->db->update('t_unrec_process',$up_unrec);
 	}
 
-	function inputfinal($in_serv, $in_pic_site, $in_router, $in_price)
+	function inputfinal($in_serv, $in_pic_site, $in_router)
 	{
 		$this->db->insert('t_nw_service',$in_serv);
 		$this->db->insert('t_nw_site_pic',$in_pic_site);
 		$this->db->insert('t_nw_service',$in_router);
-		$this->db->insert('t_price_nw_serv_provider', $in_price);
 	}
 
 	function inputmodul($in_modul)
@@ -311,8 +317,6 @@ class Inputor_model extends CI_Model
       }   
       return $data;  
    	}
-
-
 
    	public function getpaketfromlayanan_up($p_service_id_up=string)  
    	{ 
@@ -393,9 +397,69 @@ class Inputor_model extends CI_Model
 		$this->db->where('company.company_id = p_region.company_id');
 		$this->db->where('t_nw_site.p_region_id = p_region.p_region_id');
 		$this->db->where('provinsi.provinsi_id = t_nw_site.provinsi_id');
-		$query = $this->db->get('t_nw_service_fix,t_nw_site,t_network,p_site_type,p_nw_service,p_service,company,p_region,t_pic,provinsi,t_nw_site_pic');
+		$this->db->where('t_network.provider_id = provider.provider_id');
+		$query = $this->db->get('provider,t_nw_service_fix,t_nw_site,t_network,p_site_type,p_nw_service,p_service,company,p_region,t_pic,provinsi,t_nw_site_pic');
     	return $query->result();
   	}
+
+  	public function getrouter($o_id)
+  	{
+    	//$this->db->select('t_nw_site.t_nw_site_id');
+  		//$this->db->select('t_nw_site.site_name');
+		//$this->db->select('p_site_type.type_name');
+		//$this->db->select('company.company_name');
+		//$this->db->select('t_nw_site.address');
+		//$this->db->select('p_region.region_name');
+		//$this->db->select('provinsi.provinsi_name');
+		//$this->db->select('t_pic.pic_name');
+		$this->db->where('t_nw_site.site_name',$o_id);
+		$this->db->where('t_nw_service_fix.p_nw_service_id >= "14"');
+		$this->db->where('t_nw_service_fix.p_nw_service_id <= "15"');
+		$this->db->where('t_nw_site.t_nw_site_id = t_network.t_nw_site_id');
+		$this->db->where('p_site_type.p_site_type_id = t_nw_site.p_site_type_id');
+		$this->db->where('p_nw_service.p_nw_service_id = t_nw_service_fix.p_nw_service_id');
+		$this->db->where('t_nw_service_fix.t_network_id = t_network.t_network_id');
+		$this->db->where('t_network.t_nw_site_id = t_nw_site.t_nw_site_id');
+		$this->db->where('p_service.p_service_id = p_nw_service.p_service_id');
+		$this->db->where('t_pic.t_pic_id = t_nw_site_pic.t_pic_id');
+		$this->db->where('t_nw_site_pic.t_nw_site_id = t_nw_site.t_nw_site_id');
+		$this->db->where('company.company_id = p_region.company_id');
+		$this->db->where('t_nw_site.p_region_id = p_region.p_region_id');
+		$this->db->where('provinsi.provinsi_id = t_nw_site.provinsi_id');
+		$this->db->where('t_network.provider_id = provider.provider_id');
+		$query = $this->db->get('provider,t_nw_service_fix,t_nw_site,t_network,p_site_type,p_nw_service,p_service,company,p_region,t_pic,provinsi,t_nw_site_pic');
+    	return $query->result();
+  	}
+
+   	public function getmodul($o_id)
+  	{
+    	//$this->db->select('t_nw_site.t_nw_site_id');
+  		//$this->db->select('t_nw_site.site_name');
+		//$this->db->select('p_site_type.type_name');
+		//$this->db->select('company.company_name');
+		//$this->db->select('t_nw_site.address');
+		//$this->db->select('p_region.region_name');
+		//$this->db->select('provinsi.provinsi_name');
+		//$this->db->select('t_pic.pic_name');
+		$this->db->where('t_nw_site.site_name',$o_id);
+		$this->db->where('t_nw_service_fix.p_nw_service_id >= "16"');
+		$this->db->where('t_nw_service_fix.p_nw_service_id <= "17"');
+		$this->db->where('t_nw_site.t_nw_site_id = t_network.t_nw_site_id');
+		$this->db->where('p_site_type.p_site_type_id = t_nw_site.p_site_type_id');
+		$this->db->where('p_nw_service.p_nw_service_id = t_nw_service_fix.p_nw_service_id');
+		$this->db->where('t_nw_service_fix.t_network_id = t_network.t_network_id');
+		$this->db->where('t_network.t_nw_site_id = t_nw_site.t_nw_site_id');
+		$this->db->where('p_service.p_service_id = p_nw_service.p_service_id');
+		$this->db->where('t_pic.t_pic_id = t_nw_site_pic.t_pic_id');
+		$this->db->where('t_nw_site_pic.t_nw_site_id = t_nw_site.t_nw_site_id');
+		$this->db->where('company.company_id = p_region.company_id');
+		$this->db->where('t_nw_site.p_region_id = p_region.p_region_id');
+		$this->db->where('provinsi.provinsi_id = t_nw_site.provinsi_id');
+		$this->db->where('t_network.provider_id = provider.provider_id');
+		$query = $this->db->get('provider,t_nw_service_fix,t_nw_site,t_network,p_site_type,p_nw_service,p_service,company,p_region,t_pic,provinsi,t_nw_site_pic');
+    	return $query->result();
+  	}
+
 
   	public function getsiteupid ($site_up)
   	{
@@ -433,6 +497,97 @@ class Inputor_model extends CI_Model
   	}
 
   	//rejected------------------------------------------------------
+ 	function getprosesid($serv_type_id)
+ 	{
+ 		$this->db->where('t_detail_network_order_id', $serv_type_id);
+ 		$query = $this->db->get('t_detail_network_order');
+ 		return $query->row()->p_order_type_id;
+ 	}
+
+ 	function updateproses($lokasi, $provider_id)
+	{
+		$this->db->where('t_nw_site.t_nw_site_id',$lokasi);
+		$this->db->where('t_unrec_process.t_nw_site_id = t_nw_site.t_nw_site_id');
+		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
+		$this->db->update('t_detail_network_order.provider_id', $provider_id);
+	}
+
+	function getdetailid($lokasi)
+	{
+		$this->db->where('t_nw_site.t_nw_site_id',$lokasi);
+		$this->db->where('t_unrec_process.t_nw_site_id = t_nw_site.t_nw_site_id');
+		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
+		$query = $this->db->get('t_nw_site, t_unrec_process, t_detail_network_order');
+		return $query->row()->t_detail_network_order_id;
+	}
+
+	function updatetahap($in_tahap, $serv_type_id, $tahap)
+	{
+		$this->db->where('p_process_id', $tahap);
+		$this->db->where('t_detail_network_order_id', $serv_type_id);
+		$this->db->set('valid_fr','NOW()',FALSE);
+		$this->db->set('valid_to','NOW()',FALSE);
+		$this->db->update('t_process',$in_tahap);	
+	}
+
+	function updatelvl2($in_site,$lokasi)
+	{
+		$this->db->where('t_nw_site.t_nw_site_id',$lokasi);
+		$this->db->update('t_nw_site',$in_site);		
+	}
+
+	function updateorder($in_order, $serv_type_id)
+	{
+		$this->db->where('t_network_order.t_detail_network_order_id',$serv_type_id);
+		$this->db->update('t_network_order',$in_order);
+	}
+
+	function getorderidrej($serv_type_id)
+	{
+		$this->db->where('t_network_order.t_detail_network_order_id',$serv_type_id);
+		$query = $this->db->get('t_network_order');
+		return $query->row()->t_network_order_id;
+	}
+
+	function droppic($siteid)
+	{
+		$this->db->where('t_nw_site_pic.t_nw_site_id', $siteid);
+		$this->db->delete('t_nw_site_pic');
+	}
+
+	function refreshservice ($orderid)
+	{
+		$this->db->where('t_nw_service.t_network_order_id', $orderid);
+		$this->db->delete('t_nw_service');
+	}
+
+	function rejectpic($in_pic_site, $lokasi)
+	{
+		$this->db->where('t_nw_site_pic.t_nw_site_id',$lokasi);
+		$this->db->update('t_nw_site_pic', $in_pic_site);
+	}
+	
+	function rejectserv($in_serv, $orderid)
+	{
+		$this->db->where('t_nw_service.t_network_order_id', $orderid);
+		$this->db->where('t_nw_service.p_nw_service_id >= "1", t_nw_service.p_nw_service_id <= "13"');
+		$this->db->update('t_nw_service', $in_serv);
+	}
+
+	function rejectrouter($in_router, $orderid)
+	{
+		$this->db->where('t_nw_service.t_network_order_id', $orderid);
+		$this->db->where('t_nw_service.p_nw_service_id >= "14", t_nw_service.p_nw_service_id <= "15"');
+		$this->db->update('t_nw_service', $in_router);
+	}
+
+	function rejectmodul($in_modul, $orderid)
+	{
+		$this->db->where('t_nw_service.t_network_order_id', $orderid);
+		$this->db->where('t_nw_service.p_nw_service_id >= "16", t_nw_service.p_nw_service_id <= "17"');
+		$this->db->update('t_nw_service', $in_modul);
+	}
+
   	public function getrejectid()  
    	{  
       $this->db->select('p_service.p_service_id,p_service.service_name');  

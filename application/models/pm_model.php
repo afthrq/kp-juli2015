@@ -165,6 +165,7 @@ class Pm_model extends CI_Model
   		$this->db->select('mon_cacti');
   		$this->db->select('mon_npmd');
   		$this->db->select('mon_sp');
+  		$this->db->select('provider_id');
 
   		$this->db->where('t_nw_site_id',$site_id);
   		$query = $this->db->get("t_network_order");

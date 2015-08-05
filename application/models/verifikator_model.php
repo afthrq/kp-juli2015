@@ -47,6 +47,7 @@ class Verifikator_model extends CI_Model
 		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
 		$this->db->where('t_detail_network_order.t_detail_network_order_id = t_process.t_detail_network_order_id');
 		$this->db->where('t_process.p_process_id = p_process.p_process_id');
+
 		$query = $this->db->get('t_nw_site, t_unrec_process, t_detail_network_order, t_process, p_process');
 		return $query->result();
 	}

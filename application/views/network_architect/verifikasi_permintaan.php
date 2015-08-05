@@ -177,7 +177,7 @@
                                                 <?php foreach ($lokasiid as $row): ?>   
                                                     <input type="hidden" name="site_id" value="<?php echo $row->t_nw_site_id?>">
                                                 <?php endforeach ?>
-                                                <textarea placeholder="Tuliskan alasan penolakan..." class="form-control ket-reject" name="reject" cols="35" rows="3"></textarea>
+                                                <textarea placeholder="Tuliskan alasan penolakan..." class="form-control ket-reject" name="ket_reject" cols="35" rows="3"></textarea>
                                                 <br>
                                                 <?php echo form_submit('reject', ' Reject ', 'class="btn btn-outline btn-primary btn-danger" style="padding: 5px 12px;"'); ?>
                                                 <input type="hidden" name="tahap" value="2">

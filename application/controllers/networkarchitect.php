@@ -151,12 +151,13 @@ class Networkarchitect extends CI_Controller
     {
         $site_id = $this->input->post('site_id');
         $tahap = $this->input->post('tahap');
+        $reject = $this->input->post('ket_reject');
         $detail_id = $this->verifikator_model->getunrecupid($site_id);
         $prev_id = $this->verifikator_model->getprevid($detail_id);
 
-        $this->verifikator_model->rejectunrec($detail_id, $prev_id);
+        $this->verifikator_model->rejectunrec($detail_id, $prev_id, $reject);
         $this->verifikator_model->dropprocess($detail_id, $tahap);
-        $this->verifikator_model->rejectdate($detail_id, $prev_id);
+        $this->verifikator_model->reject($detail_id, $prev_id, $reject);
 
         redirect('networkarchitect','refresh');
     }

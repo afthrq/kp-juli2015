@@ -151,7 +151,7 @@
                                         <center>
                                             Anda yakin ingin mereject permintaan ?
                                             <br><br>
-                                            <form method="POST" action="<?php echo base_url('networkarchitect/reject')?>">
+                                            <form method="POST" action="<?php echo base_url('wanengineer/reject')?>">
                                                 <?php foreach ($lokasiid as $row): ?>   
                                                     <input type="hidden" name="site_id" value="<?php echo $row->t_nw_site_id?>">
                                                 <?php endforeach ?>

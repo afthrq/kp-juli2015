@@ -89,162 +89,191 @@
                     <?php foreach ($lokasiid as $row): ?>   
                         <input type="hidden" name="site_id" value="<?php echo $row->t_nw_site_id?>">
                     <?php endforeach ?>
-                    
-                    <?php foreach ($reject_list as $row): ?>
+
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#sectionA">Data Administrasi</a></li>
+                        <li><a data-toggle="tab" href="#sectionB">Data Teknis</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="sectionA" class="tab-pane fade in active">
+                            <br>
+                            <?php foreach ($reject_list as $row): ?>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-permintaan" id="basic-addon1">Lokasi</span>
+                                            <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->site_name ?>" name ="lokasi" disabled  style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                                        </div>
+                                    </div>
+                                </div>
+                            <br>
+                            <?php endforeach ?>
+                            <div class="row">
+                                <div class=" col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1">Jenis Lokasi</span>
+                                        <div class="dropdown">
+                                            <select placeholder="Pilih Perusahaan" class="form-control" name="jenis">    
+                                                <?php foreach ($jenis_list as $row ): ?>
+                                                    <option><?php echo $row->type_name ?></option>
+                                                <?php endforeach ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <?php foreach ($reject_list as $row): ?>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1">Perusahaan</span>
+                                        <div class="dropdown">
+                                            <?php echo form_dropdown('perusahaan', $perusahaan_list,'','class="form-control" id="perusahaan" name="perusahaan"'); ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1">Region</span>
+                                        <div class="dropdown">
+                                            <select class="form-control" name="region" id="region">
+                                                <option value="">(Pilih Perusahaan Terlebih Dahulu)</option>    
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1">Alamat</span>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->address ?>" name ="alamat">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1">Provinsi</span>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->provinsi_name ?>" name="provinsi" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1">Latitude</span>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->latitude ?>" name="latitude">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1">Longitude</span>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->longitude ?>" name="longitude">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1">PIC</span>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->pic_name ?>" name="pic">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php endforeach ?>
+                        <div id="sectionB" class="tab-pane fade">
+                        <br>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="input-group">
-                                    <span class="input-group-addon input-permintaan" id="basic-addon1">Lokasi</span>
-                                    <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->site_name ?>" name ="lokasi" disabled  style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                                    <span class="input-group-addon input-permintaan" id="basic-addon1">Layanan</span>
+                                    <div class="dropdown">
+                                        <?php echo form_dropdown('up_layanan', $upserv_list,'','class="form-control" id="up_layanan" name="update_layanan"');  ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    <br>
-                    <?php endforeach ?>
-                    <div class="row">
-                        <div class=" col-lg-6">
-                            <div class="input-group">
-                                <span class="input-group-addon input-permintaan" id="basic-addon1">Jenis Lokasi</span>
-                                <div class="dropdown">
-                                    <select placeholder="Pilih Perusahaan" class="form-control" name="jenis">    
-                                        <?php foreach ($jenis_list as $row ): ?>
-                                            <option><?php echo $row->type_name ?></option>
-                                        <?php endforeach ?>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon input-permintaan" id="basic-addon1">Paket Layanan</span>
+                                    <div class="dropdown">
+                                        <select class="form-control" name="update_paket" id="up_paket">
+                                            <option value="1">(Pilih Layanan Terlebih Dahulu)</option>    
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon input-permintaan" id="basic-addon1">Router</span>
+                                    <select name="router" class="form-control">
+                                        <option value="14">Cisco 2801-V/K9</option>
+                                        <option value="15">Cisco 2901-V/K9</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <br>
-                    <?php foreach ($reject_list as $row): ?>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="input-group">
-                                <span class="input-group-addon input-permintaan" id="basic-addon1">Perusahaan</span>
-                                <div class="dropdown">
-                                    <?php echo form_dropdown('perusahaan', $perusahaan_list,'','class="form-control" id="perusahaan" name="perusahaan"'); ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="input-group">
-                                <span class="input-group-addon input-permintaan" id="basic-addon1">Region</span>
-                                <div class="dropdown">
-                                    <select class="form-control" name="region" id="region">
-                                        <option value="">(Pilih Perusahaan Terlebih Dahulu)</option>    
+                        <br>
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon input-permintaan" id="basic-addon1">Module</span>
+                                    <select name="modul" class="form-control">
+                                        <option value="">-</option>
+                                        <option value="16">HWIC-2T</option>
+                                        <option value="17">HWIC-2FE</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="input-group">
-                                <span class="input-group-addon input-permintaan" id="basic-addon1">Alamat</span>
-                                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->address ?>" name ="alamat">
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="input-group">
-                                <span class="input-group-addon input-permintaan" id="basic-addon1">Provinsi</span>
-                                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->provinsi_name ?>" name="provinsi" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="input-group">
-                                <span class="input-group-addon input-permintaan" id="basic-addon1">Latitude</span>
-                                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->latitude ?>" name="latitude">
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="input-group">
-                                <span class="input-group-addon input-permintaan" id="basic-addon1">Longitude</span>
-                                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->longitude ?>" name="longitude">
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="input-group">
-                                <span class="input-group-addon input-permintaan" id="basic-addon1">PIC</span>
-                                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->pic_name ?>" name="pic">
-                            </div>
-                        </div>
-                    </div>
-                    </form>
-                    <?php endforeach ?>
-                    <form method="POST" action ="<?php echo base_url('inputor/form_update')?>">
-                    <?php foreach ($lokasiid as $row): ?>   
-                        <input type="hidden" name="site_id" value="<?php echo $row->t_nw_site_id?>">
-                    <?php endforeach ?>
-                    <br>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="input-group">
-                                <span class="input-group-addon input-permintaan" id="basic-addon1">Layanan</span>
-                                <div class="dropdown">
-                                    <?php echo form_dropdown('up_layanan', $upserv_list,'','class="form-control" id="up_layanan" name="update_layanan"');  ?>
+                        <br>
+                        <?php foreach ($reject_list as $row): ?>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon input-permintaan" id="basic-addon1">Bandwidth</span>
+                                    <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->bw ?>" name="bw">
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="input-group">
-                                <span class="input-group-addon input-permintaan" id="basic-addon1">Paket Layanan</span>
-                                <div class="dropdown">
-                                    <select class="form-control" name="update_paket" id="up_paket">
-                                        <option value="1">(Pilih Layanan Terlebih Dahulu)</option>    
-                                    </select>
+                        <?php endforeach ?>
+                        <br>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon input-permintaan" id="basic-addon1">Keterangan</span>
+                                    <textarea class="form-control" name="keterangan" cols="40" rows="5"></textarea>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <br>
-                    <?php foreach ($reject_list as $row): ?>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="input-group">
-                                <span class="input-group-addon input-permintaan" id="basic-addon1">Bandwidth</span>
-                                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->bw ?>" name="bw">
+                        <br><br>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <input type="submit" name="submit" value="Submit" class="btn btn-outline btn-primary btn-success" style="padding: 5px 12px;">
                             </div>
                         </div>
+                        </form>
                     </div>
-                    <?php endforeach ?>
-                    <input type="hidden" name="tahap" value="1">
-                    <input type="hidden" name="user" value="<?php echo  $this->session->userdata('user_name')?>">
-                    <br>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="input-group">
-                                <span class="input-group-addon input-permintaan" id="basic-addon1">Keterangan</span>
-                                <textarea class="form-control" name="keterangan" cols="40" rows="5"></textarea>
-                            </div>
-                        </div>
                     </div>
-                    <br><br>
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <a href="koordinasi_provider.html"><input type="submit" name="submit" value="Reject" class="btn btn-outline btn-primary btn-danger" style="padding: 5px 12px;"></a>
-                            <input type="submit" name="submit" value="Submit" class="btn btn-outline btn-primary btn-success" style="padding: 5px 12px;">
-                        </div>
-                    </div>
-                    </form>
                 </div>
                 <!-- /.container-fluid -->
             </div>
@@ -290,18 +319,6 @@
                     });  
                 });  
             });  
-        </script>
-        
-        <script type="text/javascript">
-            $(window).on('beforeunload', function(){
-            return "Any changes will be lost";
-            });
-
-            // Form Submit
-            $(document).on("submit", "form", function(event){
-                // disable unload warning
-                $(window).off('beforeunload');
-            });
         </script>
     </body>
 </html>
