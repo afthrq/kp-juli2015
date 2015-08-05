@@ -68,7 +68,7 @@
                                 <!-- /.panel-heading -->
                                 <div class="panel-body">
                                     <div class="table-responsive">
-                                        <table class="table table-striped table-bordered table-hover">
+                                        <table id="mytable" class="table table-striped table-bordered table-hover">
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
@@ -80,28 +80,42 @@
                                                     <th>Tipe Permintaan</th>
                                                     <th>No. Permintaan</th>
                                                     <th>Tanggal Permintaan</th>
-                                                    <th>Tgl. Akhir Perngerjaan</th>
+                                                    <th>Tgl. Akhir Pengerjaan</th>
                                                     <th>Status</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php $count = 0; foreach ($list_permintaan as $row) : $count++;?>
-                                                    <form method="POST" action="<?php echo base_url('wanperformance/monitoring')?>">
-                                                    <input type="hidden" name="order_id" value="<?php echo $row->site_name ?>">
-                                                    <tr>
+                                                    <tr class="data">
                                                       <td><?php echo $count?></td>
-                                                      <td><input type="submit" value="<?php echo $row->company_name?>" class="btn btn-default btn-table"></td>
-                                                      <td><input type="submit" value="<?php echo $row->type_name?>" class="btn btn-default btn-table"></td>
-                                                      <td><input type="submit" value="<?php echo $row->site_name ?>" class="btn btn-default btn-table"></td>
-                                                      <td><input type="submit" value="<?php echo $row->service_name?> | <?php echo $row->package?>" class="btn btn-default btn-table"></td>
-                                                      <td><input type="submit" value="<?php echo $row->bw ?>" class="btn btn-default btn-table"></td>
-                                                      <td><input type="submit" value="<?php echo $row->ord_name ?>" class="btn btn-default btn-table"></td>
-                                                      <td><input type="submit" value="<?php echo $row->no_form_permintaan ?>" class="btn btn-default btn-table"></td>
-                                                      <td><input type="submit" value="<?php echo $row->tgl_permintaan ?>" class="btn btn-default btn-table"></td>
-                                                      <td><input type="submit" value="<?php //echo $row-> ?>" class="btn btn-default btn-table"></td>
-                                                      <td><input type="submit" value="" class="btn btn-default btn-table"></td>
+                                                      <td><?php echo $row->company_name?></td>
+                                                      <td><?php echo $row->type_name?></td>
+                                                      <td><?php echo $row->site_name?></td>
+                                                      <td><?php echo $row->service_name?> | <?php echo $row->package?></td>
+                                                      <td><?php echo $row->bw?></td>
+                                                      <td><?php echo $row->ord_name?></td>
+                                                      <td><?php echo $row->no_form_permintaan?></td>
+                                                      <td><?php echo $row->tgl_permintaan?></td>
+                                                      <td><?php $date = new DateTime($row->tgl_permintaan);
+                                                                $delivtime = $row->delivery_time;
+                                                                $date->add(new DateInterval("P". $delivtime. "D"));
+                                                                $duedate = $date->format('Y-m-d');
+                                                                echo $duedate;?>
+                                                      </td>
+                                                      <td><?php $now = new DateTime();
+                                                                $interval = $date->diff($now);
+                                                                $status = $interval->format('%a');
+                                                                if ($status >= 7) {
+                                                                    echo "<center><img src=".base_url('assets/img/warn-green.png')." ></center>";
+                                                                }
+                                                                elseif ($status > 1 && $status < 7  ) {
+                                                                    echo "<center><img src=".base_url('assets/img/warn-yellow.png')." ></center>";
+                                                                }
+                                                                else {
+                                                                    echo "<center><img src=".base_url('assets/img/warn-red.png')." ></center>";
+                                                                }?>
+                                                      </td>
                                                     </tr>
-                                                    </form>
                                                 <?php endforeach ?>
                                             </tbody>
                                         </table>
@@ -112,9 +126,13 @@
                             </div>
                             <!-- /.panel -->
                         </div>
-                    <!-- /.row -->
+                        <!-- /.row -->
+                    </div>
+                    <form id="myform" method="POST" action="<?php echo base_url('wanperformance/monitoring')?>">
+                        <input type="hidden" name="order_id" id="id">
+                    </form>
                 </div>
-                <!-- /.container-fluid -->
+                <!-- /.container-fluid -->  
             </div>
             <!-- /#page-wrapper -->
         </div>
@@ -127,6 +145,103 @@
         <script src="<?php echo base_url('assets/js/metisMenu.min.js')?>"></script>
         <!-- Custom Theme JavaScript -->
         <script src="<?php echo base_url('assets/js/sb-admin-2.js')?>"></script>
+
+        <script type="text/javascript" src="<?php echo base_url('assets/js/jquery.tablesorter.js')?>"></script>
+
+        <script type="text/javascript" src="<?php echo base_url('assets/js/jquery.tablesorter.widgets.js')?>"></script>
+
+        <script type="text/javascript">
+            $(function() {
+              // NOTE: $.tablesorter.theme.bootstrap is ALREADY INCLUDED in the jquery.tablesorter.widgets.js
+              // file; it is included here to show how you can modify the default classes
+                $.tablesorter.themes.bootstrap = {
+                    // these classes are added to the table. To see other table classes available,
+                    // look here: http://getbootstrap.com/css/#tables
+                    table        : 'table table-bordered table-striped',
+                    caption      : 'caption',
+                    // header class names
+                    header       : 'bootstrap-header', // give the header a gradient background (theme.bootstrap_2.css)
+                    sortNone     : '',
+                    sortAsc      : '',
+                    sortDesc     : '',
+                    active       : '', // applied when column is sorted
+                    hover        : '', // custom css required - a defined bootstrap style may not override other classes
+                    // icon class names
+                    icons        : '', // add "icon-white" to make them white; this icon class is added to the <i> in the header
+                    iconSortNone : 'bootstrap-icon-unsorted', // class name added to icon when column is not sorted
+                    iconSortAsc  : 'glyphicon glyphicon-chevron-up', // class name added to icon when column has ascending sort
+                    iconSortDesc : 'glyphicon glyphicon-chevron-down', // class name added to icon when column has descending sort
+                    filterRow    : '', // filter row class; use widgetOptions.filter_cssFilter for the input/select element
+                    footerRow    : '',
+                    footerCells  : '',
+                    even         : '', // even row zebra striping
+                    odd          : ''  // odd row zebra striping
+                };
+
+
+
+                  // call the tablesorter plugin and apply the uitheme widget
+                $("#mytable").tablesorter({
+                    // this will apply the bootstrap theme if "uitheme" widget is included
+                    // the widgetOptions.uitheme is no longer required to be set
+                    theme : "bootstrap",
+       
+                    sortList: [[1,0],[2,0]],
+
+                    widthFixed: true,
+
+
+                    headerTemplate : '{content} {icon}', // new in v2.7. Needed to add the bootstrap icon!
+
+                    // widget code contained in the jquery.tablesorter.widgets.js file
+                    // use the zebra stripe widget if you plan on hiding any rows (filter widget)
+                    widgets : [ "uitheme", "zebra" ],
+
+                    widgetOptions : {
+                      // using the default zebra striping class name, so it actually isn't included in the theme variable above
+                      // this is ONLY needed for bootstrap theming if you are using the filter widget, because rows are hidden
+                      zebra : ["even", "odd"],
+
+                      // reset filters button
+                      filter_reset : ".reset",
+
+                      // extra css class name (string or array) added to the filter element (input or select)
+                      filter_cssFilter: "form-control",
+
+                      // set the uitheme widget to use the bootstrap theme class names
+                      // this is no longer required, if theme is set
+                      // ,uitheme : "bootstrap"
+
+                    }
+                })
+
+                
+            });
+        </script>
+
+        <script>
+            //using double click
+            /*$("#mytable .data").click(function(){
+               $(this).addClass('selected').siblings().removeClass('selected');    
+               var value=$(this).find('td:nth-child(4)').html();
+            });
+
+            $("#mytable .data").dblclick(function(){    
+               var value=$(this).find('td:nth-child(4)').html(); 
+               $('#id').val(value);
+               $('#myform').submit();   
+            });*/
+            //using second click
+            $("#mytable .data").one("click",function(e) {
+                $(this).addClass('selected').siblings().removeClass('selected');    
+                var value=$(this).find('td:nth-child(4)').html();
+                $(this).one("click",function() {
+                    $('#id').val(value);
+                    $('#myform').submit();
+                });
+            });
+
+        </script>
     </body>
 </html>
 
