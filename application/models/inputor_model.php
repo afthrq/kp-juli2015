@@ -497,6 +497,13 @@ class Inputor_model extends CI_Model
   		$this->db->insert('t_nw_service',$update);
   	}
 
+  	public function getidlayanan ($layanan)
+  	{
+  		$this->db->where('service_name', $layanan);
+  		$query = $this->db->get('p_service');
+  		return $query->row()->p_service_id;
+  	}
+
   	//rejected------------------------------------------------------
  	function getprosesid($serv_type_id)
  	{

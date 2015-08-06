@@ -447,8 +447,10 @@ class Inputor extends CI_Controller
    function form_dismantle()
    {
         $site_id = $this->input->post('site_id');
-        print_r($site_id);
-        die();
+        $layanan = $this->input->post('layanan');
+        $paket = $this->input->post('paket');
+
+        $id_layanan = $this->inputor_model->getidlayanan($layanan);
         //------------------------------------------------------------------//
         $proses = $this->input->post('proses');
 
@@ -483,7 +485,22 @@ class Inputor extends CI_Controller
         $up_unrec = array ('p_process_id' => $getnext);
         $this->inputor_model->updateunrec($up_unrec, $serv_type_id);
         //------------------------------------------------------------------//
-        //redirect('inputor','refresh');
+
+        $getnworderid = array ('t_nw_site_id' => $site_id ,
+                    't_detail_network_order_id' => $serv_type_id);
+
+        $cekpackid = array ('p_service_id' => $id_layanan ,
+                    'package' => $paket);
+
+        $packid = $this->inputor_model->getpackid($cekpackid);
+
+        $order_up_id = $this->inputor_model->getorderupid($getnworderid);
+
+        $update = array ('p_nw_service_id' => $packid ,
+                't_network_order_id' => $order_up_id);
+
+        $this->inputor_model->updatefinal($update);
+        redirect('inputor','refresh');
    } 
 
     public function ac_pic()
