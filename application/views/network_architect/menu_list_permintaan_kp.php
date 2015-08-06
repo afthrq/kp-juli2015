@@ -100,11 +100,13 @@
                                                       <td><?php echo $row->bw?></td>
                                                       <td><?php echo $row->ord_name?></td>
                                                       <td><?php echo $row->no_form_permintaan?></td>
-                                                      <td><?php echo $row->tgl_permintaan?></td>
+                                                      <td><?php $permintaan = new DateTime($row->tgl_permintaan); 
+                                                                echo $permintaan->format('d-m-Y')?>
+                                                      </td>
                                                       <td><?php $date = new DateTime($row->tgl_permintaan);
                                                                 $delivtime = $row->delivery_time;
                                                                 $date->add(new DateInterval("P". $delivtime. "D"));
-                                                                $duedate = $date->format('Y-m-d');
+                                                                $duedate = $date->format('d-m-Y');
                                                                 echo $duedate;?>
                                                       </td>
                                                       <td><?php $now = new DateTime();
@@ -260,26 +262,25 @@
 
         <script>
             //using double click
-            /*$("#mytable .data").click(function(){
+            $("#mytable .data").click(function(){
                $(this).addClass('selected').siblings().removeClass('selected');    
-               var value=$(this).find('td:nth-child(4)').html();
+               var value=$(this).find('td:nth-child(3)').html();
             });
 
             $("#mytable .data").dblclick(function(){    
-               var value=$(this).find('td:nth-child(4)').html(); 
+               var value=$(this).find('td:nth-child(3)').html(); 
                $('#id').val(value);
                $('#myform').submit();   
-            });*/
+            });
             //using second click
-            $("#mytable .data").one("click",function(e) {
+            /*$("#mytable .data").one("click",function(e) {
                 $(this).addClass('selected').siblings().removeClass('selected');    
                 var value=$(this).find('td:nth-child(3)').html();
                 $(this).one("click",function() {
                     $('#id').val(value);
                     $('#myform').submit();
                 });
-            });
-
+            });*/
         </script>
     </body>
 </html>

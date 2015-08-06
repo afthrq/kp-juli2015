@@ -235,26 +235,25 @@
 
         <script>
             //using double click
-            /*$("#mytable .data").click(function(){
+            $("#mytable .data").click(function(){
                $(this).addClass('selected').siblings().removeClass('selected');    
-               var value=$(this).find('td:nth-child(4)').html();
+               var value=$(this).find('td:nth-child(3)').html();
             });
 
             $("#mytable .data").dblclick(function(){    
-               var value=$(this).find('td:nth-child(4)').html(); 
+               var value=$(this).find('td:nth-child(3)').html(); 
                $('#id').val(value);
                $('#myform').submit();   
-            });*/
+            });
             //using second click
-            $("#mytable .data").one("click",function(e) {
+            /*$("#mytable .data").one("click",function(e) {
                 $(this).addClass('selected').siblings().removeClass('selected');    
                 var value=$(this).find('td:nth-child(3)').html();
                 $(this).one("click",function() {
                     $('#id').val(value);
                     $('#myform').submit();
                 });
-            });
-
+            });*/
         </script>
     </body>
 </html>

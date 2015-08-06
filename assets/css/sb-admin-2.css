@@ -670,3 +670,7 @@ th{
     vertical-align: middle;
     text-align: center; 
 }
+
+.modal-box {
+    padding: 15px; 
+}

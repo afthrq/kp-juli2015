@@ -38,17 +38,7 @@
               'placeholder' => 'Password',
               'class' => 'form-control',
               );
-              echo form_password($password);
-              echo "<br>";
-              $role = array(
-                /*foreach ($role as $row) {
-                  $row->role => $row->role,
-                }*/
-                'inputor' => 'Inputor',
-                'networkarchitect' => 'Network Architect',
-              );
-              
-              echo form_dropdown('role',$role,'','class="form-control"');
+              echo form_password($password); 
               if(isset($message_error) && $message_error){
               echo '<div class="alert alert-error">';
                 echo '<a class="close" data-dismiss="alert">×</a>';

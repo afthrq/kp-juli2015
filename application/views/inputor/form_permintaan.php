@@ -40,30 +40,25 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
-                                <a href="<?php echo base_url() ?>inputor" class="sidebar-active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                                <a href="<?php echo base_url() ?>inputor"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                             </li>
                             <li>
                                 <a href="<?php echo base_url() ?>inputor/data_wan"><i class="fa fa-table fa-fw"></i> Data Jaringan WAN</a>
                             </li>      
-                            <li>
+                            <li class="active">
                                 <a href="#"><i class="fa fa-edit fa-fw"></i> Permintaan<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="<?php echo base_url() ?>inputor/menu_list_permintaan_br">Form Permintaan</a>
+                                        <a href="<?php echo base_url() ?>inputor/menu_list_permintaan_br" class="sidebar-active">Permintaan Baru</a>
                                     </li>
                                     <li>
-                                        <a href="#">Permintaan Perubahaan WAN <span class="fa arrow"></span></a>
-                                        <ul class="nav nav-third-level">
-                                            <li>
-                                                <a href="<?php echo base_url() ?>inputor/menu_list_permintaan">Upgrade WAN</a>
-                                            </li>
-                                            <li>
-                                                <a href="<?php echo base_url() ?>inputor/menu_list_permintaan_rl">Relokasi WAN</a>
-                                            </li>
-                                            <li>
-                                                <a href="<?php echo base_url() ?>inputor/menu_list_permintaan_dm">Dismantle WAN</a>
-                                            </li>
-                                        </ul>
+                                        <a href="<?php echo base_url() ?>inputor/menu_list_permintaan">Upgrade WAN</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo base_url() ?>inputor/menu_list_permintaan_rl">Relokasi WAN</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo base_url() ?>inputor/menu_list_permintaan_dm">Dismantle WAN</a>
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
@@ -192,15 +187,30 @@
                         </div>
                         <div id="sectionB" class="tab-pane fade">
                             <br>
-                            <div class="row">
+                            <div id="users-contain" class="row">
                                 <div class="col-lg-6">
-                                    <div class="input-group">
-                                        <span class="input-group-addon input-permintaan" id="basic-addon1">PIC</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="pic" id="pic">
-                                    </div>
+                                    <table id="pic" class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <th style="background-color: #EEE;" colspan="3">PIC</th>
+                                        </thead>
+                                        <thead>
+                                          <tr>
+                                            <th width="50%">Nama PIC</th>
+                                            <th width="25%">No. Telepon 1</th>
+                                            <th width="25%">No. Telepon 2</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                
+                                        </tbody>
+                                  </table>
+                                </div>
+                                <div class="col-lg-4">
+                                    <button class="btn btn-primary"id="modal_trigger_pic" href="#modalpic"><i class="fa fa-plus"></i> PIC</button>
                                 </div>
                             </div>
                             <br>
+
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="input-group">
@@ -256,16 +266,25 @@
                             </div>
                             <br>
 
-                            <div class="row">
+                            <div id="users-contain" class="row">
                                 <div class="col-lg-6">
-                                    <div class="input-group">
-                                        <span class="input-group-addon input-permintaan" id="basic-addon1">Module</span>
-                                        <select name="modul" class="form-control">
-                                            <option value="">-</option>
-                                            <option value="16">HWIC-2T</option>
-                                            <option value="17">HWIC-2FE</option>
-                                        </select>
-                                    </div>
+                                    <table id="modul" class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <th style="background-color: #EEE;" colspan="2">Modul</th>
+                                        </thead>
+                                        <thead>
+                                          <tr>
+                                            <th style="width: 90%;">Nama Modul</th>
+                                            <th style="width: 10%;">Jumlah</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                
+                                        </tbody>
+                                  </table>
+                                </div>
+                                <div class="col-lg-4">
+                                    <button class="btn btn-primary"id="modal_trigger_modul" href="#modalmodul"><i class="fa fa-plus"></i> Modul</button>
                                 </div>
                             </div>
                             <br>
@@ -299,7 +318,61 @@
                             </form>
                         </div>
                     </div>
-                    
+                    <div id="modalpic" class="popupContainer" style="display:none;">
+                        <header class="popupHeader">
+                            <span class="header_title">PIC</span>
+                            <span class="modal_close"><i class="fa fa-times"></i></span>
+                        </header>
+                        <div class="social_login">
+                            <div class="">
+                                <div id="dialog-form" title="Create new user" class="modal-box">
+                                  <form>
+                                    <fieldset>
+                                      <label for="name">Nama</label><br>
+                                      <input type="text" name="name" id="picname" value="" class="form-control">
+                                      <label for="phone1">No. Telepon 1</label><br>
+                                      <input type="number" name="phone1" id="phone1" value="" class="form-control">
+                                      <label for="phone2">No. Telepon 2</label><br>
+                                      <input type="number" name="phone2" id="phone2" value=""class="form-control">
+                                 
+                                      <!-- Allow form submission with keyboard without duplicating the dialog button -->
+                                      <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+                                    </fieldset>
+                                    <br>
+                                    <center><a id="addpic" class="btn btn-primary href">Tambah PIC</a></center>
+                                  </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="modalmodul" class="popupContainer" style="display:none;">
+                        <header class="popupHeader">
+                            <span class="header_title">Modul</span>
+                            <span class="modal_close"><i class="fa fa-times"></i></span>
+                        </header>
+                        <div class="social_login">
+                            <div class="">
+                                <div id="dialog-form" title="Create new user" class="modal-box">
+                                  <form>
+                                    <fieldset>
+                                      <label for="name">Nama Modul</label><br>
+                                        <select name="router" class="form-control" id="modname">
+                                            <option value="HWIC-2T">HWIC-2T</option>
+                                            <option value="HWIC-2FE">HWIC-2FE</option>
+                                        </select>
+                                      <label for="phone1">Jumlah</label><br>
+                                      <input type="number" name="phone1" id="modjml" value="" class="form-control">
+                                 
+                                      <!-- Allow form submission with keyboard without duplicating the dialog button -->
+                                      <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+                                    </fieldset>
+                                    <br>
+                                    <center><a id="addmodul" class="btn btn-primary href">Tambah Modul</a></center>
+                                  </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
             </div>
@@ -330,23 +403,26 @@
                 });  
             });  
         </script>
-
+        <!-- Jquery 1.4.4 for Popup Modul & Autocomplete -->
         <script src="<?php echo base_url('assets/js/jquery-1.4.4.min.js') ?>"></script>
-
+        <!-- Function Popup Modul -->
+        <script type="text/javascript" src="<?php echo base_url('assets/js/jquery.leanModal.min.js') ?>"></script>
         <script type="text/javascript">
             var oldJquery = $.noConflict(true);
+            oldJquery("#modal_trigger_pic").leanModal({top : 200, overlay : 0.6, closeButton: ".modal_close" });
+            oldJquery("#modal_trigger_modul").leanModal({top : 200, overlay : 0.6, closeButton: ".modal_close" });
         </script>
-
+        <!-- jquery ui for autocomplete -->
         <script src="<?php echo base_url('assets/js/jquery-ui.min.js') ?>"></script>
-        <!-- autocomplete PIC -->
+        <!-- autocomplete PIC name -->
         <script type="text/javascript">
             $(document).ready(function () {
                 oldJquery(function () {
-                    $( "#pic" ).autocomplete({
+                    $( "#picname" ).autocomplete({
                         source: function(request, response) {
                             $.ajax({ 
                                 url: "<?php echo base_url('inputor/ac_pic'); ?>",
-                                data: { id: $("#pic").val()},
+                                data: { id: $("#picname").val()},
                                 dataType: "json",
                                 type: "POST",
                                 success: function(data){
@@ -402,6 +478,71 @@
 
         document.onkeypress = stopRKey; 
 
+        </script>
+        <!-- Add data from PIC Modal to PIC Table -->
+        <script type="text/javascript">
+            $(function() {
+                var name = $( "#picname" ),
+                    phone1 = $( "#phone1" ),
+                    phone2 = $( "#phone2" );
+
+                    $("#addpic").click(function() {
+                        if( name.val().length === 0 ) {
+                            alert("Nama PIC harus diisi!.");
+                        }
+                        else {
+                            $( "#pic tbody" ).append( 
+                            "<tr>" +
+                            "<td>" + name.val() + "<input type='hidden' name='namapic' value='"+ name.val() + "'> " +  "</td>"        +
+                            "<td>" + phone1.val() + "<input type='hidden' name='tlp1pic' value='"+ phone1.val() + "'> " + "</td>" +
+                            "<td>" + phone2.val() + "<input type='hidden' name='tlp2pic' value='"+ phone2.val() + "'> " + "</td>" +
+                            "</tr>" );
+                            name.val('');
+                            phone1.val('');
+                            phone2.val('');
+                        }
+                });
+            });
+        </script>
+        <!-- Add data from Modul Modal to PIC Table -->
+        <script type="text/javascript">
+        $(function() {
+            var modul = $( "#modname" ),
+                jumlah = $( "#modjml" ),
+                realVal;
+
+            $("#addmodul").click(function() {
+                if( jumlah.val().length === 0 ) {
+                    alert("Jumlah Modul tidak terisi!");
+                }
+                else {
+                    if ($.trim(modul.val()) == "HWIC-2T") {
+                        realVal = 16;
+                        $( "#modul tbody" ).append(
+                        "<tr>" +
+                            "<td>" + modul.val() + "<input type='hidden' name='modulname' value='"+ realVal + "'> " +  "</td>" +
+                            "<td>" + jumlah.val() + "<input type='hidden' name='jmlmodul' value='"+ jumlah.val() + "'> " + "</td>" +
+                        "</tr>" 
+                        );
+                        modul.val('');
+                        jumlah.val('');
+                        realVal = 0;
+                    }
+                    else if($.trim(modul.val()) == "HWIC-2FE"){
+                        realVal = 17;
+                        $( "#modul tbody" ).append(
+                        "<tr>" +
+                            "<td>" + modul.val() + "<input type='hidden' name='modulname' value='"+ realVal + "'> " +  "</td>" +
+                            "<td>" + jumlah.val() + "<input type='hidden' name='jmlmodul' value='"+ jumlah.val() + "'> " + "</td>" +
+                        "</tr>" 
+                        );
+                        modul.val('');
+                        jumlah.val('');
+                        realVal = 0;
+                    } 
+                }
+            });
+        });
         </script>
     </body>
 </html>
