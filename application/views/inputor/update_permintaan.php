@@ -78,7 +78,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
-                             <h1 class="page-header">Update Permintaan</h1>
+                             <h1 class="page-header">Form Upgrade</h1>
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
@@ -199,6 +199,21 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="input-group">
+                                <span class="input-group-addon input-permintaan" id="basic-addon1">Provider</span>
+                                <div class="dropdown">
+                                    <select placeholder="Pilih Perusahaan" class="form-control" name="provider">    
+                                        <?php foreach ($provider_list as $row) : ?>
+                                            <option><?php echo $row->provider_name ?></option>
+                                        <?php endforeach?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="input-group">
                                 <span class="input-group-addon input-permintaan" id="basic-addon1">Bandwidth</span>
                                 <input type="text" class="form-control" aria-describedby="basic-addon1" name="update_bw">
                             </div>
@@ -214,8 +229,6 @@
                                     <option value="3">Upgrade (ganti Infra)</option>
                                     <option value="4">Upgrade Temporer</option>
                                     <option value="5">Downgrade</option>
-                                    <option value="6">Relokasi</option>
-                                    <option value="7">Dismantle</option>
                                 </select>
                             </div>
                         </div>

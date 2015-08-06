@@ -96,47 +96,59 @@
                                     </div>
                                 </div>
                             </div>
-                            <br>
-                            <?php foreach ($price_link as $row): ?>
-                            <div class="row">
-                                <div class="col-lg-2">
-                                    <h4>Biaya Instalasi</h4>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="input-group">
-                                        <span class="input-group-addon" id="basic-addon1">Rp</span>
-                                        <input type="number" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->price_mrc?>" disabled>
+                            <br>                            
+                            <?php foreach ($data_permintaan as $row): 
+                                if ($row->p_order_type_id == 1 || $row->p_order_type_id == 2 || $row->p_order_type_id == 4 || $row->p_order_type_id == 5): ?>
+                                    <?php foreach ($price_link as $row): ?>
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <h4>Biaya Instalasi</h4>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon" id="basic-addon1">Rp</span>
+                                                <input type="number" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->price_mrc?>" disabled>
+                                            </div>
+                                         </div>
                                     </div>
-                                 </div>
-                            </div>
-                            <br>
+                                    <br>
+                                    <?php endforeach ?>
+                                <?php endif ?>
                             <?php endforeach ?>
-                            <?php foreach ($price_router as $row): ?>
-                            <div class="row">
-                                <div class="col-lg-2">
-                                    <h4>Biaya Router</h4>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="input-group">
-                                        <span class="input-group-addon" id="basic-addon1">Rp</span>
-                                        <input type="number" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->price_otc?>" disabled>
+                            <?php foreach ($data_permintaan as $row): 
+                                if ($row->p_order_type_id == 1 || $row->p_order_type_id == 3): ?>
+                                    <?php foreach ($price_router as $row): ?>
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <h4>Biaya Router</h4>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon" id="basic-addon1">Rp</span>
+                                                <input type="number" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->price_otc?>" disabled>
+                                            </div>
+                                         </div>
                                     </div>
-                                 </div>
-                            </div>
-                            <br>
+                                    <br>
+                                    <?php endforeach ?>
+                                <?php endif ?>
                             <?php endforeach ?>
-                            <div class="row">
-                                <div class="col-lg-2">
-                                    <h4>Biaya Module</h4>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="input-group">
-                                        <span class="input-group-addon" id="basic-addon1">Rp</span>
-                                        <input type="number" class="form-control" aria-describedby="basic-addon1" value="<?php echo $price_module?>" disabled>
+                            <?php foreach ($data_permintaan as $row): 
+                                if ($row->p_order_type_id == 1 || $row->p_order_type_id == 3): ?>
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <h4>Biaya Module</h4>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon" id="basic-addon1">Rp</span>
+                                                <input type="number" class="form-control" aria-describedby="basic-addon1" value="<?php echo $price_module?>" disabled>
+                                            </div>
+                                         </div>
                                     </div>
-                                 </div>
-                            </div>
-                            <br>
+                                    <br>
+                                <?php endif ?>
+                            <?php endforeach ?>
                             <form method="POST" action="<?php echo base_url('networkarchitect/submit_online_billing')?>">
                             <input type="hidden" name="user" value="<?php echo  $this->session->userdata('user_name')?>"></input>
                             <?php foreach ($sitenserviceid as $row): ?>   
@@ -336,6 +348,7 @@
                                                             <th>#</th>
                                                             <th>Proses</th>
                                                             <th>Keterangan</th>
+                                                            <th>Closed By</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -345,6 +358,7 @@
                                                               <td><?php echo $count?></td>
                                                               <td><?php echo $row->name?></td>
                                                               <td><?php echo $row->keterangan?></td>
+                                                              <td><?php echo $row->closed_by?></td>
                                                             <?php endif ?>
                                                             </tr>
                                                         <?php endforeach ?>

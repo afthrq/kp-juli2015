@@ -60,6 +60,20 @@
             <div id="page-wrapper">
                 <div class="container-fluid">
                     <div class="row">
+                        <center>
+                            <div class="btn-group btn-breadcrumb group-crumbs" id="milestone">
+                                <?php foreach ($breadcrumbs as $row): ?>
+                                    <?php 
+                                        if ($row->name == "BALO"): ?>
+                                        <a href="#" class="btn crumbs crumbs-size" value="1"><?php echo $row->name ?></a>
+                                    <?php else: ?>
+                                        <a href="#" class="btn crumbs crumbs-size" value="0"><?php echo $row->name ?></a>
+                                    <?php endif ?>
+                                <?php endforeach ?>
+                            </div>
+                        </center>
+                    </div> 
+                    <div class="row">
                         <div class="col-lg-12">
                             <h1 class="page-header">Berita Acara Laik Operasi</h1>
                         </div>
@@ -298,6 +312,7 @@
                                                             <th>#</th>
                                                             <th>Proses</th>
                                                             <th>Keterangan</th>
+                                                            <th>Closed By</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -307,6 +322,7 @@
                                                               <td><?php echo $count?></td>
                                                               <td><?php echo $row->name?></td>
                                                               <td><?php echo $row->keterangan?></td>
+                                                              <td><?php echo $row->closed_by?></td>
                                                             <?php endif ?>
                                                             </tr>
                                                         <?php endforeach ?>

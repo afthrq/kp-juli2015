@@ -153,6 +153,7 @@
                     </div>
                     <form id="myform" method="POST" action="<?php echo base_url('networkarchitect/online_billing')?>">
                         <input type="hidden" name="order_id" id="id">
+                        <input type="hidden" name="service_id" id="sid">
                     </form>
                 </div>
                 <!-- /.container-fluid -->
@@ -273,9 +274,33 @@
             //using second click
             $("#mytable .data").one("click",function(e) {
                 $(this).addClass('selected').siblings().removeClass('selected');    
-                var value=$(this).find('td:nth-child(4)').html();
+                var value=$(this).find('td:nth-child(3)').html();
                 $(this).one("click",function() {
                     $('#id').val(value);
+                    $('#myform').submit();
+                });
+            });
+
+        </script>
+
+        <script>
+            //using double click
+            /*$("#mytable .data").click(function(){
+               $(this).addClass('selected').siblings().removeClass('selected');    
+               var value=$(this).find('td:nth-child(4)').html();
+            });
+
+            $("#mytable .data").dblclick(function(){    
+               var value=$(this).find('td:nth-child(4)').html(); 
+               $('#id').val(value);
+               $('#myform').submit();   
+            });*/
+            //using second click
+            $("#mytable .data").one("click",function(e) {
+                $(this).addClass('selected').siblings().removeClass('selected');    
+                var value=$(this).find('td:nth-child(6)').html();
+                $(this).one("click",function() {
+                    $('#sid').val(value);
                     $('#myform').submit();
                 });
             });

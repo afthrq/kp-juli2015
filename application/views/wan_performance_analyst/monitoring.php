@@ -91,38 +91,19 @@
                                     <?php endforeach?>
                                 </div>
                             </div>
+                            <?php foreach ($monitoring_list as $row) : ?>
                                 <div class="row">
                                      <div class="col-lg-6">
                                         <div class="input-group">
                                             <span class="input-group-addon">
-                                                <input type="checkbox" name="cacti" value="1">
-                                             </span>
-                                            <input type="text" class="form-control" value="Monitoring Cacti" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                                               <input type="checkbox" name="monitoring[]" value="<?php echo $row->mon_name ?>">
+                                            </span>
+                                            <input type="text" class="form-control" name="" value="<?php echo $row->mon_name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
                                         </div><!-- /input-group -->
                                     </div><!-- /.col-lg-6 -->
                                 </div>
-                                <br>
-                                <div class="row">
-                                     <div class="col-lg-6">
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <input type="checkbox" name="npmd" value="1">
-                                             </span>
-                                            <input type="text" class="form-control" value="Monitoring NPMD" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
-                                        </div><!-- /input-group -->
-                                    </div><!-- /.col-lg-6 -->
-                                </div>
-                                <br>
-                                <div class="row">
-                                     <div class="col-lg-6">
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <input type="checkbox" name="smokeping" value="1">
-                                             </span>
-                                            <input type="text" class="form-control" value="Monitoring Smokeping" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
-                                        </div><!-- /input-group -->
-                                    </div><!-- /.col-lg-6 -->
-                                </div>
+                            <br>
+                            <?php endforeach ?>
                                 <br>
                                 <div class="row">
                                     <div class="col-lg-6">
@@ -314,6 +295,7 @@
                                                             <th>#</th>
                                                             <th>Proses</th>
                                                             <th>Keterangan</th>
+                                                            <th>Closed By</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -323,6 +305,7 @@
                                                               <td><?php echo $count?></td>
                                                               <td><?php echo $row->name?></td>
                                                               <td><?php echo $row->keterangan?></td>
+                                                              <td><?php echo $row->closed_by?></td>
                                                             <?php endif ?>
                                                             </tr>
                                                         <?php endforeach ?>

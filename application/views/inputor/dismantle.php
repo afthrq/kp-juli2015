@@ -90,8 +90,8 @@
                     <div class="tab-content">
                         <div id="sectionA" class="tab-pane fade in active">
                             <br>
-                            <form method="POST" action="<?php echo base_url('inputor/dismantle')?>">
-                            <input type="hidden" name="proses" value="1">
+                            <form method="POST" action="<?php echo base_url('inputor/form_dismantle')?>">
+                            <input type="hidden" name="proses" value="7">
                             <input type="hidden" name="tahap" value="1">
                             <input type="hidden" name="user" value="<?php echo  $this->session->userdata('user_name')?>">
                             <?php foreach ($update_list as $row): ?>

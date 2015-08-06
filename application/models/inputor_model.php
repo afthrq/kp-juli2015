@@ -180,9 +180,10 @@ class Inputor_model extends CI_Model
 		return $query->row()->p_site_type_id;
 	}
 
-	function getregid($region)
+	function getregid($region, $perusahaan)
 	{
 		$this->db->where('region_name', $region);
+		$this->db->where('company_id', $perusahaan);
 		$query = $this->db->get("p_region"); 
 		return $query->row()->p_region_id;
 	}
@@ -504,12 +505,12 @@ class Inputor_model extends CI_Model
  		return $query->row()->p_order_type_id;
  	}
 
- 	function updateproses($lokasi, $provider_id)
+ 	function updateproses($serv_type_id, $provider_id)
 	{
-		$this->db->where('t_nw_site.t_nw_site_id',$lokasi);
-		$this->db->where('t_unrec_process.t_nw_site_id = t_nw_site.t_nw_site_id');
-		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
-		$this->db->update('t_detail_network_order.provider_id', $provider_id);
+		$provider = array ('provider_id' => $provider_id);
+
+		$this->db->where('t_network_order.t_detail_network_order_id',$serv_type_id);
+		$this->db->update('t_network_order', $provider);
 	}
 
 	function getdetailid($lokasi)

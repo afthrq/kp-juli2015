@@ -273,7 +273,7 @@
             //using second click
             $("#mytable .data").one("click",function(e) {
                 $(this).addClass('selected').siblings().removeClass('selected');    
-                var value=$(this).find('td:nth-child(4)').html();
+                var value=$(this).find('td:nth-child(3)').html();
                 $(this).one("click",function() {
                     $('#id').val(value);
                     $('#myform').submit();

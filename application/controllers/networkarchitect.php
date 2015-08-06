@@ -68,6 +68,7 @@ class Networkarchitect extends CI_Controller
     function submit_online_billing()
     {
         $site_id = $this->input->post('site_id');
+
         //--------------------------------------------------------------------//
         $tahap = $this->input->post('tahap');
         $user = $this->input->post('user');
@@ -77,7 +78,6 @@ class Networkarchitect extends CI_Controller
                 'closed_by' => $user);
         $this->verifikator_model->updateprocessob($in_detail_id,$detail_id);
 
-        $work_id = $this->verifikator_model->getworkid($detail_id, $tahap);
 
         $in_unrec = array ('p_process_id' => $tahap);
         $this->verifikator_model->inputunrec($in_unrec, $site_id);
@@ -105,6 +105,16 @@ class Networkarchitect extends CI_Controller
             $countserv = $this->pm_model->getcountserv($order_id);
             $link = $this->pm_model->getarraylink($site_id);
             $router = $this->pm_model->getarrayrouter($site_id);
+            $monid = $this->pm_model->getarraymonitoring($site_id);
+
+            for($i=0;$i<count($monid);$i++)
+            {
+                $mon = implode("|",$monid[$i]);
+                $inputmon = array ('t_network_id' => $nwid ,
+                            'mon_id' => $mon);
+
+                $this->pm_model->insertmonitoring($inputmon);
+            }
 
             $arraylink = array ('t_network_id' => $nwid ,
                         'p_nw_service_id' => $link);
@@ -127,6 +137,18 @@ class Networkarchitect extends CI_Controller
             $input = $this->pm_model->getdataorderup($site_id);
             $nwid = $this->pm_model->getnetworkid($site_id);
             $arrayorder = json_decode(json_encode($input),true);
+
+            $this->pm_model->dropmon($nwid);
+            $monid = $this->pm_model->getarraymonitoring($site_id);
+
+            for($i=0;$i<count($monid);$i++)
+            {
+                $mon = implode("|",$monid[$i]);
+                $inputmon = array ('t_network_id' => $nwid ,
+                            'mon_id' => $mon);
+
+                $this->pm_model->insertmonitoring($inputmon);
+            }
 
             $this->pm_model->copydataup($arrayorder,$nwid);
 
@@ -262,6 +284,7 @@ class Networkarchitect extends CI_Controller
     function online_billing()
     {
         $o_id = $this->input->post('order_id');
+        $service_id = $this->input->post('service_id');
         $data['breadcrumbs'] = $this->verifikator_model->getbreadcrumbs($o_id);
         $data['count_vp'] = $this->verifikator_model->getcountvp();
         $data['count_kp'] = $this->verifikator_model->getcountkp();
@@ -270,10 +293,17 @@ class Networkarchitect extends CI_Controller
         $data['lokasiid'] = $this->verifikator_model->getlokasiid($o_id);
         $data['data_permintaan'] = $this->verifikator_model->get_data_permintaan($o_id);
         $data['list_keterangan'] = $this->verifikator_model->getproses($o_id);
-        $data['price_link'] = $this->pm_model->getprlink($o_id);
-        $data['price_router'] = $this->pm_model->getprrouter($o_id);
-        $count = $this->pm_model->getcountmodule($o_id);
-        $data['price_module'] = $this->pm_model->getprmodule($o_id, $count);
+        if($service_id == "Pasang Baru")
+        {
+            $data['price_link'] = $this->pm_model->getprlink($o_id);
+            $data['price_router'] = $this->pm_model->getprrouter($o_id);
+            $count = $this->pm_model->getcountmodule($o_id);
+            $data['price_module'] = $this->pm_model->getprmodule($o_id, $count);
+        }
+        else if ($service_id == "Upgrade" || $service_id == "Upgrade Temprorer" || $service_id == "Downgrade")
+        {
+            $data['price_link'] = $this->pm_model->getprlink($o_id);
+        }
     	$this->load->view('network_architect/online_billing',$data);
     }
 

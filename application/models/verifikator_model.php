@@ -156,6 +156,7 @@ class Verifikator_model extends CI_Model
 		$this->db->select('p_region.region_name');
 		$this->db->select('provinsi.provinsi_name');
 		$this->db->select('t_pic.pic_name');
+		$this->db->select('t_detail_network_order.p_order_type_id');
 		$this->db->where('t_nw_site.site_name',$o_id);
 		$this->db->where('t_nw_service.p_nw_service_id >= "1"');
 		$this->db->where('t_nw_service.p_nw_service_id <= "13"');

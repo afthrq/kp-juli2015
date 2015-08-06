@@ -33,6 +33,7 @@ class Wanperformance extends CI_Controller
         $data['count_mon'] = $this->wan_performance_model->getcountmon();
         $data['breadcrumbs'] = $this->wan_performance_model->getbreadcrumbs($o_id);
         $data['count_uat'] = $this->wan_performance_model->getcountmon();
+        $data['monitoring_list'] = $this->wan_performance_model->getdatamonitoring();
         $data['lokasiid'] = $this->wan_performance_model->getlokasiid($o_id);
         $data['data_permintaan'] = $this->wan_performance_model->get_data_permintaan($o_id);
         $data['list_keterangan'] = $this->wan_performance_model->getproses($o_id);
@@ -40,11 +41,24 @@ class Wanperformance extends CI_Controller
     }
 
     public function insert_monitoring ()
-    {
+    {  
         $lokasi = $this->input->post('lokasi');
-        $mon_cacti = $this->input->post('cacti');
-        $mon_npmd = $this->input->post('npmd');
-        $mon_sp = $this->input->post('smokeping');
+        $cek_lokasi = array ('site_name' => $lokasi);
+        $site_id = $this->wan_performance_model->getsiteid($cek_lokasi);
+        $order_id = $this->wan_performance_model->getorderid($site_id);
+        if(isset($_POST['submit']))
+        {
+            $id=$_POST['monitoring'];
+            for($i=0;$i<count($id);$i++)
+            {  
+               $monid = $this->wan_performance_model->getidmon($id[$i]);
+
+               $input = array ('mon_id' => $monid ,
+                        't_network_order_id' => $order_id);
+               $this->wan_performance_model->insertmon($input);
+            }
+        }
+        $lokasi = $this->input->post('lokasi');
 
         $cek_lokasi = array ('site_name' => $lokasi);
         $site_id = $this->wan_performance_model->getsiteid($cek_lokasi);
@@ -73,13 +87,6 @@ class Wanperformance extends CI_Controller
         $this->wan_performance_model->updateunrec($up_unrec, $detail_id);
         //------------------------------------------------------------------//
 
-
-        $data = array(
-        'mon_cacti' => $mon_cacti ,
-        'mon_npmd' => $mon_npmd ,
-        'mon_sp' => $mon_sp ,
-        );
-        $data = $this->wan_performance_model->insert_data_balo($data,$site_id);
         redirect('wanperformance','refresh');
     }
 

@@ -18,6 +18,7 @@ class Inputor extends CI_Controller
     {
         $o_id = $this->input->post('order_id');
         $data['update_list'] = $this->inputor_model->getdataupdate($o_id);
+        $data['provider_list'] = $this->inputor_model->getdataprovider();
         $data['upserv_list'] = $this->inputor_model->getupdateid();
         $data['lokasiid'] = $this->inputor_model->getlokasiid($o_id); 
         $this->load->view('inputor/update_permintaan',$data);
@@ -69,6 +70,7 @@ class Inputor extends CI_Controller
     {        
         $o_id = $this->input->post('order_id');
         $data['reject_list'] = $this->inputor_model->getdatareject($o_id);
+        $data['provider_list'] = $this->inputor_model->getdataprovider();
         $data['provinsi_list'] = $this->inputor_model->getdataprovinsi();
         $data['jenis_list'] = $this->inputor_model->getdatajenis();
         $data['upserv_list'] = $this->inputor_model->getrejectid();
@@ -149,24 +151,18 @@ class Inputor extends CI_Controller
         {
             //------------------------------------------------------------------//
             $proses = $this->input->post('proses');
-            $in_proses = array ('p_order_type_id' => $proses);
-            $serv_type_id = $this->inputor_model->inputproses($in_proses);
+
             //------------------------------------------------------------------//
 
             //------------------------------------------------------------------//
             $tahap = $this->input->post('tahap');
             $user = $this->input->post('user');
             $keterangan = $this->input->post('keterangan');
-            $in_tahap = array ('p_process_id' => $tahap ,
-                    't_detail_network_order_id' => $serv_type_id,
-                    'keterangan' => $keterangan,
-                    'closed_by' => $user);
-            $this->inputor_model->inputtahap($in_tahap);
+
             //-------------------------------------------------------------------//
 
             $jenis = $this->input->post('jenis');
             $perusahaan = $_POST['perusahaan'];
-
             $alamat = $this->input->post('alamat');
             $region = $this->input->post('region');
             $provider = $this->input->post('provider');
@@ -188,7 +184,7 @@ class Inputor extends CI_Controller
             $provid = $this->inputor_model->getprovinsiid($provinsi);
             $picid = $this->inputor_model->getpicid($pic);
             $jenid = $this->inputor_model->getjenid($jenis);
-            $regid = $this->inputor_model->getregid($region);
+            $regid = $this->inputor_model->getregid($region,$perusahaan);
 
             $cekpackid = array ('p_service_id' => $layanan ,
                         'package' => $paket);
@@ -256,6 +252,15 @@ class Inputor extends CI_Controller
 
                 $this->inputor_model->inputmodul($in_modul);
             } 
+            $in_proses = array ('p_order_type_id' => $proses);
+            $serv_type_id = $this->inputor_model->inputproses($in_proses);
+
+            $in_tahap = array ('p_process_id' => $tahap ,
+                    't_detail_network_order_id' => $serv_type_id,
+                    'keterangan' => $keterangan,
+                    'closed_by' => $user);
+            $this->inputor_model->inputtahap($in_tahap);
+            
             redirect('inputor','refresh');
         }
         else if ($countlokasi !==0)
@@ -274,8 +279,8 @@ class Inputor extends CI_Controller
         $provider_id = $this->inputor_model->getproviderid($provider);
 
         //t_detail_network_order_id------------------------------------------//
-        $this->inputor_model->updateproses($provider_id, $lokasi);
         $serv_type_id = $this->inputor_model->getdetailid($lokasi);
+        $this->inputor_model->updateproses($serv_type_id, $provider_id);
 
         //update t_process--------------------------------------------------//
         $tahap = $this->input->post('tahap');
@@ -313,7 +318,7 @@ class Inputor extends CI_Controller
         $provid = $this->inputor_model->getprovinsiid($provinsi);
         $picid = $this->inputor_model->getpicid($pic);
         $jenid = $this->inputor_model->getjenid($jenis);
-        $regid = $this->inputor_model->getregid($region);
+        $regid = $this->inputor_model->getregid($region,$perusahaan);
 
         $cekpackid = array ('p_service_id' => $layanan ,
                     'package' => $paket);
@@ -438,6 +443,48 @@ class Inputor extends CI_Controller
         $this->inputor_model->updatefinal($update);
         redirect ('inputor','refresh');
     }
+
+   function form_dismantle()
+   {
+        $site_id = $this->input->post('site_id');
+        print_r($site_id);
+        die();
+        //------------------------------------------------------------------//
+        $proses = $this->input->post('proses');
+
+        $in_proses = array ('p_order_type_id' => $proses);
+        $serv_type_id = $this->inputor_model->inputproses($in_proses);
+        //------------------------------------------------------------------//
+
+        //------------------------------------------------------------------//
+        $tahap = $this->input->post('tahap');
+
+        $user = $this->input->post('user');
+        $keterangan = $this->input->post('keterangan');
+        $in_tahap = array ('p_process_id' => $tahap ,
+                't_detail_network_order_id' => $serv_type_id,
+                'keterangan' => $keterangan,
+                'closed_by' => $user);
+        $this->inputor_model->inputtahap($in_tahap);
+
+        $in_unrec = array ('p_process_id' => $tahap ,
+                't_detail_network_order_id' => $serv_type_id ,
+                't_nw_site_id' => $site_id);
+        $this->inputor_model->inputunrec($in_unrec);
+
+        $get_next = array ('p_process_id' => $tahap ,
+                    'p_order_type_id' => $proses);
+        $getnext = $this->inputor_model->getnext($tahap, $proses, $get_next);
+
+        $in_next = array ('p_process_id' => $getnext ,
+            't_detail_network_order_id' => $serv_type_id);
+        $this->inputor_model->nexttahap($in_next);
+
+        $up_unrec = array ('p_process_id' => $getnext);
+        $this->inputor_model->updateunrec($up_unrec, $serv_type_id);
+        //------------------------------------------------------------------//
+        //redirect('inputor','refresh');
+   } 
 
     public function ac_pic()
     {

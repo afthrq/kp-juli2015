@@ -84,10 +84,6 @@
                                                     <th>Layanan</th>
                                                     <th>Bandwidth</th>
                                                     <th>Tipe Permintaan</th>
-                                                    <th>No. Permintaan</th>
-                                                    <th>Tanggal Permintaan</th>
-                                                    <th>Tgl. Akhir Pengerjaan</th>
-                                                    <th>Status</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -99,33 +95,12 @@
                                                       <td><?php echo $row->service_name?> | <?php echo $row->package?></td>
                                                       <td><?php echo $row->bw?></td>
                                                       <td><?php echo $row->ord_name?></td>
-                                                      <td><?php echo $row->no_form_permintaan?></td>
-                                                      <td><?php echo $row->tgl_permintaan?></td>
-                                                      <td><?php $date = new DateTime($row->tgl_permintaan);
-                                                                $delivtime = $row->delivery_time;
-                                                                $date->add(new DateInterval("P". $delivtime. "D"));
-                                                                $duedate = $date->format('Y-m-d');
-                                                                echo $duedate;?>
-                                                      </td>
-                                                      <td><?php $now = new DateTime();
-                                                                $interval = $date->diff($now);
-                                                                $status = $interval->format('%a');
-                                                                if ($status >= 7) {
-                                                                    echo "<img class='warn' src=".base_url('assets/img/warn-green.png')." >";
-                                                                }
-                                                                elseif ($status > 1 && $status < 7  ) {
-                                                                    echo "<img class='warn' src=".base_url('assets/img/warn-yellow.png')." >";
-                                                                }
-                                                                else {
-                                                                    echo "<img class='warn' src=".base_url('assets/img/warn-red.png')." >";
-                                                                }?>
-                                                      </td>
                                                     </tr>
                                                 <?php endforeach ?>
                                             </tbody>
                                             <tfoot>
                                                 <tr>
-                                                  <th colspan="10" class="ts-pager form-horizontal">
+                                                  <th colspan="6" class="ts-pager form-horizontal">
                                                     <button type="button" class="btn first"><i class="icon-step-backward glyphicon glyphicon-step-backward"></i></button>
                                                     <button type="button" class="btn prev"><i class="icon-arrow-left glyphicon glyphicon-backward"></i></button>
                                                     <span class="pagedisplay"></span> <!-- this can be any element, including an input -->
@@ -151,7 +126,7 @@
                         </div>
                     <!-- /.row -->
                     </div>
-                    <form id="myform" method="POST" action="<?php echo base_url('wananalyst/verifikasi_permintaan')?>">
+                    <form id="myform" method="POST" action="<?php echo base_url('networkarchitect/verifikasi_permintaan')?>">
                         <input type="hidden" name="order_id" id="id">
                     </form>
                 </div>
@@ -273,7 +248,7 @@
             //using second click
             $("#mytable .data").one("click",function(e) {
                 $(this).addClass('selected').siblings().removeClass('selected');    
-                var value=$(this).find('td:nth-child(4)').html();
+                var value=$(this).find('td:nth-child(3)').html();
                 $(this).one("click",function() {
                     $('#id').val(value);
                     $('#myform').submit();

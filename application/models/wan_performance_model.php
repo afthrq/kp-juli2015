@@ -28,6 +28,29 @@ class Wan_performance_model extends CI_Model
 		return $query->result();
 	}
 
+	function getidmon($i)
+	{
+		$this->db->where('p_monitoring.mon_name', $i);
+		$query = $this->db->get('p_monitoring');
+		return $query->row()->mon_id;
+	}
+
+	function getorderid($site_id)
+	{
+		$this->db->where('t_nw_site.t_nw_site_id', $site_id);
+		$this->db->where('t_nw_site.t_nw_site_id = t_unrec_process.t_nw_site_id');
+		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
+		$this->db->where('t_detail_network_order.t_detail_network_order_id = t_network_order.t_detail_network_order_id');
+		$query = $this->db->get('t_nw_site , t_unrec_process, t_detail_network_order, t_network_order');
+		return $query->row()->t_network_order_id;
+	}
+
+	function insertmon($input)
+	{
+
+		$this->db->insert('t_monitoring',$input);
+	}
+
 	function getdatapermintaan()
 	{
 		$this->db->distinct();
@@ -99,6 +122,11 @@ class Wan_performance_model extends CI_Model
 		return $query->result();
 	}
 
+	function getdatamonitoring()
+	{
+		$query = $this->db->get("p_monitoring");
+		return $query->result();
+	}
 	function getsiteid($cek_lokasi)
 	{
 		$this->db->distinct();

@@ -38,23 +38,23 @@ class Wananalyst extends CI_Controller
 
         //get data service type id disini kasih variable $srv_id
         
-        if ($service_id == 1)
+        if ($service_id == "Pasang Baru")
         {
             $data['update_list'] = $this->wan_analyst_model->getdatabaru($order_id);
             $data['lastmile_list'] = $this->wan_analyst_model->getlastmile();
             $this->load->view('wan_analyst/implementasi_br',$data);
         }
-        else if ($service_id == 2 || $service_id == 3 || $service_id == 4 || $service_id == 5)
+        else if ($service_id == "Upgrade" || $service_id == "Upgrade (Ganti Infrastruktur)" || $service_id == "Upgrade Temprorer" || $service_id == "Downgrade")
         {
             $data['update_list'] = $this->wan_analyst_model->getdataupdate($order_id);
             $this->load->view('wan_analyst/implementasi_upd',$data);
         }
-        else if ($service_id == 6)
+        else if ($service_id == "Relokasi")
         {
             $data['update_list'] = $this->wan_analyst_model->getdataupdate($order_id);
             $this->load->view('wan_analyst/implementasi_rl',$data);
         }
-        else if ($service_id== 7)
+        else if ($service_id== "Dismantle")
         {
             $data['update_list'] = $this->wan_analyst_model->getdataupdate($order_id);
             $this->load->view('wan_analyst/implementasi_dm',$data);
