@@ -22,32 +22,32 @@
 
 .tablesorter-bootstrap .tablesorter-header-inner {
 	position: relative;
-	padding: 4px 18px 4px 4px;
+	/*padding: 4px 18px 4px 4px;*/
 }
 
 /* bootstrap uses <i> for icons */
-.tablesorter-bootstrap .tablesorter-header i.tablesorter-icon {
+/*.tablesorter-bootstrap .tablesorter-header i.tablesorter-icon {
 	font-size: 11px;
 	position: absolute;
 	right: 2px;
 	top: 50%;
-	margin-top: -7px; /* half the icon height; older IE doesn't like this */
+	margin-top: -7px; 
 	width: 14px;
 	height: 14px;
 	background-repeat: no-repeat;
 	line-height: 14px;
 	display: inline-block;
-}
+}*/
 
 /* black unsorted icon */
-.tablesorter-bootstrap .bootstrap-icon-unsorted {
+/*.tablesorter-bootstrap .bootstrap-icon-unsorted {
 	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOCAMAAADOvxanAAAAVFBMVEUAAABCQkJZWVkZGRnJyckgICAZGRkZGRn8/PweHh4dHR0aGhoaGhpUVFQbGxvQ0NDc3NxMTExSUlIbGxvr6+s4ODhKSkogICAtLS00NDQzMzMnJydSEPrQAAAAGHRSTlMA1ssZRLgdAQbDyisqsZo8QdXUq0r9xPepSRwiAAAAX0lEQVQI13XHSQKAIAwEwQAKxn13Ev7/T2Pu9qmarJKPXIicI4PH4hxaKNrhm2S8bJK5h4YzKHrzJNtK6yYT/TdXzpS5zuYg4MSQYF6i4IHExdw1UVRi05HPrrvT53a+qyMFC9t04gcAAAAASUVORK5CYII=);
-}
+}*/
 
 /* white unsorted icon */
-.tablesorter-bootstrap .icon-white.bootstrap-icon-unsorted {
+/*.tablesorter-bootstrap .icon-white.bootstrap-icon-unsorted {
 	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAAOBAMAAAALT/umAAAAKlBMVEUAAAD///////////////////////////////////////////////////+Gu8ovAAAADXRSTlMA4EXKBtQqvR0+sxmalc142gAAAFdJREFUCNdjYGDoamAAAjZbMxCVfvd6AgMDd+3du9UMDKx3hWSvMjBwXZww8RYDGuC53NB8h4GB8a617UUGBs7Yu3cjGRhYVO9eVQFKOskKOQApFmUgBwBZ+xXRTttNdAAAAABJRU5ErkJggg==);
-}
+}*/
 
 /* since bootstrap (table-striped) uses nth-child(), we just use this to add a zebra stripe color */
 .tablesorter-bootstrap > tbody > tr.odd > td,

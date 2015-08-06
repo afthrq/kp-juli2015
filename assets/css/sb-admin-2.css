@@ -665,3 +665,8 @@ th{
     background-color: #337ab7 !important;
     color: #FFF !important;
 }
+
+.warn {
+    vertical-align: middle;
+    text-align: center; 
+}
