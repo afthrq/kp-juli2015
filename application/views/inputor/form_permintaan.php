@@ -318,7 +318,7 @@
                             </form>
                         </div>
                     </div>
-                    <div id="modalpic" class="popupContainer" style="display:none;">
+                    <div id="modalpic" class="popupContainer pic-container" style="display:none;">
                         <header class="popupHeader">
                             <span class="header_title">PIC</span>
                             <span class="modal_close"><i class="fa fa-times"></i></span>
@@ -328,18 +328,35 @@
                                 <div id="dialog-form" title="Create new user" class="modal-box">
                                   <form>
                                     <fieldset>
-                                      <label for="name">Nama</label><br>
-                                      <input type="text" name="name" id="picname" value="" class="form-control">
-                                      <label for="phone1">No. Telepon 1</label><br>
-                                      <input type="number" name="phone1" id="phone1" value="" class="form-control">
-                                      <label for="phone2">No. Telepon 2</label><br>
-                                      <input type="number" name="phone2" id="phone2" value=""class="form-control">
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                               <label for="name">Nama</label>
+                                               <input type="text" name="name" id="picname" value="" class="form-control"> 
+                                            </div>
+                                            <div class="col-xs-2">
+                                                <label style="visibility:hidden">.</label>
+                                                <span id="phonequery" class="btn btn-primary" style="margin-left:-50%;"><i class="fa fa-plus"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label for="phone1">No. Telepon 1</label><br>
+                                                <input type="number" name="phone1" id="phone1" value="" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label for="phone2">No. Telepon 2</label><br>
+                                                <input type="number" name="phone2" id="phone2" value=""class="form-control">   
+                                            </div>
+                                        </div>
+                                      
                                  
                                       <!-- Allow form submission with keyboard without duplicating the dialog button -->
                                       <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
                                     </fieldset>
                                     <br>
-                                    <center><a id="addpic" class="btn btn-primary href">Tambah PIC</a></center>
+                                    <center><a id="addpic" class="btn btn-primary">Tambah PIC</a></center>
                                   </form>
                                 </div>
                             </div>
@@ -488,7 +505,7 @@
 
                     $("#addpic").click(function() {
                         if( name.val().length === 0 ) {
-                            alert("Nama PIC harus diisi!.");
+                            alert("Nama PIC harus diisi!");
                         }
                         else {
                             $( "#pic tbody" ).append( 
@@ -540,6 +557,23 @@
                         jumlah.val('');
                         realVal = 0;
                     } 
+                }
+            });
+        });
+        </script>
+
+        <script>
+        $("#phonequery").click(function() {
+            var nama = $("#picname");
+
+            $.ajax({
+                url: "<?php echo base_url('inputor/get_phone'); ?>",
+                data: {id: nama.val()},
+                dataType: "json",
+                type: "POST",
+                success: function(data){
+                    $("#phone1").val(data.phone);
+                    $("#phone2").val(data.phone2);
                 }
             });
         });

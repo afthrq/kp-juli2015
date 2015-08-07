@@ -166,6 +166,15 @@ class Inputor_model extends CI_Model
         return $query->result();
     }
 
+    public function get_phone($picname)
+    {
+    	$this->db->select('phone');
+    	$this->db->select('phone2');
+    	$this->db->like('pic_name', $picname);
+    		$query = $this->db->get('t_pic');
+    	return $query->result();
+    }
+
 	function getpicid($pic)
 	{
 		$this->db->where('pic_name', $pic);

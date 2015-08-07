@@ -506,11 +506,25 @@ class Inputor extends CI_Controller
     public function ac_pic()
     {
         $id = $this->input->post('id',TRUE);
-        $rows = $this->inputor_model->get_alamat($id);
+        $rows = $this->inputor_model->get_pic($id);
         $json_array = array();
         foreach ($rows as $row)
-            $json_array[]=$row->address;
+            $json_array[]=$row->pic_name;
         echo json_encode($json_array);
+    }
+
+    public function get_phone()
+    {
+        $id = $this->input->post('id',TRUE);
+        $getphone = $this->inputor_model->get_phone($id);
+        foreach ($getphone as $row) {
+            $phone = array(
+                'phone' => $row->phone, 
+                'phone2' => $row->phone2,
+            );  
+        }
+        //print_r($phone);
+        echo json_encode($phone);
     }
   
 }

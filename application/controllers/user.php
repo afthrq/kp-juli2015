@@ -84,6 +84,17 @@ class User extends CI_Controller
 				$this->session->set_userdata($data);
 				redirect('wanperformance');
 			}
+
+			elseif ($rolecheck == "admin") 
+			{	
+				$data = array(
+				'user_name' => $user_name,
+				'is_logged_in' => TRUE,
+				'role' => $rolecheck
+				);
+				$this->session->set_userdata($data);
+				redirect('admin');
+			}
 			
 		}
 		else // incorrect username or password
