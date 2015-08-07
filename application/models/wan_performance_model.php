@@ -60,8 +60,8 @@ class Wan_performance_model extends CI_Model
 		//$this->db->select('p_nw_service.package');
 		//$this->db->select('t_network_order.bw');
 		$this->db->where('t_unrec_process.p_process_id = "7"');
-		$this->db->where('t_nw_service.p_nw_service_id >= "1"');
-		$this->db->where('t_nw_service.p_nw_service_id <= "13"');
+		$this->db->where('p_nw_service.p_serv_type_id = "1"');
+		$this->db->where('t_nw_service.p_nw_service_id = p_nw_service.p_nw_service_id');
 		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
 		$this->db->where('t_network_order.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
 		$this->db->where('t_nw_site.t_nw_site_id = t_network_order.t_nw_site_id');
@@ -90,8 +90,8 @@ class Wan_performance_model extends CI_Model
 		$this->db->select('provinsi.provinsi_name');
 		$this->db->select('t_pic.pic_name');
 		$this->db->where('t_nw_site.site_name',$o_id);
-		$this->db->where('t_nw_service.p_nw_service_id >= "1"');
-		$this->db->where('t_nw_service.p_nw_service_id <= "13"');
+		$this->db->where('p_nw_service.p_serv_type_id = "1"');
+		$this->db->where('t_nw_service.p_nw_service_id = p_nw_service.p_nw_service_id');
 		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
 		$this->db->where('t_network_order.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
 		$this->db->where('t_nw_site.t_nw_site_id = t_network_order.t_nw_site_id');
@@ -248,5 +248,15 @@ class Wan_performance_model extends CI_Model
 
 		$this->db->where('t_unrec_process.t_detail_network_order_id', $detail_id);
 		$this->db->update('t_unrec_process', $process);
+	}
+
+	function insert_dokumen($tipe_dokumen, $caption, $path ,$work_id)
+	{
+		$data = array('t_work_id' => $work_id,
+        'p_doc_type_id' => $tipe_dokumen,
+        'caption' => $caption,
+        'path' => $path);
+        $this->db->insert('t_document', $data);
+        //$this->db->where('t_work_id', "1"); //change "1" with parameter that shows current process id
 	}
 }

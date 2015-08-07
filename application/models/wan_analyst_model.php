@@ -77,8 +77,8 @@ class Wan_analyst_model extends CI_Model
 		//$this->db->select('p_nw_service.package');
 		//$this->db->select('t_network_order.bw');
 		$this->db->where('t_unrec_process.p_process_id = "4"');
-		$this->db->where('t_nw_service.p_nw_service_id >= "1"');
-		$this->db->where('t_nw_service.p_nw_service_id <= "13"');
+		$this->db->where('p_nw_service.p_serv_type_id = "1"');
+		$this->db->where('t_nw_service.p_nw_service_id = p_nw_service.p_nw_service_id');
 		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
 		$this->db->where('t_network_order.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
 		$this->db->where('t_nw_site.t_nw_site_id = t_network_order.t_nw_site_id');
@@ -103,8 +103,8 @@ class Wan_analyst_model extends CI_Model
 		//$this->db->select('p_nw_service.package');
 		//$this->db->select('t_network_order.bw');
 		$this->db->where('t_unrec_process.p_process_id = "5"');
-		$this->db->where('t_nw_service.p_nw_service_id >= "1"');
-		$this->db->where('t_nw_service.p_nw_service_id <= "13"');
+		$this->db->where('p_nw_service.p_serv_type_id = "1"');
+		$this->db->where('t_nw_service.p_nw_service_id = p_nw_service.p_nw_service_id');
 		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
 		$this->db->where('t_network_order.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
 		$this->db->where('t_nw_site.t_nw_site_id = t_network_order.t_nw_site_id');

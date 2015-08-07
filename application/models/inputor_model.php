@@ -283,10 +283,10 @@ class Inputor_model extends CI_Model
 		$this->db->update('t_unrec_process',$up_unrec);
 	}
 
-	function inputfinal($in_serv, $in_pic_site, $in_router)
+	function inputfinal($in_serv, $in_router)
 	{
 		$this->db->insert('t_nw_service',$in_serv);
-		$this->db->insert('t_nw_site_pic',$in_pic_site);
+		//$this->db->insert('t_nw_site_pic',$in_pic_site);
 		$this->db->insert('t_nw_service',$in_router);
 	}
 
@@ -308,6 +308,14 @@ class Inputor_model extends CI_Model
 	function inputlvl3($in_order)
 	{
 		$this->db->insert('t_network_order',$in_order);		
+	}
+
+	function getidmod($i)
+	{
+		$this->db->where('p_service.service_name', $i);
+		$this->db->where('p_service.p_service_id = p_nw_service.p_service_id');
+		$query = $this->db->get('p_service,p_nw_service');
+		return $query->row()->p_nw_service_id;
 	}
 	//------------------------------------------------------------------------//
 
@@ -344,8 +352,8 @@ class Inputor_model extends CI_Model
 		//$this->db->select('p_service.service_name');
 		//$this->db->select('p_nw_service.package');
 		//$this->db->select('t_network_order.bw');
-		$this->db->where('t_nw_service_fix.p_nw_service_id >= "1"');
-		$this->db->where('t_nw_service_fix.p_nw_service_id <= "13"');
+		$this->db->where('p_nw_service.p_serv_type_id = "1"');
+		$this->db->where('t_nw_service_fix.p_nw_service_id = p_nw_service.p_nw_service_id');
 		$this->db->where('p_site_type.p_site_type_id = t_nw_site.p_site_type_id');
 		$this->db->where('t_network.t_network_id = t_nw_service_fix.t_network_id');
 		$this->db->where('p_nw_service.p_nw_service_id = t_nw_service_fix.p_nw_service_id');
@@ -365,8 +373,8 @@ class Inputor_model extends CI_Model
 		//$this->db->select('p_service.service_name');
 		//$this->db->select('p_nw_service.package');
 		//$this->db->select('t_network_order.bw');
-		$this->db->where('t_nw_service.p_nw_service_id >= "1"');
-		$this->db->where('t_nw_service.p_nw_service_id <= "13"');
+		$this->db->where('p_nw_service.p_serv_type_id = "1"');
+		$this->db->where('t_nw_service.p_nw_service_id = p_nw_service.p_nw_service_id');
 		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
 		$this->db->where('t_network_order.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
 		$this->db->where('t_nw_site.p_region_id = p_region.p_region_id');
@@ -394,8 +402,8 @@ class Inputor_model extends CI_Model
 		//$this->db->select('provinsi.provinsi_name');
 		//$this->db->select('t_pic.pic_name');
 		$this->db->where('t_nw_site.site_name',$o_id);
-		$this->db->where('t_nw_service_fix.p_nw_service_id >= "1"');
-		$this->db->where('t_nw_service_fix.p_nw_service_id <= "13"');
+		$this->db->where('p_nw_service.p_serv_type_id = "1"');
+		$this->db->where('t_nw_service_fix.p_nw_service_id = p_nw_service.p_nw_service_id');
 		$this->db->where('t_nw_site.t_nw_site_id = t_network.t_nw_site_id');
 		$this->db->where('p_site_type.p_site_type_id = t_nw_site.p_site_type_id');
 		$this->db->where('p_nw_service.p_nw_service_id = t_nw_service_fix.p_nw_service_id');
@@ -423,8 +431,8 @@ class Inputor_model extends CI_Model
 		//$this->db->select('provinsi.provinsi_name');
 		//$this->db->select('t_pic.pic_name');
 		$this->db->where('t_nw_site.site_name',$o_id);
-		$this->db->where('t_nw_service_fix.p_nw_service_id >= "14"');
-		$this->db->where('t_nw_service_fix.p_nw_service_id <= "15"');
+		$this->db->where('p_nw_service.p_serv_type_id = "2"');
+		$this->db->where('t_nw_service_fix.p_nw_service_id = p_nw_service.p_nw_service_id');
 		$this->db->where('t_nw_site.t_nw_site_id = t_network.t_nw_site_id');
 		$this->db->where('p_site_type.p_site_type_id = t_nw_site.p_site_type_id');
 		$this->db->where('p_nw_service.p_nw_service_id = t_nw_service_fix.p_nw_service_id');
@@ -452,8 +460,8 @@ class Inputor_model extends CI_Model
 		//$this->db->select('provinsi.provinsi_name');
 		//$this->db->select('t_pic.pic_name');
 		$this->db->where('t_nw_site.site_name',$o_id);
-		$this->db->where('t_nw_service_fix.p_nw_service_id >= "16"');
-		$this->db->where('t_nw_service_fix.p_nw_service_id <= "17"');
+		$this->db->where('p_nw_service.p_serv_type_id = "1"');
+		$this->db->where('t_nw_service_fix.p_nw_service_id = p_nw_service.p_nw_service_id');
 		$this->db->where('t_nw_site.t_nw_site_id = t_network.t_nw_site_id');
 		$this->db->where('p_site_type.p_site_type_id = t_nw_site.p_site_type_id');
 		$this->db->where('p_nw_service.p_nw_service_id = t_nw_service_fix.p_nw_service_id');
@@ -632,8 +640,8 @@ class Inputor_model extends CI_Model
 		//$this->db->select('provinsi.provinsi_name');
 		//$this->db->select('t_pic.pic_name');
 		$this->db->where('t_nw_site.site_name',$o_id);
-		$this->db->where('t_nw_service.p_nw_service_id >= "1"');
-		$this->db->where('t_nw_service.p_nw_service_id <= "13"');
+		$this->db->where('p_nw_service.p_serv_type_id = "1"');
+		$this->db->where('t_nw_service.p_nw_service_id = p_nw_service.p_nw_service_id');
 		$this->db->where('t_nw_site.t_nw_site_id = t_network_order.t_nw_site_id');
 		$this->db->where('p_site_type.p_site_type_id = t_nw_site.p_site_type_id');
 		$this->db->where('p_nw_service.p_nw_service_id = t_nw_service.p_nw_service_id');

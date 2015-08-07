@@ -191,6 +191,12 @@ class Wananalyst extends CI_Controller
         $up_unrec = array ('p_process_id' => $getnext);
         $this->wan_analyst_model->updateunrec($up_unrec, $detail_id);
         //------------------------------------------------------------------//
+        $tipe_dokumen = $this->input->post('tipe_dokumen');
+        $caption = $this->input->post('caption');
+        $filename = $this->input->post('path');
+        $path = "uploads/$filename";
+        $this->wan_analyst_model->insert_dokumen($tipe_dokumen, $caption, $path, $work_id);
+
         redirect('wananalyst','refresh');
     }
 
@@ -253,6 +259,13 @@ class Wananalyst extends CI_Controller
         'hostname' => $hostname 
         );
         $data = $this->wan_analyst_model->insertdatafinal($in_final,$p_final);
+
+        $tipe_dokumen = $this->input->post('tipe_dokumen');
+        $caption = $this->input->post('caption');
+        $filename = $this->input->post('path');
+        $path = "uploads/$filename";
+        $this->wan_analyst_model->insert_dokumen($tipe_dokumen, $caption, $path, $work_id);
+
         redirect('wananalyst','refresh');
     }
 
@@ -294,6 +307,12 @@ class Wananalyst extends CI_Controller
         $copynetwork = $this->wan_analyst_model->getdataupinstalasi($site_id);
         $this->wan_analyst_model->updateorder($copynetwork, $detail_id);
         $this->wan_analyst_model->updatesite($in_traffic,$site_id);
+
+        $tipe_dokumen = $this->input->post('tipe_dokumen');
+        $caption = $this->input->post('caption');
+        $filename = $this->input->post('path');
+        $path = "uploads/$filename";
+        $this->wan_analyst_model->insert_dokumen($tipe_dokumen, $caption, $path, $work_id);
         redirect('wananalyst','refresh');
     }
 
@@ -328,6 +347,12 @@ class Wananalyst extends CI_Controller
         $up_unrec = array ('p_process_id' => $getnext);
         $this->wan_analyst_model->updateunrec($up_unrec, $detail_id);
         //------------------------------------------------------------------//
+        $tipe_dokumen = $this->input->post('tipe_dokumen');
+        $caption = $this->input->post('caption');
+        $filename = $this->input->post('path');
+        $path = "uploads/$filename";
+        $this->wan_analyst_model->insert_dokumen($tipe_dokumen, $caption, $path, $work_id);
+        
         redirect('wananalyst','refresh');  
     }
 

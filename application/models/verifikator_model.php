@@ -74,8 +74,8 @@ class Verifikator_model extends CI_Model
 		//$this->db->select('p_nw_service.package');
 		//$this->db->select('t_network_order.bw');
 		$this->db->where('t_unrec_process.p_process_id = "3"');
-		$this->db->where('t_nw_service.p_nw_service_id >= "1"');
-		$this->db->where('t_nw_service.p_nw_service_id <= "13"');
+		$this->db->where('p_nw_service.p_serv_type_id = "1"');
+		$this->db->where('t_nw_service.p_nw_service_id = p_nw_service.p_nw_service_id');
 		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
 		$this->db->where('t_network_order.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
 		$this->db->where('t_nw_site.t_nw_site_id = t_network_order.t_nw_site_id');
@@ -101,8 +101,8 @@ class Verifikator_model extends CI_Model
 		//$this->db->select('p_nw_service.package');
 		//$this->db->select('t_network_order.bw');
 		$this->db->where('t_unrec_process.p_process_id = "9"');
-		$this->db->where('t_nw_service.p_nw_service_id >= "1"');
-		$this->db->where('t_nw_service.p_nw_service_id <= "13"');
+		$this->db->where('p_nw_service.p_serv_type_id = "1"');
+		$this->db->where('t_nw_service.p_nw_service_id = p_nw_service.p_nw_service_id');
 		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
 		$this->db->where('t_network_order.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
 		$this->db->where('t_nw_site.t_nw_site_id = t_network_order.t_nw_site_id');
@@ -127,7 +127,8 @@ class Verifikator_model extends CI_Model
 		//$this->db->select('p_nw_service.package');
 		//$this->db->select('t_network_order.bw');
 		$this->db->where('t_unrec_process.p_process_id = "2"');
-		$this->db->where('t_nw_service.p_nw_service_id <= "13"');
+		$this->db->where('p_nw_service.p_serv_type_id = "1"');
+		$this->db->where('t_nw_service.p_nw_service_id = p_nw_service.p_nw_service_id');
 		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
 		$this->db->where('t_network_order.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
 		$this->db->where('t_nw_site.t_nw_site_id = t_network_order.t_nw_site_id');
@@ -157,8 +158,8 @@ class Verifikator_model extends CI_Model
 		$this->db->select('t_pic.pic_name');
 		$this->db->select('t_detail_network_order.p_order_type_id');
 		$this->db->where('t_nw_site.site_name',$o_id);
-		$this->db->where('t_nw_service.p_nw_service_id >= "1"');
-		$this->db->where('t_nw_service.p_nw_service_id <= "13"');
+		$this->db->where('p_nw_service.p_serv_type_id = "1"');
+		$this->db->where('t_nw_service.p_nw_service_id = p_nw_service.p_nw_service_id');
 		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
 		$this->db->where('t_network_order.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
 		$this->db->where('t_nw_site.t_nw_site_id = t_network_order.t_nw_site_id');
@@ -209,6 +210,13 @@ class Verifikator_model extends CI_Model
 		$this->db->where('t_network_order_id',$order_up_id);
 		$query = $this->db->get("t_network_order");
 		return $query->row()->t_detail_network_order_id;
+  	}
+
+  	public function insert_biaya($biaya, $detail_id)
+  	{
+  		$biayatambahan = array ('biaya_tambahan' => $biaya);
+  		$this->db->where('t_detail_network_order_id',$detail_id);
+  		$this->db->update('t_detail_network_order',$biayatambahan);
   	}
 
   	//updateprocess------------------------------------------------------------------//

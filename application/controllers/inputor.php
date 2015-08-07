@@ -74,7 +74,7 @@ class Inputor extends CI_Controller
         $data['provinsi_list'] = $this->inputor_model->getdataprovinsi();
         $data['jenis_list'] = $this->inputor_model->getdatajenis();
         $data['upserv_list'] = $this->inputor_model->getrejectid();
-        //$company = $this->inputor_model->getcompidrej($o_id);
+        $data['ket_reject'] = $this->inputor_model->getketreject($o_id);
         $data['perusahaan_list'] = $this->inputor_model->getcompid($o_id);
         $data['lokasiid'] = $this->inputor_model->getlokasiid($o_id); 
         $this->load->view('inputor/permintaan_reject',$data);
@@ -141,14 +141,20 @@ class Inputor extends CI_Controller
             $output .= "<option value='".$row->package."'>".$row->package."</option>"; 
       }  
       echo $output;  
-    }  
+    }
+
 
     public function form_input()
-    {
+    {  
+        $modul = $_POST['namepic'];
+            print_r($modul);
+            die();
+
         $lokasi = $this->input->post('lokasi');
         $countlokasi = $this->inputor_model->getcountlokasi($lokasi);
         if($countlokasi == 0)
         {
+
             //------------------------------------------------------------------//
             $proses = $this->input->post('proses');
 
@@ -167,7 +173,7 @@ class Inputor extends CI_Controller
             $region = $this->input->post('region');
             $provider = $this->input->post('provider');
             $provinsi = $this->input->post('prov');
-            $pic = $this->input->post('pic');
+            //$pic = $this->input->post('pic');
             $layanan = $this->input->post('layanan');
             $paket = $this->input->post('paket');
             $bw = $this->input->post('bw');
@@ -177,12 +183,12 @@ class Inputor extends CI_Controller
             $longitude = $this->input->post('longitude');
 
             //setting parent table
-            $in_pic = array ('pic_name' => $pic);
-            $this->inputor_model->inputparent($in_pic);
+            //$in_pic = array ('pic_name' => $pic);
+            //$this->inputor_model->inputparent($in_pic);
  
             $provider_id = $this->inputor_model->getproviderid($provider);
             $provid = $this->inputor_model->getprovinsiid($provinsi);
-            $picid = $this->inputor_model->getpicid($pic);
+            //$picid = $this->inputor_model->getpicid($pic);
             $jenid = $this->inputor_model->getjenid($jenis);
             $regid = $this->inputor_model->getregid($region,$perusahaan);
 
@@ -204,6 +210,15 @@ class Inputor extends CI_Controller
             $siteid = $this->inputor_model->getsiteid($lokasi);
 
             //-----------------------------------------------------------------//
+            $in_proses = array ('p_order_type_id' => $proses);
+            $serv_type_id = $this->inputor_model->inputproses($in_proses);
+
+            $in_tahap = array ('p_process_id' => $tahap ,
+                    't_detail_network_order_id' => $serv_type_id,
+                    'keterangan' => $keterangan,
+                    'closed_by' => $user);
+
+            $this->inputor_model->inputtahap($in_tahap);
             $in_unrec = array ('p_process_id' => $tahap ,
                     't_detail_network_order_id' => $serv_type_id ,
                     't_nw_site_id' => $siteid);
@@ -232,8 +247,8 @@ class Inputor extends CI_Controller
             $orderid =$this->inputor_model->getorderid($in_order);
             
             //setting child table final
-            $in_pic_site = array ('t_nw_site_id' => $siteid,
-                         't_pic_id' => $picid);
+            //$in_pic_site = array ('t_nw_site_id' => $siteid,
+             //            't_pic_id' => $picid);
 
             $in_serv = array ('t_network_order_id' => $orderid ,
                             'p_nw_service_id' => $packid ,
@@ -243,25 +258,26 @@ class Inputor extends CI_Controller
                             'p_nw_service_id' => $router ,
                             'jumlah' => 1);
 
-            $this->inputor_model->inputfinal($in_serv, $in_pic_site, $in_router);
-            if($modul)
-            { 
-                $in_modul = array ('t_network_order_id' => $orderid ,
-                        'p_nw_service_id' => $modul ,
-                        'jumlah' => 1);
+            $this->inputor_model->inputfinal($in_serv, $in_router);
 
-                $this->inputor_model->inputmodul($in_modul);
+            if(isset($_POST['modul']))
+            {
+                $jumlah = $this->input->post('jumlah');
+                $id=$_POST['modul'];
+                for($i=0;$i<count($id);$i++)
+                {  
+                    $monid = $this->inputor_model->getidmod($id[$i]);
+
+                    $in_modul = array ('t_network_order_id' => $orderid ,
+                            'p_nw_service_id' => $modul ,
+                            'jumlah' => $jumlah);
+
+                    $this->inputor_model->inputmodul($in_modul);
+                } 
             } 
-            $in_proses = array ('p_order_type_id' => $proses);
-            $serv_type_id = $this->inputor_model->inputproses($in_proses);
 
-            $in_tahap = array ('p_process_id' => $tahap ,
-                    't_detail_network_order_id' => $serv_type_id,
-                    'keterangan' => $keterangan,
-                    'closed_by' => $user);
-            $this->inputor_model->inputtahap($in_tahap);
             
-            redirect('inputor','refresh');
+            //redirect('inputor','refresh');
         }
         else if ($countlokasi !==0)
         {
@@ -506,25 +522,11 @@ class Inputor extends CI_Controller
     public function ac_pic()
     {
         $id = $this->input->post('id',TRUE);
-        $rows = $this->inputor_model->get_pic($id);
+        $rows = $this->inputor_model->get_alamat($id);
         $json_array = array();
         foreach ($rows as $row)
-            $json_array[]=$row->pic_name;
+            $json_array[]=$row->address;
         echo json_encode($json_array);
-    }
-
-    public function get_phone()
-    {
-        $id = $this->input->post('id',TRUE);
-        $getphone = $this->inputor_model->get_phone($id);
-        foreach ($getphone as $row) {
-            $phone = array(
-                'phone' => $row->phone, 
-                'phone2' => $row->phone2,
-            );  
-        }
-        //print_r($phone);
-        echo json_encode($phone);
     }
   
 }

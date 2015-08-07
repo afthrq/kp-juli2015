@@ -92,7 +92,13 @@
                     <div class="tab-content">
                         <div id="sectionA" class="tab-pane fade in active">
                             <br>
-                                <div class="alert alert-danger" role="alert"><strong>Permintaan anda ditolak : </strong></div>
+                                <div class="alert alert-danger" role="alert">
+                                    <strong>Permintaan anda ditolak : 
+                                        <?php foreach ($ket_reject as $row): 
+                                            echo $row->ket_reject?>
+                                        <?php endforeach?>
+                                    </strong>
+                                </div>
                             <?php foreach ($reject_list as $row): ?>
                                 <div class="row">
                                     <div class="col-lg-6">

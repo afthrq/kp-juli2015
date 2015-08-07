@@ -315,7 +315,6 @@
                                 </div>
                                 <br><br>
                             </div>
-                            </form>
                         </div>
                     </div>
                     <div id="modalpic" class="popupContainer pic-container" style="display:none;">
@@ -330,8 +329,8 @@
                                     <fieldset>
                                         <div class="row">
                                             <div class="col-md-10">
-                                               <label for="name">Nama</label>
-                                               <input type="text" name="name" id="picname" value="" class="form-control"> 
+                                               <label for="name[]">Nama</label>
+                                               <input type="text" name="name[]" id="picname" value="" class="form-control"> 
                                             </div>
                                             <div class="col-xs-2">
                                                 <label style="visibility:hidden">.</label>
@@ -373,24 +372,26 @@
                                   <form>
                                     <fieldset>
                                       <label for="name">Nama Modul</label><br>
-                                        <select name="router" class="form-control" id="modname">
+                                        <select name="modul" class="form-control" id="modname">
                                             <option value="HWIC-2T">HWIC-2T</option>
                                             <option value="HWIC-2FE">HWIC-2FE</option>
                                         </select>
                                       <label for="phone1">Jumlah</label><br>
-                                      <input type="number" name="phone1" id="modjml" value="" class="form-control">
+                                      <input type="number" name="jumlah" id="modjml" value="" class="form-control">
                                  
                                       <!-- Allow form submission with keyboard without duplicating the dialog button -->
                                       <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
                                     </fieldset>
                                     <br>
                                     <center><a id="addmodul" class="btn btn-primary href">Tambah Modul</a></center>
-                                  </form>
+                                </form>
                                 </div>
                             </div>
                         </div>
+                    </form>
                     </div>
                 </div>
+
                 <!-- /.container-fluid -->
             </div>
             <!-- /#page-wrapper -->
@@ -496,6 +497,7 @@
         document.onkeypress = stopRKey; 
 
         </script>
+
         <!-- Add data from PIC Modal to PIC Table -->
         <script type="text/javascript">
             $(function() {
@@ -508,20 +510,19 @@
                             alert("Nama PIC harus diisi!");
                         }
                         else {
-                            $( "#pic tbody" ).append( 
-                            "<tr>" +
-                            "<td>" + name.val() + "<input type='hidden' name='namapic' value='"+ name.val() + "'> " +  "</td>"        +
-                            "<td>" + phone1.val() + "<input type='hidden' name='tlp1pic' value='"+ phone1.val() + "'> " + "</td>" +
-                            "<td>" + phone2.val() + "<input type='hidden' name='tlp2pic' value='"+ phone2.val() + "'> " + "</td>" +
-                            "</tr>" );
-                            name.val('');
-                            phone1.val('');
-                            phone2.val('');
+                            $( "#pic tbody" ).append(                            
+                                "<tr>" +
+                                "<td>" + name.val() + "<input type='hidden' name='namapic' value='"+ name.val() + "'> " +  "</td>"+
+                                "<td>" + phone1.val() + "<input type='hidden' name='tlp1pic' value='"+ phone1.val() + "'> " + "</td>" +
+                                "<td>" + phone2.val() + "<input type='hidden' name='tlp2pic' value='"+ phone2.val() + "'> " + "</td>" +
+                                "</tr>");
                         }
                 });
+
             });
         </script>
-        <!-- Add data from Modul Modal to PIC Table -->
+
+        <!-- Add data from Modul Modal to Modul Table -->
         <script type="text/javascript">
         $(function() {
             var modul = $( "#modname" ),
@@ -549,7 +550,7 @@
                         realVal = 17;
                         $( "#modul tbody" ).append(
                         "<tr>" +
-                            "<td>" + modul.val() + "<input type='hidden' name='modulname' value='"+ realVal + "'> " +  "</td>" +
+                            "<td>" + modul.val() + "<input type='hidden' name='modulname[]' value='"+ realVal + "'> " +  "</td>" +
                             "<td>" + jumlah.val() + "<input type='hidden' name='jmlmodul' value='"+ jumlah.val() + "'> " + "</td>" +
                         "</tr>" 
                         );

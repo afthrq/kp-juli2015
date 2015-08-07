@@ -69,6 +69,7 @@ class Networkarchitect extends CI_Controller
     {
         $site_id = $this->input->post('site_id');
 
+
         //--------------------------------------------------------------------//
         $tahap = $this->input->post('tahap');
         $user = $this->input->post('user');
@@ -78,6 +79,7 @@ class Networkarchitect extends CI_Controller
                 'closed_by' => $user);
         $this->verifikator_model->updateprocessob($in_detail_id,$detail_id);
 
+        $work_id = $this->verifikator_model->getworkid($detail_id,$tahap);
 
         $in_unrec = array ('p_process_id' => $tahap);
         $this->verifikator_model->inputunrec($in_unrec, $site_id);
@@ -164,6 +166,14 @@ class Networkarchitect extends CI_Controller
         {     
             $this->pm_model->dismantle($site_id);
         }
+
+        $biaya = $this->input->post('biaya');
+        $tipe_dokumen = $this->input->post('tipe_dokumen');
+        $caption = $this->input->post('caption');
+        $filename = $this->input->post('path');
+        $path = "uploads/$filename";
+        $this->verifikator_model->insert_dokumen($tipe_dokumen, $caption, $path, $work_id);
+        $this->verifikator_model->insert_biaya($biaya, $detail_id);
 
         $this->pm_model->dropunrecdata($detail_id);
         redirect('networkarchitect','refresh');

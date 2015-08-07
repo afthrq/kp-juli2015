@@ -5,30 +5,30 @@ class Pm_model extends CI_Model
 	function getprlink($o_id)
 	{
 		$this->db->where('t_nw_site.site_name', $o_id);
-		$this->db->where('t_nw_service.p_nw_service_id >= "1"');
-		$this->db->where('t_nw_service.p_nw_service_id <= "13"');
+		$this->db->where('p_nw_service.p_serv_type_id = "1"');
+		$this->db->where('t_nw_service.p_nw_service_id = p_nw_service.p_nw_service_id');
 		$this->db->where('t_nw_site.t_nw_site_id = t_unrec_process.t_nw_site_id');
 		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
 		$this->db->where('t_detail_network_order.t_detail_network_order_id = t_network_order.t_detail_network_order_id');
 		$this->db->where('t_network_order.provider_id = p_price_nw_serv_provider.provider_id');
 		$this->db->where('t_network_order.t_network_order_id = t_nw_service.t_network_order_id');
 		$this->db->where('t_nw_service.p_nw_service_id = p_price_nw_serv_provider.p_nw_service_id');
-		$query = $this->db->get('t_nw_site, t_unrec_process, t_detail_network_order, t_network_order, p_price_nw_serv_provider,t_nw_service');
+		$query = $this->db->get('p_nw_service, t_nw_site, t_unrec_process, t_detail_network_order, t_network_order, p_price_nw_serv_provider,t_nw_service');
 		return $query->result(); 
 	}
 
 	function getprrouter($o_id)
 	{
 		$this->db->where('t_nw_site.site_name', $o_id);
-		$this->db->where('t_nw_service.p_nw_service_id >= "14"');
-		$this->db->where('t_nw_service.p_nw_service_id <= "15"');
+		$this->db->where('p_nw_service.p_serv_type_id = "2"');
+		$this->db->where('t_nw_service.p_nw_service_id = p_nw_service.p_nw_service_id');
 		$this->db->where('t_nw_site.t_nw_site_id = t_unrec_process.t_nw_site_id');
 		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
 		$this->db->where('t_detail_network_order.t_detail_network_order_id = t_network_order.t_detail_network_order_id');
 		$this->db->where('t_network_order.provider_id = p_price_nw_serv_provider.provider_id');
 		$this->db->where('t_network_order.t_network_order_id = t_nw_service.t_network_order_id');
 		$this->db->where('t_nw_service.p_nw_service_id = p_price_nw_serv_provider.p_nw_service_id');
-		$query = $this->db->get('t_nw_site, t_unrec_process, t_detail_network_order, t_network_order, p_price_nw_serv_provider,t_nw_service');
+		$query = $this->db->get('p_nw_Service,t_nw_site, t_unrec_process, t_detail_network_order, t_network_order, p_price_nw_serv_provider,t_nw_service');
 		return $query->result(); 
 	}
 
@@ -36,8 +36,8 @@ class Pm_model extends CI_Model
 	{
 		$this->db->distinct();
 		$this->db->where('t_nw_site.site_name', $o_id);
-		$this->db->where('t_nw_service_fix.p_nw_service_id >= "14"');
-		$this->db->where('t_nw_service_fix.p_nw_service_id <= "15"');
+		$this->db->where('p_nw_service.p_serv_type_id = "2"');
+		$this->db->where('t_nw_service.p_nw_service_id = p_nw_service.p_nw_service_id');
 		$this->db->where('t_nw_site.t_nw_site_id = t_unrec_process.t_nw_site_id');
 		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
 		$this->db->where('t_detail_network_order.t_detail_network_order_id = t_network_order.t_detail_network_order_id');
@@ -45,7 +45,7 @@ class Pm_model extends CI_Model
 		$this->db->where('t_nw_site.t_nw_site_id = t_network.t_nw_site_id');
 		$this->db->where('t_network.t_network_id = t_nw_service_fix.t_network_id');
 		$this->db->where('t_nw_service_fix.p_nw_service_id = p_price_nw_serv_provider.p_nw_service_id');
-		$query = $this->db->get('t_nw_site, t_unrec_process, t_detail_network_order, t_network, p_price_nw_serv_provider,t_nw_service_fix, t_network_order');
+		$query = $this->db->get('p_nw_service,t_nw_site, t_unrec_process, t_detail_network_order, t_network, p_price_nw_serv_provider,t_nw_service_fix, t_network_order');
 		return $query->result();
 	}
 
@@ -53,8 +53,8 @@ class Pm_model extends CI_Model
 	{
 		$this->db->distinct();
 		$this->db->where('t_nw_site.site_name', $o_id);
-		$this->db->where('t_nw_service_fix.p_nw_service_id >= "14"');
-		$this->db->where('t_nw_service_fix.p_nw_service_id <= "15"');
+		$this->db->where('p_nw_service.p_serv_type_id = "3"');
+		$this->db->where('t_nw_service.p_nw_service_id = p_nw_service.p_nw_service_id');
 		$this->db->where('t_nw_site.t_nw_site_id = t_unrec_process.t_nw_site_id');
 		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
 		$this->db->where('t_detail_network_order.t_detail_network_order_id = t_network_order.t_detail_network_order_id');
@@ -62,7 +62,7 @@ class Pm_model extends CI_Model
 		$this->db->where('t_nw_site.t_nw_site_id = t_network.t_nw_site_id');
 		$this->db->where('t_network.t_network_id = t_nw_service_fix.t_network_id');
 		$this->db->where('t_nw_service_fix.p_nw_service_id = p_price_nw_serv_provider.p_nw_service_id');
-		$query = $this->db->get('t_nw_site, t_unrec_process, t_detail_network_order, t_network, p_price_nw_serv_provider,t_nw_service_fix, t_network_order');
+		$query = $this->db->get('p_nw_service,t_nw_site, t_unrec_process, t_detail_network_order, t_network, p_price_nw_serv_provider,t_nw_service_fix, t_network_order');
 		return $query->result();
 	}
 
@@ -72,15 +72,15 @@ class Pm_model extends CI_Model
 		while($count>0)
 		{
 			$this->db->where('t_nw_site.site_name', $o_id);
-			$this->db->where('t_nw_service.p_nw_service_id >= "16"');
-			$this->db->where('t_nw_service.p_nw_service_id <= "17"');
+			$this->db->where('p_nw_service.p_serv_type_id = "3"');
+			$this->db->where('t_nw_service.p_nw_service_id = p_nw_service.p_nw_service_id');
 			$this->db->where('t_nw_site.t_nw_site_id = t_unrec_process.t_nw_site_id');
 			$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
 			$this->db->where('t_network_order.provider_id = p_price_nw_serv_provider.provider_id');
 			$this->db->where('t_detail_network_order.t_detail_network_order_id = t_network_order.t_detail_network_order_id');
 			$this->db->where('t_network_order.t_network_order_id = t_nw_service.t_network_order_id');
 			$this->db->where('t_nw_service.p_nw_service_id = p_price_nw_serv_provider.p_nw_service_id');
-			$query = $this->db->get('t_nw_site, t_unrec_process, t_detail_network_order, t_network_order, p_price_nw_serv_provider,t_nw_service');
+			$query = $this->db->get('t_nw_site, t_unrec_process, t_detail_network_order, t_network_order, p_price_nw_serv_provider,t_nw_service,p_nw_service');
 			$module = $query->row()->price_otc;
 			$jumlah = 1;
 			//$jumlah = $query->row()->price_otc;
@@ -93,15 +93,15 @@ class Pm_model extends CI_Model
 	function getcountmodule($o_id)
   	{
   		$this->db->where('t_nw_site.site_name', $o_id);
- 		$this->db->where('t_nw_service.p_nw_service_id >= "16"');
-		$this->db->where('t_nw_service.p_nw_service_id <= "17"');
+		$this->db->where('p_nw_service.p_serv_type_id = "3"');
+		$this->db->where('t_nw_service.p_nw_service_id = p_nw_service.p_nw_service_id');
   		$this->db->where('t_nw_site.t_nw_site_id = t_unrec_process.t_nw_site_id');
  		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
 		$this->db->where('t_network_order.provider_id = p_price_nw_serv_provider.provider_id');
 		$this->db->where('t_detail_network_order.t_detail_network_order_id = t_network_order.t_detail_network_order_id');
 		$this->db->where('t_network_order.t_network_order_id = t_nw_service.t_network_order_id');
 		$this->db->where('t_nw_service.p_nw_service_id = p_price_nw_serv_provider.p_nw_service_id');
-		$query = $this->db->from('t_nw_site, t_unrec_process, t_detail_network_order, t_network_order, p_price_nw_serv_provider,t_nw_service'); 			
+		$query = $this->db->from('t_nw_site, t_unrec_process, t_detail_network_order, t_network_order, p_price_nw_serv_provider,t_nw_service,p_nw_service'); 			
 		return $query->count_all_results();
   	}
 

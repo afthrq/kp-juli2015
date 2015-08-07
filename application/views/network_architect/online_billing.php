@@ -107,7 +107,7 @@
                                         <div class="col-lg-6">
                                             <div class="input-group">
                                                 <span class="input-group-addon" id="basic-addon1">Rp</span>
-                                                <input type="number" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->price_mrc?>" disabled>
+                                                <input type="number" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->price_mrc?>" readonly>
                                             </div>
                                          </div>
                                     </div>
@@ -125,7 +125,7 @@
                                         <div class="col-lg-6">
                                             <div class="input-group">
                                                 <span class="input-group-addon" id="basic-addon1">Rp</span>
-                                                <input type="number" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->price_otc?>" disabled>
+                                                <input type="number" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->price_otc?>" readonly>
                                             </div>
                                          </div>
                                     </div>
@@ -142,7 +142,7 @@
                                         <div class="col-lg-6">
                                             <div class="input-group">
                                                 <span class="input-group-addon" id="basic-addon1">Rp</span>
-                                                <input type="number" class="form-control" aria-describedby="basic-addon1" value="<?php echo $price_module?>" disabled>
+                                                <input type="number" class="form-control" aria-describedby="basic-addon1" value="<?php echo $price_module?>" readonly>
                                             </div>
                                          </div>
                                     </div>
@@ -156,6 +156,17 @@
                                 <input type="hidden" name="service_id" value="<?php echo $row->p_order_type_id?>">
                             <?php endforeach ?>
                             <input type="hidden" name="tahap" value="9"></input>
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        <h4>Biaya Lain-Lain</h4>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="basic-addon1">Rp</span>
+                                            <input type="text" class="form-control" aria-describedby="basic-addon1" name="biaya" >
+                                        </div>
+                                     </div>
+                                </div>
                             <br>
                             <div class="row">
                                 <div class="col-lg-6">

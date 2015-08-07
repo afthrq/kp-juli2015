@@ -293,8 +293,10 @@
             });
 
             $("#mytable .data").dblclick(function(){    
-               var value=$(this).find('td:nth-child(3)').html(); 
+               var value=$(this).find('td:nth-child(3)').html();
+               var value2=$(this).find('td:nth-child(6)').html();
                $('#id').val(value);
+               $('#sid').val(value2);
                $('#myform').submit();   
             });
             //using second click

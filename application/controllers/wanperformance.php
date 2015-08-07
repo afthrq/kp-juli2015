@@ -48,14 +48,17 @@ class Wanperformance extends CI_Controller
         $order_id = $this->wan_performance_model->getorderid($site_id);
         if(isset($_POST['submit']))
         {
-            $id=$_POST['monitoring'];
-            for($i=0;$i<count($id);$i++)
-            {  
-               $monid = $this->wan_performance_model->getidmon($id[$i]);
+            if(isset($_POST['monitoring']))
+            {
+                $id=$_POST['monitoring'];
+                for($i=0;$i<count($id);$i++)
+                {  
+                   $monid = $this->wan_performance_model->getidmon($id[$i]);
 
-               $input = array ('mon_id' => $monid ,
-                        't_network_order_id' => $order_id);
-               $this->wan_performance_model->insertmon($input);
+                   $input = array ('mon_id' => $monid ,
+                            't_network_order_id' => $order_id);
+                   $this->wan_performance_model->insertmon($input);
+                }
             }
         }
         $lokasi = $this->input->post('lokasi');
@@ -86,6 +89,11 @@ class Wanperformance extends CI_Controller
         $up_unrec = array ('p_process_id' => $getnext);
         $this->wan_performance_model->updateunrec($up_unrec, $detail_id);
         //------------------------------------------------------------------//
+        $tipe_dokumen = $this->input->post('tipe_dokumen');
+        $caption = $this->input->post('caption');
+        $filename = $this->input->post('path');
+        $path = "uploads/$filename";
+        $this->wan_performance_model->insert_dokumen($tipe_dokumen, $caption, $path, $work_id);
 
         redirect('wanperformance','refresh');
     }
