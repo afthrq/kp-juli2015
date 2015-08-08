@@ -207,6 +207,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <button class="btn btn-primary"id="modal_trigger_pic" href="#modalpic"><i class="fa fa-plus"></i> PIC</button>
+                                    <a class="btn btn-primary"id="tes2" href="#"><i class="fa fa-plus"></i> Tes</a>
                                 </div>
                             </div>
                             <br>
@@ -518,6 +519,9 @@
                                 "<td>" + phone2.val() + "<input type='hidden' name='tlp2pic' value='"+ phone2.val() + "'> " + "</td>" +
                                 "</tr>");
                         }
+                        name.val('');
+                        phone1.val('');
+                        phone2.val('');
                 });
 
             });
@@ -581,13 +585,56 @@
         });
         </script>
 
+        <!-- Script buat pass value Modul & PIC dipisah -->
+
         <script>
             jQuery(document).ready(function() {
-            $("#tes").click(function(){
+            $("#tes2").click(function(){
                 sendTblDataToServer();
                 
             });
         });
+
+        function storeTblValues()
+        {
+            var TableData = new Array();
+            
+            $('#pic tr').each(function(row, tr){
+                TableData[row]={
+                    "PIC" : $(tr).find('td:eq(0)').text()
+                    , "Phone1" :$(tr).find('td:eq(1)').text()
+                    , "Phone2" :$(tr).find('td:eq(2)').text()
+                }
+            }); 
+            TableData.shift();  // first row will be empty - so remove
+            return TableData;
+        }
+
+        function sendTblDataToServer()
+        {
+            var TableData;
+            TableData = JSON.stringify(storeTblValues());
+            
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url('inputor/get_pic_val'); ?>",
+                data: "pTableData=" + TableData,
+                
+                success: function(msg){
+                    // return value stored in msg variable 
+                   alert(msg);
+                },
+            });
+        }
+        </script>
+        
+        <script>
+        /*jQuery(document).ready(function() {
+            $("#tes").click(function(){
+                sendTblDataToServer();
+                
+            });
+        });*/
 
         function storeTblValues()
         {

@@ -543,5 +543,12 @@ class Inputor extends CI_Controller
         $value = json_decode($value,TRUE);
         print_r($value);
     }
-  
+
+    public function get_pic_val()
+    {
+        $value = stripcslashes($this->input->post('pTableData',TRUE));
+        $value = json_decode($value,TRUE);
+        print_r($value);
+    }
+    
 }
