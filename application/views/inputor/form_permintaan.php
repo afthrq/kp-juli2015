@@ -285,6 +285,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <button class="btn btn-primary"id="modal_trigger_modul" href="#modalmodul"><i class="fa fa-plus"></i> Modul</button>
+                                    <a class="btn btn-primary"id="tes" href="#"><i class="fa fa-plus"></i> Tes</a>
                                 </div>
                             </div>
                             <br>
@@ -538,8 +539,8 @@
                         realVal = 16;
                         $( "#modul tbody" ).append(
                         "<tr>" +
-                            "<td>" + modul.val() + "<input type='hidden' name='modulname' value='"+ realVal + "'> " +  "</td>" +
-                            "<td>" + jumlah.val() + "<input type='hidden' name='jmlmodul' value='"+ jumlah.val() + "'> " + "</td>" +
+                            "<td>" + modul.val() +  "</td>" +
+                            "<td>" + jumlah.val() + "</td>" +
                         "</tr>" 
                         );
                         modul.val('');
@@ -578,6 +579,46 @@
                 }
             });
         });
+        </script>
+
+        <script>
+            jQuery(document).ready(function() {
+            $("#tes").click(function(){
+                sendTblDataToServer();
+                
+            });
+        });
+
+        function storeTblValues()
+        {
+            var TableData = new Array();
+            
+            $('#modul tr').each(function(row, tr){
+                TableData[row]={
+                    "Modul" : $(tr).find('td:eq(0)').text()
+                    , "Jumlah" :$(tr).find('td:eq(1)').text()
+                }
+            }); 
+            TableData.shift();  // first row will be empty - so remove
+            return TableData;
+        }
+
+        function sendTblDataToServer()
+        {
+            var TableData;
+            TableData = JSON.stringify(storeTblValues());
+            
+            $.ajax({
+                type: "POST",
+                url: "<?php echo base_url('inputor/get_mod_val'); ?>",
+                data: "pTableData=" + TableData,
+                
+                success: function(msg){
+                    // return value stored in msg variable 
+                   alert(msg);
+                },
+            });
+        }
         </script>
     </body>
 </html>

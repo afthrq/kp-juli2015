@@ -536,5 +536,12 @@ class Inputor extends CI_Controller
             $json_array[]=$row->address;
         echo json_encode($json_array);
     }
+
+    public function get_mod_val()
+    {
+        $value = stripcslashes($this->input->post('pTableData',TRUE));
+        $value = json_decode($value,TRUE);
+        print_r($value);
+    }
   
 }
