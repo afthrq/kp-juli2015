@@ -53,7 +53,8 @@ class Wanengineer extends CI_Controller
         $filename = $this->input->post('path');
         $path = "uploads/$filename";
         $this->wan_engineer_model->insert_dokumen($tipe_dokumen, $caption, $path, $work_id);
-
+        
+        echo "<script type='text/javascript'>alert('Data berhasil di submit')</script>";
         redirect('wanengineer','refresh');
     }
 
@@ -72,6 +73,7 @@ class Wanengineer extends CI_Controller
         $data['lokasiid'] = $this->wan_engineer_model->getlokasiid($o_id);
         $data['data_permintaan'] = $this->wan_engineer_model->get_data_permintaan($o_id);
         $data['list_keterangan'] = $this->wan_engineer_model->getproses($o_id);
+        $data['reject'] = $this->wan_engineer_model->get_ket_reject($o_id);
         $this->load->view('wan_engineer/uat',$data);
     }    
 

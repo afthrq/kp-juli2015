@@ -102,21 +102,24 @@
                                                 <?php $count = 0; foreach ($list_permintaan as $row) : $count++;?>
                                                     <form method="POST" action="<?php echo base_url('inputor/permintaan_reject')?>">
                                                     <tr>
-                                                      <td><?php echo $count?></td>
-                                                      <td><?php echo $row->company_name?></td>
-                                                      <td><?php echo $row->type_name?></td>
-                                                      <?php if ($row->p_process_id == 1): ?>
-                                                        <td><input type="hidden" name="order_id" value="<?php echo $row->site_name ?>"><input type="submit" value="<?php echo $row->site_name ?>" class="btn btn-default btn-table"></td>
-                                                      <?php else: ?>
-                                                        <td><?php echo $row->site_name ?></td>
-                                                      <?php endif ?>
-                                                      <td><?php echo $row->service_name?> | <?php echo $row->package?></td>
-                                                      <td><?php echo $row->bw ?></td>
-                                                      <?php if ($row->p_process_id == 1): ?>
-                                                        <td><?php echo "Rejected ("; echo $row->ket_reject; echo")" ?></td>
-                                                      <?php else: ?>
-                                                        <td><?php echo $row->name?></td>
-                                                      <?php endif ?>
+                                                        <?php if ($row->p_process_id == 1): ?>
+                                                            <input type="hidden" name="order_id" value="<?php echo $row->site_name ?>">  
+                                                            <td><?php echo $count?></td>
+                                                            <td><input type="submit" value="<?php echo $row->company_name?>" class="btn btn-default btn-table"></td>
+                                                            <td><input type="submit" value="<?php echo $row->type_name?>" class="btn btn-default btn-table"></td>
+                                                            <td><input type="submit" value="<?php echo $row->site_name ?>" class="btn btn-default btn-table"></td>
+                                                            <td><input type="submit" value="<?php echo $row->service_name?> | <?php echo $row->package?>" class="btn btn-default btn-table"></td>
+                                                            <td><input type="submit" value="<?php echo $row->bw ?>" class="btn btn-default btn-table"></td>
+                                                            <td><input type="submit" value="<?php echo "Rejected ("; echo $row->ket_reject; echo")" ?>" class="btn btn-default btn-table"></td>
+                                                        <?php else: ?>
+                                                            <td><?php echo $count?></td>
+                                                            <td><?php echo $row->company_name?></td>
+                                                            <td><?php echo $row->type_name?></td>
+                                                            <td><?php echo $row->site_name ?></td>
+                                                            <td><?php echo $row->service_name?> | <?php echo $row->package?></td>
+                                                            <td><?php echo $row->bw ?></td>
+                                                            <td><?php echo $row->name?></td>
+                                                        <?php endif ?>
                                                     </tr>
                                                     </form>
                                                 <?php endforeach ?>

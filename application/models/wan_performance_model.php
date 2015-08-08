@@ -259,4 +259,13 @@ class Wan_performance_model extends CI_Model
         $this->db->insert('t_document', $data);
         //$this->db->where('t_work_id', "1"); //change "1" with parameter that shows current process id
 	}
+
+	public function get_ket_reject($id)
+	{	
+		$this->db->select('ket_reject');
+		$this->db->where('t_nw_site.site_name',$id);
+		$this->db->where('t_nw_site.t_nw_site_id = t_unrec_process.t_nw_site_id');
+		$query = $this->db->get('t_nw_site,t_unrec_process');
+		return $query->result();
+	} 
 }

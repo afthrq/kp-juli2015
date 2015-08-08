@@ -21,6 +21,7 @@ class Inputor extends CI_Controller
         $data['provider_list'] = $this->inputor_model->getdataprovider();
         $data['upserv_list'] = $this->inputor_model->getupdateid();
         $data['lokasiid'] = $this->inputor_model->getlokasiid($o_id); 
+        $data['reject'] = $this->inputor_model->get_ket_reject($o_id);
         $this->load->view('inputor/update_permintaan',$data);
     }
 
@@ -31,6 +32,7 @@ class Inputor extends CI_Controller
         $data['perusahaan_list'] = $this->inputor_model->getcompid();
         $data['upserv_list'] = $this->inputor_model->getupdateid();
         $data['lokasiid'] = $this->inputor_model->getlokasiid($o_id); 
+        $data['reject'] = $this->inputor_model->get_ket_reject($o_id);
         $this->load->view('inputor/relokasi',$data);
     }
 
@@ -42,6 +44,7 @@ class Inputor extends CI_Controller
         $data['router_list'] = $this->inputor_model->getrouter($o_id);
         $data['modul_list'] = $this->inputor_model->getmodul($o_id);
         $data['lokasiid'] = $this->inputor_model->getlokasiid($o_id); 
+        $data['reject'] = $this->inputor_model->get_ket_reject($o_id);
         $this->load->view('inputor/dismantle',$data);
     }
 
@@ -397,6 +400,7 @@ class Inputor extends CI_Controller
 
             $this->inputor_model->inputmodul($in_modul);
         } 
+        echo "<script type='text/javascript'>alert('Data berhasil di submit')</script>";
         redirect('inputor','refresh');
     }  
 
@@ -457,6 +461,8 @@ class Inputor extends CI_Controller
                 't_network_order_id' => $order_up_id);
 
         $this->inputor_model->updatefinal($update);
+
+        echo "<script type='text/javascript'>alert('Data berhasil di submit')</script>";
         redirect ('inputor','refresh');
     }
 
@@ -516,6 +522,8 @@ class Inputor extends CI_Controller
                 't_network_order_id' => $order_up_id);
 
         $this->inputor_model->updatefinal($update);
+
+        echo "<script type='text/javascript'>alert('Data berhasil di submit')</script>";
         redirect('inputor','refresh');
    } 
 

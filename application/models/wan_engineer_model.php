@@ -213,4 +213,13 @@ class Wan_engineer_model extends CI_Model
 		$this->db->update('t_unrec_process', $process);
 	}
 
+	public function get_ket_reject($id)
+	{	
+		$this->db->select('ket_reject');
+		$this->db->where('t_nw_site.site_name',$id);
+		$this->db->where('t_nw_site.t_nw_site_id = t_unrec_process.t_nw_site_id');
+		$query = $this->db->get('t_nw_site,t_unrec_process');
+		return $query->result();
+	} 
+
 }

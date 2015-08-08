@@ -82,6 +82,9 @@
                     <div class="tab-content">
                         <div id="sectionA" class="tab-pane fade in active">
                             <br>
+                            <?php foreach ($reject as $row): ?>   
+                                <div id="alert" class="alert alert-danger" role="alert"><strong>Proses anda ditolak: </strong><span id="ket_reject"><?php echo $row->ket_reject?></span></div>
+                            <?php endforeach ?>
                             <form method="POST" action="<?php echo base_url('wanengineer/submit_upload_wan_engineer')?>">
                             <input type="hidden" name="tahap" value="6">
                             <?php foreach ($lokasiid as $row): ?>   
@@ -403,6 +406,24 @@
 
         <script type="text/javascript">
             $("#milestone").find("a[value='1']").addClass("btn-active");
+        </script>
+
+        <script type="text/javascript">
+            $( document ).ready(function() {
+                var text = $("#ket_reject").text().length;
+                if (text === 0) {
+                    var checker = 0;  
+                }
+                else{
+                    var checker = 1;
+                };    
+                if (checker == 1) {
+                    $("#alert").show();
+                }
+                else {
+                    $("#alert").hide();
+                };
+            });
         </script>
     </body>
 </html>

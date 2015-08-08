@@ -34,6 +34,8 @@ class Wananalyst extends CI_Controller
         $data['data_permintaan'] = $this->wan_analyst_model->get_data_permintaan($order_id);
         $data['lokasiid'] = $this->wan_analyst_model->getlokasiid($order_id);
         $data['list_keterangan'] = $this->wan_analyst_model->getproses($order_id); 
+        $data['reject'] = $this->wan_analyst_model->get_ket_reject($order_id);
+
 
 
         //get data service type id disini kasih variable $srv_id
@@ -75,6 +77,7 @@ class Wananalyst extends CI_Controller
         $data['data_permintaan'] = $this->wan_analyst_model->get_data_permintaan($o_id);
         $data['lokasiid'] = $this->wan_analyst_model->getlokasiid($o_id);
         $data['list_keterangan'] = $this->wan_analyst_model->getproses($o_id); 
+        $data['reject'] = $this->wan_analyst_model->get_ket_reject($o_id);
         $this->load->view('wan_analyst/balo',$data);
     }
 
@@ -88,6 +91,7 @@ class Wananalyst extends CI_Controller
         $data['data_permintaan'] = $this->wan_analyst_model->get_data_permintaan($o_id);
         $data['lokasiid'] = $this->wan_analyst_model->getlokasiid($o_id);
         $data['list_keterangan'] = $this->wan_analyst_model->getproses($o_id);
+        $data['reject'] = $this->wan_analyst_model->get_ket_reject($o_id);
         $this->load->view('wan_analyst/survey',$data);
     }
 
@@ -161,6 +165,7 @@ class Wananalyst extends CI_Controller
         $path = "uploads/$filename";
         $this->wan_analyst_model->insert_dokumen($tipe_dokumen, $caption, $path, $work_id);
 
+        echo "<script type='text/javascript'>alert('Data berhasil di submit')</script>";
         redirect ('wananalyst','refresh');  
     }
 
@@ -197,6 +202,7 @@ class Wananalyst extends CI_Controller
         $path = "uploads/$filename";
         $this->wan_analyst_model->insert_dokumen($tipe_dokumen, $caption, $path, $work_id);
 
+        echo "<script type='text/javascript'>alert('Data berhasil di submit')</script>";
         redirect('wananalyst','refresh');
     }
 
@@ -266,6 +272,7 @@ class Wananalyst extends CI_Controller
         $path = "uploads/$filename";
         $this->wan_analyst_model->insert_dokumen($tipe_dokumen, $caption, $path, $work_id);
 
+        echo "<script type='text/javascript'>alert('Data berhasil di submit')</script>";
         redirect('wananalyst','refresh');
     }
 
@@ -313,6 +320,8 @@ class Wananalyst extends CI_Controller
         $filename = $this->input->post('path');
         $path = "uploads/$filename";
         $this->wan_analyst_model->insert_dokumen($tipe_dokumen, $caption, $path, $work_id);
+
+        echo "<script type='text/javascript'>alert('Data berhasil di submit')</script>";
         redirect('wananalyst','refresh');
     }
 
@@ -352,7 +361,8 @@ class Wananalyst extends CI_Controller
         $filename = $this->input->post('path');
         $path = "uploads/$filename";
         $this->wan_analyst_model->insert_dokumen($tipe_dokumen, $caption, $path, $work_id);
-        
+
+        echo "<script type='text/javascript'>alert('Data berhasil di submit')</script>";
         redirect('wananalyst','refresh');  
     }
 

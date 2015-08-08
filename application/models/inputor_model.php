@@ -656,4 +656,13 @@ class Inputor_model extends CI_Model
 		$query = $this->db->get('t_nw_service,t_nw_site,t_network_order,p_site_type,p_nw_service,p_service,company,p_region,t_pic,provinsi,t_nw_site_pic');
     	return $query->result();
   	} 
+
+  	public function get_ket_reject($id)
+	{	
+		$this->db->select('ket_reject');
+		$this->db->where('t_nw_site.site_name',$id);
+		$this->db->where('t_nw_site.t_nw_site_id = t_unrec_process.t_nw_site_id');
+		$query = $this->db->get('t_nw_site,t_unrec_process');
+		return $query->result();
+	} 
 }

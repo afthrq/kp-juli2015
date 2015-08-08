@@ -61,6 +61,8 @@ class Networkarchitect extends CI_Controller
         $this->verifikator_model->insert_detail_order($no_form, $tanggal_permintaan, $detail_id, $user);
         $this->verifikator_model->insert_dokumen($tipe_dokumen, $caption, $path, $work_id);
 
+        echo "<script type='text/javascript'>alert('Data berhasil di submit')</script>";
+
         redirect('networkarchitect','refresh');
 
     }
@@ -176,6 +178,8 @@ class Networkarchitect extends CI_Controller
         $this->verifikator_model->insert_biaya($biaya, $detail_id);
 
         $this->pm_model->dropunrecdata($detail_id);
+
+        echo "<script type='text/javascript'>alert('Data berhasil di submit')</script>";
         redirect('networkarchitect','refresh');
     }
 
@@ -232,6 +236,8 @@ class Networkarchitect extends CI_Controller
 
         $this->pm_model->insert_koordinasi_provider($tiket_provider, $pic_provider, $detail_id);
         $this->pm_model->insert_dokumen($tipe_dokumen, $caption, $path, $work_id);
+
+        echo "<script type='text/javascript'>alert('Data berhasil di submit')</script>";
         redirect('networkarchitect','refresh');
     }
 
@@ -275,6 +281,7 @@ class Networkarchitect extends CI_Controller
         $data['data_permintaan'] = $this->verifikator_model->get_data_permintaan($o_id);
         $data['list_keterangan'] = $this->verifikator_model->getproses($o_id);
         $data['dokumenid'] = $this->verifikator_model->getdocname($doc_id);
+        $data['reject'] = $this->verifikator_model->get_ket_reject($o_id);
         $this->load->view('network_architect/verifikasi_permintaan', $data);
     }   
 
@@ -288,6 +295,7 @@ class Networkarchitect extends CI_Controller
         $data['data_permintaan'] = $this->verifikator_model->get_data_permintaan($o_id);
         $data['lokasiid'] = $this->verifikator_model->getlokasiid($o_id);
         $data['list_keterangan'] = $this->verifikator_model->getproses($o_id);
+        $data['reject'] = $this->verifikator_model->get_ket_reject($o_id);
         $this->load->view('network_architect/koordinasi_provider',$data);
     }
 
