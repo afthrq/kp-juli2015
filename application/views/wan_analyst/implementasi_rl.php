@@ -68,26 +68,97 @@
                     <?php foreach ($reject as $row): ?>   
                         <div id="alert" class="alert alert-danger" role="alert"><strong>Proses anda ditolak: </strong><span id="ket_reject"><?php echo $row->ket_reject?></span></div>
                     <?php endforeach ?>
-                    <form method="POST" action="<?php echo base_url('wananalyst/insertdatainstalasi')?>">
+                    <form method="POST" action="<?php echo base_url('wananalyst/relokasi')?>">
                         <input type="hidden" name="user" value="<?php echo  $this->session->userdata('user_name')?>">
 
+
+                    <?php foreach ($data_permintaan as $row) : ?>    
+                        <input type="hidden" value="<?php echo $row->site_name ?>" name="lokasi">
+                    <?php endforeach ?>
+                    <?php foreach ($relokasi_list as $row) : ?>
                     <div class="row">
-                        <div class="input-group col-lg-6">
-                            <?php foreach ($update_list as $row) : ?>
-                                <input type="hidden" value="<?php echo $row->site_name ?>" name="lokasi">
-                            <?php endforeach?>
+                        <div class=" col-lg-6">
+                            <div class="input-group">
+                                <span class="input-group-addon input-instalasi" id="basic-addon1">IP WAN</span>
+                                <input type="text" class="form-control" aria-describedby="basic-addon1" name="ipwan" value="<?php echo $row->ip_wan ?>" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                            </div>
                         </div>
                     </div>
-                        <input type="hidden" name="ipwan" value="">
-                        <input type="hidden" name="netmaskwan" value="">
-                        <input type="hidden" name="iplan" value="">
-                        <input type="hidden" name="netmasklan" value="">
-                        <input type="hidden" name="iploop" value="">
-                        <input type="hidden" name="asn" value="">
-                        <input type="hidden" name="lastmile" value="">
-                        <input type="hidden" name="traffic" value="">
-                        <input type="hidden" name="sla" value="">
-                        <input type="hidden" name="hostname" value="">        
+                    <br>
+                    <div class="row">
+                        <div class=" col-lg-6">
+                            <div class="input-group">
+                                <span class="input-group-addon input-instalasi" id="basic-addon1">Netmask WAN</span>
+                                <input type="text" class="form-control" aria-describedby="basic-addon1" name="netmaskwan" value="<?php echo $row->netmask_wan ?>" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class=" col-lg-6">
+                            <div class="input-group">
+                                <span class="input-group-addon input-instalasi" id="basic-addon1">IP LAN</span>
+                                <input type="text" class="form-control" aria-describedby="basic-addon1" name="iplan" value="<?php echo $row->ip_lan ?>" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class=" col-lg-6">
+                            <div class="input-group">
+                                <span class="input-group-addon input-instalasi" id="basic-addon1">Netmask LAN</span>
+                                <input type="text" class="form-control" aria-describedby="basic-addon1" name="netmasklan" value="<?php echo $row->netmask_lan ?>" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class=" col-lg-6">
+                            <div class="input-group">
+                                <span class="input-group-addon input-instalasi" id="basic-addon1">IP Loop</span>
+                                <input type="text" class="form-control" aria-describedby="basic-addon1" name="iploop" value="<?php echo $row->ip_loop ?>" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class=" col-lg-6">
+                            <div class="input-group">
+                                <span class="input-group-addon input-instalasi" id="basic-addon1">ASN</span>
+                                <input type="text" class="form-control" aria-describedby="basic-addon1" name="asn" value="<?php echo $row->asn ?>" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class=" col-lg-6">
+                            <div class="input-group">
+                                <span class="input-group-addon input-instalasi" id="basic-addon1">Lastmile</span>
+                                <input type="text" class="form-control" aria-describedby="basic-addon1" name="lastmile" value="<?php echo $row->name ?>" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="traffic" value="">
+                    <br>
+                    <div class="row">
+                        <div class=" col-lg-6">
+                            <div class="input-group">
+                                <span class="input-group-addon input-instalasi" id="basic-addon1">SLA (%)</span>
+                                <input type="text" class="form-control" aria-describedby="basic-addon1" name="sla" value="<?php echo $row->sla ?>" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class=" col-lg-6">
+                            <div class="input-group">
+                                <span class="input-group-addon input-instalasi" id="basic-addon1">Hostname</span>
+                                <input type="text" class="form-control" aria-describedby="basic-addon1" name="hostname" value="<?php echo $row->hostname ?>" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                            </div>
+                        </div>
+                    </div>
+                    <?php endforeach?>
+                    <br><br>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="input-group">

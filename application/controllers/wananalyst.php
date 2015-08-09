@@ -53,6 +53,8 @@ class Wananalyst extends CI_Controller
         }
         else if ($service_id == "Relokasi")
         {
+            $nojar = $this->wan_analyst_model->getnojar($order_id);
+            $data['relokasi_list'] = $this->wan_analyst_model->getdatarelokasi($order_id, $nojar);
             $data['update_list'] = $this->wan_analyst_model->getdataupdate($order_id);
             $this->load->view('wan_analyst/implementasi_rl',$data);
         }
@@ -218,7 +220,8 @@ class Wananalyst extends CI_Controller
         $lastmile = $this->input->post('lastmile');
         $traffic = $this->input->post('traffic');
         $sla = $this->input->post('sla');
-        $hostname = $this->input->post('hostname'); 
+        $hostname = $this->input->post('hostname');
+        $nojar = $this->input->post('nojar'); 
 
         $lmid = $this->wan_analyst_model->getlastmileid($lastmile);
         $in_traffic = array ('traffic_mgmt' => $traffic);       
@@ -262,7 +265,8 @@ class Wananalyst extends CI_Controller
         'asn' => $asn ,
         'p_lastmile_id' => $lmid,
         'sla' => $sla ,
-        'hostname' => $hostname 
+        'hostname' => $hostname ,
+        'no_jar' => $nojar 
         );
         $data = $this->wan_analyst_model->insertdatafinal($in_final,$p_final);
 
@@ -364,6 +368,40 @@ class Wananalyst extends CI_Controller
 
         echo "<script type='text/javascript'>alert('Data berhasil di submit')</script>";
         redirect('wananalyst','refresh');  
+    }
+
+    function relokasi()
+    {
+        $lokasi = $this->input->post('lokasi');
+        $cek_lokasi = array ('site_name' => $lokasi);
+        $site_id = $this->wan_analyst_model->getnwsiteid($cek_lokasi);
+        //--------------------------------------------------------------------//
+        $tahap = $this->input->post('tahap');
+        $user = $this->input->post('user');
+        $keterangan = $this->input->post('keterangan');
+        $detail_id = $this->wan_analyst_model->getunrecupid($site_id);
+        $in_detail_id = array ('keterangan' => $keterangan,
+                'closed_by' => $user);
+        $this->wan_analyst_model->updateprocessimp($in_detail_id,$detail_id);
+
+        $work_id = $this->wan_analyst_model->getworkid($detail_id,$tahap);
+
+        $in_unrec = array ('p_process_id' => $tahap);
+        $this->wan_analyst_model->inputunrec($in_unrec, $site_id);
+
+        $get_next = array ('p_process_id' => $tahap);
+        $getnext = $this->wan_analyst_model->getnext($tahap, $detail_id);
+
+        $in_next = array ('p_process_id' => $getnext ,
+            't_detail_network_order_id' => $detail_id);
+        $this->wan_analyst_model->nexttahap($in_next);
+
+        $up_unrec = array ('p_process_id' => $getnext);
+        $this->wan_analyst_model->updateunrec($up_unrec, $detail_id);
+        //------------------------------------------------------------------//
+
+        echo "<script type='text/javascript'>alert('Data berhasil di submit')</script>";
+        redirect('wananalyst','refresh'); 
     }
 
     function reject()

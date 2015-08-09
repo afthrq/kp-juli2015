@@ -239,6 +239,25 @@ class Wan_analyst_model extends CI_Model
     	return $query->result();
   	}
 
+  	public function getnojar($o_id)
+  	{
+		$this->db->where('t_nw_site.site_name',$o_id);
+		$this->db->where('t_nw_site.t_nw_site_id = t_network_order.t_nw_site_id');
+		$query = $this->db->get('t_network_order, t_nw_site');
+		return $query->row()->no_jar;  		
+  	}
+
+  	public function getdatarelokasi($o_id, $nojar)
+  	{
+  		$this->db->distinct();
+		$this->db->where('t_nw_site.site_name !=',$o_id);
+		$this->db->where('t_network.no_jar',$nojar);
+		$this->db->where('t_nw_site.t_nw_site_id = t_network.t_nw_site_id');
+		$this->db->where('t_network.p_lastmile_id = p_lastmile.p_lastmile_id');
+		$query = $this->db->get('t_nw_site,p_lastmile, t_network');
+		return $query->result();
+  	}
+
 	function getlastmileid($lastmile){
 		$this->db->distinct();
 		$this->db->where('p_lastmile.name', $lastmile);
@@ -466,10 +485,12 @@ class Wan_analyst_model extends CI_Model
 
 	public function get_ket_reject($id)
 	{	
-		$this->db->select('ket_reject');
+		$this->db->select('t_process.ket_reject');
 		$this->db->where('t_nw_site.site_name',$id);
 		$this->db->where('t_nw_site.t_nw_site_id = t_unrec_process.t_nw_site_id');
-		$query = $this->db->get('t_nw_site,t_unrec_process');
+		$this->db->where('t_unrec_process.t_detail_network_order_id = t_process.t_detail_network_order_id');
+		$this->db->where('t_unrec_process.p_process_id = t_process.p_process_id');
+		$query = $this->db->get('t_nw_site,t_unrec_process,t_process');
 		return $query->result();
 	} 
 }

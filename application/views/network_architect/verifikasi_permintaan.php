@@ -88,7 +88,7 @@
                     <div class="tab-content">
                         <div id="sectionA" class="tab-pane fade in active">
                             <br>
-                            <?php foreach ($reject as $row): ?>   
+                            <?php foreach ($reject as $row): ?>
                                 <div id="alert" class="alert alert-danger" role="alert"><strong>Proses anda ditolak: </strong><span id="ket_reject"><?php echo $row->ket_reject?></span></div>
                             <?php endforeach ?>
                             <form method="POST" action="<?php echo base_url('networkarchitect/submit_verifikasi_permintaan')?>">

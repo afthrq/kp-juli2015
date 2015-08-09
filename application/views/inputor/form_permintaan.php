@@ -85,16 +85,16 @@
                     <div class="tab-content">
                         <div id="sectionA" class="tab-pane fade in active">
                             <br>
-                            <form method="POST" action="<?php echo base_url('inputor/form_input')?>">
-                            <input type="hidden" name="proses" value="1">
-                            <input type="hidden" name="tahap" value="1">
-                            <input type="hidden" name="user" value="<?php echo  $this->session->userdata('user_name')?>">
+                            <form method="POST" action="<?php echo base_url('inputor/get_mod_val')?>">
+                            <input type="hidden" name="proses" value="1" id="proses" href="#">
+                            <input type="hidden" name="tahap" value="1" id="tahap" href="#">
+                            <input type="hidden" name="user" value="<?php echo  $this->session->userdata('user_name')?>" id="user" href="#">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Perusahaan</span>
                                         <div class="dropdown">
-                                        <?php echo form_dropdown('perusahaan', $perusahaan_list,'','class="form-control" id="perusahaan" name="perusahaan"'); ?>
+                                        <?php echo form_dropdown('perusahaan', $perusahaan_list,'','class="form-control" id="perusahaan" name="perusahaan" href="#"'); ?>
                                         </div>
                                     </div>
                                 </div>
@@ -106,7 +106,7 @@
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Region</span>
                                         <div class="dropdown">
-                                            <select class="form-control" name="region" id="region">
+                                            <select class="form-control" name="region" id="region" href="#">
                                                 <option value="">(Pilih Perusahaan Terlebih Dahulu)</option>    
                                             </select>
                                         </div>
@@ -120,7 +120,7 @@
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Jenis Lokasi</span>
                                         <div class="dropdown">
-                                            <select placeholder="Pilih Perusahaan" class="form-control" name="jenis">    
+                                            <select placeholder="Pilih Perusahaan" class="form-control" name="jenis" id="jenis" href="#">    
                                                 <?php foreach ($jenis_list as $row) : ?>
                                                     <option><?php echo $row->type_name ?></option>
                                                 <?php endforeach?>
@@ -135,7 +135,7 @@
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Lokasi</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="lokasi">
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="lokasi" id="lokasi" href="#">
                                     </div>
                                 </div>
                             </div>
@@ -146,7 +146,7 @@
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Provinsi</span>
                                         <div class="dropdown">
-                                            <select placeholder="Pilih Perusahaan" class="form-control" name="prov">    
+                                            <select placeholder="Pilih Perusahaan" class="form-control" name="prov" id="provinsi" href="#">    
                                                 <?php foreach ($provinsi_list as $row) : ?>
                                                     <option><?php echo $row->provinsi_name ?></option>
                                                 <?php endforeach?>
@@ -161,7 +161,7 @@
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Alamat</span>
-                                        <textarea class="form-control" name="alamat" cols="40" rows="5" id="alamat"></textarea>
+                                        <textarea class="form-control" name="alamat" cols="40" rows="5" id="alamat" href="#"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -170,7 +170,7 @@
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Latitude</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="latitude">
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="latitude" id="latitude" href="#">
                                     </div>
                                 </div>
                             </div>
@@ -179,7 +179,7 @@
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Longitude</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="longitude">
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="longitude" id="longitude" href="#">
                                     </div>
                                 </div>
                             </div>
@@ -217,7 +217,7 @@
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Provider</span>
                                         <div class="dropdown">
-                                            <select placeholder="Pilih Perusahaan" class="form-control" name="provider">    
+                                            <select placeholder="Pilih Perusahaan" class="form-control" name="provider" id="provider" href="#">    
                                                 <?php foreach ($provider_list as $row) : ?>
                                                     <option><?php echo $row->provider_name ?></option>
                                                 <?php endforeach?>
@@ -233,7 +233,7 @@
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Layanan</span>
                                         <div class="dropdown">
-                                            <?php echo form_dropdown('layanan', $layanan_list,'','class="form-control" id="layanan" name="layanan"');  ?>
+                                            <?php echo form_dropdown('layanan', $layanan_list,'','class="form-control" id="layanan" name="layanan" href="#"');  ?>
                                         </div>
                                     </div>
                                 </div>
@@ -245,7 +245,7 @@
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Paket Layanan</span>
                                         <div class="dropdown">
-                                            <select class="form-control" name="paket" id="paket">
+                                            <select class="form-control" name="paket" id="paket" href="#">
                                                 <option value="">(Pilih Layanan Terlebih Dahulu)</option>    
                                             </select>
                                         </div>
@@ -258,7 +258,7 @@
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Router</span>
-                                        <select name="router" class="form-control">
+                                        <select name="router" class="form-control" id="router" href="#">
                                             <option value="14">Cisco 2801-V/K9</option>
                                             <option value="15">Cisco 2901-V/K9</option>
                                         </select>
@@ -295,7 +295,7 @@
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Bandwidth (Kb)</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="bw">
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="bw" id="bw" href="#">
                                     </div>
                                 </div>
                             </div>
@@ -305,20 +305,21 @@
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Keterangan</span>
-                                        <textarea class="form-control" name="keterangan" cols="40" rows="5"></textarea>
+                                        <textarea class="form-control" name="keterangan" cols="40" rows="5" id="keterangan" href="#"></textarea>
                                     </div>
                                 </div>
                             </div>
-
+                            </form>
                             <br><br>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <input type="submit" name="submit" value="Submit" class="btn btn-outline btn-primary btn-success" style="padding: 5px 12px;">
+                                    <input type="submit" name="submit" value="Submit" id="submit" href="#" class="btn btn-outline btn-primary btn-success" style="padding: 5px 12px;">
                                 </div>
                                 <br><br>
                             </div>
                         </div>
                     </div>
+                    <form method="POST" action="<?php echo base_url('inputor/form_input')?>">
                     <div id="modalpic" class="popupContainer pic-container" style="display:none;">
                         <header class="popupHeader">
                             <span class="header_title">PIC</span>
@@ -585,12 +586,13 @@
         });
         </script>
 
-        <!-- Script buat pass value Modul & PIC dipisah -->
-
+        <!-- Script buat pass value Modul & PIC disatukan -->
+       
         <script>
-            jQuery(document).ready(function() {
-            $("#tes2").click(function(){
+        jQuery(document).ready(function() {
+            $("#submit").click(function(){
                 sendTblDataToServer();
+                location.href = "inputor";
                 
             });
         });
@@ -598,71 +600,59 @@
         function storeTblValues()
         {
             var TableData = new Array();
+            var TableData2 = new Array();
+            $('#modul tr').each(function(row, tr){
+                TableData[row]={
+                    "Modul" : $(tr).find('td:eq(0)').text()
+                    , "Jumlah" :$(tr).find('td:eq(1)').text()
+                    , "Lokasi" : $("#lokasi").val()
+                    , "Perusahaan" : $("#perusahaan").val()
+                    , "Region" : $("#region").val()
+                    , "Provinsi" : $("#provinsi").val()
+                    , "Jenis" : $("#jenis").val()
+                    , "Alamat" : $("#alamat").val()
+                    , "Provider" : $("#provider").val()
+                    , "Layanan" : $("#layanan").val()
+                    , "Paket" : $("#paket").val()
+                    , "Router" : $("#router").val()
+                    , "Bw" : $("#bw").val()
+                    , "Latitude" : $("#latitude").val()
+                    , "Longitude" : $("#longitude").val()
+                    , "Tahap" : $("#tahap").val()
+                    , "Proses" : $("#proses").val()
+                    , "User" : $("#user").val()
+                    , "Keterangan" : $("#keterangan").val()
+                }
+            });
             
             $('#pic tr').each(function(row, tr){
-                TableData[row]={
+                TableData2[row]={
                     "PIC" : $(tr).find('td:eq(0)').text()
                     , "Phone1" :$(tr).find('td:eq(1)').text()
                     , "Phone2" :$(tr).find('td:eq(2)').text()
                 }
             }); 
-            TableData.shift();  // first row will be empty - so remove
-            return TableData;
+
+            TableData.shift();  // first row will be empty - so remove 
+            TableData2.shift();  // first row will be empty - so remove
+            return {TableData,TableData2}
+
         }
+
 
         function sendTblDataToServer()
         {
-            var TableData;
-            TableData = JSON.stringify(storeTblValues());
-            
+            var TableData, TableData2;
+            TableData = JSON.stringify(storeTblValues().TableData);
+            TableData2 = JSON.stringify(storeTblValues().TableData2);
             $.ajax({
                 type: "POST",
-                url: "<?php echo base_url('inputor/get_pic_val'); ?>",
-                data: "pTableData=" + TableData,
+                url: "<?php echo base_url('inputor/form_input'); ?>",
+                data: "pTableData=" + TableData + "&pTableData2=" + TableData2,
                 
                 success: function(msg){
                     // return value stored in msg variable 
-                   alert(msg);
-                },
-            });
-        }
-        </script>
-        
-        <script>
-        /*jQuery(document).ready(function() {
-            $("#tes").click(function(){
-                sendTblDataToServer();
-                
-            });
-        });*/
-
-        function storeTblValues()
-        {
-            var TableData = new Array();
-            
-            $('#modul tr').each(function(row, tr){
-                TableData[row]={
-                    "Modul" : $(tr).find('td:eq(0)').text()
-                    , "Jumlah" :$(tr).find('td:eq(1)').text()
-                }
-            }); 
-            TableData.shift();  // first row will be empty - so remove
-            return TableData;
-        }
-
-        function sendTblDataToServer()
-        {
-            var TableData;
-            TableData = JSON.stringify(storeTblValues());
-            
-            $.ajax({
-                type: "POST",
-                url: "<?php echo base_url('inputor/get_mod_val'); ?>",
-                data: "pTableData=" + TableData,
-                
-                success: function(msg){
-                    // return value stored in msg variable 
-                   alert(msg);
+                   alert("Data berhasil dimasukkan");
                 },
             });
         }

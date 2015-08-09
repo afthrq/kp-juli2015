@@ -83,13 +83,23 @@
                     </ul>
                     <div class="tab-content">
                         <div id="sectionA" class="tab-pane fade in active"><br>
-                            <form method ="POST" action ="<?php echo base_url('inputor/form_update')?>">
+                            <form method ="POST" action ="<?php echo base_url('inputor/form_relokasi')?>">
                             <?php foreach ($update_list as $row): ?>
+                            <input type="hidden" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->no_jar ?>" name ="nojar" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1">Provider</span>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->provider_name ?>" name ="provider" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Layanan</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->site_name ?>" name ="lokasi" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->service_name ?>" name ="layanan" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
                                     </div>
                                 </div>
                             </div>
@@ -98,7 +108,7 @@
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Paket Layanan</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->type_name ?>" name="jenis" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->package ?>" name="paket" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
                                     </div>
                                 </div>
                             </div>
@@ -107,7 +117,7 @@
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1">Bandwidth</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->company_name ?>" name="perusahaan" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->bw ?>" name="bw" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
                                     </div>
                                 </div>
                             </div>
@@ -130,10 +140,8 @@
                                 </div>
                             </div>
                             <?php endforeach ?>
-                            </form>
                         </div>
                         <div id="sectionB" class="tab-pane fade"><br>
-                            <form method="POST" action ="<?php echo base_url('inputor/form_update')?>">
                                 <?php foreach ($lokasiid as $row): ?>   
                                     <input type="hidden" name="site_id" value="<?php echo $row->t_nw_site_id?>">
                                 <?php endforeach ?>
@@ -268,22 +276,6 @@
         <script src="<?php echo base_url('assets/js/metisMenu.min.js')?>"></script>
         <!-- Custom Theme JavaScript -->
         <script src="<?php echo base_url('assets/js/sb-admin-2.js')?>"></script>
-
-        <script type="text/javascript">  
-            $(document).ready(function() {  
-                $("#up_layanan").change(function(){  
-                    /*dropdown post *///  
-                    $.ajax({  
-                        url:"<?php echo base_url();?>index.php/inputor/buildpaketupdate",  
-                        data: {id: $(this).val()},  
-                        type: "POST",  
-                        success:function(data){  
-                        $("#up_paket").html(data);  
-                        }  
-                    });  
-                });  
-            });  
-        </script>
         
         <script type="text/javascript">
             $(window).on('beforeunload', function(){
@@ -313,21 +305,6 @@
             });  
         </script> 
 
-        <script type="text/javascript">  
-                  $(document).ready(function() {  
-                     $("#layanan").change(function(){  
-                     /*dropdown post *///  
-                     $.ajax({  
-                        url:"<?php echo base_url();?>index.php/inputor/buildpaket",  
-                        data: {id: $(this).val()},  
-                        type: "POST",  
-                        success:function(data){  
-                        $("#paket").html(data);  
-                     }  
-                  });  
-               });  
-            });  
-        </script>
 
         <script type="text/javascript"> 
 

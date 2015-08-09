@@ -129,14 +129,18 @@ class Networkarchitect extends CI_Controller
 
             if($countserv > 2)
             {
-                $module = $this->pm_model->getarraymodule($site_id);
-                $arraymodule = array ('t_network_id' => $nwid ,
-                'p_nw_service_id' => $module);
-                $this->pm_model->copymodule($arraymodule);
+                $modid = $this->pm_model->getcountmodule($o_id);
+                for($i=0;$i<count($modid);$i++)
+                {
+                    $mod = implode("|",$modid[$i]);
+                    $arraymodule = array ('t_network_id' => $nwid ,
+                                'p_nw_service_id' => $mod);
+                    $this->pm_model->copymodule($arraymodule);
+                }
             }
         }
 
-        else if ($service_id == 2 || $service_id == 3 || $service_id == 4 || $service_id == 5 || $service_id == 6)
+        else if ($service_id == 2 || $service_id == 3 || $service_id == 4 || $service_id == 5)
         {
             $input = $this->pm_model->getdataorderup($site_id);
             $nwid = $this->pm_model->getnetworkid($site_id);
@@ -162,6 +166,11 @@ class Networkarchitect extends CI_Controller
             $arraylink = array ('p_nw_service_id' => $link);
 
             $this->pm_model->copyserviceup($arraylink, $nwid); 
+        }
+        else if($service_id == 6)
+        {
+            $nojar = $this->pm_model->getnojar($site_id);
+            $this->pm_model->relokasi($site_id, $nojar);
         }
 
         else if($service_id == 7)
@@ -313,10 +322,18 @@ class Networkarchitect extends CI_Controller
         $data['list_keterangan'] = $this->verifikator_model->getproses($o_id);
         if($service_id == "Pasang Baru")
         {
+            $total = 0;
             $data['price_link'] = $this->pm_model->getprlink($o_id);
             $data['price_router'] = $this->pm_model->getprrouter($o_id);
-            $count = $this->pm_model->getcountmodule($o_id);
-            $data['price_module'] = $this->pm_model->getprmodule($o_id, $count);
+            $modid = $this->pm_model->getcountmodule($o_id);
+            for($i=0;$i<count($modid);$i++)
+            {
+                $mod = implode("|",$modid[$i]);
+                $hargasatuan = $this->pm_model->getprmodule($o_id, $mod);
+                $jumlah = $this->pm_model->getjumlah($o_id, $mod);
+                $total += $hargasatuan * $jumlah;
+            }
+            $data['price_module'] = $total;
         }
         else if ($service_id == "Upgrade" || $service_id == "Upgrade Temprorer" || $service_id == "Downgrade")
         {

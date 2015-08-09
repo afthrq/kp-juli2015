@@ -13,8 +13,8 @@ class Pm_model extends CI_Model
 		$this->db->where('t_network_order.provider_id = p_price_nw_serv_provider.provider_id');
 		$this->db->where('t_network_order.t_network_order_id = t_nw_service.t_network_order_id');
 		$this->db->where('t_nw_service.p_nw_service_id = p_price_nw_serv_provider.p_nw_service_id');
-		$query = $this->db->get('p_nw_service, t_nw_site, t_unrec_process, t_detail_network_order, t_network_order, p_price_nw_serv_provider,t_nw_service');
-		return $query->result(); 
+		$query = $this->db->get('p_nw_Service,t_nw_site, t_unrec_process, t_detail_network_order, t_network_order, p_price_nw_serv_provider,t_nw_service');
+		return $query->result();
 	}
 
 	function getprrouter($o_id)
@@ -66,43 +66,50 @@ class Pm_model extends CI_Model
 		return $query->result();
 	}
 
-	function getprmodule($o_id, $count)
+	function getprmodule($o_id, $mod)
 	{
-		$total = 0;
-		while($count>0)
-		{
-			$this->db->where('t_nw_site.site_name', $o_id);
-			$this->db->where('p_nw_service.p_serv_type_id = "3"');
-			$this->db->where('t_nw_service.p_nw_service_id = p_nw_service.p_nw_service_id');
-			$this->db->where('t_nw_site.t_nw_site_id = t_unrec_process.t_nw_site_id');
-			$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
-			$this->db->where('t_network_order.provider_id = p_price_nw_serv_provider.provider_id');
-			$this->db->where('t_detail_network_order.t_detail_network_order_id = t_network_order.t_detail_network_order_id');
-			$this->db->where('t_network_order.t_network_order_id = t_nw_service.t_network_order_id');
-			$this->db->where('t_nw_service.p_nw_service_id = p_price_nw_serv_provider.p_nw_service_id');
-			$query = $this->db->get('t_nw_site, t_unrec_process, t_detail_network_order, t_network_order, p_price_nw_serv_provider,t_nw_service,p_nw_service');
-			$module = $query->row()->price_otc;
-			$jumlah = 1;
-			//$jumlah = $query->row()->price_otc;
-			$total = $total + ($module * $jumlah);
-			$count--; 
-		}
-		return $total;
+		$this->db->where('t_nw_site.site_name', $o_id);
+		$this->db->where('t_nw_service.p_nw_service_id', $mod);
+		$this->db->where('t_nw_service.p_nw_service_id = p_nw_service.p_nw_service_id');
+		$this->db->where('t_nw_site.t_nw_site_id = t_unrec_process.t_nw_site_id');
+		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
+		$this->db->where('t_detail_network_order.t_detail_network_order_id = t_network_order.t_detail_network_order_id');
+		$this->db->where('t_network_order.provider_id = p_price_nw_serv_provider.provider_id');
+		$this->db->where('t_network_order.t_network_order_id = t_nw_service.t_network_order_id');
+		$this->db->where('t_nw_service.p_nw_service_id = p_price_nw_serv_provider.p_nw_service_id');
+		$query = $this->db->get('p_nw_Service,t_nw_site, t_unrec_process, t_detail_network_order, t_network_order, p_price_nw_serv_provider,t_nw_service');
+		return $query->row()->price_otc; 
+	}
+
+	function getjumlah($o_id, $mod)
+	{
+		$this->db->where('t_nw_site.site_name', $o_id);
+		$this->db->where('t_nw_service.p_nw_service_id', $mod);
+		$this->db->where('t_nw_service.p_nw_service_id = p_nw_service.p_nw_service_id');
+		$this->db->where('t_nw_site.t_nw_site_id = t_unrec_process.t_nw_site_id');
+		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
+		$this->db->where('t_detail_network_order.t_detail_network_order_id = t_network_order.t_detail_network_order_id');
+		$this->db->where('t_network_order.provider_id = p_price_nw_serv_provider.provider_id');
+		$this->db->where('t_network_order.t_network_order_id = t_nw_service.t_network_order_id');
+		$this->db->where('t_nw_service.p_nw_service_id = p_price_nw_serv_provider.p_nw_service_id');
+		$query = $this->db->get('p_nw_Service,t_nw_site, t_unrec_process, t_detail_network_order, t_network_order, p_price_nw_serv_provider,t_nw_service');
+		return $query->row()->jumlah; 
 	}
 
 	function getcountmodule($o_id)
   	{
-  		$this->db->where('t_nw_site.site_name', $o_id);
+  		$this->db->select('t_nw_service.p_nw_service_id');
+		$this->db->where('t_nw_site.site_name', $o_id);
 		$this->db->where('p_nw_service.p_serv_type_id = "3"');
 		$this->db->where('t_nw_service.p_nw_service_id = p_nw_service.p_nw_service_id');
-  		$this->db->where('t_nw_site.t_nw_site_id = t_unrec_process.t_nw_site_id');
- 		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
-		$this->db->where('t_network_order.provider_id = p_price_nw_serv_provider.provider_id');
+		$this->db->where('t_nw_site.t_nw_site_id = t_unrec_process.t_nw_site_id');
+		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
 		$this->db->where('t_detail_network_order.t_detail_network_order_id = t_network_order.t_detail_network_order_id');
+		$this->db->where('t_network_order.provider_id = p_price_nw_serv_provider.provider_id');
 		$this->db->where('t_network_order.t_network_order_id = t_nw_service.t_network_order_id');
 		$this->db->where('t_nw_service.p_nw_service_id = p_price_nw_serv_provider.p_nw_service_id');
-		$query = $this->db->from('t_nw_site, t_unrec_process, t_detail_network_order, t_network_order, p_price_nw_serv_provider,t_nw_service,p_nw_service'); 			
-		return $query->count_all_results();
+		$query = $this->db->get('p_nw_service,t_nw_site, t_unrec_process, t_detail_network_order,p_price_nw_serv_provider, t_network_order,t_nw_service');
+		return $query->result_array();
   	}
 
 	function getsitenserviceid($o_id)
@@ -391,5 +398,22 @@ class Pm_model extends CI_Model
   	{
   		$data = array ('t_nw_site_id' => $site_id);
   		$this->db->delete('t_network', $data);
+  	}
+
+  	public function getnojar($site_id)
+  	{
+  		$this->db->select('t_network.no_jar');
+  		$this->db->where('t_nw_site.t_nw_site_id',$site_id);
+  		$this->db->where('t_network_order.t_nw_site_id = t_nw_site.t_nw_site_id');
+  		$this->db->where('t_network.no_jar = t_network_order.no_jar');
+  		$query = $this->db->get('t_network, t_nw_site, t_network_order');
+  		return $query->row()->no_jar;
+  	}
+
+  	public function relokasi($site_id, $nojar)
+  	{
+  		$update = array('t_nw_site_id' => $site_id);
+  		$this->db->where('t_network.no_jar', $nojar);
+  		$this->db->update('t_network', $update);
   	}
 }

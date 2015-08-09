@@ -197,9 +197,9 @@ class Inputor_model extends CI_Model
 		return $query->row()->p_region_id;
 	}
 
-	function getorderid($getnworderid)
+	function getorderid($in_order)
 	{
-		$this->db->insert('t_network_order',$getnworderid);
+		$this->db->insert('t_network_order',$in_order);
 		$id = $this->db->insert_id();
 		$this->db->where('t_network_order_id',$id);
 		$query = $this->db->get("t_network_order");
@@ -245,6 +245,14 @@ class Inputor_model extends CI_Model
 	}
 
 	//input-----------------------------------------------------------------//
+	function getidmod($i)
+	{
+		$this->db->where('p_service.service_name', $i);
+		$this->db->where('p_service.p_service_id = p_nw_service.p_service_id');
+		$query = $this->db->get('p_service, p_nw_service');
+		return $query->row()->p_nw_service_id;
+	}
+
 	function inputtahap($in_tahap)
 	{
 		$this->db->set('valid_fr','NOW()',FALSE);
@@ -286,8 +294,12 @@ class Inputor_model extends CI_Model
 	function inputfinal($in_serv, $in_router)
 	{
 		$this->db->insert('t_nw_service',$in_serv);
-		//$this->db->insert('t_nw_site_pic',$in_pic_site);
 		$this->db->insert('t_nw_service',$in_router);
+	}
+
+	function inputpic($in_pic_site)
+	{
+		$this->db->insert('t_nw_site_pic',$in_pic_site);
 	}
 
 	function inputmodul($in_modul)
@@ -310,13 +322,6 @@ class Inputor_model extends CI_Model
 		$this->db->insert('t_network_order',$in_order);		
 	}
 
-	function getidmod($i)
-	{
-		$this->db->where('p_service.service_name', $i);
-		$this->db->where('p_service.p_service_id = p_nw_service.p_service_id');
-		$query = $this->db->get('p_service,p_nw_service');
-		return $query->row()->p_nw_service_id;
-	}
 	//------------------------------------------------------------------------//
 
 	//update------------------------------------------------------------------//
@@ -659,10 +664,24 @@ class Inputor_model extends CI_Model
 
   	public function get_ket_reject($id)
 	{	
-		$this->db->select('ket_reject');
+		$this->db->select('t_process.ket_reject');
 		$this->db->where('t_nw_site.site_name',$id);
 		$this->db->where('t_nw_site.t_nw_site_id = t_unrec_process.t_nw_site_id');
-		$query = $this->db->get('t_nw_site,t_unrec_process');
+		$this->db->where('t_unrec_process.t_detail_network_order_id = t_process.t_detail_network_order_id');
+		$this->db->where('t_unrec_process.p_process_id = t_process.p_process_id');
+		$query = $this->db->get('t_nw_site,t_unrec_process,t_process');
 		return $query->result();
+	}
+
+	function relokasifinal($in_serv, $in_pic_site)
+	{
+		$this->db->insert('t_nw_service',$in_serv);
+		$this->db->insert('t_nw_site_pic',$in_pic_site);
 	} 
+
+	function inputlokasi($lokasi)
+	{
+		$this->db->insert('t_nw_site.site_name',$lokasi);	
+	}
+
 }
