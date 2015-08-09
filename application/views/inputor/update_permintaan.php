@@ -155,6 +155,15 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="input-group">
+                                <span class="input-group-addon input-permintaan" id="basic-addon1">No. Jaringan</span>
+                                <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->no_jar ?>" name="nojar" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="input-group">
                                 <span class="input-group-addon input-permintaan" id="basic-addon1">PIC</span>
                                 <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->pic_name ?>" name="pic" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
                             </div>

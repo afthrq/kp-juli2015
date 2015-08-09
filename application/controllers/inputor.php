@@ -428,6 +428,7 @@ class Inputor extends CI_Controller
         $serv_up = $_POST['up_layanan'];
         $pack_up = $this->input->post('update_paket');
         $bw_up = $this->input->post('update_bw');
+        $provider = $this->input->post('provider');
         //-----------------------------------------------------------------//
         $in_unrec = array ('p_process_id' => $tahap ,
                 't_detail_network_order_id' => $serv_type_id ,
@@ -453,6 +454,7 @@ class Inputor extends CI_Controller
 
         $getnworderid = array ('t_nw_site_id' => $site_id ,
                     't_detail_network_order_id' => $serv_type_id ,
+                    'provider' => $provider ,
                      'bw' => $bw_up);
 
         $order_up_id = $this->inputor_model->getorderupid($getnworderid);

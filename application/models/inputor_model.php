@@ -370,6 +370,7 @@ class Inputor_model extends CI_Model
     	return $query->result();
 	}
 
+
 	function getdatapermintaanbr()
 	{
 		$this->db->distinct();

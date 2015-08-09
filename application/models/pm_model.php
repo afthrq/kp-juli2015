@@ -321,9 +321,6 @@ class Pm_model extends CI_Model
   		$this->db->select('t_network_order.sla');
   		$this->db->select('t_network_order.valid_fr');
   		$this->db->select('t_network_order.valid_to');
-  		$this->db->select('t_network_order.mon_cacti');
-  		$this->db->select('t_network_order.mon_npmd');
-  		$this->db->select('t_network_order.mon_sp');
   		$this->db->where('t_unrec_process.t_nw_site_id',$site_id);
 		$this->db->where('t_nw_site.t_nw_site_id = t_network.t_nw_site_id');
 		$this->db->where('t_network_order.t_nw_site_id = t_nw_site.t_nw_site_id');
