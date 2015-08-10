@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 06, 2015 at 11:19 AM
+-- Generation Time: Aug 10, 2015 at 04:48 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -41,8 +41,8 @@ CREATE TABLE IF NOT EXISTS `ci_sessions` (
 --
 
 INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('9c6c8b0e8453a72c1d071bd91189c81a', '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.125 Safari/537.36', 1438851178, 'a:4:{s:9:"user_data";s:0:"";s:9:"user_name";s:7:"inputor";s:12:"is_logged_in";b:1;s:4:"role";s:7:"inputor";}'),
-('4d59eaff0ecccb7f8071c9fbb536f998', '::1', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.125 Safari/537.36', 1438852532, 'a:4:{s:9:"user_data";s:0:"";s:9:"user_name";s:16:"networkarchitect";s:12:"is_logged_in";b:1;s:4:"role";s:16:"networkarchitect";}');
+('fa920dff784e4663c29bf986b501d3e8', '::1', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.130 Safari/537.36', 1439149368, 'a:4:{s:9:"user_data";s:0:"";s:9:"user_name";s:7:"inputor";s:12:"is_logged_in";b:1;s:4:"role";s:7:"inputor";}'),
+('822cd517a354b30763e6260ed533e67a', '::1', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.130 Safari/537.36', 1439170791, '');
 
 -- --------------------------------------------------------
 
@@ -526,32 +526,19 @@ CREATE TABLE IF NOT EXISTS `t_detail_network_order` (
   `tgl_tagih` date DEFAULT NULL,
   `tgl_aktivasi` date DEFAULT NULL,
   `pic_provider` varchar(50) DEFAULT NULL,
+  `biaya_tambahan` int(11) NOT NULL,
   PRIMARY KEY (`t_detail_network_order_id`),
   KEY `t_network_order_id` (`p_order_type_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=166 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=241 ;
 
 --
 -- Dumping data for table `t_detail_network_order`
 --
 
-INSERT INTO `t_detail_network_order` (`t_detail_network_order_id`, `p_order_type_id`, `no_form_permintaan`, `tgl_permintaan`, `tiket_order_provider`, `no_balo_provider`, `no_balo_pertamina`, `tgl_tagih`, `tgl_aktivasi`, `pic_provider`) VALUES
-(133, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(134, 1, '002-2212', '2015-08-06', '001-1024', '120', '012', NULL, '2015-08-22', 'Pak Anton'),
-(135, 1, '001-2015', '2015-08-27', '012-2012', '012-4014', '001-2102', NULL, '2015-08-20', 'pak anton'),
-(136, 1, '001-2015', '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL),
-(137, 1, '012-1151', '2015-08-06', NULL, NULL, NULL, NULL, NULL, NULL),
-(140, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(141, 2, '012-1121', '2015-08-06', '', '2', '12', NULL, '2015-08-14', ''),
-(142, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(143, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(144, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(145, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(147, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(148, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(149, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(150, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(151, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(165, 7, '001-2012', '2015-08-06', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `t_detail_network_order` (`t_detail_network_order_id`, `p_order_type_id`, `no_form_permintaan`, `tgl_permintaan`, `tiket_order_provider`, `no_balo_provider`, `no_balo_pertamina`, `tgl_tagih`, `tgl_aktivasi`, `pic_provider`, `biaya_tambahan`) VALUES
+(229, 1, '012-10-2015', '2015-08-09', '001-20-1234', '01-2014', '002-12-2015', NULL, '2015-08-20', 'Pak Husen', 500000),
+(239, 6, '12-123-0021', '2015-08-10', '001-1012', '001-2131', '912-123', NULL, '2015-08-25', 'Pak Andi', 100000),
+(240, 2, '1121', '2015-08-10', '1312', '001-132', '012-1234', NULL, '2015-08-13', 'Pak Husen', 125000);
 
 -- --------------------------------------------------------
 
@@ -568,27 +555,34 @@ CREATE TABLE IF NOT EXISTS `t_document` (
   PRIMARY KEY (`t_document_id`),
   KEY `t_work_id` (`t_work_id`),
   KEY `p_doc_type_id` (`p_doc_type_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=161 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=219 ;
 
 --
 -- Dumping data for table `t_document`
 --
 
 INSERT INTO `t_document` (`t_document_id`, `t_work_id`, `p_doc_type_id`, `path`, `caption`) VALUES
-(146, 559, 2, 'uploads/PERSYARATAN_PKL1.docx', 'Dokumen VP'),
-(147, 560, 1, 'uploads/FORM_PERMOHONAN-PKL_(FORM-A)1.pdf', 'Dokumen KP'),
-(148, 565, 5, 'uploads/FORM_PERMOHONAN-PKL_(FORM-A)2.pdf', 'Dokumen UAT'),
-(149, 568, 4, 'uploads/PERSYARATAN_PKL2.docx', 'Dokumen BALO'),
-(151, 570, 1, 'uploads/FORM_PERMOHONAN-PKL_(FORM-A).pdf', 'Dokumen Permintaan'),
-(152, 584, 1, 'uploads/', ''),
-(153, 587, 1, 'uploads/FORM_PERMOHONAN-PKL_(FORM-A)1.pdf', 'Form Upgrade'),
-(154, 573, 1, 'uploads/PERSYARATAN_PKL.docx', 'Dokumen Form '),
-(155, 588, 1, 'uploads/', ''),
-(156, 612, 1, 'uploads/FORM_PERMOHONAN-PKL_(FORM-A)2.pdf', 'Dokumen UAT'),
-(157, 614, 4, 'uploads/PERSYARATAN_PKL2.docx', 'Dokumen BALO'),
-(158, 617, 4, 'uploads/FORM_PERMOHONAN-PKL_(FORM-A)3.pdf', ''),
-(159, 669, 1, 'uploads/FORM_PERMOHONAN-PKL_(FORM-A)2.pdf', ''),
-(160, 669, 1, 'uploads/PERSYARATAN_PKL1.docx', 'asd');
+(187, 804, 1, 'uploads/PERSYARATAN_PKL1.docx', 'Dokumen Verifikasi Fix'),
+(188, 805, 2, 'uploads/PERSYARATAN_PKL2.docx', 'Dokumen Koordinasi Fix'),
+(190, 805, 1, 'uploads/', ''),
+(191, 808, 6, 'uploads/PERSYARATAN_PKL4.docx', 'Dokumen Survey Fix 2'),
+(192, 809, 3, 'uploads/PERSYARATAN_PKL5.docx', 'Dokumen Implementasi Fix'),
+(193, 810, 5, 'uploads/Laporan_KP_5112100123-5112100133.docx', 'Dokumen UAT Fix'),
+(194, 803, 1, 'uploads/Laporan_KP_5112100123-51121001331.docx', 'Dokumen Monitoring Fix'),
+(195, 812, 4, 'uploads/Laporan_KP_5112100123-51121001332.docx', 'Dokumen BALO Fix'),
+(196, 813, 3, 'uploads/PERSYARATAN_PKL6.docx', 'Dokumen OB Fix'),
+(206, 841, 1, 'uploads/PERSYARATAN_PKL10.docx', 'Form Permintaan'),
+(207, 842, 1, 'uploads/', ''),
+(208, 843, 1, 'uploads/', ''),
+(209, 845, 4, 'uploads/PERSYARATAN_PKL11.docx', 'Dokumen BALO Fix'),
+(210, 846, 1, 'uploads/', ''),
+(211, 846, 1, 'uploads/', ''),
+(212, 850, 1, 'uploads/Laporan_KP_5112100123-51121001334.docx', 'Dokumen Permintaan Upgrade'),
+(213, 851, 1, 'uploads/', ''),
+(215, 853, 5, 'uploads/Laporan_KP_5112100123-51121001335.docx', 'Dokumen UAT'),
+(216, 849, 3, 'uploads/Laporan_KP_5112100123-51121001336.docx', 'Dokumen Monitoring Fix'),
+(217, 855, 4, 'uploads/PERSYARATAN_PKL12.docx', 'BALO'),
+(218, 856, 1, 'uploads/', '');
 
 -- --------------------------------------------------------
 
@@ -608,10 +602,10 @@ CREATE TABLE IF NOT EXISTS `t_monitoring` (
 --
 
 INSERT INTO `t_monitoring` (`t_network_order_id`, `mon_id`) VALUES
-(101, 1),
-(107, 2),
-(101, 3),
-(107, 3);
+(158, 1),
+(165, 1),
+(165, 2),
+(158, 3);
 
 -- --------------------------------------------------------
 
@@ -631,8 +625,8 @@ CREATE TABLE IF NOT EXISTS `t_monitoring_fix` (
 --
 
 INSERT INTO `t_monitoring_fix` (`t_network_id`, `mon_id`) VALUES
-(29, 2),
-(29, 3);
+(32, 1),
+(32, 2);
 
 -- --------------------------------------------------------
 
@@ -661,14 +655,14 @@ CREATE TABLE IF NOT EXISTS `t_network` (
   KEY `p_lastmile_id` (`p_lastmile_id`),
   KEY `t_nw_site_id` (`t_nw_site_id`),
   KEY `provider_id` (`provider_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=33 ;
 
 --
 -- Dumping data for table `t_network`
 --
 
 INSERT INTO `t_network` (`t_network_id`, `p_lastmile_id`, `t_nw_site_id`, `provider_id`, `no_jar`, `ip_wan`, `ip_lan`, `ip_loop`, `asn`, `bw`, `netmask_wan`, `netmask_lan`, `hostname`, `sla`, `valid_fr`, `valid_to`) VALUES
-(29, 0, 82, 2, NULL, NULL, NULL, NULL, NULL, 4096, NULL, NULL, NULL, NULL, '2015-08-06', NULL);
+(32, 1, 139, 2, NULL, '192.168.5.2', '10.151.50.50', '0.0.0.0', '6400', 0, 29, 30, 'Host Pusat', '81%', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -699,29 +693,16 @@ CREATE TABLE IF NOT EXISTS `t_network_order` (
   KEY `t_detail_network_order_id` (`t_detail_network_order_id`),
   KEY `t_nw_site_id` (`t_nw_site_id`),
   KEY `provider_id` (`provider_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=123 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=166 ;
 
 --
 -- Dumping data for table `t_network_order`
 --
 
 INSERT INTO `t_network_order` (`t_network_order_id`, `t_detail_network_order_id`, `t_nw_site_id`, `provider_id`, `p_lastmile_id`, `no_jar`, `ip_wan`, `ip_lan`, `ip_loop`, `asn`, `bw`, `netmask_wan`, `netmask_lan`, `hostname`, `sla`, `valid_fr`, `valid_to`) VALUES
-(101, 134, 77, NULL, 0, NULL, NULL, NULL, NULL, NULL, 1024, NULL, NULL, NULL, NULL, NULL, NULL),
-(102, 135, 78, 2, 3, NULL, '192.168.5.2', '10.151.50.50', '10.10.10.10', '6400', 1024, 29, 30, 'Hostname', '71%', NULL, NULL),
-(103, 136, 79, NULL, 0, NULL, NULL, NULL, NULL, NULL, 4096, NULL, NULL, NULL, NULL, NULL, NULL),
-(104, 137, 80, 5, 0, NULL, NULL, NULL, NULL, NULL, 1024, NULL, NULL, NULL, NULL, NULL, NULL),
-(105, 140, 81, 5, 0, NULL, NULL, NULL, NULL, NULL, 2048, NULL, NULL, NULL, NULL, NULL, NULL),
-(106, 141, 78, 2, 3, NULL, '192.168.5.2', '10.151.50.50', '10.10.10.10', '6400', 1024, 29, 30, 'Hostname', '71%', NULL, NULL),
-(107, 142, 82, 2, 0, NULL, NULL, NULL, NULL, NULL, 4096, NULL, NULL, NULL, NULL, NULL, NULL),
-(108, 143, 83, 2, 0, NULL, NULL, NULL, NULL, NULL, 2048, NULL, NULL, NULL, NULL, NULL, NULL),
-(109, 144, 84, 1, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL),
-(110, 145, 85, 1, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL),
-(112, 147, 87, 1, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL),
-(113, 148, 88, 1, 0, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL),
-(114, 149, 89, 1, 0, NULL, NULL, NULL, NULL, NULL, 512, NULL, NULL, NULL, NULL, NULL, NULL),
-(115, 150, 90, 2, 0, NULL, NULL, NULL, NULL, NULL, 1024, NULL, NULL, NULL, NULL, NULL, NULL),
-(116, 151, 91, 1, 0, NULL, NULL, NULL, NULL, NULL, 1024, NULL, NULL, NULL, NULL, NULL, NULL),
-(122, 165, 82, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(158, 229, 131, 2, 1, '0', '0', '0', '0', '0', 1024, 0, 0, '0', '0', NULL, NULL),
+(164, 239, 139, 2, 0, '1', NULL, NULL, NULL, NULL, 1024, NULL, NULL, NULL, NULL, NULL, NULL),
+(165, 240, 139, 2, 1, NULL, '192.168.5.2', '10.151.50.50', '0.0.0.0', '6400', 0, 29, 30, 'Host Pusat', '81%', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -742,45 +723,12 @@ CREATE TABLE IF NOT EXISTS `t_nw_service` (
 --
 
 INSERT INTO `t_nw_service` (`t_network_order_id`, `p_nw_service_id`, `jumlah`) VALUES
-(102, 9, 1),
-(102, 15, 1),
-(102, 16, 1),
-(101, 9, 1),
-(101, 15, 1),
-(101, 17, 1),
-(103, 10, 1),
-(103, 15, 1),
-(103, 16, 1),
-(104, 3, 1),
-(104, 15, 1),
-(105, 3, 1),
-(105, 15, 1),
-(105, 16, 1),
-(106, 9, NULL),
-(107, 9, 1),
-(107, 15, 1),
-(107, 16, 1),
-(108, 2, 1),
-(108, 15, 1),
-(108, 16, 1),
-(109, 8, 1),
-(109, 14, 1),
-(110, 11, 1),
-(110, 14, 1),
-(112, 11, 1),
-(112, 14, 1),
-(113, 3, 1),
-(113, 14, 1),
-(113, 16, 1),
-(114, 2, 1),
-(114, 14, 1),
-(115, 9, 1),
-(115, 15, 1),
-(115, 16, 1),
-(116, 10, 1),
-(116, 14, 1),
-(116, 17, 1),
-(122, 9, NULL);
+(158, 2, 1),
+(158, 15, 1),
+(158, 16, 5),
+(158, 17, 2),
+(164, 2, 1),
+(165, 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -801,8 +749,8 @@ CREATE TABLE IF NOT EXISTS `t_nw_service_fix` (
 --
 
 INSERT INTO `t_nw_service_fix` (`t_network_id`, `p_nw_service_id`, `jumlah`) VALUES
-(29, 9, NULL),
-(29, 15, NULL);
+(32, 2, NULL),
+(32, 15, NULL);
 
 -- --------------------------------------------------------
 
@@ -826,27 +774,15 @@ CREATE TABLE IF NOT EXISTS `t_nw_site` (
   KEY `provinsi_id` (`provinsi_id`),
   KEY `p_site_type_id` (`p_site_type_id`),
   KEY `p_region_id` (`p_region_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=92 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=140 ;
 
 --
 -- Dumping data for table `t_nw_site`
 --
 
 INSERT INTO `t_nw_site` (`t_nw_site_id`, `provinsi_id`, `p_site_type_id`, `p_region_id`, `site_name`, `desc`, `is_critical`, `longitude`, `latitude`, `address`, `traffic_mgmt`) VALUES
-(77, 4, 3, 1, 'Toba', '', 0, '132', '150', 'Toba Raya', ''),
-(78, 17, 3, 1, 'Bandung', '', 0, '125', '152', 'Bandung Raya', 'Load Sharing'),
-(79, 4, 1, 1, 'Medan', '', 0, '142', '210', 'Medan Raya', ''),
-(80, 4, 3, 1, 'Gondangdia', '', 0, '110', '130', 'Jl. Gondangdia', ''),
-(81, 4, 3, 4, 'Istana Presiden', '', 0, '110', '150', 'Jl. Medan Merdeka Utara', ''),
-(82, 7, 2, 16, 'Sabang', '', 0, '110', '150', 'Jl. Sabang', ''),
-(83, 37, 3, 22, 'Merauke', '', 0, '120', '120', 'Jl. Merauke', ''),
-(84, 19, 2, 21, 'Solo', '', 0, '', '', 'Jl. Solo', ''),
-(85, 28, 4, 18, 'Komodo', '', 0, '12', '12', 'Komodo', ''),
-(87, 17, 3, 17, 'Sumedang', '', 0, '12', '12', 'Sumedang', ''),
-(88, 17, 1, 16, 'Cirebon', '', 0, '15', '15', 'Cirebon', ''),
-(89, 6, 2, 21, 'Malang', '', 0, '120', '120', 'Batu', ''),
-(90, 26, 1, 22, 'Bali', '', 0, '130', '130', 'Bali', ''),
-(91, 6, 5, 22, 'Tuban', '', 0, '111', '110', 'Tuban Raya', '');
+(131, 4, 1, 1, 'Jakarta Pusat', '', 0, '98', '112', 'Jalan Merdeka Timur no. 56', ''),
+(139, 37, 2, 8, 'Jayapura', '', 0, '98', '102', 'Jayapura Raya', 'Load Sharing');
 
 -- --------------------------------------------------------
 
@@ -866,20 +802,8 @@ CREATE TABLE IF NOT EXISTS `t_nw_site_pic` (
 --
 
 INSERT INTO `t_nw_site_pic` (`t_nw_site_id`, `t_pic_id`) VALUES
-(78, 113),
-(77, 112),
-(79, 114),
-(80, 118),
-(81, 119),
-(82, 126),
-(83, 127),
-(84, 115),
-(85, 115),
-(87, 115),
-(88, 115),
-(89, 115),
-(90, 115),
-(91, 115);
+(131, 150),
+(139, 150);
 
 -- --------------------------------------------------------
 
@@ -894,40 +818,22 @@ CREATE TABLE IF NOT EXISTS `t_pic` (
   `phone` varchar(15) NOT NULL,
   `phone2` varchar(15) NOT NULL,
   PRIMARY KEY (`t_pic_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=136 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=159 ;
 
 --
 -- Dumping data for table `t_pic`
 --
 
 INSERT INTO `t_pic` (`t_pic_id`, `nip`, `pic_name`, `phone`, `phone2`) VALUES
-(109, '', 'Pak Kunto', '', ''),
-(110, '', 'Pak Karyo', '', ''),
-(111, '', 'Pak Jaya', '', ''),
-(112, '', 'Pak Jono', '', ''),
-(113, '', 'Pak Johari', '', ''),
-(114, '', 'Pak Juan', '', ''),
-(115, '', '', '', ''),
-(116, '', 'Pak Jono', '', ''),
-(117, '', 'Pak Juan', '', ''),
-(118, '', 'Pak Kiki', '', ''),
-(119, '', 'Pak Widodo', '', ''),
-(120, '', 'Pak Widodo', '', ''),
-(121, '', 'Pak Widodo', '', ''),
-(122, '', 'Pak Widodo', '', ''),
-(123, '', 'Pak Widodo', '', ''),
-(124, '', 'Pak Widodo', '', ''),
-(125, '', 'Pak Widodo', '', ''),
-(126, '', 'Pak Aceh', '', ''),
-(127, '', 'Pak Merak', '', ''),
-(128, '', '', '', ''),
-(129, '', '', '', ''),
-(130, '', '', '', ''),
-(131, '', '', '', ''),
-(132, '', '', '', ''),
-(133, '', '', '', ''),
-(134, '', '', '', ''),
-(135, '', '', '', '');
+(150, '', 'Pak Mifta ', '085730555032 ', ' '),
+(151, '', 'Pak Mifta ', '', ''),
+(152, '', 'Pak Mifta ', '', ''),
+(153, '', 'Pak Mifta ', '', ''),
+(154, '', 'Pak Mifta ', '', ''),
+(155, '', 'Pak Mifta ', '', ''),
+(156, '', 'Pak Mifta ', '', ''),
+(157, '', 'Pak Mifta ', '', ''),
+(158, '', 'Pak Mifta ', '', '');
 
 -- --------------------------------------------------------
 
@@ -943,74 +849,41 @@ CREATE TABLE IF NOT EXISTS `t_process` (
   `valid_to` date DEFAULT NULL,
   `keterangan` longtext,
   `closed_by` varchar(50) DEFAULT NULL,
-  `ket_reject` varchar(300) NOT NULL,
+  `ket_reject` varchar(300) DEFAULT NULL,
   PRIMARY KEY (`t_work_id`),
   KEY `p_process_id` (`p_process_id`,`t_detail_network_order_id`),
   KEY `t_detail_network_order_id` (`t_detail_network_order_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=672 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=859 ;
 
 --
 -- Dumping data for table `t_process`
 --
 
 INSERT INTO `t_process` (`t_work_id`, `p_process_id`, `t_detail_network_order_id`, `valid_fr`, `valid_to`, `keterangan`, `closed_by`, `ket_reject`) VALUES
-(550, 1, 133, '2015-08-05', '2015-08-05', '', 'inputor', ''),
-(553, 1, 134, '2015-08-06', '2015-08-06', '', 'inputor', 'tidak lengkap'),
-(558, 1, 135, '2015-08-05', '2015-08-05', '', 'inputor', ''),
-(559, 2, 135, '2015-08-05', '2015-08-05', 'tesketerangan', 'networkarc', ''),
-(560, 3, 135, '2015-08-05', '2015-08-05', 'Provider telah dikoordinasi', 'networkarc', ''),
-(561, 1, 136, '2015-08-06', '2015-08-06', '', 'inputor', 'kurang oke'),
-(563, 4, 135, '2015-08-05', '2015-08-05', 'Survey telah dikerjakan', 'wananalyst', ''),
-(564, 5, 135, '2015-08-05', '2015-08-05', 'Implementasi berhasil dilakukan', 'wananalyst', ''),
-(565, 6, 135, '2015-08-05', '2015-08-05', 'uat berhasil', 'wanenginee', ''),
-(566, 7, 135, '2015-08-05', '2015-08-05', 'Udah nih coy', 'wanperform', 'ngga ah'),
-(568, 8, 135, '2015-08-05', '2015-08-05', 'BALO telah saya upload', 'wananalyst', ''),
-(569, 9, 135, '2015-08-05', '2015-08-05', '', 'networkarc', ''),
-(570, 2, 134, '2015-08-06', '2015-08-06', 'Udah diverifikasi nih permintaannya, lanjut', 'networkarc', ''),
-(571, 2, 136, '2015-08-06', NULL, NULL, NULL, ''),
-(572, 1, 137, '2015-08-06', '2015-08-06', 'tolong ya', 'inputor', ''),
-(573, 2, 137, '2015-08-06', '2015-08-06', 'Buat baru nih, ngerepotin', 'networkarc', ''),
-(576, 1, 140, '2015-08-06', '2015-08-06', '', 'inputor', ''),
-(583, 2, 140, '2015-08-06', NULL, NULL, NULL, ''),
-(584, 3, 134, '2015-08-06', '2015-08-06', 'Provider telah dikoordinasi mengenai jaringan', 'networkarc', ''),
-(585, 4, 134, '2015-08-06', '2015-08-06', '', 'wananalyst', ''),
-(586, 1, 141, '2015-08-06', '2015-08-06', '', 'inputor', ''),
-(587, 2, 141, '2015-08-06', '2015-08-06', 'Mau diupgrade nih bro', 'networkarc', ''),
-(588, 3, 141, '2015-08-06', '2015-08-06', '', 'networkarc', ''),
-(589, 3, 137, '2015-08-06', NULL, NULL, NULL, ''),
-(590, 5, 141, '2015-08-06', '2015-08-06', '', 'wananalyst', ''),
-(591, 5, 134, '2015-08-06', NULL, NULL, NULL, ''),
-(592, 1, 142, '2015-08-06', '2015-08-06', '', 'inputor', ''),
-(593, 2, 142, '2015-08-06', NULL, NULL, NULL, ''),
-(594, 1, 143, '2015-08-06', '2015-08-06', '', 'inputor', ''),
-(595, 2, 143, '2015-08-06', NULL, NULL, NULL, ''),
-(596, 1, 144, '2015-08-06', '2015-08-06', '', 'inputor', ''),
-(597, 2, 144, '2015-08-06', NULL, NULL, NULL, ''),
-(598, 1, 145, '2015-08-06', '2015-08-06', '', 'inputor', ''),
-(599, 2, 145, '2015-08-06', NULL, NULL, NULL, ''),
-(602, 1, 147, '2015-08-06', '2015-08-06', '', 'inputor', ''),
-(603, 2, 147, '2015-08-06', NULL, NULL, NULL, ''),
-(604, 1, 148, '2015-08-06', '2015-08-06', '', 'inputor', ''),
-(605, 2, 148, '2015-08-06', NULL, NULL, NULL, ''),
-(606, 1, 149, '2015-08-06', '2015-08-06', '', 'inputor', ''),
-(607, 2, 149, '2015-08-06', NULL, NULL, NULL, ''),
-(608, 1, 150, '2015-08-06', '2015-08-06', '', 'inputor', ''),
-(609, 2, 150, '2015-08-06', NULL, NULL, NULL, ''),
-(610, 1, 151, '2015-08-06', '2015-08-06', '', 'inputor', ''),
-(611, 2, 151, '2015-08-06', NULL, NULL, NULL, ''),
-(612, 6, 141, '2015-08-06', '2015-08-06', 'UAT kelar coy', 'wanenginee', ''),
-(613, 7, 141, '2015-08-06', '2015-08-06', 'Keterangan Mon', 'wanperformance', ''),
-(614, 8, 141, '2015-08-06', '2015-08-06', 'Keterangan BALO', 'wananalyst', ''),
-(615, 9, 141, '2015-08-06', '2015-08-06', '', 'networkarchitect', ''),
-(617, 8, 134, '2015-08-06', '2015-08-06', 'haha', 'wananalyst', ''),
-(618, 8, 134, '2015-08-06', '2015-08-06', 'haha', 'wananalyst', ''),
-(619, 8, 134, '2015-08-06', '2015-08-06', 'haha', 'wananalyst', ''),
-(620, 9, 134, '2015-08-06', '2015-08-06', '', 'networkarchitect', ''),
-(631, 8, 142, '2015-08-06', NULL, NULL, NULL, ''),
-(668, 1, 165, '2015-08-06', '2015-08-06', 'dismantle ya gan', 'inputor', ''),
-(669, 2, 165, '2015-08-06', '2015-08-06', 'Ini mau dismantle, gimana ?', 'networkarchitect', ''),
-(670, 3, 165, '2015-08-06', NULL, NULL, NULL, ''),
-(671, 3, 165, '2015-08-06', NULL, NULL, NULL, '');
+(803, 1, 229, '2015-08-09', '2015-08-09', 'Dimohon ijin pemasangan jaringan di pertamina pusat, berikut permintaannya', 'inputor', NULL),
+(804, 2, 229, '2015-08-09', '2015-08-09', 'Permintaan ini telah diverifikasi', 'networkarchitect', NULL),
+(805, 3, 229, '2015-08-09', '2015-08-09', 'Sudah diterima rejectnya dan sudah diproses', 'networkarchitect', 'Tolong dicek ulang'),
+(808, 4, 229, '2015-08-09', '2015-08-09', 'Survey sudah dilakukan, dan terbukti tempat ini dapat dilakukan  implementasi', 'wananalyst', NULL),
+(809, 5, 229, '2015-08-09', '2015-08-09', 'Implementasi berhasil dilakukan', 'wananalyst', NULL),
+(810, 6, 229, '2015-08-09', '2015-08-09', 'UAT juga telah dilakukan, dan sesuai dengan standard', 'wanengineer', NULL),
+(811, 7, 229, '2015-08-09', '2015-08-09', 'Monitoring CACTI dan Smokeping berhasil dilakukan', 'wanperformance', NULL),
+(812, 8, 229, '2015-08-09', '2015-08-09', 'BALO telah dicetak', 'wananalyst', NULL),
+(813, 9, 229, '2015-08-09', '2015-08-10', 'Online Billing berhasil dicetak', 'networkarchitect', NULL),
+(840, 1, 239, '2015-08-10', '2015-08-10', '', 'inputor', NULL),
+(841, 2, 239, '2015-08-10', '2015-08-10', '', 'networkarchitect', NULL),
+(842, 3, 239, '2015-08-10', '2015-08-10', '', 'networkarchitect', NULL),
+(843, 4, 239, '2015-08-10', '2015-08-10', '', 'wananalyst', NULL),
+(844, 5, 239, '2015-08-10', '2015-08-10', '', 'wananalyst', NULL),
+(845, 8, 239, '2015-08-10', '2015-08-10', 'Keterangan aja', 'wananalyst', NULL),
+(846, 9, 239, '2015-08-10', '2015-08-10', '', 'networkarchitect', NULL),
+(849, 1, 240, '2015-08-10', '2015-08-10', '', 'inputor', NULL),
+(850, 2, 240, '2015-08-10', '2015-08-10', '', 'networkarchitect', NULL),
+(851, 3, 240, '2015-08-10', '2015-08-10', '', 'networkarchitect', NULL),
+(852, 5, 240, '2015-08-10', '2015-08-10', '', 'wananalyst', NULL),
+(853, 6, 240, '2015-08-10', '2015-08-10', '', 'wanengineer', NULL),
+(854, 7, 240, '2015-08-10', '2015-08-10', 'CACTI NPMD berhasil ', 'wanperformance', NULL),
+(855, 8, 240, '2015-08-10', '2015-08-10', '', 'wananalyst', NULL),
+(856, 9, 240, '2015-08-10', '2015-08-10', '', 'networkarchitect', NULL);
 
 -- --------------------------------------------------------
 
@@ -1028,25 +901,7 @@ CREATE TABLE IF NOT EXISTS `t_unrec_process` (
   KEY `p_process_id` (`p_process_id`,`t_detail_network_order_id`),
   KEY `t_detail_network_order_id` (`t_detail_network_order_id`),
   KEY `t_nw_site_id` (`t_nw_site_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=65 ;
-
---
--- Dumping data for table `t_unrec_process`
---
-
-INSERT INTO `t_unrec_process` (`t_detail_network_order_id`, `un_proc_id`, `p_process_id`, `t_nw_site_id`, `ket_reject`) VALUES
-(136, 39, 2, 79, 'kurang oke'),
-(137, 40, 3, 80, ''),
-(140, 41, 2, 81, ''),
-(143, 44, 2, 83, ''),
-(144, 45, 2, 84, ''),
-(145, 46, 2, 85, ''),
-(147, 48, 2, 87, ''),
-(148, 49, 2, 88, ''),
-(149, 50, 2, 89, ''),
-(150, 51, 2, 90, ''),
-(151, 52, 2, 91, ''),
-(165, 64, 3, 82, '');
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=111 ;
 
 -- --------------------------------------------------------
 
