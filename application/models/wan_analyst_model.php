@@ -251,7 +251,6 @@ class Wan_analyst_model extends CI_Model
 
   	public function getdatarelokasi($o_id, $nojar)
   	{
-  		$this->db->distinct();
 		$this->db->where('t_nw_site.site_name !=',$o_id);
 		$this->db->where('t_network.no_jar',$nojar);
 		$this->db->where('t_nw_site.t_nw_site_id = t_network.t_nw_site_id');

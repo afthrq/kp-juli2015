@@ -21,6 +21,7 @@
                 </div>
                 <!-- /.navbar-header -->
                 <ul class="nav navbar-top-links navbar-right">
+                    <span class="user-name"><?php echo $this->session->userdata('user_name') ?></span>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
@@ -59,6 +60,20 @@
             <!-- Page Content -->
             <div id="page-wrapper">
                 <div class="container-fluid">
+                    <div class="row">
+                        <center>
+                            <div class="btn-group btn-breadcrumb group-crumbs" id="milestone">
+                                <?php foreach ($breadcrumbs as $row): ?>
+                                    <?php 
+                                        if ($row->name == "Implementasi"): ?>
+                                        <a href="#" class="btn crumbs crumbs-size" value="1"><?php echo $row->name ?></a>
+                                    <?php else: ?>
+                                        <a href="#" class="btn crumbs crumbs-size" value="0"><?php echo $row->name ?></a>
+                                    <?php endif ?>
+                                <?php endforeach ?>
+                            </div>
+                        </center>
+                    </div>
                     <div class="row">
                         <div class="col-lg-12">
                             <h1 class="page-header">Implementasi - Relokasi</h1>

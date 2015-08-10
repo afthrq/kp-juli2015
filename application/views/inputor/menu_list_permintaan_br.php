@@ -102,14 +102,17 @@
                                                     <form method="POST" action="<?php echo base_url('inputor/permintaan_reject')?>">
                                                     <tr>
                                                         <?php if ($row->p_process_id == 1): ?>
-                                                            <input type="hidden" name="order_id" value="<?php echo $row->site_name ?>">  
-                                                            <td><?php echo $count?></td>
-                                                            <td><input type="submit" value="<?php echo $row->company_name?>" class="btn btn-default btn-table"></td>
-                                                            <td><input type="submit" value="<?php echo $row->type_name?>" class="btn btn-default btn-table"></td>
-                                                            <td><input type="submit" value="<?php echo $row->site_name ?>" class="btn btn-default btn-table"></td>
-                                                            <td><input type="submit" value="<?php echo $row->service_name?> | <?php echo $row->package?>" class="btn btn-default btn-table"></td>
-                                                            <td><input type="submit" value="<?php echo $row->bw ?>" class="btn btn-default btn-table"></td>
-                                                            <td><input type="submit" value="<?php echo "Rejected ("; echo $row->ket_reject; echo")" ?>" class="btn btn-default btn-table"></td>
+                                                            <?php if ($row->ord_name == "Pasang Baru"): ?>
+                                                                <input type="hidden" name="order_id" value="<?php echo $row->site_name ?>">  
+                                                                <td><?php echo $count?></td>
+                                                                <td><input type="submit" value="<?php echo $row->company_name?>" class="btn btn-default btn-table"></td>
+                                                                <td><input type="submit" value="<?php echo $row->type_name?>" class="btn btn-default btn-table"></td>
+                                                                <td><input type="submit" value="<?php echo $row->site_name ?>" class="btn btn-default btn-table"></td>
+                                                                <td><input type="submit" value="<?php echo $row->service_name?> | <?php echo $row->package?>" class="btn btn-default btn-table"></td>
+                                                                <td><input type="submit" value="<?php echo $row->bw ?>" class="btn btn-default btn-table"></td>
+                                                                <td><input type="submit" value="<?php echo "Rejected ("; echo $row->ket_reject; echo")" ?>" class="btn btn-default btn-table"></td>
+                                                                <td><input type="submit" value="<?php echo $row->ord_name ?>" class="btn btn-default btn-table"></td>
+                                                            <?php endif?>
                                                         <?php else: ?>
                                                             <td><?php echo $count?></td>
                                                             <td><?php echo $row->company_name?></td>

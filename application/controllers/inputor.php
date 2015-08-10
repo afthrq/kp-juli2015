@@ -480,7 +480,7 @@ class Inputor extends CI_Controller
         redirect ('inputor','refresh');
     }
 
-   function form_dismantle()
+   public function form_dismantle()
    {
         $site_id = $this->input->post('site_id');
         $layanan = $this->input->post('layanan');
@@ -541,7 +541,7 @@ class Inputor extends CI_Controller
         redirect('inputor','refresh');
     }
 
-    function form_relokasi()
+    public function form_relokasi()
     {
         $lokasi = $this->input->post('lokasi');
         //------------------------------------------------------------------//
