@@ -19,6 +19,7 @@ class Inputor extends CI_Controller
     {
         $o_id = $this->input->post('order_id');
         $data['update_list'] = $this->inputor_model->getdataupdate($o_id);
+        $data['pic_list'] = $this->inputor_model->getdataupdatepic($o_id);
         $data['provider_list'] = $this->inputor_model->getdataprovider();
         $data['upserv_list'] = $this->inputor_model->getupdateid();
         $data['lokasiid'] = $this->inputor_model->getlokasiid($o_id); 
@@ -30,6 +31,7 @@ class Inputor extends CI_Controller
     {
         $o_id = $this->input->post('order_id');
         $data['update_list'] = $this->inputor_model->getdataupdate($o_id);
+        $data['pic_list'] = $this->inputor_model->getdataupdatepic($o_id);
         $data['perusahaan_list'] = $this->inputor_model->getcompid();
         $data['upserv_list'] = $this->inputor_model->getupdateid();
         $data['lokasiid'] = $this->inputor_model->getlokasiid($o_id); 
@@ -43,6 +45,7 @@ class Inputor extends CI_Controller
     {
         $o_id = $this->input->post('order_id');
         $data['update_list'] = $this->inputor_model->getdataupdate($o_id);
+        $data['pic_list'] = $this->inputor_model->getdataupdatepic($o_id);
         $data['upserv_list'] = $this->inputor_model->getupdateid();
         $data['router_list'] = $this->inputor_model->getrouter($o_id);
         $data['modul_list'] = $this->inputor_model->getmodul($o_id);
@@ -160,7 +163,8 @@ class Inputor extends CI_Controller
 
         $lokasi = $value[0]['Lokasi'];
         $countlokasi = $this->inputor_model->getcountlokasi($lokasi);
-
+        if($countlokasi == 0)
+        {
             //------------------------------------------------------------------//
             $proses = $value[0]['Proses'];
 
@@ -286,9 +290,16 @@ class Inputor extends CI_Controller
 
                 $this->inputor_model->inputmodul($in_modul);       
             }
-
-            
             redirect('inputor','refresh');
+        }
+
+        else if ($countlokasi !==0)
+        {
+            echo "<script>
+            alert('Lokasi telah dibuat sebelumnya');
+            </script>";
+            redirect ('inputor/form_permintaan','refresh');
+        }
     
     }
 
@@ -649,11 +660,25 @@ class Inputor extends CI_Controller
     public function ac_pic()
     {
         $id = $this->input->post('id',TRUE);
-        $rows = $this->inputor_model->get_alamat($id);
+        $rows = $this->inputor_model->get_pic($id);
         $json_array = array();
         foreach ($rows as $row)
-            $json_array[]=$row->address;
+            $json_array[]=$row->pic_name;
         echo json_encode($json_array);
     }
     
+    public function get_phone()
+    {
+        $id = $this->input->post('id',TRUE);
+        $getphone = $this->inputor_model->get_phone($id);
+        foreach ($getphone as $row) {
+            $phone = array(
+                'phone' => $row->phone, 
+                'phone2' => $row->phone2,
+            );
+
+        }
+
+        echo json_encode($phone);
+    }
 }

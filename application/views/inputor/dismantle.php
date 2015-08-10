@@ -166,8 +166,10 @@
                             </div>
                             <br><br><br>
                         </div>
+                        <?php endforeach?>
+
                         <div id="sectionB" class="tab-pane fade">
-                            <br>
+                        <br>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <table id="pic" class="table table-striped table-bordered table-hover">
@@ -182,14 +184,19 @@
                                           </tr>
                                         </thead>
                                         <tbody>
+                                        <?php foreach ($pic_list as $row): ?>
+                                        <tr>
                                             <td><?php echo $row->pic_name ?></td>
                                             <td><?php echo $row->phone ?></td>
                                             <td><?php echo $row->phone2 ?></td>
+                                        </tr>
+                                        <?php endforeach?>
                                         </tbody>
                                   </table>
                                 </div>
                             </div>
                             <br>
+                            <?php foreach ($update_list as $row) ?>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="input-group">
@@ -217,7 +224,6 @@
                                 </div>
                             </div>
                             <br>
-                            <?php endforeach ?>
                             <?php foreach ($router_list as $row): ?>
                             <div class="row">
                                 <div class="col-lg-6">

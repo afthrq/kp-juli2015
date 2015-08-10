@@ -158,6 +158,8 @@
                         </div>
                     </div>
                     <br>
+                    <?php endforeach?>
+
                     <div class="row">
                         <div class="col-lg-6">
                             <table id="pic" class="table table-striped table-bordered table-hover">
@@ -172,15 +174,18 @@
                                   </tr>
                                 </thead>
                                 <tbody>
+                                <?php foreach ($pic_list as $row): ?>
+                                <tr>
                                     <td><?php echo $row->pic_name ?></td>
                                     <td><?php echo $row->phone ?></td>
                                     <td><?php echo $row->phone2 ?></td>
+                                </tr>
+                                <?php endforeach?>
                                 </tbody>
                           </table>
                         </div>
                     </div>
                     </form>
-                    <?php endforeach ?>
                     <form method="POST" action ="<?php echo base_url('inputor/form_update')?>">
                     <?php foreach ($lokasiid as $row): ?>   
                         <input type="hidden" name="site_id" value="<?php echo $row->t_nw_site_id?>">

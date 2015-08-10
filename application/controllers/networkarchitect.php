@@ -321,6 +321,7 @@ class Networkarchitect extends CI_Controller
         $data['sitenserviceid'] = $this->pm_model->getsitenserviceid($o_id);
         $data['lokasiid'] = $this->verifikator_model->getlokasiid($o_id);
         $data['data_permintaan'] = $this->verifikator_model->get_data_permintaan($o_id);
+        $data['data_permintaan_ob'] = $this->verifikator_model->get_data_permintaan_ob($o_id);
         $data['list_keterangan'] = $this->verifikator_model->getproses($o_id);
         if($service_id == "Pasang Baru")
         {

@@ -97,25 +97,27 @@
                                 </div>
                             </div>
                             <br>                            
-                            <?php foreach ($data_permintaan as $row): 
+                            <?php foreach ($data_permintaan_ob as $row): 
                                 if ($row->p_order_type_id == 1 || $row->p_order_type_id == 2 || $row->p_order_type_id == 4 || $row->p_order_type_id == 5): ?>
-                                    <?php foreach ($price_link as $row): ?>
+
                                     <div class="row">
                                         <div class="col-lg-2">
                                             <h4>Biaya Instalasi</h4>
                                         </div>
                                         <div class="col-lg-6">
                                             <div class="input-group">
+                                                <?php foreach ($price_link as $row): ?>
                                                 <span class="input-group-addon" id="basic-addon1">Rp</span>
                                                 <input type="number" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->price_mrc?>" readonly>
+                                                <?php endforeach ?>                                            
                                             </div>
                                          </div>
                                     </div>
                                     <br>
-                                    <?php endforeach ?>
+
                                 <?php endif ?>
                             <?php endforeach ?>
-                            <?php foreach ($data_permintaan as $row): 
+                            <?php foreach ($data_permintaan_ob as $row): 
                                 if ($row->p_order_type_id == 1 || $row->p_order_type_id == 3): ?>
                                     <?php foreach ($price_router as $row): ?>
                                     <div class="row">
@@ -133,7 +135,7 @@
                                     <?php endforeach ?>
                                 <?php endif ?>
                             <?php endforeach ?>
-                            <?php foreach ($data_permintaan as $row): 
+                            <?php foreach ($data_permintaan_ob as $row): 
                                 if ($row->p_order_type_id == 1 || $row->p_order_type_id == 3): ?>
                                     <div class="row">
                                         <div class="col-lg-2">
@@ -302,6 +304,8 @@
                                 </div>
                             </div>
                             <br>
+                            <?php endforeach?>
+
                             <div class="row">
                                 <div class="col-lg-6">
                                     <table id="pic" class="table table-striped table-bordered table-hover">
@@ -316,13 +320,19 @@
                                           </tr>
                                         </thead>
                                         <tbody>
+                                        <?php foreach ($data_permintaan as $row): ?>
+                                        <tr>
                                             <td><?php echo $row->pic_name ?></td>
                                             <td><?php echo $row->phone ?></td>
                                             <td><?php echo $row->phone2 ?></td>
+                                        </tr>
+                                        <?php endforeach?>
                                         </tbody>
                                   </table>
                                 </div>
                             </div>
+
+                            <?php foreach ($data_permintaan as $row): ?>
                             <br><br><br>
                         </div>
                         <div id="sectionC" class="tab-pane fade">

@@ -226,6 +226,8 @@
                                 </div>
                             </div>
                             <br>
+                            <?php endforeach?>
+
                             <div class="row">
                                 <div class="col-lg-6">
                                     <table id="pic" class="table table-striped table-bordered table-hover">
@@ -240,14 +242,19 @@
                                           </tr>
                                         </thead>
                                         <tbody>
+                                        <?php foreach ($data_permintaan as $row): ?>
+                                        <tr>
                                             <td><?php echo $row->pic_name ?></td>
                                             <td><?php echo $row->phone ?></td>
                                             <td><?php echo $row->phone2 ?></td>
+                                        </tr>
+                                        <?php endforeach?>
                                         </tbody>
                                   </table>
                                 </div>
                             </div>
-                            <br><br><br>
+
+                            <?php foreach ($data_permintaan as $row): ?>                            <br><br><br>
                         </div>
                         <div id="sectionC" class="tab-pane fade">
                             <br>

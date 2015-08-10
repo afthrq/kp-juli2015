@@ -101,7 +101,7 @@
                                             <span class="input-group-addon">
                                                <input type="checkbox" name="monitoring[]" value="<?php echo $row->mon_name ?>">
                                             </span>
-                                            <input type="text" class="form-control" name="" value="<?php echo $row->mon_name ?>" disabled style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
+                                            <input type="text" class="form-control" name="" value="<?php echo $row->mon_name ?>" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
                                         </div><!-- /input-group -->
                                     </div><!-- /.col-lg-6 -->
                                 </div>
@@ -241,6 +241,8 @@
                                 </div>
                             </div>
                             <br>
+                            <?php endforeach?>
+
                             <div class="row">
                                 <div class="col-lg-6">
                                     <table id="pic" class="table table-striped table-bordered table-hover">
@@ -255,13 +257,19 @@
                                           </tr>
                                         </thead>
                                         <tbody>
+                                        <?php foreach ($data_permintaan as $row): ?>
+                                        <tr>
                                             <td><?php echo $row->pic_name ?></td>
                                             <td><?php echo $row->phone ?></td>
                                             <td><?php echo $row->phone2 ?></td>
+                                        </tr>
+                                        <?php endforeach?>
                                         </tbody>
                                   </table>
                                 </div>
                             </div>
+
+                            <?php foreach ($data_permintaan as $row): ?>
                             <br><br><br>
                         </div>
                         <div id="sectionC" class="tab-pane fade">

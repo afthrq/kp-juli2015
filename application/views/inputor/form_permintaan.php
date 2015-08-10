@@ -204,7 +204,6 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <button class="btn btn-primary"id="modal_trigger_pic" href="#modalpic"><i class="fa fa-plus"></i> PIC</button>
-                                    <a class="btn btn-primary"id="tes2" href="#"><i class="fa fa-plus"></i> Tes</a>
                                 </div>
                             </div>
                             <br>
@@ -283,7 +282,6 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <button class="btn btn-primary"id="modal_trigger_modul" href="#modalmodul"><i class="fa fa-plus"></i> Modul</button>
-                                    <a class="btn btn-primary"id="tes" href="#"><i class="fa fa-plus"></i> Tes</a>
                                 </div>
                             </div>
                             <br>
@@ -329,27 +327,26 @@
                                     <fieldset>
                                         <div class="row">
                                             <div class="col-md-10">
-                                               <label for="name[]">Nama</label>
-                                               <input type="text" name="name[]" id="picname" value="" class="form-control"> 
+                                               <label for="name">Nama</label>
+                                               <input type="text" name="name" id="picname" value="" class="form-control"> 
                                             </div>
                                             <div class="col-xs-2">
                                                 <label style="visibility:hidden">.</label>
-                                                <span id="phonequery" class="btn btn-primary" style="margin-left:-50%;"><i class="fa fa-plus"></i></span>
+                                                <span id="phonequery" class="btn btn-primary" href="#" style="margin-left:-50%;"><i class="fa fa-plus"></i></span>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <label for="phone1">No. Telepon 1</label><br>
-                                                <input type="number" name="phone1" id="phone1" value="" class="form-control">
+                                               <label for="name">No. Telepon 1</label>
+                                               <input type="text" id="telepon1" value="" class="form-control"> 
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <label for="phone2">No. Telepon 2</label><br>
-                                                <input type="number" name="phone2" id="phone2" value=""class="form-control">   
+                                               <label for="name">No. Telepon 2</label>
+                                               <input type="text" id="telepon2" value="" class="form-control"> 
                                             </div>
                                         </div>
-                                      
                                  
                                       <!-- Allow form submission with keyboard without duplicating the dialog button -->
                                       <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
@@ -453,6 +450,25 @@
             });
         </script>
 
+        <script>
+        $("#phonequery").click(function() {
+
+
+            $.ajax({
+                url: "<?php echo base_url('inputor/get_phone'); ?>",
+                data: {id: $("#picname").val()},
+                dataType: "json",
+                type: "POST",
+                success: function(data){
+                    
+                //    var phone1 = data.phone;
+                    $("#telepon1").val(data.phone);
+                    $("#telepon2").val(data.phone2);
+                    }
+
+            });
+        });
+        </script>
 
         <script type="text/javascript">  
                   $(document).ready(function() {  
@@ -502,8 +518,8 @@
         <script type="text/javascript">
             $(function() {
                 var name = $( "#picname" ),
-                    phone1 = $( "#phone1" ),
-                    phone2 = $( "#phone2" );
+                    phone1 = $( "#telepon1" ),
+                    phone2 = $( "#telepon2" );
 
                     $("#addpic").click(function() {
                         if( name.val().length === 0 ) {
@@ -566,22 +582,6 @@
         });
         </script>
 
-        <script>
-        $("#phonequery").click(function() {
-            var nama = $("#picname");
-
-            $.ajax({
-                url: "<?php echo base_url('inputor/get_phone'); ?>",
-                data: {id: nama.val()},
-                dataType: "json",
-                type: "POST",
-                success: function(data){
-                    $("#phone1").val(data.phone);
-                    $("#phone2").val(data.phone2);
-                }
-            });
-        });
-        </script>
 
         <!-- Script buat pass value Modul & PIC disatukan -->
        

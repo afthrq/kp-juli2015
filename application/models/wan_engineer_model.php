@@ -47,6 +47,8 @@ class Wan_engineer_model extends CI_Model
 		$this->db->select('p_region.region_name');
 		$this->db->select('provinsi.provinsi_name');
 		$this->db->select('t_pic.pic_name');
+		$this->db->select('t_pic.phone');
+		$this->db->select('t_pic.phone2');
 		$this->db->where('t_nw_site.site_name',$o_id);
 		$this->db->where('p_nw_service.p_serv_type_id = "1"');
 		$this->db->where('t_nw_service.p_nw_service_id = p_nw_service.p_nw_service_id');

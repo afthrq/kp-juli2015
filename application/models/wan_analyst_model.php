@@ -160,6 +160,8 @@ class Wan_analyst_model extends CI_Model
 		$this->db->select('t_pic.pic_name');
 		$this->db->select('t_nw_site.latitude');
 		$this->db->select('t_nw_site.longitude');
+		$this->db->select('t_pic.phone');
+		$this->db->select('t_pic.phone2');
 		$this->db->where('t_nw_site.site_name',$o_id);
 		$this->db->where('t_nw_service.p_nw_service_id >= "1"');
 		$this->db->where('t_nw_service.p_nw_service_id <= "13"');
