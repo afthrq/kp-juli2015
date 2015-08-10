@@ -61,8 +61,12 @@ class Inputor extends CI_Controller
     }
 
     function data_wan()
-    {        
-        $data['list_permintaan'] = $this->inputor_model->getdatapermintaan();
+    {   
+        $o_id = $this->input->post('order_id');  
+        $data['data_wan'] = $this->inputor_model->getdataupdate($o_id);
+        $data['pic_list'] = $this->inputor_model->getdataupdatepic($o_id);
+        $data['router_list'] = $this->inputor_model->getrouter($o_id);
+        $data['modul_list'] = $this->inputor_model->getmodul($o_id);
         $this->load->view('inputor/data_wan', $data);
     }
 

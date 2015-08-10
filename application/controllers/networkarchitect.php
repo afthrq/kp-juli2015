@@ -345,4 +345,18 @@ class Networkarchitect extends CI_Controller
     	$this->load->view('network_architect/online_billing',$data);
     }
 
+    function data_wan()
+    {   
+        $data['count_vp'] = $this->verifikator_model->getcountvp();
+        $data['count_kp'] = $this->verifikator_model->getcountkp();
+        $data['count_ob'] = $this->verifikator_model->getcountob(); 
+        $o_id = $this->input->post('order_id');
+        $this->load->model('inputor_model');  
+        $data['data_wan'] = $this->inputor_model->getdataupdate($o_id);
+        $data['pic_list'] = $this->inputor_model->getdataupdatepic($o_id);
+        $data['router_list'] = $this->inputor_model->getrouter($o_id);
+        $data['modul_list'] = $this->inputor_model->getmodul($o_id);
+        $this->load->view('network_architect/data_wan', $data);
+    }
+
 }

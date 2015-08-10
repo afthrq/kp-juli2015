@@ -8,6 +8,7 @@
         <meta name="author" content="Ahmad Fathoriq Fauzi and Muhammad Ashari">
         <title>DB WAN</title>
         <link href="<?php echo base_url('assets/css/bootstrap.min.css') ?>" rel="stylesheet">
+        <link href="<?php echo base_url('assets/css/theme.bootstrap.css') ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/css/metisMenu.min.css"') ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/css/sb-admin-2.css') ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/css/font-awesome.min.css') ?>" rel="stylesheet">
@@ -40,26 +41,17 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
-                                <a href="<?php echo base_url() ?>inputor" class="sidebar-active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                              <a href="<?php echo base_url() ?>wananalyst" class="sidebar-active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-edit fa-fw"></i> Permintaan<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="<?php echo base_url() ?>inputor/menu_list_permintaan_br">Permintaan Baru</a>
-                                    </li>
-                                    <li>
-                                        <a href="<?php echo base_url() ?>inputor/menu_list_permintaan">Upgrade WAN</a>
-                                    </li>
-                                    <li>
-                                        <a href="<?php echo base_url() ?>inputor/menu_list_permintaan_rl">Relokasi WAN</a>
-                                    </li>
-                                    <li>
-                                        <a href="<?php echo base_url() ?>inputor/menu_list_permintaan_dm">Dismantle WAN</a>
-                                    </li>
-                                </ul>
-                                <!-- /.nav-second-level -->
+                              <a href="<?php echo base_url() ?>wananalyst/menu_list_permintaan_srv"><i class="fa fa-edit fa-fw"></i> Survey  <span class="badge pull-right"><?php echo $count_srv?></span></a>
+                            </li> 
+                            <li>
+                              <a href="<?php echo base_url() ?>wananalyst/menu_list_permintaan_imp"><i class="fa fa-edit fa-fw"></i> Implementasi  <span class="badge pull-right"><?php echo $count_imp?></span></a>
                             </li>
+                            <li>
+                              <a href="<?php echo base_url() ?>wananalyst/menu_list_permintaan_balo"><i class="fa fa-edit fa-fw"></i> Berita Acara Laik Operasi  <span class="badge pull-right"><?php echo $count_balo?></span></a>
+                            </li>    
                         </ul>
                     </div>
                     <!-- /.sidebar-collapse -->

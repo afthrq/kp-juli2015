@@ -420,4 +420,18 @@ class Wananalyst extends CI_Controller
 
         redirect('networkarchitect','refresh');
     }
+
+    function data_wan()
+    {   
+        $data['count_srv'] = $this->wan_analyst_model->getcountsrv();
+        $data['count_imp'] = $this->wan_analyst_model->getcountimp();
+        $data['count_balo'] = $this->wan_analyst_model->getcountbalo(); 
+        $o_id = $this->input->post('order_id');
+        $this->load->model('inputor_model');  
+        $data['data_wan'] = $this->inputor_model->getdataupdate($o_id);
+        $data['pic_list'] = $this->inputor_model->getdataupdatepic($o_id);
+        $data['router_list'] = $this->inputor_model->getrouter($o_id);
+        $data['modul_list'] = $this->inputor_model->getmodul($o_id);
+        $this->load->view('wan_analyst/data_wan', $data);
+    }
 }

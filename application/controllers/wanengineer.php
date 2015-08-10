@@ -91,7 +91,19 @@ class Wanengineer extends CI_Controller
         $this->wan_engineer_model->dropprocess($detail_id, $tahap);
         $this->wan_engineer_model->reject($detail_id, $prev_id, $reject);
 
-        redirect('networkarchitect','refresh');
+        redirect('wanengineer','refresh');
+    }
+
+    function data_wan()
+    {   
+        $data['count_uat'] = $this->wan_engineer_model->getcountuat(); 
+        $o_id = $this->input->post('order_id');
+        $this->load->model('inputor_model');  
+        $data['data_wan'] = $this->inputor_model->getdataupdate($o_id);
+        $data['pic_list'] = $this->inputor_model->getdataupdatepic($o_id);
+        $data['router_list'] = $this->inputor_model->getrouter($o_id);
+        $data['modul_list'] = $this->inputor_model->getmodul($o_id);
+        $this->load->view('wan_engineer/data_wan', $data);
     }
 
 }

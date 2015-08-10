@@ -66,7 +66,8 @@
                         <h1 class="page-header"><?php echo $this->session->userdata('user_name') ?> Home</h1>
                       </div>
                       <!-- /.col-lg-12 -->
-                    </div><div class="row">
+                    </div>
+                    <div class="row">
                         <div class="col-lg-12">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
@@ -125,6 +126,10 @@
                             <!-- /.panel -->
                         </div>
                     <!-- /.row -->
+                    </div>
+                    <form id="myform" method="POST" action="<?php echo base_url('wananalyst/data_wan')?>">
+                        <input type="hidden" name="order_id" id="id">
+                    </form>
                 </div>
                 <!-- /.container-fluid -->
             </div>
@@ -231,25 +236,25 @@
 
         <script>
             //using double click
-            /*$("#mytable .data").click(function(){
+            $("#mytable .data").click(function(){
                $(this).addClass('selected').siblings().removeClass('selected');    
-               var value=$(this).find('td:nth-child(4)').html();
+               var value=$(this).find('td:nth-child(3)').html();
             });
 
             $("#mytable .data").dblclick(function(){    
-               var value=$(this).find('td:nth-child(4)').html(); 
+               var value=$(this).find('td:nth-child(3)').html(); 
                $('#id').val(value);
                $('#myform').submit();   
-            });*/
+            });
             //using second click
-            $("#mytable .data").one("click",function(e) {
+            /*$("#mytable .data").one("click",function(e) {
                 $(this).addClass('selected').siblings().removeClass('selected');    
                 var value=$(this).find('td:nth-child(3)').html();
                 $(this).one("click",function() {
                     $('#id').val(value);
                     $('#myform').submit();
                 });
-            });
+            });*/
 
         </script>
     </body>
