@@ -21,6 +21,7 @@
                 </div>
                 <!-- /.navbar-header -->
                 <ul class="nav navbar-top-links navbar-right">
+                    <span class="user-name"><?php echo $this->session->userdata('user_name') ?></span>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                             <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
@@ -75,7 +76,7 @@
                         <!-- /.col-lg-12 -->
                     </div>
                     <div class="row">
-                        <div class="col-lg-8">
+                        <div class="col-lg-10">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     Data WAN
@@ -131,7 +132,7 @@
                             </div>
                             <!-- /.panel -->
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-2">
                             <form>
                                 <button class="btn btn-primary" formaction="<?php echo base_url('inputor/form_permintaan')?>"><i class="fa fa-plus"></i>  Permintaan Baru</button>
                             </form>
