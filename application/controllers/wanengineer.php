@@ -16,6 +16,8 @@ class Wanengineer extends CI_Controller
 	function index()
 	{
         $data['count_uat'] = $this->wan_engineer_model->getcountuat();
+        $this->load->model('inputor_model');
+        $data['list_permintaan'] = $this->inputor_model->getdatapermintaan();
     	$this->load->view('wan_engineer/home',$data);
 	}
 

@@ -53,7 +53,8 @@ class Inputor extends CI_Controller
 
     public function index()
     {
-        $this->load->view('inputor/home');
+        $data['list_permintaan'] = $this->inputor_model->getdatapermintaan();
+        $this->load->view('inputor/home', $data);
     }
 
     function data_wan()

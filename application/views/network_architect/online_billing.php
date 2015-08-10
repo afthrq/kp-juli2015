@@ -17,7 +17,7 @@
             <!-- Navigation -->
             <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="<?php print_r($this->session->userdata('user_name')) ?>">Welcome, <?php print_r($this->session->userdata('user_name')) ?>!</a>
+                    <img class="header-logo" src="<?php echo base_url('assets/img/header-pertamina.png') ?>" alt="">
                 </div>
                 <!-- /.navbar-header -->
                 <ul class="nav navbar-top-links navbar-right">
@@ -304,10 +304,23 @@
                             <br>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <div class="input-group">
-                                        <span class="input-group-addon input-permintaan" id="basic-addon1">PIC</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->pic_name ?>" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
-                                    </div>
+                                    <table id="pic" class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <th style="background-color: #EEE;" colspan="3">PIC</th>
+                                        </thead>
+                                        <thead>
+                                          <tr>
+                                            <th width="50%">Nama PIC</th>
+                                            <th width="25%">No. Telepon 1</th>
+                                            <th width="25%">No. Telepon 2</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                            <td><?php echo $row->pic_name ?></td>
+                                            <td><?php echo $row->phone ?></td>
+                                            <td><?php echo $row->phone2 ?></td>
+                                        </tbody>
+                                  </table>
                                 </div>
                             </div>
                             <br><br><br>

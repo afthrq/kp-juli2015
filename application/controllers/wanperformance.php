@@ -16,6 +16,8 @@ class Wanperformance extends CI_Controller
 	function index()
 	{
         $data['count_mon'] = $this->wan_performance_model->getcountmon();
+        $this->load->model('inputor_model');
+        $data['list_permintaan'] = $this->inputor_model->getdatapermintaan();
     	$this->load->view('wan_performance_analyst/home',$data);
 	}
 

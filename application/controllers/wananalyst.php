@@ -20,6 +20,8 @@ class Wananalyst extends CI_Controller
         $data['count_srv'] = $this->wan_analyst_model->getcountsrv();
         $data['count_imp'] = $this->wan_analyst_model->getcountimp();
         $data['count_balo'] = $this->wan_analyst_model->getcountbalo();
+        $this->load->model('inputor_model');
+        $data['list_permintaan'] = $this->inputor_model->getdatapermintaan();
     	$this->load->view('wan_analyst/home',$data);
 	}
 

@@ -18,7 +18,9 @@ class Networkarchitect extends CI_Controller
 	{
         $data['count_vp'] = $this->verifikator_model->getcountvp();
         $data['count_kp'] = $this->verifikator_model->getcountkp();
-        $data['count_ob'] = $this->verifikator_model->getcountob();       
+        $data['count_ob'] = $this->verifikator_model->getcountob();  
+        $this->load->model('inputor_model');
+        $data['list_permintaan'] = $this->inputor_model->getdatapermintaan();     
     	$this->load->view('network_architect/home', $data);
 	}
 
