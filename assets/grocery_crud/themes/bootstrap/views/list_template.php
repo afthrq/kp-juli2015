@@ -55,7 +55,7 @@
 
 </script>
     <br/>
-    <div class="container gc-container">
+    <div class="container gc-container container-full">
         <div class="success-message hidden"><?php
         if($success_message !== null){?>
            <?php echo $success_message; ?> &nbsp; &nbsp;
@@ -72,7 +72,7 @@
                         <i class="fa fa-caret-up"></i>
                     </div>
                     <div class="floatR r5 gc-full-width">
-                        <i class="fa fa-expand"></i>                        
+                        <i class="fa fa-compress"></i>                        
                     </div>                      
                     <div class="clear"></div>
                 </div>

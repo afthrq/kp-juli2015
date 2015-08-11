@@ -20,8 +20,9 @@
 	$this->set_js_lib($this->default_javascript_path.'/jquery_plugins/jquery.noty.js');
 	$this->set_js_config($this->default_javascript_path.'/jquery_plugins/config/jquery.noty.config.js');
 ?>
+<br><br>
 <div class="crud-form" data-unique-hash="<?php echo $unique_hash; ?>">
-    <div class="container">
+    <div class="container container-full">
         <div class="row">
             <div class="col-md-12">
                 <div class="table-label">

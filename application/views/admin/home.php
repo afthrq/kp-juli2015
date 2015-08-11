@@ -11,57 +11,93 @@
         <link href="<?php echo base_url('assets/css/metisMenu.min.css"') ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/css/sb-admin-2.css') ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/css/font-awesome.min.css') ?>" rel="stylesheet">
+        <?php foreach($css_files as $file): ?>
+            <link type="text/css" rel="stylesheet" href="<?php echo $file; ?>" />
+        <?php endforeach; ?>
+        <?php foreach($js_files as $file): ?>
+            <script src="<?php echo $file; ?>"></script>
+        <?php endforeach; ?>
     </head>
-    <body>
+    <body class="admin-body">
         <div id="wrapper">
             <!-- Navigation -->
             <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="<?php echo base_url($this->session->userdata('role')); ?>">Welcome, <?php print_r($this->session->userdata('user_name')) ?>!</a>
+                    <img class="header-logo" src="<?php echo base_url('assets/img/header-pertamina.png') ?>" alt="">
                 </div>
                 <!-- /.navbar-header -->
                 <ul class="nav navbar-top-links navbar-right">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-user">
-                            <li>
-                                <a href="<?php echo base_url(); ?>user/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                            </li>
-                        </ul>
-                        <!-- /.dropdown-user -->
+                    <li>
+                        <a href="<?php echo base_url(); ?>user/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                     </li>
-                    <!-- /.dropdown -->
                 </ul>
                 <!-- /.navbar-top-links -->
                 <div class="navbar-default sidebar" role="navigation">
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
-                                <a href="<?php echo base_url() ?>inputor" class="sidebar-active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                            </li>
+                                <a href="<?php echo base_url() ?>admin" class="sidebar-active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            </li>    
                             <li>
-                                <a href="<?php echo base_url() ?>inputor/data_wan"><i class="fa fa-table fa-fw"></i> Data Jaringan WAN</a>
-                            </li>      
-                            <li>
-                                <a href="#"><i class="fa fa-edit fa-fw"></i> Permintaan<span class="fa arrow"></span></a>
+                                <a href="#"><i class="fa fa-table fa-fw"></i> Parameter Lokasi<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="<?php echo base_url() ?>inputor/menu_list_permintaan_br">Permintaan Baru</a>
+                                        <a href="<?php echo base_url() ?>admin/jenis_lokasi">Jenis Lokasi</a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo base_url() ?>inputor/menu_list_permintaan">Upgrade WAN</a>
+                                        <a href="<?php echo base_url() ?>admin/perusahaan">Perusahaan</a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo base_url() ?>inputor/menu_list_permintaan_rl">Relokasi WAN</a>
+                                        <a href="<?php echo base_url() ?>admin/provinsi">Provinsi</a>
                                     </li>
                                     <li>
-                                        <a href="<?php echo base_url() ?>inputor/menu_list_permintaan_dm">Dismantle WAN</a>
+                                        <a href="<?php echo base_url() ?>admin/region">Region</a>
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>
+                            <li>
+                                <a href="#"><i class="fa fa-table fa-fw"></i> Parameter Layanan<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="<?php echo base_url() ?>admin/provider">Provider</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo base_url() ?>admin/tipe_layanan">Tipe Layanan</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo base_url() ?>admin/layanan">Layanan</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo base_url() ?>admin/paket">Paket Layanan</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo base_url() ?>admin/harga">Harga Layanan</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo base_url() ?>admin/lastmile">Lastmile</a>
+                                    </li>
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-table fa-fw"></i> Parameter Lainnya<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="<?php echo base_url() ?>admin/monitoring">Monitoring</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo base_url() ?>admin/tipe_permintaan">Tipe Permintaan</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo base_url() ?>admin/proses">Proses Permintaan</a>
+                                    </li>
+                                    <li>
+                                        <a href="<?php echo base_url() ?>admin/tipe_dokumen">Tipe Dokumen</a>
+                                    </li>
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>     
                         </ul>
                     </div>
                     <!-- /.sidebar-collapse -->
@@ -73,9 +109,7 @@
                 <div class="container-fluid">
                     <div class="row">
                       <div class="col-lg-12">
-                        <h1 class="page-header"><?php echo $this->session->userdata('user_name') ?> Home</h1>
-                      </div>
-
+                        <?php echo $output; ?>
                       <!-- /.col-lg-12 -->
                     </div>
                     
