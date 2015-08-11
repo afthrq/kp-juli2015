@@ -84,6 +84,9 @@
                     </ul>
                     <div class="tab-content">
                         <div id="sectionA" class="tab-pane fade in active"><br>
+                            <?php foreach ($reject as $row): ?>
+                                <div id="alert" class="alert alert-danger" role="alert"><strong>Proses anda ditolak: </strong><span id="ket_reject"><?php echo $row->ket_reject?></span></div>
+                            <?php endforeach ?>
                             <form method ="POST" action ="<?php echo base_url('inputor/form_relokasi')?>">
                             <?php foreach ($update_list as $row): ?>
                             <input type="hidden" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->no_jar ?>" name ="nojar" readonly style="font-weight: bold !important; background-color: rgb(244, 244, 244) !important;">
@@ -212,7 +215,7 @@
                                     <div class="col-lg-6">
                                         <div class="input-group">
                                             <span class="input-group-addon input-permintaan" id="basic-addon1">Lokasi</span>
-                                            <input type="text" class="form-control" aria-describedby="basic-addon1" name="lokasi">
+                                            <input type="text" class="form-control" aria-describedby="basic-addon1" name="lokasi" value="<?php foreach ($update_list as $row) if (isset($row->site_name)) echo $row->site_name; ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -240,7 +243,7 @@
                                     <div class="col-lg-6">
                                         <div class="input-group">
                                             <span class="input-group-addon input-permintaan" id="basic-addon1">Alamat</span>
-                                            <textarea class="form-control" name="alamat" cols="40" rows="5" id="alamat"></textarea>
+                                            <textarea class="form-control" name="alamat" cols="40" rows="5" id="alamat" ><?php foreach ($update_list as $row) if (isset($row->address)) echo $row->address; ?></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -249,7 +252,7 @@
                                     <div class="col-lg-6">
                                         <div class="input-group">
                                             <span class="input-group-addon input-permintaan" id="basic-addon1">Latitude</span>
-                                            <input type="text" class="form-control" aria-describedby="basic-addon1" name="latitude">
+                                            <input type="text" class="form-control" aria-describedby="basic-addon1" name="latitude" value="<?php foreach ($update_list as $row) if (isset($row->latitude)) echo $row->latitude; ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -258,7 +261,7 @@
                                     <div class="col-lg-6">
                                         <div class="input-group">
                                             <span class="input-group-addon input-permintaan" id="basic-addon1">Longitude</span>
-                                            <input type="text" class="form-control" aria-describedby="basic-addon1" name="longitude">
+                                            <input type="text" class="form-control" aria-describedby="basic-addon1" name="longitude" value="<?php foreach ($update_list as $row) if (isset($row->longitude)) echo $row->longitude; ?>">
                                         </div>
                                     </div>
                                 </div>

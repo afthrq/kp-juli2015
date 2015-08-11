@@ -283,15 +283,15 @@ class Networkarchitect extends CI_Controller
     {
 
         $o_id = $this->input->post('order_id');
-        $doc_id = $this->input->post('doc_id');
         $data['count_vp'] = $this->verifikator_model->getcountvp();
         $data['breadcrumbs'] = $this->verifikator_model->getbreadcrumbs($o_id);
         $data['count_kp'] = $this->verifikator_model->getcountkp();
         $data['count_ob'] = $this->verifikator_model->getcountob(); 
         $data['lokasiid'] = $this->verifikator_model->getlokasiid($o_id);
         $data['data_permintaan'] = $this->verifikator_model->get_data_permintaan($o_id);
+        $data['data_permintaan_pic'] = $this->verifikator_model->get_data_permintaan_pic($o_id);
         $data['list_keterangan'] = $this->verifikator_model->getproses($o_id);
-        $data['dokumenid'] = $this->verifikator_model->getdocname($doc_id);
+        $data['dokumen_list'] = $this->verifikator_model->getdoc();
         $data['reject'] = $this->verifikator_model->get_ket_reject($o_id);
         $this->load->view('network_architect/verifikasi_permintaan', $data);
     }   
@@ -304,6 +304,7 @@ class Networkarchitect extends CI_Controller
         $data['count_kp'] = $this->verifikator_model->getcountkp();
         $data['count_ob'] = $this->verifikator_model->getcountob(); 
         $data['data_permintaan'] = $this->verifikator_model->get_data_permintaan($o_id);
+        $data['data_permintaan_pic'] = $this->verifikator_model->get_data_permintaan_pic($o_id);
         $data['lokasiid'] = $this->verifikator_model->getlokasiid($o_id);
         $data['list_keterangan'] = $this->verifikator_model->getproses($o_id);
         $data['reject'] = $this->verifikator_model->get_ket_reject($o_id);
@@ -322,6 +323,7 @@ class Networkarchitect extends CI_Controller
         $data['lokasiid'] = $this->verifikator_model->getlokasiid($o_id);
         $data['data_permintaan'] = $this->verifikator_model->get_data_permintaan($o_id);
         $data['data_permintaan_ob'] = $this->verifikator_model->get_data_permintaan_ob($o_id);
+        $data['data_permintaan_pic'] = $this->verifikator_model->get_data_permintaan_pic($o_id);
         $data['list_keterangan'] = $this->verifikator_model->getproses($o_id);
         if($service_id == "Pasang Baru")
         {

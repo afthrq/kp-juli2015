@@ -235,7 +235,7 @@
                         <div class="col-lg-6">
                             <div class="input-group">
                                 <span class="input-group-addon input-permintaan" id="basic-addon1">Bandwidth</span>
-                                <input type="text" class="form-control" aria-describedby="basic-addon1" name="update_bw">
+                                <input type="text" class="form-control" aria-describedby="basic-addon1" name="update_bw" value="<?php foreach ($update_list as $row) if (isset($row->bw)) echo $row->bw; ?>" >
                             </div>
                         </div>
                     </div>

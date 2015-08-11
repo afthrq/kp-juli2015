@@ -48,10 +48,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = '127.0.0.1';
-$db['default']['username'] = 'root';
-$db['default']['password'] = '';
-$db['default']['database'] = 'kp_2015';
+$db['default']['hostname'] = '10.1.34.34';
+$db['default']['username'] = 'sim_wan_ptmn';
+$db['default']['password'] = 'w3rkudor0!';
+$db['default']['database'] = 'db_wan_ptmn';
 
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';

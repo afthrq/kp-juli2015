@@ -138,12 +138,9 @@
                                         <div class="input-group">
                                             <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:163px">Tipe Dokumen</span>
                                             <select name="tipe_dokumen" class="form-control">
-                                                <option value="1">Form Permintaan</option>
-                                                <option value="2">Memo</option>
-                                                <option value="3">Nota Pengantar</option>
-                                                <option value="4">BALO</option>
-                                                <option value="5">Form UAT</option>
-                                                <option value="6">Lain - Lain</option>
+                                                <?php foreach($dokumen_list as $row): ?>
+                                                    <option value="<?php echo $row->p_doc_type_id?>"><?php echo $row->name?></option>
+                                                <?php endforeach?>
                                             </select>
                                        </div>
                                    </div>
@@ -265,7 +262,7 @@
                                           </tr>
                                         </thead>
                                         <tbody>
-                                        <?php foreach ($data_permintaan as $row): ?>
+                                        <?php foreach ($data_permintaan_pic as $row): ?>
                                         <tr>
                                             <td><?php echo $row->pic_name ?></td>
                                             <td><?php echo $row->phone ?></td>

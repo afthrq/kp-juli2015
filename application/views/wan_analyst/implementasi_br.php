@@ -93,11 +93,12 @@
                                 <div id="alert" class="alert alert-danger" role="alert"><strong>Proses anda ditolak: </strong><span id="ket_reject"><?php echo $row->ket_reject?></span></div>
                             <?php endforeach ?>
                             <form method="POST" action="<?php echo base_url('wananalyst/insertdatainstalasi')?>">
+
                             <div class="row">
                                 <div class=" col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-instalasi" id="basic-addon1">IP WAN</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="ipwan">
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="ipwan" value="<?php foreach ($reject_list as $row) if (isset($row->ip_wan)) echo $row->ip_wan; ?>">
                                     </div>
                                 </div>
                             </div>
@@ -106,7 +107,7 @@
                                 <div class=" col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-instalasi" id="basic-addon1">Netmask WAN</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="netmaskwan">
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="netmaskwan" value="<?php foreach ($reject_list as $row) if (isset($row->netmask_wan)) echo $row->netmask_wan; ?>">
                                     </div>
                                 </div>
                             </div>
@@ -115,7 +116,7 @@
                                 <div class=" col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-instalasi" id="basic-addon1">IP LAN</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="iplan">
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="iplan" value="<?php foreach ($reject_list as $row) if (isset($row->ip_lan)) echo $row->ip_lan; ?>">
                                     </div>
                                 </div>
                             </div>
@@ -124,7 +125,7 @@
                                 <div class=" col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-instalasi" id="basic-addon1">Netmask LAN</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="netmasklan">
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="netmasklan" value="<?php foreach ($reject_list as $row) if (isset($row->netmask_lan)) echo $row->netmask_lan; ?>">
                                     </div>
                                 </div>
                             </div>
@@ -133,7 +134,7 @@
                                 <div class=" col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-instalasi" id="basic-addon1">IP Loop</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="iploop">
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="iploop" value="<?php foreach ($reject_list as $row) if (isset($row->ip_loop)) echo $row->ip_loop; ?>">
                                     </div>
                                 </div>
                             </div>
@@ -142,7 +143,7 @@
                                 <div class=" col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-instalasi" id="basic-addon1">No. Jaringan</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="nojar">
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="nojar" value="<?php foreach ($reject_list as $row) if (isset($row->no_jar)) echo $row->no_jar; ?>">
                                     </div>
                                 </div>
                             </div>
@@ -151,7 +152,7 @@
                                 <div class=" col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-instalasi" id="basic-addon1">ASN</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="asn">
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="asn" value="<?php foreach ($reject_list as $row) if (isset($row->asn)) echo $row->asn; ?>">
                                     </div>
                                 </div>
                             </div>
@@ -189,7 +190,7 @@
                                 <div class=" col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-instalasi" id="basic-addon1">SLA (%)</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="sla">
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="sla" value="<?php foreach ($reject_list as $row) if (isset($row->sla)) echo $row->sla; ?>">
                                     </div>
                                 </div>
                             </div>
@@ -198,7 +199,7 @@
                                 <div class=" col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-instalasi" id="basic-addon1">Hostname</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="hostname">
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="hostname" value="<?php foreach ($reject_list as $row) if (isset($row->hostname)) echo $row->hostname; ?>">
                                     </div>
                                 </div>
                             </div>
@@ -226,12 +227,9 @@
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:163px">Tipe Dokumen</span>
                                         <select name="tipe_dokumen" class="form-control">
-                                            <option value="1">Form Permintaan</option>
-                                            <option value="2">Memo</option>
-                                            <option value="3">Nota Pengantar</option>
-                                            <option value="4">BALO</option>
-                                            <option value="5">Form UAT</option>
-                                            <option value="6">Lain - Lain</option>
+                                            <?php foreach($dokumen_list as $row): ?>
+                                                <option value="<?php echo $row->p_doc_type_id?>"><?php echo $row->name?></option>
+                                            <?php endforeach?>
                                         </select>
                                    </div>
                                </div>
@@ -358,7 +356,7 @@
                                           </tr>
                                         </thead>
                                         <tbody>
-                                        <?php foreach ($data_permintaan as $row): ?>
+                                        <?php foreach ($data_permintaan_pic as $row): ?>
                                         <tr>
                                             <td><?php echo $row->pic_name ?></td>
                                             <td><?php echo $row->phone ?></td>

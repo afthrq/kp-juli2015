@@ -34,6 +34,7 @@ class Wananalyst extends CI_Controller
         $data['count_imp'] = $this->wan_analyst_model->getcountimp();
         $data['count_balo'] = $this->wan_analyst_model->getcountbalo();
         $data['data_permintaan'] = $this->wan_analyst_model->get_data_permintaan($order_id);
+        $data['data_permintaan_pic'] = $this->wan_analyst_model->get_data_permintaan_pic($order_id);
         $data['lokasiid'] = $this->wan_analyst_model->getlokasiid($order_id);
         $data['list_keterangan'] = $this->wan_analyst_model->getproses($order_id); 
         $data['reject'] = $this->wan_analyst_model->get_ket_reject($order_id);
@@ -44,6 +45,7 @@ class Wananalyst extends CI_Controller
         
         if ($service_id == "Pasang Baru")
         {
+            $data['reject_list'] = $this->wan_analyst_model->getdatalama($order_id);
             $data['update_list'] = $this->wan_analyst_model->getdatabaru($order_id);
             $data['lastmile_list'] = $this->wan_analyst_model->getlastmile();
             $this->load->view('wan_analyst/implementasi_br',$data);
@@ -79,6 +81,7 @@ class Wananalyst extends CI_Controller
         $data['count_balo'] = $this->wan_analyst_model->getcountbalo();
         $data['balo_list'] = $this->wan_analyst_model->getdataupdate($o_id);
         $data['data_permintaan'] = $this->wan_analyst_model->get_data_permintaan($o_id);
+        $data['data_permintaan_pic'] = $this->wan_analyst_model->get_data_permintaan_pic($o_id);
         $data['lokasiid'] = $this->wan_analyst_model->getlokasiid($o_id);
         $data['list_keterangan'] = $this->wan_analyst_model->getproses($o_id); 
         $data['reject'] = $this->wan_analyst_model->get_ket_reject($o_id);
@@ -93,6 +96,7 @@ class Wananalyst extends CI_Controller
         $data['count_imp'] = $this->wan_analyst_model->getcountimp();
         $data['count_balo'] = $this->wan_analyst_model->getcountbalo();
         $data['data_permintaan'] = $this->wan_analyst_model->get_data_permintaan($o_id);
+        $data['data_permintaan_pic'] = $this->wan_analyst_model->get_data_permintaan_pic($o_id);
         $data['lokasiid'] = $this->wan_analyst_model->getlokasiid($o_id);
         $data['list_keterangan'] = $this->wan_analyst_model->getproses($o_id);
         $data['reject'] = $this->wan_analyst_model->get_ket_reject($o_id);

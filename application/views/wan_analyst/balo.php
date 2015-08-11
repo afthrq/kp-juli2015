@@ -275,7 +275,7 @@
                                           </tr>
                                         </thead>
                                         <tbody>
-                                        <?php foreach ($data_permintaan as $row): ?>
+                                        <?php foreach ($data_permintaan_pic as $row): ?>
                                         <tr>
                                             <td><?php echo $row->pic_name ?></td>
                                             <td><?php echo $row->phone ?></td>

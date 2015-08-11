@@ -38,6 +38,7 @@ class Wanperformance extends CI_Controller
         $data['monitoring_list'] = $this->wan_performance_model->getdatamonitoring();
         $data['lokasiid'] = $this->wan_performance_model->getlokasiid($o_id);
         $data['data_permintaan'] = $this->wan_performance_model->get_data_permintaan($o_id);
+        $data['data_permintaan_pic'] = $this->wan_performance_model->get_data_permintaan_pic($o_id);
         $data['list_keterangan'] = $this->wan_performance_model->getproses($o_id);
         $data['reject'] = $this->wan_performance_model->get_ket_reject($o_id);
         $this->load->view('wan_performance_analyst/monitoring', $data);
@@ -49,6 +50,12 @@ class Wanperformance extends CI_Controller
         $cek_lokasi = array ('site_name' => $lokasi);
         $site_id = $this->wan_performance_model->getsiteid($cek_lokasi);
         $order_id = $this->wan_performance_model->getorderid($site_id);
+        $monitoring = $this->wan_performance_model->countmon($order_id);
+        if(isset($monitoring))
+        {
+            $this->wan_performance_model->dropmon($order_id);
+        }
+        
         if(isset($_POST['submit']))
         {
             if(isset($_POST['monitoring']))

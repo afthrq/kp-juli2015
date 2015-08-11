@@ -160,6 +160,7 @@ class Inputor_model extends CI_Model
 
     public function get_pic($pic)
     {
+    	$this->db->distinct();
         $this->db->select('pic_name');
         $this->db->like('pic_name', $pic);
            $query = $this->db->get('t_pic');
@@ -350,6 +351,14 @@ class Inputor_model extends CI_Model
       return $query->result();  
   	}
 
+  	function cekketreject($o_id)
+  	{
+  		$this->db->where('t_nw_site.site_name', $o_id);
+  		$this->db->where('t_nw_site.t_nw_site_id = t_unrec_process.t_nw_site_id');
+  		$query = $this->db->get('t_nw_site, t_unrec_process');
+  		return $query->row_array();
+  	}
+
 	function getdatapermintaan()
 	{
 		//$this->db->select('t_nw_site.site_name');
@@ -424,6 +433,33 @@ class Inputor_model extends CI_Model
     	return $query->result();
   	}
 
+  	public function getdatarelokasi($o_id)
+  	{
+    	//$this->db->select('t_nw_site.t_nw_site_id');
+  		//$this->db->select('t_nw_site.site_name');
+		//$this->db->select('p_site_type.type_name');
+		//$this->db->select('company.company_name');
+		//$this->db->select('t_nw_site.address');
+		//$this->db->select('p_region.region_name');
+		//$this->db->select('provinsi.provinsi_name');
+		//$this->db->select('t_pic.pic_name');
+		$this->db->where('t_nw_site.site_name',$o_id);
+		$this->db->where('p_nw_service.p_serv_type_id = "1"');
+		$this->db->where('t_nw_service.p_nw_service_id = p_nw_service.p_nw_service_id');
+		$this->db->where('t_nw_site.t_nw_site_id = t_network_order.t_nw_site_id');
+		$this->db->where('p_site_type.p_site_type_id = t_nw_site.p_site_type_id');
+		$this->db->where('p_nw_service.p_nw_service_id = t_nw_service.p_nw_service_id');
+		$this->db->where('t_nw_service.t_network_order_id = t_network_order.t_network_order_id');
+		$this->db->where('t_network_order.t_nw_site_id = t_nw_site.t_nw_site_id');
+		$this->db->where('p_service.p_service_id = p_nw_service.p_service_id');
+		$this->db->where('company.company_id = p_region.company_id');
+		$this->db->where('t_nw_site.p_region_id = p_region.p_region_id');
+		$this->db->where('provinsi.provinsi_id = t_nw_site.provinsi_id');
+		$this->db->where('t_network_order.provider_id = provider.provider_id');
+		$query = $this->db->get('provider,t_nw_service,t_nw_site,t_network_order,p_site_type,p_nw_service,p_service,company,p_region,provinsi');
+    	return $query->result();
+  	}
+
   	public function getdataupdatepic($o_id)
   	{
     	//$this->db->select('t_nw_site.t_nw_site_id');
@@ -450,6 +486,40 @@ class Inputor_model extends CI_Model
 		$this->db->where('provinsi.provinsi_id = t_nw_site.provinsi_id');
 		$this->db->where('t_network.provider_id = provider.provider_id');
 		$query = $this->db->get('provider,t_nw_service_fix,t_nw_site,t_network,p_site_type,p_nw_service,p_service,company,p_region,t_pic,provinsi,t_nw_site_pic');
+    	return $query->result();
+  	}
+
+  	public function getdatarelokasipic($o_id)
+  	{
+    	//$this->db->select('t_nw_site.t_nw_site_id');
+  		//$this->db->select('t_nw_site.site_name');
+		//$this->db->select('p_site_type.type_name');
+		//$this->db->select('company.company_name');
+		//$this->db->select('t_nw_site.address');
+		//$this->db->select('p_region.region_name');
+		//$this->db->select('provinsi.provinsi_name');
+		//$this->db->select('t_pic.pic_name');
+		$this->db->select('t_pic.pic_name');
+		$this->db->select('t_pic.phone');
+		$this->db->select('t_pic.phone2');
+		$this->db->where('t_nw_site.site_name',$o_id);
+		$this->db->where('p_nw_service.p_serv_type_id = "1"');
+		$this->db->where('t_nw_service.p_nw_service_id = p_nw_service.p_nw_service_id');
+		$this->db->where('t_nw_site.t_nw_site_id = t_unrec_process.t_nw_site_id');
+		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
+		$this->db->where('t_detail_network_order.t_detail_network_order_id = t_network_order.t_detail_network_order_id');
+		$this->db->where('p_site_type.p_site_type_id = t_nw_site.p_site_type_id');
+		$this->db->where('p_nw_service.p_nw_service_id = t_nw_service.p_nw_service_id');
+		$this->db->where('t_nw_service.t_network_order_id = t_network_order.t_network_order_id');
+		$this->db->where('t_network_order.t_nw_site_id = t_nw_site.t_nw_site_id');
+		$this->db->where('p_service.p_service_id = p_nw_service.p_service_id');
+		$this->db->where('t_pic.t_pic_id = t_nw_site_pic.t_pic_id');
+		$this->db->where('t_nw_site_pic.t_nw_site_id = t_nw_site.t_nw_site_id');
+		$this->db->where('company.company_id = p_region.company_id');
+		$this->db->where('t_nw_site.p_region_id = p_region.p_region_id');
+		$this->db->where('provinsi.provinsi_id = t_nw_site.provinsi_id');
+		$this->db->where('t_network_order.provider_id = provider.provider_id');
+		$query = $this->db->get('t_detail_network_order,t_unrec_process,provider,t_nw_service,t_nw_site,t_network_order,p_site_type,p_nw_service,p_service,company,p_region,t_pic,provinsi,t_nw_site_pic');
     	return $query->result();
   	}
 
@@ -520,14 +590,17 @@ class Inputor_model extends CI_Model
   	}
 
 
-  	public function getorderupid ($getnworderid)
+  	public function insertorder($getnworderid)
   	{
 		$this->db->insert('t_network_order',$getnworderid);
-		$id = $this->db->insert_id();
-		$this->db->where('t_network_order_id',$id);
-		$query = $this->db->get("t_network_order");
-		return $query->row()->t_network_order_id;
   	}
+
+    public function getorder($serv_type_id)
+    {
+    	$this->db->where('t_network_order.t_detail_network_order_id',$serv_type_id);
+    	$query = $this->db->get('t_network_order');
+    	return $query->row()->t_network_order_id;
+    }
 
  	public function setbw ($updateorder,$bw_up)
   	{
@@ -705,7 +778,36 @@ class Inputor_model extends CI_Model
 	{
 		$this->db->insert('t_nw_service',$in_serv);
 		$this->db->insert('t_nw_site_pic',$in_pic_site);
+	}
+
+	function getoldpic($oldsite)
+	{
+		$this->db->select('t_nw_site_pic.t_pic_id');
+		$this->db->where('t_nw_site_pic.t_nw_site_id',$oldsite);
+		$query = $this->db->get('t_nw_site_pic');
+		return $query->result_array();
 	} 
+
+	function cekketrejectform($oldsite)
+  	{
+  		$this->db->where('t_nw_site.t_nw_site_id', $oldsite);
+  		$this->db->where('t_nw_site.t_nw_site_id = t_unrec_process.t_nw_site_id');
+  		$query = $this->db->get('t_nw_site, t_unrec_process');
+  		return $query->row_array();
+  	}
+
+	function dropsite($oldsite)
+	{
+		$this->db->where('t_nw_site.t_nw_site_id',$oldsite);
+		$this->db->delete('t_nw_site');
+	}
+
+	function dropdetailnw($site_id)
+	{
+		$this->db->where('t_unrec_process.t_nw_site_id',$site_id);
+		$this->db->where('t_unrec_process.t_detail_network_order_id = t_detail_network_order.t_detail_network_order_id');
+		$this->db->delete('t_detail_network_order');
+	}
 
 	function inputlokasi($lokasi)
 	{

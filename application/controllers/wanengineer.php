@@ -74,6 +74,7 @@ class Wanengineer extends CI_Controller
         $data['count_uat'] = $this->wan_engineer_model->getcountuat();
         $data['lokasiid'] = $this->wan_engineer_model->getlokasiid($o_id);
         $data['data_permintaan'] = $this->wan_engineer_model->get_data_permintaan($o_id);
+        $data['data_permintaan_pic'] = $this->wan_engineer_model->get_data_permintaan_pic($o_id);
         $data['list_keterangan'] = $this->wan_engineer_model->getproses($o_id);
         $data['reject'] = $this->wan_engineer_model->get_ket_reject($o_id);
         $this->load->view('wan_engineer/uat',$data);

@@ -99,11 +99,11 @@
                                             </thead>
                                             <tbody>
                                                 <?php $count = 0; foreach ($list_permintaan as $row) : $count++;?>
-                                                    <form method="POST" action="<?php echo base_url('inputor/permintaan_reject')?>">
+                                                    <form method="POST" action="<?php echo base_url('inputor/rejected')?>">
                                                     <tr>
                                                         <?php if ($row->p_process_id == 1): ?>
-                                                            <?php if ($row->ord_name == "Pasang Baru"): ?>
-                                                                <input type="hidden" name="order_id" value="<?php echo $row->site_name ?>">  
+                                                                <input type="hidden" name="order_id" value="<?php echo $row->site_name ?>"> 
+                                                                <input type="hidden" name="ord_name" value="<?php echo $row->ord_name?>">
                                                                 <td><?php echo $count?></td>
                                                                 <td><input type="submit" value="<?php echo $row->company_name?>" class="btn btn-default btn-table"></td>
                                                                 <td><input type="submit" value="<?php echo $row->type_name?>" class="btn btn-default btn-table"></td>
@@ -112,7 +112,6 @@
                                                                 <td><input type="submit" value="<?php echo $row->bw ?>" class="btn btn-default btn-table"></td>
                                                                 <td><input type="submit" value="<?php echo "Rejected ("; echo $row->ket_reject; echo")" ?>" class="btn btn-default btn-table"></td>
                                                                 <td><input type="submit" value="<?php echo $row->ord_name ?>" class="btn btn-default btn-table"></td>
-                                                            <?php endif?>
                                                         <?php else: ?>
                                                             <td><?php echo $count?></td>
                                                             <td><?php echo $row->company_name?></td>
