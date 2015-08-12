@@ -132,13 +132,10 @@
                                         <div class="input-group">
                                             <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:163px">Tipe Dokumen</span>
                                             <select name="tipe_dokumen" class="form-control">
-                                                <option value="1">Form Permintaan</option>
-                                                <option value="2">Memo</option>
-                                                <option value="3">Nota Pengantar</option>
-                                                <option value="4">BALO</option>
-                                                <option value="5">Form UAT</option>
-                                                <option value="6">Lain - Lain</option>
-                                            </select>
+                                            <?php foreach($dokumen_list as $row): ?>
+                                                <option value="<?php echo $row->p_doc_type_id?>"><?php echo $row->name?></option>
+                                            <?php endforeach?>
+                                        </select>
                                        </div>
                                    </div>
                                 </div>
@@ -319,18 +316,20 @@
                                                         <tr>
                                                             <th>#</th>
                                                             <th>Proses</th>
-                                                            <th>Keterangan</th>
+                                                            <th>Closed Date</th>
                                                             <th>Closed By</th>
+                                                            <th>Keterangan</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <?php $count = 0; foreach ($list_keterangan as $row) : $count++;?>
                                                             <tr>
-                                                            <?php if ($row->name != "Monitoring"): ?>
+                                                            <?php if ($row->name != "Verifikasi Permintaan"): ?>
                                                               <td><?php echo $count?></td>
                                                               <td><?php echo $row->name?></td>
-                                                              <td><?php echo $row->keterangan?></td>
+                                                              <td><?php echo $row->valid_to?></td>
                                                               <td><?php echo $row->closed_by?></td>
+                                                              <td><?php echo $row->keterangan?></td>
                                                             <?php endif ?>
                                                             </tr>
                                                         <?php endforeach ?>

@@ -305,6 +305,37 @@
                                     </div>
                                 </div>
                             </div>
+                            <br><br>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:163px">Judul Dokumen</span>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="caption">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:163px">Tipe Dokumen</span>
+                                        <select name="tipe_dokumen" class="form-control">
+                                            <?php foreach($dokumen_list as $row): ?>
+                                                <option value="<?php echo $row->p_doc_type_id?>"><?php echo $row->name?></option>
+                                            <?php endforeach?>
+                                        </select>
+                                   </div>
+                               </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div><input type="file" id="userfile" /></div>
+                                    <div class="uploadify-queue" id="file-queue"></div>
+                                    <input type="submit" value="Upload" class="btn btn-default btn-primary" id="upload-btn">
+                                    <input type="hidden" class="form-control" aria-describedby="basic-addon1" id="path" name="path">
+                                </div>
+                            </div>
                             </form>
                             <br><br>
                             <div class="row">
@@ -654,6 +685,50 @@
                 },
             });
         }
+        </script>
+
+        <script src="<?php echo base_url('assets/js/lib/jquery.uploadify.min.js') ?>"></script>
+        <script type='text/javascript' >
+        $(function() {
+
+            $('#upload-btn').click(function (e) {
+                e.preventDefault();
+            $('#userfile').uploadify('upload', '*');
+            });
+
+            $('#userfile').uploadify({
+                'debug'   : false,
+                'swf'   : '<?php echo base_url() ?>assets/js/lib/uploadify.swf',
+                'uploader'  : '<?php echo base_url('upload/uploadify')?>',
+                'cancelImage' : '<?php echo base_url() ?>assets/js/lib/uploadify-cancel.png',
+                'queueID'  : 'file-queue',
+                'buttonClass'  : 'btn btn-default up-btn',
+                'buttonText' : "Pilih Dokumen",
+                'multi'   : false,
+                'auto'   : false,
+                
+                'fileTypeExts':'*.pdf;*.doc;*.docx',
+                'fileTypeDesc':'Image Files (.pdf,.doc,.docx,)',
+                'method'  : 'post',
+                'fileObjName' : 'userfile',
+                'queueSizeLimit': 1,
+                'simUploadLimit': 1,
+                'sizeLimit'  : 10240000,
+                'removeCompleted' : false,
+                'onUploadSuccess' : function(file, data, response) {
+                var json = jQuery.parseJSON(data);
+                alert('File bernama ' + file.name + ' telah berhasil di upload dengan nama ' + ': ' + json.file_name);
+                $("#path").attr('value',json.file_name);
+                },
+                /*'onUploadComplete' : function(file) {
+                alert('The file ' + file.name + ' finished processing.');
+                },*/
+                'onQueueFull': function(event, queueSizeLimit) {
+                alert("Please don't put anymore files in me! You can upload " + queueSizeLimit + " files at once");
+                return false;
+                },
+            });
+        });
         </script>
     </body>
 </html>

@@ -110,7 +110,7 @@
                                     <div class="col-lg-6">
                                         <div class="input-group">
                                             <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:163px">Tanggal Permintaan</span>
-                                            <input type="date" class="form-control" aria-describedby="basic-addon1" name="tanggal_permintaan">
+                                            <input type="date" max="<?php echo date("Y-m-d") ?>" class="form-control" aria-describedby="basic-addon1" name="tanggal_permintaan">
                                         </div>
                                     </div>
                                 </div>
@@ -323,8 +323,9 @@
                                                         <tr>
                                                             <th>#</th>
                                                             <th>Proses</th>
-                                                            <th>Keterangan</th>
+                                                            <th>Closed Date</th>
                                                             <th>Closed By</th>
+                                                            <th>Keterangan</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -333,8 +334,9 @@
                                                             <?php if ($row->name != "Verifikasi Permintaan"): ?>
                                                               <td><?php echo $count?></td>
                                                               <td><?php echo $row->name?></td>
-                                                              <td><?php echo $row->keterangan?></td>
+                                                              <td><?php echo $row->valid_to?></td>
                                                               <td><?php echo $row->closed_by?></td>
+                                                              <td><?php echo $row->keterangan?></td>
                                                             <?php endif ?>
                                                             </tr>
                                                         <?php endforeach ?>

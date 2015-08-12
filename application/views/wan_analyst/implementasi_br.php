@@ -142,15 +142,6 @@
                             <div class="row">
                                 <div class=" col-lg-6">
                                     <div class="input-group">
-                                        <span class="input-group-addon input-instalasi" id="basic-addon1">No. Jaringan</span>
-                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="nojar" value="<?php foreach ($reject_list as $row) if (isset($row->no_jar)) echo $row->no_jar; ?>">
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class=" col-lg-6">
-                                    <div class="input-group">
                                         <span class="input-group-addon input-instalasi" id="basic-addon1">ASN</span>
                                         <input type="text" class="form-control" aria-describedby="basic-addon1" name="asn" value="<?php foreach ($reject_list as $row) if (isset($row->asn)) echo $row->asn; ?>">
                                     </div>
@@ -417,18 +408,20 @@
                                                         <tr>
                                                             <th>#</th>
                                                             <th>Proses</th>
-                                                            <th>Keterangan</th>
+                                                            <th>Closed Date</th>
                                                             <th>Closed By</th>
+                                                            <th>Keterangan</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <?php $count = 0; foreach ($list_keterangan as $row) : $count++;?>
                                                             <tr>
-                                                            <?php if ($row->name != "Implementasi"): ?>
+                                                            <?php if ($row->name != "Verifikasi Permintaan"): ?>
                                                               <td><?php echo $count?></td>
                                                               <td><?php echo $row->name?></td>
-                                                              <td><?php echo $row->keterangan?></td>
+                                                              <td><?php echo $row->valid_to?></td>
                                                               <td><?php echo $row->closed_by?></td>
+                                                              <td><?php echo $row->keterangan?></td>
                                                             <?php endif ?>
                                                             </tr>
                                                         <?php endforeach ?>

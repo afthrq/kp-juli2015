@@ -303,6 +303,7 @@ class Networkarchitect extends CI_Controller
         $data['count_vp'] = $this->verifikator_model->getcountvp();
         $data['count_kp'] = $this->verifikator_model->getcountkp();
         $data['count_ob'] = $this->verifikator_model->getcountob(); 
+        $data['dokumen_list'] = $this->verifikator_model->getdoc();
         $data['data_permintaan'] = $this->verifikator_model->get_data_permintaan($o_id);
         $data['data_permintaan_pic'] = $this->verifikator_model->get_data_permintaan_pic($o_id);
         $data['lokasiid'] = $this->verifikator_model->getlokasiid($o_id);
@@ -321,6 +322,7 @@ class Networkarchitect extends CI_Controller
         $data['count_ob'] = $this->verifikator_model->getcountob(); 
         $data['sitenserviceid'] = $this->pm_model->getsitenserviceid($o_id);
         $data['lokasiid'] = $this->verifikator_model->getlokasiid($o_id);
+        $data['dokumen_list'] = $this->verifikator_model->getdoc();
         $data['data_permintaan'] = $this->verifikator_model->get_data_permintaan($o_id);
         $data['data_permintaan_ob'] = $this->verifikator_model->get_data_permintaan_ob($o_id);
         $data['data_permintaan_pic'] = $this->verifikator_model->get_data_permintaan_pic($o_id);

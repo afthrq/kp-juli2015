@@ -31,7 +31,8 @@ class Wanperformance extends CI_Controller
     function monitoring()
     {        
         $o_id = $this->input->post('order_id');        
-
+        $this->load->model('verifikator_model');
+        $data['dokumen_list'] = $this->verifikator_model->getdoc();
         $data['count_mon'] = $this->wan_performance_model->getcountmon();
         $data['breadcrumbs'] = $this->wan_performance_model->getbreadcrumbs($o_id);
         $data['count_uat'] = $this->wan_performance_model->getcountmon();

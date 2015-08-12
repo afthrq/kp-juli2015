@@ -119,7 +119,7 @@
                                     <div class="col-lg-6">
                                         <div class="input-group">
                                             <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:162px">Tanggal Aktivasi</span>
-                                            <input type="date" class="form-control" aria-describedby="basic-addon1" name="tglaktivasi">
+                                            <input type="date" max="<?php echo date("Y-m-d") ?>" class="form-control" aria-describedby="basic-addon1" name="tglaktivasi">
                                         </div>
                                     </div>
                                 </div>
@@ -148,12 +148,9 @@
                                         <div class="input-group">
                                             <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:163px">Tipe Dokumen</span>
                                             <select name="tipe_dokumen" class="form-control">
-                                                <option value="1">Form Permintaan</option>
-                                                <option value="2">Memo</option>
-                                                <option value="3">Nota Pengantar</option>
-                                                <option value="4">BALO</option>
-                                                <option value="5">Form UAT</option>
-                                                <option value="6">Lain - Lain</option>
+                                                <?php foreach($dokumen_list as $row): ?>
+                                                    <option value="<?php echo $row->p_doc_type_id?>"><?php echo $row->name?></option>
+                                                <?php endforeach?>
                                             </select>
                                        </div>
                                    </div>
@@ -336,18 +333,20 @@
                                                         <tr>
                                                             <th>#</th>
                                                             <th>Proses</th>
-                                                            <th>Keterangan</th>
+                                                            <th>Closed Date</th>
                                                             <th>Closed By</th>
+                                                            <th>Keterangan</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <?php $count = 0; foreach ($list_keterangan as $row) : $count++;?>
                                                             <tr>
-                                                            <?php if ($row->name != "BALO"): ?>
+                                                            <?php if ($row->name != "Verifikasi Permintaan"): ?>
                                                               <td><?php echo $count?></td>
                                                               <td><?php echo $row->name?></td>
-                                                              <td><?php echo $row->keterangan?></td>
+                                                              <td><?php echo $row->valid_to?></td>
                                                               <td><?php echo $row->closed_by?></td>
+                                                              <td><?php echo $row->keterangan?></td>
                                                             <?php endif ?>
                                                             </tr>
                                                         <?php endforeach ?>

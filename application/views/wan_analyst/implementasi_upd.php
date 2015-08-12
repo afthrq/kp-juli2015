@@ -357,18 +357,20 @@
                                                         <tr>
                                                             <th>#</th>
                                                             <th>Proses</th>
-                                                            <th>Keterangan</th>
+                                                            <th>Closed Date</th>
                                                             <th>Closed By</th>
+                                                            <th>Keterangan</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <?php $count = 0; foreach ($list_keterangan as $row) : $count++;?>
                                                             <tr>
-                                                            <?php if ($row->name != "Implementasi"): ?>
+                                                            <?php if ($row->name != "Verifikasi Permintaan"): ?>
                                                               <td><?php echo $count?></td>
                                                               <td><?php echo $row->name?></td>
-                                                              <td><?php echo $row->keterangan?></td>
+                                                              <td><?php echo $row->valid_to?></td>
                                                               <td><?php echo $row->closed_by?></td>
+                                                              <td><?php echo $row->keterangan?></td>
                                                             <?php endif ?>
                                                             </tr>
                                                         <?php endforeach ?>

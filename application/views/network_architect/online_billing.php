@@ -93,7 +93,16 @@
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:162px">Tanggal Tagih</span>
-                                        <input type="date" class="form-control" aria-describedby="basic-addon1" name="tgltagih">
+                                        <input type="date" max="<?php echo date("Y-m-d") ?>" class="form-control" aria-describedby="basic-addon1" name="tgltagih">
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class=" col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-instalasi" id="basic-addon1" style="min-width:162px">No. Jaringan</span>
+                                        <input type="text" class="form-control" aria-describedby="basic-addon1" name="nojar" value="">
                                     </div>
                                 </div>
                             </div>
@@ -102,10 +111,8 @@
                                 if ($row->p_order_type_id == 1 || $row->p_order_type_id == 2 || $row->p_order_type_id == 4 || $row->p_order_type_id == 5): ?>
 
                                     <div class="row">
-                                        <div class="col-lg-2">
-                                            <h4>Biaya Instalasi</h4>
-                                        </div>
                                         <div class="col-lg-6">
+                                            <label>Biaya Instalasi</label>
                                             <div class="input-group">
                                                 <?php foreach ($price_link as $row): ?>
                                                 <span class="input-group-addon" id="basic-addon1">Rp</span>
@@ -122,10 +129,8 @@
                                 if ($row->p_order_type_id == 1 || $row->p_order_type_id == 3): ?>
                                     <?php foreach ($price_router as $row): ?>
                                     <div class="row">
-                                        <div class="col-lg-2">
-                                            <h4>Biaya Router</h4>
-                                        </div>
                                         <div class="col-lg-6">
+                                            <label>Biaya Router</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon" id="basic-addon1">Rp</span>
                                                 <input type="number" class="form-control" aria-describedby="basic-addon1" value="<?php echo $row->price_otc?>" readonly>
@@ -139,10 +144,8 @@
                             <?php foreach ($data_permintaan_ob as $row): 
                                 if ($row->p_order_type_id == 1 || $row->p_order_type_id == 3): ?>
                                     <div class="row">
-                                        <div class="col-lg-2">
-                                            <h4>Biaya Module</h4>
-                                        </div>
                                         <div class="col-lg-6">
+                                            <label>Biaya Module</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon" id="basic-addon1">Rp</span>
                                                 <input type="number" class="form-control" aria-describedby="basic-addon1" value="<?php echo $price_module?>" readonly>
@@ -160,10 +163,8 @@
                             <?php endforeach ?>
                             <input type="hidden" name="tahap" value="9"></input>
                                 <div class="row">
-                                    <div class="col-lg-2">
-                                        <h4>Biaya Lain-Lain</h4>
-                                    </div>
                                     <div class="col-lg-6">
+                                            <label>Biaya Lain-lain</label>
                                         <div class="input-group">
                                             <span class="input-group-addon" id="basic-addon1">Rp</span>
                                             <input type="text" class="form-control" aria-describedby="basic-addon1" name="biaya" >
@@ -194,12 +195,9 @@
                                     <div class="input-group">
                                         <span class="input-group-addon input-permintaan" id="basic-addon1" style="min-width:137px">Tipe Dokumen</span>
                                         <select name="tipe_dokumen" class="form-control">
-                                            <option value="1">Form Permintaan</option>
-                                            <option value="2">Memo</option>
-                                            <option value="3">Nota Pengantar</option>
-                                            <option value="4">BALO</option>
-                                            <option value="5">Form UAT</option>
-                                            <option value="6">Lain - Lain</option>
+                                            <?php foreach($dokumen_list as $row): ?>
+                                                <option value="<?php echo $row->p_doc_type_id?>"><?php echo $row->name?></option>
+                                            <?php endforeach?>
                                         </select>
                                    </div>
                                </div>
@@ -382,18 +380,20 @@
                                                         <tr>
                                                             <th>#</th>
                                                             <th>Proses</th>
-                                                            <th>Keterangan</th>
+                                                            <th>Closed Date</th>
                                                             <th>Closed By</th>
+                                                            <th>Keterangan</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         <?php $count = 0; foreach ($list_keterangan as $row) : $count++;?>
                                                             <tr>
-                                                            <?php if ($row->name != "Online Billing"): ?>
+                                                            <?php if ($row->name != "Verifikasi Permintaan"): ?>
                                                               <td><?php echo $count?></td>
                                                               <td><?php echo $row->name?></td>
-                                                              <td><?php echo $row->keterangan?></td>
+                                                              <td><?php echo $row->valid_to?></td>
                                                               <td><?php echo $row->closed_by?></td>
+                                                              <td><?php echo $row->keterangan?></td>
                                                             <?php endif ?>
                                                             </tr>
                                                         <?php endforeach ?>

@@ -35,6 +35,8 @@ class Wananalyst extends CI_Controller
         $data['count_balo'] = $this->wan_analyst_model->getcountbalo();
         $data['data_permintaan'] = $this->wan_analyst_model->get_data_permintaan($order_id);
         $data['data_permintaan_pic'] = $this->wan_analyst_model->get_data_permintaan_pic($order_id);
+        $this->load->model('verifikator_model');
+        $data['dokumen_list'] = $this->verifikator_model->getdoc();
         $data['lokasiid'] = $this->wan_analyst_model->getlokasiid($order_id);
         $data['list_keterangan'] = $this->wan_analyst_model->getproses($order_id); 
         $data['reject'] = $this->wan_analyst_model->get_ket_reject($order_id);
@@ -82,6 +84,8 @@ class Wananalyst extends CI_Controller
         $data['balo_list'] = $this->wan_analyst_model->getdataupdate($o_id);
         $data['data_permintaan'] = $this->wan_analyst_model->get_data_permintaan($o_id);
         $data['data_permintaan_pic'] = $this->wan_analyst_model->get_data_permintaan_pic($o_id);
+        $this->load->model('verifikator_model');
+        $data['dokumen_list'] = $this->verifikator_model->getdoc();
         $data['lokasiid'] = $this->wan_analyst_model->getlokasiid($o_id);
         $data['list_keterangan'] = $this->wan_analyst_model->getproses($o_id); 
         $data['reject'] = $this->wan_analyst_model->get_ket_reject($o_id);
@@ -97,6 +101,8 @@ class Wananalyst extends CI_Controller
         $data['count_balo'] = $this->wan_analyst_model->getcountbalo();
         $data['data_permintaan'] = $this->wan_analyst_model->get_data_permintaan($o_id);
         $data['data_permintaan_pic'] = $this->wan_analyst_model->get_data_permintaan_pic($o_id);
+        $this->load->model('verifikator_model');
+        $data['dokumen_list'] = $this->verifikator_model->getdoc();
         $data['lokasiid'] = $this->wan_analyst_model->getlokasiid($o_id);
         $data['list_keterangan'] = $this->wan_analyst_model->getproses($o_id);
         $data['reject'] = $this->wan_analyst_model->get_ket_reject($o_id);

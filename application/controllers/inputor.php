@@ -84,6 +84,8 @@ class Inputor extends CI_Controller
 
     public function form_permintaan()
     {        
+        $this->load->model('verifikator_model');
+        $data['dokumen_list'] = $this->verifikator_model->getdoc();
         $data['jenis_list'] = $this->inputor_model->getdatajenis();
         $data['provider_list'] = $this->inputor_model->getdataprovider();
         $data['provinsi_list'] = $this->inputor_model->getdataprovinsi();
